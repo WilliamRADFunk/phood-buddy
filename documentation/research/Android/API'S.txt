@@ -1,0 +1,16 @@
+https://developer.walmartlabs.com/
+
+https://dev.fitbit.com/
+
+http://square.github.io/retrofit/
+
+http://api.bigoven.com/
+
+http://food2fork.com/about/api
+
+https://developers.facebook.com/
+
+https://www.firebase.com/
+
+https://developer.walmartlabs.com/docs/read/Search_API
+
