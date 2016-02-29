@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/PhoodBuddy.iml" filepath="$PROJECT_DIR$/PhoodBuddy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PhoodBuddy-Android.iml" filepath="$PROJECT_DIR$/PhoodBuddy-Android.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
