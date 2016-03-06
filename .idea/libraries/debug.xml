@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="debug">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/PhoodBuddy-Android/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.1_654cdb334adbe0ecf0763f867fb1e3129775428b.jar!/" />
+      <root url="jar://$PROJECT_DIR$/PhoodBuddy-Android/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.1.1_f54d613e9c0c6f10f131a91175988e9f5b569fa1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/PhoodBuddy-Android/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.1_3b7e1604f23b60fef8e506d927a0708679abbf56.jar!/" />
+      <root url="jar://$PROJECT_DIR$/PhoodBuddy-Android/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-23.1.1_edf4a4db8ab59508920663df0c280b1ea663a64f.jar!/" />
+      <root url="jar://$PROJECT_DIR$/PhoodBuddy-Android/app/build/intermediates/pre-dexed/debug/com.android.support-design-23.1.1_09588c980b9bd904366d6debce95c91021fdb6c4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/PhoodBuddy-Android/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.1.1_0dafc9788efe886a21d348e3d9c9c191dde6189d.jar!/" />
+      <root url="jar://$PROJECT_DIR$/PhoodBuddy-Android/app/build/intermediates/pre-dexed/debug/debug_a83dec890d7b32e832fe117e480495d9f2f7808d.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

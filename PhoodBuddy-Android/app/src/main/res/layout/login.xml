@@ -10,19 +10,33 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/pattern"
-        android:layout_alignParentTop="true"
+        android:layout_alignTop="@+id/textView2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <ImageView
         android:layout_width="75dp"
-        android:layout_height="150dp"
-        android:id="@+id/facebook_signin"
-        android:src="@drawable/facebook"
-        android:layout_alignParentTop="true"
+        android:layout_height="75dp"
+        android:id="@+id/google_signin"
+        android:src="@drawable/google"
+        android:onClick="onClick"
+        android:clickable="true"
+        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="110dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:id="@+id/facebook_signin"
+        android:src="@drawable/facebook"
+        android:onClick="onClick"
+        android:clickable="true"
+        android:layout_above="@+id/google_signin"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -32,56 +46,10 @@
         android:text="Logo"
         android:textColor="@android:color/white"
         android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
+        android:layout_above="@+id/facebook_signin"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="39dp" />
+        android:layout_marginBottom="71dp" />
 
-
-    <ImageView
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:id="@+id/google_signin"
-        android:src="@drawable/google"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="27dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-
-
-    <EditText
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/password"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:text="Password"
-        android:layout_alignBottom="@+id/forgotPass"
-        android:layout_alignLeft="@+id/username"
-        android:layout_alignStart="@+id/username"
-        android:layout_marginBottom="16dp" />
-    <EditText
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/username"
-        android:textColor="@android:color/white"
-        android:textAlignment="center"
-        android:text="Username"
-
-        android:layout_below="@+id/facebook_signin"
-        android:layout_centerHorizontal="true" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:background="@color/colorPrimaryDark"
-        android:textColor="@android:color/white"
-        android:id="@+id/login"
-        android:layout_alignTop="@+id/forgotPass"
-        android:layout_alignRight="@+id/password"
-        android:layout_alignEnd="@+id/password" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -90,10 +58,9 @@
         android:text="Terms of Service"
         android:id="@+id/tos"
         android:textColor="@android:color/white"
-        android:layout_below="@+id/login"
-        android:layout_alignRight="@+id/forgotPass"
-        android:layout_alignEnd="@+id/forgotPass"
-        android:layout_marginTop="30dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/textView2"
+        android:layout_toStartOf="@+id/textView2" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -102,8 +69,7 @@
         android:text="Privacy Policy"
         android:id="@+id/privacy"
         android:textColor="@android:color/white"
-        android:layout_alignBaseline="@+id/textView5"
-        android:layout_alignBottom="@+id/textView5"
+        android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/textView5"
         android:layout_toEndOf="@+id/textView5" />
 
@@ -121,25 +87,34 @@
         android:layout_alignEnd="@+id/textView2"
         android:layout_alignTop="@+id/tos" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Forgot Password?"
-        android:textColor="@android:color/white"
-        android:id="@+id/forgotPass"
-        android:layout_below="@+id/username"
-        android:layout_alignLeft="@+id/password"
-        android:layout_alignStart="@+id/password"
-        android:layout_marginTop="69dp" />
+    <ImageView
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:id="@+id/twitter_signin"
+        android:src="@drawable/twitter"
+        android:scaleType="fitXY"
+        android:onClick="onClick"
+        android:clickable="true"
+        android:layout_below="@+id/google_signin"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        android:textColor="@android:color/white"
-        android:id="@+id/textView3"
-        android:layout_above="@+id/tos"
-        android:layout_alignLeft="@+id/forgotPass"
-        android:layout_alignStart="@+id/forgotPass" />
+    <ImageView
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:id="@+id/connect_signin"
+        android:onClick="onClick"
+        android:clickable="true"
+        android:scaleType="fitXY"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="7dp"
+        android:src="@drawable/connectwus"
+        android:layout_below="@+id/twitter_signin"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

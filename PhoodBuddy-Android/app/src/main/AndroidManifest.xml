@@ -18,63 +18,46 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Activities.shopping_list"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation = "portrait">
-        </activity>
-
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Activities.setup"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation = "portrait">
-        </activity>
-
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Activities.settings"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation = "portrait">
-        </activity>
-
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Activities.recipes"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation = "portrait">
-        </activity>
-
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Activities.login"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation = "portrait">
-        </activity>
-
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Activities.health_profile"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation = "portrait">
-        </activity>
-
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Activities.deals"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation = "portrait">
-        </activity>
-
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Activities.dashboard"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation = "portrait">
-        </activity>
-
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Activities.agenda"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation = "portrait">
-        </activity>
-
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Controllers.LoginController"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"></activity>
     </application>
-
-
 
 </manifest>
