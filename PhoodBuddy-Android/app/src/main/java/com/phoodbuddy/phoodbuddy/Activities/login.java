@@ -1,8 +1,10 @@
 package com.phoodbuddy.phoodbuddy.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.phoodbuddy.phoodbuddy.R;
@@ -21,7 +23,7 @@ public class login extends AppCompatActivity {
         holder.facebook = (ImageView) findViewById(R.id.facebook_signin);
         holder.twitter = (ImageView) findViewById(R.id.twitter_signin);
         holder.google = (ImageView) findViewById(R.id.google_signin);
-        holder.register = (ImageView) findViewById(R.id.connect_signin);
+        holder.register = (ImageButton) findViewById(R.id.connect_signin);
 
     }
 
@@ -29,7 +31,8 @@ public class login extends AppCompatActivity {
 
         if(v==holder.facebook)
         {
-
+            Intent intent = new Intent(login.this, setup.class);
+            startActivity(intent);
         }
         if(v==holder.twitter)
         {
@@ -50,7 +53,7 @@ public class login extends AppCompatActivity {
         ImageView facebook;
         ImageView twitter;
         ImageView google;
-        ImageView register;
+        ImageButton register;
     }
 
 }

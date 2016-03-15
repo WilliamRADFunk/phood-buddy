@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:textColor="@color/white"
+    android:background="@color/colorPrimary">
 
 
     <Button
@@ -9,17 +11,22 @@
         android:layout_height="wrap_content"
         android:text="Integrate with Fitbit"
         android:id="@+id/fitbit"
-        android:layout_alignParentTop="true"
+        android:background="@drawable/button_border"
+        android:onClick="onClick"
+        android:layout_above="@+id/next"
+        android:textColor="@color/white"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:background="@color/colorPrimaryDark" />
+        android:layout_alignRight="@+id/next"
+        android:layout_alignEnd="@+id/next" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Continue"
+        android:background="@drawable/button_border"
+        android:onClick="onClick"
+        android:textColor="@color/white"
         android:id="@+id/next"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
@@ -28,67 +35,121 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
-        android:layout_below="@+id/fitbit"
+        android:inputType="textPersonName"
+        android:text="Full Name"
+        android:textColor="@color/white"
+        android:ems="10"
+        android:onClick="onClick"
+        android:id="@+id/fullName"
+        android:layout_above="@+id/birthYear"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="72dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="55dp"
-        android:layout_toLeftOf="@+id/next"
-        android:layout_toStartOf="@+id/next" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2"
-        android:layout_marginTop="39dp"
-        android:layout_below="@+id/editText"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText"
-        android:layout_alignRight="@+id/editText"
-        android:layout_alignEnd="@+id/editText" />
+        android:inputType="phone"
+        android:ems="10"
+        android:textColor="@color/white"
+        android:id="@+id/birthYear"
+        android:text="Birth Year"
+        android:onClick="onClick"
+        android:layout_above="@+id/gender"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/next"
+        android:layout_alignEnd="@+id/next" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText3"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2"
-        android:layout_toLeftOf="@+id/next"
-        android:layout_toStartOf="@+id/next" />
+        android:inputType="date"
+        android:ems="10"
+        android:textColor="@color/white"
+        android:onClick="onClick"
+        android:id="@+id/gender"
+        android:text="Gender"
+        android:layout_above="@+id/weight"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/next"
+        android:layout_alignEnd="@+id/next" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText4"
-        android:layout_marginTop="36dp"
-        android:layout_below="@+id/editText3"
-        android:layout_alignLeft="@+id/editText3"
-        android:layout_alignStart="@+id/editText3"
-        android:layout_toLeftOf="@+id/next"
-        android:layout_toStartOf="@+id/next" />
+        android:id="@+id/weight"
+        android:textColor="@color/white"
+        android:onClick="onClick"
+        android:text="Weight (lbs.)"
+        android:layout_above="@+id/height1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/next"
+        android:layout_alignEnd="@+id/next" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText5"
-        android:layout_marginTop="39dp"
-        android:layout_below="@+id/editText4"
-        android:layout_alignLeft="@+id/editText4"
-        android:layout_alignStart="@+id/editText4"
-        android:layout_alignRight="@+id/editText"
-        android:layout_alignEnd="@+id/editText" />
+        android:id="@+id/height1"
+        android:onClick="onClick"
+        android:text="Height (ft.)"
+        android:textColor="@color/white"
+        android:layout_above="@+id/height2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText6"
-        android:layout_above="@+id/next"
-        android:layout_alignLeft="@+id/editText5"
-        android:layout_alignStart="@+id/editText5"
-        android:layout_alignRight="@+id/editText"
-        android:layout_alignEnd="@+id/editText" />
+        android:id="@+id/height2"
+        android:onClick="onClick"
+        android:text="Height (in.)"
+        android:textColor="@color/white"
+        android:layout_above="@+id/zipcode"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/next"
+        android:layout_alignEnd="@+id/next" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/zipcode"
+        android:textColor="@color/white"
+        android:onClick="onClick"
+        android:text="Zipcode (optional)"
+        android:layout_above="@+id/allergies"
+        android:layout_alignRight="@+id/next"
+        android:layout_alignEnd="@+id/next"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Allergies (Optional)"
+        android:background="@drawable/button_border"
+        android:id="@+id/allergies"
+        android:onClick="onClick"
+        android:textColor="@color/white"
+        android:layout_above="@+id/fitbit"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/next"
+        android:layout_alignEnd="@+id/next" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:layout_above="@+id/fullName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="59dp"
+        android:src="@drawable/logo" />
 
 </RelativeLayout>

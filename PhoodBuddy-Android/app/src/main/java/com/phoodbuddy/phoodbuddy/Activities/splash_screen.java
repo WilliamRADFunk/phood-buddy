@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.phoodbuddy.phoodbuddy.R;
-
+/**
+ * Created by Evan Glazer on 3/15/2016.
+ */
 public class splash_screen extends AppCompatActivity {
 
     @Override

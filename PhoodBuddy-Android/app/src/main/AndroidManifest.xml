@@ -20,38 +20,47 @@
         </activity>
         <activity
             android:name=".Activities.shopping_list"
+            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Activities.setup"
+            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Activities.settings"
+            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Activities.recipes"
+            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Activities.login"
+            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Activities.health_profile"
+            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Activities.deals"
+            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Activities.dashboard"
+            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Activities.agenda"
+            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"></activity>
         <activity

@@ -9,13 +9,129 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.phoodbuddy.phoodbuddy.dashboard"
+    tools:context="com.phoodbuddy.phoodbuddy.Activities.dashboard"
     tools:showIn="@layout/app_bar_dashboard">
 
-    <com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:id="@+id/dash_recipes"
+        android:onClick="onClick"
+        android:clickable="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/dash_breakfest"
+        android:paddingRight="5dp"
+        android:onClick="onClick"
+        android:clickable="true"
+        android:layout_below="@+id/dash_recipes"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="55dp" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/dash_lunch"
+        android:paddingRight="5dp"
+        android:onClick="onClick"
+        android:clickable="true"
+        android:layout_alignTop="@+id/dash_breakfest"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/dash_dinner"
+        android:paddingRight="5dp"
+        android:onClick="onClick"
+        android:clickable="true"
+        android:layout_alignTop="@+id/dash_lunch"
+        android:layout_alignRight="@+id/dash_recipes"
+        android:layout_alignEnd="@+id/dash_recipes" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:id="@+id/dash_drinks"
+        android:onClick="onClick"
+        android:clickable="true"
+        android:layout_marginTop="61dp"
+        android:layout_below="@+id/dash_breakfest"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:id="@+id/dash_vegetarian"
+        android:onClick="onClick"
+        android:clickable="true"
+        android:layout_alignTop="@+id/dash_drinks"
+        android:layout_alignRight="@+id/dash_dinner"
+        android:layout_alignEnd="@+id/dash_dinner" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="All Recipes"
+        android:id="@+id/textView3"
+        android:layout_alignBottom="@+id/dash_recipes"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Breakfast"
+        android:id="@+id/textView4"
+        android:layout_alignBottom="@+id/dash_breakfest"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Lunch"
+        android:id="@+id/textView6"
+        android:layout_alignBottom="@+id/dash_lunch"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Dinner"
+        android:id="@+id/textView7"
+        android:layout_above="@+id/dash_drinks"
+        android:layout_toEndOf="@+id/textView9"
+        android:layout_alignTop="@+id/textView6"
+        android:layout_toRightOf="@+id/textView9" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Drinks"
+        android:id="@+id/textView8"
+        android:layout_alignTop="@+id/textView9"
+        android:layout_toRightOf="@+id/textView4"
+        android:layout_toEndOf="@+id/textView4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Vegatarian"
+        android:id="@+id/textView9"
+        android:layout_alignBottom="@+id/dash_vegetarian"
+        android:layout_alignLeft="@+id/dash_dinner"
+        android:layout_alignStart="@+id/dash_dinner" />
 
 </RelativeLayout>

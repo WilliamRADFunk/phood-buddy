@@ -25,6 +25,7 @@ public class RecipeController extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
         return null;
     }
 }

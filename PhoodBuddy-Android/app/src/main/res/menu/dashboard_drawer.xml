@@ -3,33 +3,42 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Dashboard" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_shopping_list"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Shopping List" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_deals"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Deals (coming soon!)" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_recipes"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Recipes" />
+        <item
+            android:id="@+id/nav_agenda"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Planner" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Miscellaneous">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nav_scan"
+                android:icon="@drawable/ic_menu_camera"
+                android:title="Scan (coming soon!)" />
+
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_health_profile"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="Health Profile" />
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Settings" />
         </menu>
     </item>
 
