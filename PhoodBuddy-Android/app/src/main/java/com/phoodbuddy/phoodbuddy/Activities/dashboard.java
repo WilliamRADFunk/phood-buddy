@@ -34,7 +34,7 @@ public class dashboard extends AppCompatActivity
         setContentView(R.layout.dashboard);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        setTitle("               Dashboard");
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -44,31 +44,22 @@ public class dashboard extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         holder = new ViewHolder();
-        holder.allRecipes = (ImageView) findViewById(R.id.dash_recipes);
-        holder.breakfast = (ImageView) findViewById(R.id.dash_breakfest);
-        holder.lunch = (ImageView) findViewById(R.id.dash_lunch);
-        holder.dinner = (ImageView) findViewById(R.id.dash_dinner);
-        holder.drinks = (ImageView) findViewById(R.id.dash_drinks);
-        holder.vegetarian = (ImageView) findViewById(R.id.dash_vegetarian);
+        holder.fitbit = (ImageView) findViewById(R.id.dash_fitbit);
+        holder.shopping_list = (ImageView) findViewById(R.id.dash_shopping_list);
+        holder.allRecipes = (ImageView) findViewById(R.id.dash_fav_recipe);
     }
 
     public void onClick(View v)
     {
         switch(v.getId())
         {
-            case R.id.dash_recipes:
-                // list of top recipes
+            case R.id.dash_fitbit:
+
                 break;
-            case R.id.dash_breakfest:
-                // breakfast based on health profile
+            case R.id.dash_shopping_list:
+
                 break;
-            case R.id.dash_lunch:
-                break;
-            case R.id.dash_dinner:
-                break;
-            case R.id.dash_drinks:
-                break;
-            case R.id.dash_vegetarian:
+            case R.id.dash_fav_recipe:
                 break;
             default:
                 break;
@@ -106,7 +97,7 @@ public class dashboard extends AppCompatActivity
             startActivity(i);
         }
         else if (id == R.id.nav_agenda) {
-            Intent i = new Intent(dashboard.this, agenda.class);
+            Intent i = new Intent(dashboard.this, planner.class);
             startActivity(i);
 
         }
@@ -132,10 +123,7 @@ public class dashboard extends AppCompatActivity
     class ViewHolder
     {
         ImageView allRecipes;
-        ImageView breakfast;
-        ImageView lunch;
-        ImageView dinner;
-        ImageView drinks;
-        ImageView vegetarian;
+        ImageView fitbit;
+        ImageView shopping_list;
     }
 }

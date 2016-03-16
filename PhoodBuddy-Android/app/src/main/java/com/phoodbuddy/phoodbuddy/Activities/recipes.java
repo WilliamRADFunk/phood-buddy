@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.dexafree.materialList.view.MaterialListView;
 import com.phoodbuddy.phoodbuddy.R;
 
 /**
@@ -22,25 +21,13 @@ public class recipes extends AppCompatActivity
 
 
     private Context mContext;
-    private MaterialListView mListView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recipe_list);
-
+        setTitle("                Recipes");
         mContext = this;
-        //mListView = (MaterialListView) findViewById(R.id.material_listview);
-        //mListView.setCardAnimation(MaterialListView.CardAnimation.SWING_BOTTOM_IN);
 
-        /*
-        // to add card
-        Card card = new SmallImageCard();
-        card.setDescription(description);
-        card.setTitle(title);
-        card.setDrawable(R.drawable.ic_launcher);
-
-        mListView.add(card);
-         */
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -82,11 +69,9 @@ public class recipes extends AppCompatActivity
             startActivity(i);
         }
         else if (id == R.id.nav_recipes) {
-           // Intent i = new Intent(health_profile.this, recipes.class);
-           // startActivity(i);
         }
         else if (id == R.id.nav_agenda) {
-            Intent i = new Intent(recipes.this, agenda.class);
+            Intent i = new Intent(recipes.this, planner.class);
             startActivity(i);
 
         }
@@ -97,8 +82,8 @@ public class recipes extends AppCompatActivity
             */
         }
         else if (id == R.id.nav_health_profile) {
-            // Intent i = new Intent(health_profile.this, health_profile.class);
-            //startActivity(i);
+            Intent i = new Intent(recipes.this, health_profile.class);
+            startActivity(i);
         }
         else if (id == R.id.nav_settings) {
             Intent i = new Intent(recipes.this, settings.class);

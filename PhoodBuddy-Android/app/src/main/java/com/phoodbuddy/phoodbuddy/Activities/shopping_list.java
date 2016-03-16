@@ -26,6 +26,7 @@ public class shopping_list extends AppCompatActivity
         setContentView(R.layout.shopping_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setTitle("             Shopping List");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -72,7 +73,7 @@ public class shopping_list extends AppCompatActivity
             startActivity(i);
         }
         else if (id == R.id.nav_shopping_list) {
-            //Intent i = new Intent(agenda.this, shopping_list.class);
+            //Intent i = new Intent(planner.this, shopping_list.class);
            // startActivity(i);
         }
         else if (id == R.id.nav_deals) {
@@ -84,7 +85,7 @@ public class shopping_list extends AppCompatActivity
             startActivity(i);
         }
         else if (id == R.id.nav_agenda) {
-            Intent i = new Intent(shopping_list.this, agenda.class);
+            Intent i = new Intent(shopping_list.this, planner.class);
             startActivity(i);
 
         }

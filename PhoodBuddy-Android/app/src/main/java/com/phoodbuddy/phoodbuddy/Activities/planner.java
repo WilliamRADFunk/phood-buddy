@@ -15,13 +15,13 @@ import com.phoodbuddy.phoodbuddy.R;
 /**
  * Created by  Glazer on 2/29/2016.
  */
-public class agenda extends AppCompatActivity
+public class planner extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.agenda);
+        setContentView(R.layout.planner);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -53,24 +53,22 @@ public class agenda extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_dashboard) {
-            Intent i = new Intent(agenda.this, dashboard.class);
+            Intent i = new Intent(planner.this, dashboard.class);
             startActivity(i);
         }
         else if (id == R.id.nav_shopping_list) {
-            Intent i = new Intent(agenda.this, shopping_list.class);
+            Intent i = new Intent(planner.this, shopping_list.class);
             startActivity(i);
         }
         else if (id == R.id.nav_deals) {
-            Intent i = new Intent(agenda.this, deals.class);
+            Intent i = new Intent(planner.this, deals.class);
             startActivity(i);
         }
         else if (id == R.id.nav_recipes) {
-            Intent i = new Intent(agenda.this, recipes.class);
+            Intent i = new Intent(planner.this, recipes.class);
             startActivity(i);
         }
         else if (id == R.id.nav_agenda) {
-            //Intent i = new Intent(dashboard.this, agenda.class);
-            //startActivity(i);
 
         }
         else if (id == R.id.nav_scan) {
@@ -80,11 +78,11 @@ public class agenda extends AppCompatActivity
             */
         }
         else if (id == R.id.nav_health_profile) {
-            Intent i = new Intent(agenda.this, health_profile.class);
+            Intent i = new Intent(planner.this, health_profile.class);
             startActivity(i);
         }
         else if (id == R.id.nav_settings) {
-            Intent i = new Intent(agenda.this, settings.class);
+            Intent i = new Intent(planner.this, settings.class);
             startActivity(i);
         }
 

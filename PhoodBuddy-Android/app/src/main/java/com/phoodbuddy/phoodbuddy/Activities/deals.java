@@ -1,5 +1,6 @@
 package com.phoodbuddy.phoodbuddy.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -24,6 +25,7 @@ public class deals extends AppCompatActivity
         setContentView(R.layout.deals);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setTitle("                Deals");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -53,25 +55,37 @@ public class deals extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_dashboard) {
-            // Handle the action
+            Intent i = new Intent(deals.this, dashboard.class);
+            startActivity(i);
         }
         else if (id == R.id.nav_shopping_list) {
-
+            //Intent i = new Intent(planner.this, shopping_list.class);
+            // startActivity(i);
         }
         else if (id == R.id.nav_deals) {
-
         }
         else if (id == R.id.nav_recipes) {
+            Intent i = new Intent(deals.this, recipes.class);
+            startActivity(i);
+        }
+        else if (id == R.id.nav_agenda) {
+            Intent i = new Intent(deals.this, planner.class);
+            startActivity(i);
 
         }
         else if (id == R.id.nav_scan) {
-
+            /*
+            Intent i = new Intent(dashboard.this, scan.class);
+            startActivity(i);
+            */
         }
         else if (id == R.id.nav_health_profile) {
-
+            Intent i = new Intent(deals.this, health_profile.class);
+            startActivity(i);
         }
         else if (id == R.id.nav_settings) {
-
+            Intent i = new Intent(deals.this, settings.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -46,11 +46,11 @@
         android:text="Terms of Service"
         android:id="@+id/tos"
         android:textColor="@android:color/white"
+        android:layout_marginLeft="52dp"
+        android:layout_marginStart="52dp"
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/imageView3"
-        android:layout_alignStart="@+id/imageView3"
-        android:layout_marginLeft="65dp"
-        android:layout_marginStart="65dp" />
+        android:layout_alignStart="@+id/imageView3" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -61,7 +61,9 @@
         android:textColor="@android:color/white"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/textView5"
-        android:layout_toEndOf="@+id/textView5" />
+        android:layout_toEndOf="@+id/textView5"
+        android:layout_marginLeft="17dp"
+        android:layout_marginStart="17dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -72,8 +74,6 @@
         android:textAlignment="center"
         android:id="@+id/textView5"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/tos"
-        android:layout_alignTop="@+id/tos"
         android:layout_centerHorizontal="true" />
 
     <ImageView
@@ -103,20 +103,22 @@
         android:layout_height="75dp"
         android:id="@+id/connect_signin"
         android:layout_below="@+id/twitter_signin"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:background="@color/colorPrimaryDark"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Sign in through us"
+        android:text="Sign in with Phood Buddy"
+        android:textColor="@color/white"
         android:padding="25dp"
         android:id="@+id/textView2"
         android:layout_below="@+id/twitter_signin"
-        android:layout_alignLeft="@+id/tos"
-        android:layout_alignStart="@+id/tos" />
+        android:layout_alignRight="@+id/imageView3"
+        android:layout_alignEnd="@+id/imageView3" />
 
 </RelativeLayout>

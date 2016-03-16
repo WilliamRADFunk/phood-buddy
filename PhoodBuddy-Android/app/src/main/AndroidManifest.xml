@@ -59,7 +59,7 @@
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"></activity>
         <activity
-            android:name=".Activities.agenda"
+            android:name=".Activities.planner"
             android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"></activity>

@@ -26,6 +26,7 @@ public class health_profile extends AppCompatActivity
         setContentView(R.layout.health_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setTitle("            Health Profile");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -84,7 +85,7 @@ public class health_profile extends AppCompatActivity
             startActivity(i);
         }
         else if (id == R.id.nav_agenda) {
-            Intent i = new Intent(health_profile.this, agenda.class);
+            Intent i = new Intent(health_profile.this, planner.class);
             startActivity(i);
 
         }
