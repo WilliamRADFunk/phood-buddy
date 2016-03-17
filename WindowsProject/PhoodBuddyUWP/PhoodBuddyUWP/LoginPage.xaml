@@ -19,6 +19,7 @@
         <TextBlock
             Style="{StaticResource PhoodBuddyPageHeader}"
             Text="PhoodBuddy"/>
+        
         <!-- TODO Add Food based picture background -->
 
         <!--Panel for all of the login options-->
@@ -26,7 +27,7 @@
             Grid.Row="1"
             VerticalAlignment="Center"
             HorizontalAlignment="Stretch"
-            Background="#5F000000"
+            Background="#999999"
             Margin="8"
             MaxWidth="300">
 

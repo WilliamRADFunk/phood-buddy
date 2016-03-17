@@ -8,10 +8,9 @@
     <Application.Resources>
 
         <!-- Theme Colors -->
-        <SolidColorBrush x:Key="PhoodBuddyPrimaryColor" Color="#21DEEF"/>
-        <SolidColorBrush x:Key="PhoodBuddyAccent" Color="#E2F323"/>
-
-
+        <SolidColorBrush x:Key="PhoodBuddyPrimaryColor" Color="#4585A1"/>
+        <SolidColorBrush x:Key="PhoodBuddyPrimaryColorDark" Color="#6A9DB3"/>
+        <SolidColorBrush x:Key="PhoodBuddyAccentColor" Color="#4585A1"/>
 
         <!-- Button -->
         <Style

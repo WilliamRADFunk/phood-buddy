@@ -7,16 +7,72 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <ResourceDictionary>
+            <Style x:Key="DashboardButtonStyle" TargetType="Button">
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="VerticalAlignment" Value="Stretch"/>
+                <Setter Property="Margin" Value="15, 7.5"/>
+                <Setter Property="Background" Value="{StaticResource PhoodBuddyPrimaryColor}"/>
+            </Style>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <SplitView
+        DisplayMode="CompactOverlay">
+        <SplitView.Pane>
+            <StackPanel>
+                <Button>
+                    B1
+                </Button>
+            </StackPanel>
+        </SplitView.Pane>
         
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <SplitView.Content>
+            <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-        <TextBlock
-            Style="{StaticResource PhoodBuddyPageHeader}"
-            Text="Dashboard"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-    </Grid>
+                <!-- Title for the page -->
+                <TextBlock
+                Style="{StaticResource PhoodBuddyPageHeader}"
+                Text="Dashboard"/>
+                
+                
+
+                <!-- Content on the Page -->
+                <Grid Grid.Row="1">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- FitBit Activity Section -->
+                    <Button
+                    Grid.Row="0"
+                    Style="{StaticResource DashboardButtonStyle}"
+                    Content="FitBit Button"/>
+
+                    <!-- Favorite Recipes -->
+                    <Button
+                    Grid.Row="1"
+                    Style="{StaticResource DashboardButtonStyle}"
+                    Content="Favorite Recipes"/>
+
+                    <!-- Shopping List -->
+                    <Button
+                    Grid.Row="2"
+                    Style="{StaticResource DashboardButtonStyle}"
+                    Content="Shopping List"/>
+
+                </Grid>
+            </Grid>
+        </SplitView.Content>
+    </SplitView>
 </Page>

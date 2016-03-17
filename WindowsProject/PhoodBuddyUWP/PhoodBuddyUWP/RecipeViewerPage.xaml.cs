@@ -13,25 +13,31 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+using PhoodBuddyUWP.Models;
+
+// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace PhoodBuddyUWP
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class LoginPage : Page
+    public sealed partial class RecipeViewerPage : Page
     {
-        public LoginPage()
+        private Recipe recipe;
+
+        public RecipeViewerPage()
         {
             this.InitializeComponent();
         }
 
-        private void loginButton_Click(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //TODO: Validate login credentials
+            //Calls the base version
+            base.OnNavigatedTo(e);
 
-            Frame.Navigate(typeof(DashboardPage));
+            //Casts the parameters to the recipe type
+            recipe = (Recipe)e.Parameter;
         }
     }
 }
