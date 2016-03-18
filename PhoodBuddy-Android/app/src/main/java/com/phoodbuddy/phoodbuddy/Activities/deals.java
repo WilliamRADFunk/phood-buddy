@@ -59,7 +59,7 @@ public class deals extends AppCompatActivity
             startActivity(i);
         }
         else if (id == R.id.nav_shopping_list) {
-            //Intent i = new Intent(planner.this, shopping_list.class);
+            //Intent i = new Intent(planner.this, shopping_list_Model.class);
             // startActivity(i);
         }
         else if (id == R.id.nav_deals) {

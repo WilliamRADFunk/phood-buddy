@@ -59,6 +59,10 @@
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"></activity>
         <activity
+            android:name=".Fragments.shopping_list_detail"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"></activity>
+        <activity
             android:name=".Activities.planner"
             android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|screenSize"

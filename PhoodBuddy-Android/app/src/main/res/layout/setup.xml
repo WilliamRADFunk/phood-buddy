@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:text="Integrate with Fitbit"
         android:id="@+id/fitbit"
-        android:background="@drawable/button_border"
+        android:background="@drawable/button_border_white"
         android:onClick="onClick"
         android:layout_above="@+id/next"
         android:textColor="@color/white"
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Continue"
-        android:background="@drawable/button_border"
+        android:background="@drawable/button_border_white"
         android:onClick="onClick"
         android:textColor="@color/white"
         android:id="@+id/next"
@@ -133,7 +133,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Allergies (Optional)"
-        android:background="@drawable/button_border"
+        android:background="@drawable/button_border_white"
         android:id="@+id/allergies"
         android:onClick="onClick"
         android:textColor="@color/white"
@@ -147,9 +147,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView2"
+        android:paddingTop="7dp"
+        android:src="@drawable/logo"
         android:layout_above="@+id/fullName"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="59dp"
-        android:src="@drawable/logo" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

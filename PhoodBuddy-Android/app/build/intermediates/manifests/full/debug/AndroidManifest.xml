@@ -27,48 +27,56 @@
         <activity
             android:name="com.phoodbuddy.phoodbuddy.Activities.shopping_list"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.phoodbuddy.phoodbuddy.Activities.setup"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.phoodbuddy.phoodbuddy.Activities.settings"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.phoodbuddy.phoodbuddy.Activities.recipes"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.phoodbuddy.phoodbuddy.Activities.login"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.phoodbuddy.phoodbuddy.Activities.health_profile"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.phoodbuddy.phoodbuddy.Activities.deals"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.phoodbuddy.phoodbuddy.Activities.dashboard"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.phoodbuddy.phoodbuddy.Activities.agenda"
+            android:name="com.phoodbuddy.phoodbuddy.Fragments.shopping_list_detail"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.phoodbuddy.phoodbuddy.Activities.planner"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.phoodbuddy.phoodbuddy.Controllers.LoginController"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

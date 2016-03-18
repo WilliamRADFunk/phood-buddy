@@ -1,6 +1,9 @@
 package com.phoodbuddy.phoodbuddy.Activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -9,17 +12,29 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Toast;
 
-import com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridView;
+import com.phoodbuddy.phoodbuddy.Controllers.ShoppingListController;
+import com.phoodbuddy.phoodbuddy.Fragments.shopping_list_detail;
+import com.phoodbuddy.phoodbuddy.Models.shopping_list_Model;
 import com.phoodbuddy.phoodbuddy.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Evan Glazer on 2/29/2016.
  */
 public class shopping_list extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-
-    AsymmetricGridView listView;
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+    ViewHolder viewHolder;
+    List<shopping_list_Model> data = new ArrayList<>();
+    SQLiteDatabase db;
+    EditText item;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +42,7 @@ public class shopping_list extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle("             Shopping List");
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -37,20 +53,54 @@ public class shopping_list extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        /*
-        //listView = (AsymmetricGridView) findViewById(R.id.listView);
+        db=openOrCreateDatabase("ShoppingList", Context.MODE_PRIVATE, null);
+        db.execSQL("CREATE TABLE IF NOT EXISTS shoppingList(item VARCHAR,quantity VARCHAR,serving VARCHAR);");
 
-        // Choose your own preferred column width
-        listView.setRequestedColumnWidth(Utils.dpToPx(this, 120));
-        final List<AsymmetricItem> items = new ArrayList<>();
+        Cursor c=db.rawQuery("SELECT * FROM shoppingList", null);
+        if(c.getCount()==0)
+        {
+            Toast.makeText(getApplicationContext(), "No items in your list!", Toast.LENGTH_LONG).show();
+            return;
+        }
+        while(c.moveToNext())
+        {
+            shopping_list_Model model = new shopping_list_Model(c.getString(0),c.getString(1),c.getString(2));
+            data.add(model);
+        }
 
-        // initialize your items array
-       // ListAdapter adapter = new ListAdapter(this, listView, items) {
-          //create adapter to set the gridview
-        AsymmetricGridViewAdapter asymmetricAdapter =
-                new AsymmetricGridViewAdapter<>(this, listView, adapter);
-        listView.setAdapter(asymmetricAdapter);
-    */
+        ShoppingListController controller = new ShoppingListController(this, data);
+
+        viewHolder = new ViewHolder();
+        viewHolder.add = (Button) findViewById(R.id.listAdd);
+        viewHolder.list = (ListView) findViewById(R.id.shoppingList);
+        item = (EditText) findViewById(R.id.shopping_edit);
+
+        viewHolder.list.setAdapter(controller);
+        viewHolder.add.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.listAdd)
+        {
+            String content = "" + item.getText().toString();
+           if (content.equals("")) {
+                Toast.makeText(getApplicationContext(), "Item is empty!", Toast.LENGTH_LONG).show();
+            } else {
+               Intent i = new Intent(shopping_list.this, shopping_list_detail.class);
+               i.putExtra("item", content);
+               startActivity(i);
+
+           }
+        }
+    }
+
+    class ViewHolder
+    {
+        Button add;
+        ListView list;
+
     }
     @Override
     public void onBackPressed() {
@@ -73,7 +123,7 @@ public class shopping_list extends AppCompatActivity
             startActivity(i);
         }
         else if (id == R.id.nav_shopping_list) {
-            //Intent i = new Intent(planner.this, shopping_list.class);
+            //Intent i = new Intent(planner.this, shopping_list_Model.class);
            // startActivity(i);
         }
         else if (id == R.id.nav_deals) {
@@ -90,10 +140,6 @@ public class shopping_list extends AppCompatActivity
 
         }
         else if (id == R.id.nav_scan) {
-            /*
-            Intent i = new Intent(dashboard.this, scan.class);
-            startActivity(i);
-            */
         }
         else if (id == R.id.nav_health_profile) {
             Intent i = new Intent(shopping_list.this, health_profile.class);

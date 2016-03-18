@@ -128,6 +128,6 @@
         android:layout_alignParentEnd="true"
         android:layout_alignLeft="@+id/radioButton10"
         android:layout_alignStart="@+id/radioButton10"
-        android:background="@drawable/button_border" />
+        android:background="@drawable/button_border_primary" />
 
 </RelativeLayout>
