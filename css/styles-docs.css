@@ -21,9 +21,28 @@ h4
 {
     margin-top: 50px;
 }
+h5
+{
+    font-style: italic;
+    text-align: left;
+}
+h6
+{
+    font-style: italic;
+    margin-top: 5px;
+}
 hr
 {
     margin-top: 30px;
+}
+li
+{
+    line-height: 16px;
+    margin-bottom: 10px;
+}
+ol li
+{
+    list-style: none;
 }
 p
 {
@@ -43,4 +62,13 @@ table, th, td
 th, td
 {
     padding: 10px 0px;
+}
+.inner-list
+{
+    list-style-type: square;
+}
+.text-left
+{
+    padding-left: 15px;
+    text-align: left;
 }
