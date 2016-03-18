@@ -18,3 +18,16 @@ footer
 	color: #FFFFFF;
 	width: 100%;
 }
+footer > div > div > a,
+footer > div > div > a:hover,
+footer > div > div > a:active
+{
+	color: #FFFFFF;
+	display: block;
+	font-size: 12px;
+	text-decoration: none;
+}
+footer > div > div > h3
+{
+	font-size: 16px;
+}
