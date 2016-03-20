@@ -28,6 +28,10 @@ public class ShoppingListController extends BaseAdapter {
 
     }
 
+    public ShoppingListController() {
+
+    }
+
     class ViewHolder {
         TextView itemName;
         TextView quantity;
@@ -48,6 +52,11 @@ public class ShoppingListController extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         return position;
+    }
+
+    public String getName(int position)
+    {
+        return list.get(position).getItemName();
     }
 
     @Override

@@ -67,7 +67,7 @@ public class shopping_list_detail extends AppCompatActivity {
                 {
                     // send to data then back to shopping list
                     db.execSQL("INSERT INTO shoppingList VALUES('"+ itemName +"','"+view.quantity.getText()+
-                            "','"+view.quantity.getText() + " "+view.servingMeasure.getSelectedItem().toString()+"');");
+                            "','"+view.serving.getText() + " "+view.servingMeasure.getSelectedItem().toString()+"');");
 
                     Intent j = new Intent(shopping_list_detail.this, shopping_list.class);
                     startActivity(j);

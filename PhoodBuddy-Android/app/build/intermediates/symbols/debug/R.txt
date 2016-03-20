@@ -838,6 +838,7 @@ int id servingEdit 0x7f0c00d0
 int id servingSpinner 0x7f0c00cf
 int id serving_complete 0x7f0c00d4
 int id shoppingList 0x7f0c0088
+int id shopping_delete 0x7f0c00e2
 int id shopping_edit 0x7f0c0086
 int id shortcut 0x7f0c005c
 int id showCustom 0x7f0c0011

@@ -2948,6 +2948,7 @@ containing a value of this type.
         public static final int servingSpinner=0x7f0c00cf;
         public static final int serving_complete=0x7f0c00d4;
         public static final int shoppingList=0x7f0c0088;
+        public static final int shopping_delete=0x7f0c00e2;
         public static final int shopping_edit=0x7f0c0086;
         public static final int shortcut=0x7f0c005c;
         public static final int showCustom=0x7f0c0011;

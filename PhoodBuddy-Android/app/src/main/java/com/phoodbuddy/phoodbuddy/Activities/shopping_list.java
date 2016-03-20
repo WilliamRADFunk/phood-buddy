@@ -11,8 +11,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -35,6 +38,8 @@ public class shopping_list extends AppCompatActivity
     List<shopping_list_Model> data = new ArrayList<>();
     SQLiteDatabase db;
     EditText item;
+    ShoppingListController controller = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +61,50 @@ public class shopping_list extends AppCompatActivity
         db=openOrCreateDatabase("ShoppingList", Context.MODE_PRIVATE, null);
         db.execSQL("CREATE TABLE IF NOT EXISTS shoppingList(item VARCHAR,quantity VARCHAR,serving VARCHAR);");
 
+        loadData();
+        controller = new ShoppingListController(this, data);
+
+        viewHolder = new ViewHolder();
+        viewHolder.add = (Button) findViewById(R.id.listAdd);
+        viewHolder.list = (ListView) findViewById(R.id.shoppingList);
+        item = (EditText) findViewById(R.id.shopping_edit);
+
+
+        viewHolder.list.setAdapter(controller);
+        viewHolder.add.setOnClickListener(this);
+        registerForContextMenu(viewHolder.list);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch(item.getItemId())
+        {
+            case R.id.shopping_delete:
+                // return item name then delete from based on name
+                String itemName = data.get(info.position).getItemName();
+                db.execSQL("DELETE FROM shoppingList WHERE item='" + itemName + "'");
+                data.remove(info.position);
+                controller.notifyDataSetChanged();
+                break;
+            default:
+                super.onOptionsItemSelected(item);
+                break;
+
+        }
+        return true;
+    }
+
+    public void loadData()
+    {
         Cursor c=db.rawQuery("SELECT * FROM shoppingList", null);
         if(c.getCount()==0)
         {
@@ -67,19 +116,7 @@ public class shopping_list extends AppCompatActivity
             shopping_list_Model model = new shopping_list_Model(c.getString(0),c.getString(1),c.getString(2));
             data.add(model);
         }
-
-        ShoppingListController controller = new ShoppingListController(this, data);
-
-        viewHolder = new ViewHolder();
-        viewHolder.add = (Button) findViewById(R.id.listAdd);
-        viewHolder.list = (ListView) findViewById(R.id.shoppingList);
-        item = (EditText) findViewById(R.id.shopping_edit);
-
-        viewHolder.list.setAdapter(controller);
-        viewHolder.add.setOnClickListener(this);
-
     }
-
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.listAdd)
@@ -110,6 +147,12 @@ public class shopping_list extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
