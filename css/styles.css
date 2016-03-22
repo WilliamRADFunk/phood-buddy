@@ -6,17 +6,76 @@ body
     font-weight: lighter;
     padding: 0px;
 }
-header
+#main-nav
 {
-	background-color: #4585A1;
-	color: #FFFFFF;
-	width: 100%;
+	padding-left: 10%;
+	padding-right: 10%;
+}
+.navbar-default,
+.navbar-inverse
+{
+    background-color: #4585A1;
+    color: #FFFFFF;
+    width: 100%;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > .active > a:hover
+{
+    background-color: #4585A1;
+    color: #FFFFFF;
+}
+.navbar-default .navbar-nav > .disabled > a,
+.navbar-default .navbar-nav > .disabled > a:hover,
+.navbar-default .navbar-nav > .disabled > a:focus
+{
+    color: #FFFFFF;
+}
+.navbar-default .navbar-nav > li > a
+{
+    color: #FFFFFF;
+}
+.navbar-default .navbar-nav > li:hover
+{
+    background-color: #326077;
+}
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > li > a:hover
+{
+    color: #FFFFFF;
+}
+.navbar-default .navbar-nav > li > a:focus
+{
+    color: #FFFFFF;
+}
+.navbar-default .navbar-nav > ul
+{
+    padding-left: 20px;
+}
+.navbar-default .navbar-text
+{
+    color: #FFFFFF;
+}
+#login-register
+{
+	display: block;
+	float: right;
 }
 footer
 {
 	background-color: #4585A1;
+	bottom: 0px;
 	color: #FFFFFF;
+	left: 0px;
+	line-height: 20px;
+	padding-bottom: 15px;
+	position: fixed;
 	width: 100%;
+}
+footer > .row
+{
+	margin: 0px auto;
+	text-align: center;
 }
 footer > div > div > a,
 footer > div > div > a:hover,
@@ -24,10 +83,17 @@ footer > div > div > a:active
 {
 	color: #FFFFFF;
 	display: block;
-	font-size: 12px;
+	font-size: 10px;
 	text-decoration: none;
 }
 footer > div > div > h3
 {
-	font-size: 16px;
+	display: block;
+	font-size: 14px;
+	margin-bottom: 5px;
+}
+footer > .row > .link-column
+{
+	padding-left: 0px;
+	padding-right: 0px;
 }
