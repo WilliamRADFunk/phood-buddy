@@ -21,9 +21,9 @@
         android:id="@+id/dash_fav_recipe"
         android:scaleType="fitXY"
         android:src="@drawable/fav_recipe"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/dash_fitbit"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -32,12 +32,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/dash_fitbit"
         android:src="@drawable/fitbit"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
         android:scaleType="fitXY"
-        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/searchView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -45,9 +45,9 @@
         android:id="@+id/dash_shopping_list"
         android:scaleType="fitXY"
         android:src="@drawable/shopping_list"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/dash_fav_recipe"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
     <ImageView
@@ -56,11 +56,25 @@
         android:id="@+id/dash_social"
         android:scaleType="fitXY"
         android:src="@drawable/shopping_list"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/dash_shopping_list"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:clickable="true"
+        android:contextClickable="true" />
+
+    <SearchView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchView"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:queryHint="Search for Recipes..."
+        android:contextClickable="true" />
 </RelativeLayout>
 
     </ScrollView>

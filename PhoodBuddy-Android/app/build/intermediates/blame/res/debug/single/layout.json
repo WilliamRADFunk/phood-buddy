@@ -24,12 +24,16 @@
         "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\notification_media_action.xml"
     },
     {
+        "merged": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_tab_text.xml",
+        "source": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.1.1\\res\\layout\\design_layout_tab_text.xml"
+    },
+    {
         "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view.xml",
         "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_activity_chooser_view.xml"
     },
     {
-        "merged": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_tab_text.xml",
-        "source": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.1.1\\res\\layout\\design_layout_tab_text.xml"
+        "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\com_facebook_activity_layout.xml",
+        "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.1.0\\res\\layout\\com_facebook_activity_layout.xml"
     },
     {
         "merged": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_menu_item_action_area.xml",
@@ -42,6 +46,10 @@
     {
         "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_title_item.xml",
         "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\messenger_button_send_blue_small.xml",
+        "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.1.0\\res\\layout\\messenger_button_send_blue_small.xml"
     },
     {
         "merged": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view.xml",
@@ -60,12 +68,12 @@
         "source": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_mode_close_item_material.xml"
     },
     {
-        "merged": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_view.xml",
-        "source": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_search_view.xml"
-    },
-    {
         "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\agenda.xml",
         "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\src\\main\\res\\layout\\agenda.xml"
+    },
+    {
+        "merged": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_view.xml",
+        "source": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_search_view.xml"
     },
     {
         "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_subheader.xml",
@@ -94,6 +102,14 @@
     {
         "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\content_shoppinglist.xml",
         "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\src\\main\\res\\layout\\content_shoppinglist.xml"
+    },
+    {
+        "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\com_facebook_tooltip_bubble.xml",
+        "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.1.0\\res\\layout\\com_facebook_tooltip_bubble.xml"
+    },
+    {
+        "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\messenger_button_send_blue_round.xml",
+        "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.1.0\\res\\layout\\messenger_button_send_blue_round.xml"
     },
     {
         "merged": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_menu.xml",
@@ -288,6 +304,10 @@
         "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_list_menu_item_layout.xml"
     },
     {
+        "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\messenger_button_send_blue_large.xml",
+        "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.1.0\\res\\layout\\messenger_button_send_blue_large.xml"
+    },
+    {
         "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_popup_menu_item_layout.xml",
         "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_popup_menu_item_layout.xml"
     },
@@ -336,6 +356,10 @@
         "source": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_screen_toolbar.xml"
     },
     {
+        "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\com_facebook_login_fragment.xml",
+        "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.1.0\\res\\layout\\com_facebook_login_fragment.xml"
+    },
+    {
         "merged": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_item_layout.xml",
         "source": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_menu_item_layout.xml"
     },
@@ -350,6 +374,10 @@
     {
         "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\shopping_list_child.xml",
         "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\src\\main\\res\\layout\\shopping_list_child.xml"
+    },
+    {
+        "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\messenger_button_send_white_small.xml",
+        "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.1.0\\res\\layout\\messenger_button_send_white_small.xml"
     },
     {
         "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_icon.xml",
@@ -410,6 +438,10 @@
     {
         "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\nav_header_main.xml",
         "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\src\\main\\res\\layout\\nav_header_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\messenger_button_send_white_large.xml",
+        "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.1.0\\res\\layout\\messenger_button_send_white_large.xml"
     },
     {
         "merged": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_snackbar_include.xml",
@@ -542,6 +574,10 @@
     {
         "merged": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_view_list_nav_layout.xml",
         "source": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_bar_view_list_nav_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\messenger_button_send_white_round.xml",
+        "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.1.0\\res\\layout\\messenger_button_send_white_round.xml"
     },
     {
         "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\content_health_profile.xml",

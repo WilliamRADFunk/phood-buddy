@@ -368,8 +368,27 @@
                     "startLine": 21,
                     "startColumn": 4,
                     "startOffset": 1890,
+                    "endColumn": 58,
+                    "endOffset": 1944
+                },
+                "from": {
+                    "file": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.1.0\\res\\values-ko\\values.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 181,
+                        "endColumn": 58,
+                        "endOffset": 235
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 22,
+                    "startColumn": 4,
+                    "startOffset": 1949,
                     "endColumn": 100,
-                    "endOffset": 1986
+                    "endOffset": 2045
                 },
                 "from": {
                     "file": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-ko\\values-ko.xml",

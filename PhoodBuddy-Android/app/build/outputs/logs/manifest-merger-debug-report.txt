@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:2:1-76:12
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:2:1-92:12
 	package
 		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:3:5-40
 		INJECTED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml
@@ -13,8 +13,26 @@ ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\And
 	android:versionCode
 		INJECTED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:5:5-92
+	android:name
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:5:22-73
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:6:5-95
+	android:name
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:6:22-76
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:7:5-83
+	android:name
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:7:22-64
+uses-permission#com.myschoolflow.schoolflow.permission.SET_ALARM
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:8:5-104
+	android:name
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:8:22-85
 application
-ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:5:5-74:19
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:11:5-90:19
+MERGED from [com.facebook.android:facebook-android-sdk:4.1.0] C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.1.0\AndroidManifest.xml:28:5-20
+MERGED from [com.android.support:support-v4:23.1.1] C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:appcompat-v7:23.1.1] C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:23.1.1] C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:design:23.1.1] C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\build\intermediates\exploded-aar\com.android.support\design\23.1.1\AndroidManifest.xml:22:5-20
@@ -33,141 +51,159 @@ MERGED from [com.android.support:support-v4:23.1.1] C:\Users\Evan\Desktop\phood-
 MERGED from [com.android.support:appcompat-v7:23.1.1] C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:23.1.1] C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\AndroidManifest.xml:22:5-20
 	android:label
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:8:9-41
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:14:9-41
 	android:supportsRtl
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:9:9-35
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:16:9-35
 	android:allowBackup
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:6:9-35
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:12:9-35
 	android:icon
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:7:9-43
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:13:9-43
 	android:theme
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:10:9-40
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:17:9-40
+	android:name
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:15:9-41
 activity#com.phoodbuddy.phoodbuddy.Activities.splash_screen
-ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:11:9-20:20
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:18:9-27:20
 	android:label
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:13:13-45
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:20:13-45
 	android:theme
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:14:13-56
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:21:13-56
 	android:name
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:12:13-53
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:19:13-53
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:15:13-19:29
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:22:13-26:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:16:17-69
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:23:17-69
 	android:name
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:16:25-66
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:23:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:18:17-77
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:25:17-77
 	android:name
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:18:27-74
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:25:27-74
 activity#com.phoodbuddy.phoodbuddy.Activities.shopping_list
-ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:21:9-25:61
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:28:9-32:61
 	android:screenOrientation
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:25:13-49
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:32:13-49
 	android:configChanges
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:24:13-59
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:31:13-59
 	android:theme
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:23:13-56
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:30:13-56
 	android:name
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:22:13-53
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:29:13-53
 activity#com.phoodbuddy.phoodbuddy.Activities.setup
-ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:26:9-30:61
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:33:9-37:61
 	android:screenOrientation
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:30:13-49
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:37:13-49
 	android:configChanges
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:29:13-59
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:36:13-59
 	android:theme
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:28:13-56
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:35:13-56
 	android:name
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:27:13-45
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:34:13-45
 activity#com.phoodbuddy.phoodbuddy.Activities.settings
-ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:31:9-35:61
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:38:9-42:61
 	android:screenOrientation
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:35:13-49
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:42:13-49
 	android:configChanges
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:34:13-59
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:41:13-59
 	android:theme
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:33:13-56
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:40:13-56
 	android:name
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:32:13-48
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:39:13-48
 activity#com.phoodbuddy.phoodbuddy.Activities.recipes
-ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:36:9-40:61
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:43:9-47:61
 	android:screenOrientation
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:40:13-49
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:47:13-49
 	android:configChanges
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:39:13-59
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:46:13-59
 	android:theme
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:38:13-56
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:45:13-56
 	android:name
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:37:13-47
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:44:13-47
 activity#com.phoodbuddy.phoodbuddy.Activities.login
-ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:41:9-45:61
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:48:9-52:61
 	android:screenOrientation
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:45:13-49
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:52:13-49
 	android:configChanges
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:44:13-59
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:51:13-59
 	android:theme
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:43:13-56
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:50:13-56
 	android:name
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:42:13-45
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:49:13-45
 activity#com.phoodbuddy.phoodbuddy.Activities.health_profile
-ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:46:9-50:61
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:53:9-57:61
 	android:screenOrientation
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:50:13-49
-	android:configChanges
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:49:13-59
-	android:theme
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:48:13-56
-	android:name
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:47:13-54
-activity#com.phoodbuddy.phoodbuddy.Activities.deals
-ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:51:9-55:61
-	android:screenOrientation
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:55:13-49
-	android:configChanges
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:54:13-59
-	android:theme
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:53:13-56
-	android:name
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:52:13-45
-activity#com.phoodbuddy.phoodbuddy.Activities.dashboard
-ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:56:9-60:61
-	android:screenOrientation
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:60:13-49
-	android:configChanges
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:59:13-59
-	android:theme
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:58:13-56
-	android:name
 		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:57:13-49
-activity#com.phoodbuddy.phoodbuddy.Fragments.shopping_list_detail
-ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:61:9-64:61
-	android:screenOrientation
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:64:13-49
 	android:configChanges
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:63:13-59
-	android:name
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:62:13-59
-activity#com.phoodbuddy.phoodbuddy.Activities.planner
-ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:65:9-69:61
-	android:screenOrientation
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:69:13-49
-	android:configChanges
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:68:13-59
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:56:13-59
 	android:theme
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:67:13-56
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:55:13-56
 	android:name
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:66:13-47
-activity#com.phoodbuddy.phoodbuddy.Controllers.LoginController
-ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:70:9-73:61
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:54:13-54
+activity#com.phoodbuddy.phoodbuddy.Activities.deals
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:58:9-62:61
 	android:screenOrientation
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:73:13-49
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:62:13-49
 	android:configChanges
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:72:13-59
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:61:13-59
+	android:theme
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:60:13-56
 	android:name
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:71:13-56
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:59:13-45
+activity#com.phoodbuddy.phoodbuddy.Activities.dashboard
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:63:9-67:61
+	android:screenOrientation
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:67:13-49
+	android:configChanges
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:66:13-59
+	android:theme
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:65:13-56
+	android:name
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:64:13-49
+activity#com.phoodbuddy.phoodbuddy.Fragments.shopping_list_detail
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:68:9-71:61
+	android:screenOrientation
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:71:13-49
+	android:configChanges
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:70:13-59
+	android:name
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:69:13-59
+activity#com.phoodbuddy.phoodbuddy.Activities.planner
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:72:9-76:61
+	android:screenOrientation
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:76:13-49
+	android:configChanges
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:75:13-59
+	android:theme
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:74:13-56
+	android:name
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:73:13-47
+activity#com.phoodbuddy.phoodbuddy.Controllers.LoginController
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:77:9-80:61
+	android:screenOrientation
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:80:13-49
+	android:configChanges
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:79:13-59
+	android:name
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:78:13-56
+activity#com.phoodbuddy.phoodbuddy.Service.TwitterOAuthActivity
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:82:9-66
+	android:name
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:82:19-63
+activity#com.facebook.FacebookActivity
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:84:9-66
+	android:name
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:84:19-63
+meta-data#com.facebook.sdk.ApplicationId
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:86:9-88:55
+	android:value
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:88:13-52
+	android:name
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:87:13-58
 uses-sdk
 INJECTED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.facebook.android:facebook-android-sdk:4.1.0] C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.1.0\AndroidManifest.xml:24:5-26:41
+MERGED from [com.android.support:support-v4:23.1.1] C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:appcompat-v7:23.1.1] C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:support-v4:23.1.1] C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:design:23.1.1] C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\build\intermediates\exploded-aar\com.android.support\design\23.1.1\AndroidManifest.xml:20:5-43

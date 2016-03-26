@@ -8,7 +8,13 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="23" />
 
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.myschoolflow.schoolflow.permission.SET_ALARM" />
+
     <application
+        android:name="com.phoodbuddy.phoodbuddy.Service.firebase"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -77,6 +83,12 @@
             android:name="com.phoodbuddy.phoodbuddy.Controllers.LoginController"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait" />
+        <activity android:name="com.phoodbuddy.phoodbuddy.Service.TwitterOAuthActivity" />
+        <activity android:name="com.facebook.FacebookActivity" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
     </application>
 
 </manifest>

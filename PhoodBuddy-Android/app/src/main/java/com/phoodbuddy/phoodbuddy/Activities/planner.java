@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import com.phoodbuddy.phoodbuddy.R;
 
 /**
- * Created by  Glazer on 2/29/2016.
+ * Created by  Evan Glazer on 2/29/2016.
  */
 public class planner extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

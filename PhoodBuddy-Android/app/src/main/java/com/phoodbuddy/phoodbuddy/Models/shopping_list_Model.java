@@ -1,7 +1,7 @@
 package com.phoodbuddy.phoodbuddy.Models;
 
 /**
- * Created by Evan on 3/18/2016.
+ * Created by Evan Glazer on 3/18/2016.
  */
 public class shopping_list_Model {
 

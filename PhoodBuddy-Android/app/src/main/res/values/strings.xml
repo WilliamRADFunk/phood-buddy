@@ -15,4 +15,11 @@
     <string name="title_activity_asynchronous">Asynchronous Events</string>
     <string name="async_error">Could not download events from the internet</string>
     <string name="Add">Add</string>
+
+
+    <string name="login_with_facebook">Login with Facebook</string>
+    <string name="login_with_twitter">Login with Twitter</string>
+    <string name="login_with_password">Login with Password</string>
+
+
 </resources>

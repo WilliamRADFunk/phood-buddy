@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 /**
- * Created by Evan on 3/15/2016.
+ * Created by Evan Glazer on 3/15/2016.
  */
 public class PlannerController extends BaseAdapter {
     @Override
