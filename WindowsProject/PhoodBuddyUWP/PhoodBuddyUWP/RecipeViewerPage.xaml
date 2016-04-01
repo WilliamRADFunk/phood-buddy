@@ -8,8 +8,7 @@
     mc:Ignorable="d">
 
     <Grid
-        Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-        DataContext="recipe">
+        Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         
         
         <Grid.RowDefinitions>
@@ -20,7 +19,7 @@
         <!-- Page Title (Recipe) -->
         <TextBlock
             Style="{StaticResource PhoodBuddyPageHeader}"
-            Text="{Binding Title, FallbackValue=Invalid, TargetNullValue=null}"/>
+            Text="{x:Bind recipe.Title, FallbackValue=Invalid, TargetNullValue=null}"/>
 
         <!-- Recipe Content -->
         <StackPanel

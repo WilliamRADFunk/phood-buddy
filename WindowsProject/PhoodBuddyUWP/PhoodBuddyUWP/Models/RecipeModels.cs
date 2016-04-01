@@ -53,5 +53,13 @@ namespace PhoodBuddyUWP.Models
         public string Title { get; set; }
         public List<RecipeIngredient> Ingredients { get; set; }
         public List<RecipeInstruction> Instructions { get; set; }
+
+        //Constructor
+        public Recipe(string t, List<RecipeIngredient> ingredients = null, List<RecipeInstruction> instructions = null)
+        {
+            Title = t;
+            Ingredients = ingredients;
+            Instructions = instructions;
+        }
     }
 }

@@ -25,6 +25,13 @@ namespace PhoodBuddyUWP
         public DashboardPage()
         {
             this.InitializeComponent();
+            navMenu.OnNavigateParentReady += navHandler;
+        }
+
+        private void navHandler(object sender, EventArgs e)
+        {
+            var page = sender as Type;
+            Frame.Navigate(page);
         }
     }
 }

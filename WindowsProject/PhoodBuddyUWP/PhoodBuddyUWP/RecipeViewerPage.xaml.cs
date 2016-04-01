@@ -38,6 +38,9 @@ namespace PhoodBuddyUWP
 
             //Casts the parameters to the recipe type
             recipe = (Recipe)e.Parameter;
+
+            //For debugging purposes
+            System.Diagnostics.Debug.WriteLine(recipe.Title);
         }
     }
 }

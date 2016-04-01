@@ -1,0 +1,101 @@
+﻿<UserControl
+    x:Class="PhoodBuddyUWP.NavMenu"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PhoodBuddyUWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <SplitView Name="menu"
+               Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+               DisplayMode="CompactOverlay"
+               CompactPaneLength="60">
+
+        <SplitView.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Background"
+                        Value="#00000000"/>
+                <Setter Property="FontFamily"
+                        Value="Segoe MDL2 Assets"/>
+                <Setter Property="Margin"
+                        Value="0"/>
+            </Style>
+            <Style TargetType="TextBlock">
+                <Setter Property="Margin"
+                        Value="20, 0, 0, 0"/>
+                <Setter Property="VerticalAlignment"
+                        Value="Center"/>
+                <Setter Property="HorizontalAlignment"
+                        Value="Center"/>
+                <Setter Property="FontFamily"
+                        Value="SegoeUI"/>
+            </Style>
+        </SplitView.Resources>
+
+        <SplitView.Pane>
+            <ListView Background="{StaticResource PhoodBuddyPrimaryColor}">
+
+                <!-- Menu Header -->
+                <Button Click="MenuButton_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="List" />
+                        <TextBlock Text="Menu"
+                                   FontWeight="Bold"/>
+                    </StackPanel>
+                </Button>
+                
+                <!-- Shopping List Navigation -->
+                <Button Click="ShoppingListButton_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="Edit"/>
+                        <TextBlock Text="Shopping List"/>
+                    </StackPanel>
+                </Button>
+
+                <!-- Pantry List Navigation -->
+                <Button Click="PantryListButton_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="Edit"/>
+                        <TextBlock Text="Pantry List"/>
+                    </StackPanel>
+                </Button>
+                
+                <!-- User Profile -->
+                <Button Click="ProfileButton_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="Contact"/>
+                        <TextBlock Text="User Profile"/>
+                    </StackPanel>
+                </Button>
+                
+                <!-- Favorite Recipes -->
+                <Button Click="FavoriteRecipesButton_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="Favorite"/>
+                        <TextBlock Text="Favorite Recipes"/>
+                    </StackPanel>
+                </Button>
+                
+            </ListView>
+        </SplitView.Pane>
+        
+        <SplitView.Content>
+            <Grid>
+            
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Title for the page -->
+                <TextBlock Name="Header"
+                           Style="{StaticResource PhoodBuddyPageHeader}"
+                           Text="{x:Bind HeaderText}"/>
+
+            </Grid>
+        </SplitView.Content>
+    </SplitView>
+</UserControl>

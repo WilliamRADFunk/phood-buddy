@@ -105,6 +105,9 @@
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\RecipeModels.cs" />
+    <Compile Include="NavMenu.xaml.cs">
+      <DependentUpon>NavMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipeViewerPage.xaml.cs">
       <DependentUpon>RecipeViewerPage.xaml</DependentUpon>
@@ -138,6 +141,10 @@
     <Page Include="LoginPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NavMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RecipeViewerPage.xaml">
       <SubType>Designer</SubType>
