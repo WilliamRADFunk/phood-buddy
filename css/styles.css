@@ -1,13 +1,30 @@
+html
+{
+	height: 100%;
+}
 body
 {
     background-color: #FFFFFF;
-    color: #000000;
+    color: #777777;
     font-family: 'Open Sans', sans-serif;
     font-weight: lighter;
-    padding: 0px;
+    height: 100%;
+    padding-top: 50px;
+    position: relative;
+}
+h1
+{
+	text-align: center;
+}
+ul
+{
+	list-style: none;
 }
 #main-nav
 {
+	background-color: #4585A1;
+	color: #FFFFFF;
+	height: 50px;
 	padding-left: 10%;
 	padding-right: 10%;
 }
@@ -61,15 +78,25 @@ body
 	display: block;
 	float: right;
 }
+#wrapper
+{
+	min-height: 75%;
+	width: 100%
+}
+#about table
+{
+	background-color: #E2EEF4;
+	margin-bottom: 50px;
+	margin-top: 50px;
+}
 footer
 {
 	background-color: #4585A1;
-	bottom: 0px;
 	color: #FFFFFF;
-	left: 0px;
+	display: block;
+	min-height: 25%;
 	line-height: 20px;
 	padding-bottom: 15px;
-	position: fixed;
 	width: 100%;
 }
 footer > .row
@@ -78,12 +105,18 @@ footer > .row
 	text-align: center;
 }
 footer > div > div > a,
+footer > div > div > a:active,
 footer > div > div > a:hover,
-footer > div > div > a:active
+footer > div > div > a:visited
 {
 	color: #FFFFFF;
 	display: block;
 	font-size: 10px;
+	text-decoration: none;
+}
+footer > div > div > a:focus
+{
+	outline: 0px;
 	text-decoration: none;
 }
 footer > div > div > h3
@@ -96,4 +129,10 @@ footer > .row > .link-column
 {
 	padding-left: 0px;
 	padding-right: 0px;
+}
+@media screen and (max-width: 767px) {
+	#about .table-responsive > .table > tbody > tr > td
+	{
+		white-space: normal;
+	}
 }
