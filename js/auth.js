@@ -7,33 +7,18 @@
 function authHandler(error, authData) 
 {
 
-	//DEBUG tool: Checks object returned by user authentication
+	//Users login attempt failed
   if (error) 
   {
     console.log("Login Failed!", error);
   } 
-  else 
+  else //Users login attemp successful. Have access to authData
   {
     console.log("Authenticated successfully with payload:", authData);
-  }
 
-
-	var isNewUser = true;
-
-	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
-
-	ref.onAuth(function(authData) 
-	{
-		 if (authData && isNewUser) 
-		 {
-		    // save the user's profile into the database so we can list users,
-		    // use them in Security and Firebase Rules, and show profiles
-		    ref.child("users").child(authData.uid).set({
-		      provider: authData.provider,
-		      name: getName(authData)
-		    });
-		 }
-	});
+    checkIfUserExists(authData.uid, authData);  //Checks to see if user payload alaready has account
+	
+  }	
 }
 
 function fblogin()
@@ -78,4 +63,38 @@ function getName(authData) {
      case 'google':
      	return authData.google.displayName;
   }
+}
+
+//Checks authentication payload if user already exists. Returns true if UserID does not exist in users tree
+function checkIfUserExists(userId, authData) {
+
+  var usersRef = new Firebase("https://phoodbuddy.firebaseio.com/users");
+  usersRef.once('value', function(snapshot){
+  	if(snapshot.hasChild(userId))
+  	{
+  		console.log("User Already Exists");
+  	}
+  	else
+  	{
+  		var ref = new Firebase("https://phoodbuddy.firebaseio.com");
+
+		ref.onAuth(function(authData) 
+		{
+			 if (authData)
+			 {
+			 	console.log("This is a new user!");
+			    // save the user's profile into the database so we can list users,
+			    ref.child("users").child(authData.uid).set({
+			      provider: authData.provider,
+			      name: getName(authData)  // retrieves name from payload
+			    });
+			 }
+			 else
+			 {
+			 	console.log("invalid payload");
+			 }
+		});
+  	}
+});
+  
 }
