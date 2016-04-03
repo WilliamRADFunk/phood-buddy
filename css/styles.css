@@ -84,7 +84,8 @@ ul
 	width: 100%
 }
 #about table,
-#faq table
+#faq table,
+#contact table
 {
 	background-color: #E2EEF4;
 	margin-bottom: 50px;
@@ -137,7 +138,8 @@ footer > .row > .link-column
 }
 @media screen and (max-width: 767px) {
 	#about .table-responsive > .table > tbody > tr > td,
-	#faq .table-responsive > .table > tbody > tr > td
+	#faq .table-responsive > .table > tbody > tr > td,
+	#contact .table-responsive > .table > tbody > tr > td
 	{
 		white-space: normal;
 	}
