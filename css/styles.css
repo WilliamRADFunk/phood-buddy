@@ -9,7 +9,6 @@ body
     font-family: 'Open Sans', sans-serif;
     font-weight: lighter;
     height: 100%;
-    padding-top: 50px;
     position: relative;
 }
 h1
@@ -80,7 +79,8 @@ ul
 }
 #wrapper
 {
-	min-height: 75%;
+	margin-top: 75px;
+	min-height: 65%;
 	width: 100%
 }
 #about table,
@@ -95,12 +95,24 @@ ul
 {
 	font-weight: bold;
 }
+#social
+{
+	margin-bottom: 10px;
+	margin-top: 10px;
+	min-height: 13%;
+	text-align: center;
+	width: 100%
+}
+#social img
+{
+	margin: 10px;
+}
 footer
 {
 	background-color: #4585A1;
 	color: #FFFFFF;
 	display: block;
-	min-height: 25%;
+	min-height: 20%;
 	line-height: 20px;
 	padding-bottom: 15px;
 	width: 100%;
