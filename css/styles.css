@@ -83,11 +83,16 @@ ul
 	min-height: 75%;
 	width: 100%
 }
-#about table
+#about table,
+#faq table
 {
 	background-color: #E2EEF4;
 	margin-bottom: 50px;
 	margin-top: 50px;
+}
+#faq table span
+{
+	font-weight: bold;
 }
 footer
 {
@@ -131,7 +136,8 @@ footer > .row > .link-column
 	padding-right: 0px;
 }
 @media screen and (max-width: 767px) {
-	#about .table-responsive > .table > tbody > tr > td
+	#about .table-responsive > .table > tbody > tr > td,
+	#faq .table-responsive > .table > tbody > tr > td
 	{
 		white-space: normal;
 	}
