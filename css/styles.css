@@ -122,6 +122,7 @@ footer > div > div > a:visited
 }
 footer > div > div > a:focus
 {
+	color: #FFFFFF;
 	outline: 0px;
 	text-decoration: none;
 }
