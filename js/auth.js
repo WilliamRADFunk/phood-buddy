@@ -75,5 +75,7 @@ function getName(authData) {
        return authData.twitter.displayName;
      case 'facebook':
        return authData.facebook.displayName;
+     case 'google':
+     	return authData.google.displayName;
   }
 }
