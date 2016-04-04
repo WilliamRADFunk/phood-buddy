@@ -83,6 +83,16 @@ ul
 	min-height: 65%;
 	width: 100%
 }
+#about .row div
+{
+	padding-left: 0px;
+}
+#about .divider.row div
+{
+	border-bottom: 2px solid #E5E5E5;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
 #about table,
 #faq table,
 #contact table
