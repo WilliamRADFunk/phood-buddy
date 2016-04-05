@@ -82,11 +82,8 @@ function customRegister(emailString, passwordString)
   		{
 
     		console.log("Successfully created user account with uid:", userData);
-    		ref.child("users").child(userData.uid).set({
-			      provider: "custom",
-			      name: ""  // retrieves name from payload
-			    });
-    		console.log("Successfully created user account on Firebase");
+    		setAccount(userData);
+   
 
   		}
 	});
@@ -109,9 +106,15 @@ function customLogin(emailString, passwordString)
 	});
 }
 
-function setAccount()
+function setAccount(userData)
 {
 
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
+
+	ref.child("users").child(userData.uid).set({
+			      provider: "password",
+			      name: ""  // retrieves name from payload
+			    });
 }
 
 
