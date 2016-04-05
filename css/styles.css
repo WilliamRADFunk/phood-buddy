@@ -134,11 +134,29 @@ ul
 	padding-left: 0px;
 	padding-right: 0px;
 }
+#carousel-recipes .item
+{
+	background-color: #E2EEF4;
+}
+#carousel-recipes .item img
+{
+	text-align: left;
+}
+#carousel-recipes p,
+#carousel-recipes h3
+{
+	padding-left: 20%;
+	text-align: left;
+}
+#carousel-recipes h4
+{
+	font-size: 13px;
+}
 #carousel-groceries .item
 {
 	margin-left: auto;
 	margin-right: auto;
-	width: 75%;
+	width: 98%;
 }
 #carousel-groceries ul
 {
@@ -246,8 +264,17 @@ footer > .row > .link-column
 /**************** Footer classes end ************All****/
 @media screen and (max-width: 767px) {
 /************* Landing classes start ************All****/
-	
-	
+	#carousel-recipes p
+	{
+		font-size: 18px;
+		padding-left: 10%;
+	}
+	#carousel-recipes h3
+	{
+		display: block;
+		font-size: 24px;
+		padding-left: 10%;
+	}
 /************* Landing classes end **************All****/
 /************* Extraneous pages classes start **767-****/
 	#about .table-responsive > .table > tbody > tr > td,
