@@ -14,9 +14,10 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+using PhoodBuddyUWP.Pages;
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace PhoodBuddyUWP
+namespace PhoodBuddyUWP.Controls
 {
     public sealed partial class NavMenu : UserControl, INotifyPropertyChanged
     {
@@ -70,22 +71,22 @@ namespace PhoodBuddyUWP
 
         private void ShoppingListButton_Click(object sender, RoutedEventArgs e)
         {
-            OnNavigateParentReady(typeof(LoginPage), null);
+            OnNavigateParentReady(typeof(ShoppingListPage), null);
         }
 
         private void PantryListButton_Click(object sender, RoutedEventArgs e)
         {
-            OnNavigateParentReady(typeof(LoginPage), null);
+            OnNavigateParentReady(typeof(PantryListPage), null);
         }
 
         private void ProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            OnNavigateParentReady(typeof(LoginPage), null);
+            OnNavigateParentReady(typeof(ProfilePage), null);
         }
 
         private void FavoriteRecipesButton_Click(object sender, RoutedEventArgs e)
         {
-            OnNavigateParentReady(typeof(LoginPage), null);
+            OnNavigateParentReady(typeof(RecipeViewerPage), null);
         }
     }
 }

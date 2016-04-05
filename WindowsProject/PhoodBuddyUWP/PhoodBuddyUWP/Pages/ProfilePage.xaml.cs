@@ -15,23 +15,16 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace PhoodBuddyUWP
+namespace PhoodBuddyUWP.Pages
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class DashboardPage : Page
+    public sealed partial class ProfilePage : Page
     {
-        public DashboardPage()
+        public ProfilePage()
         {
             this.InitializeComponent();
-            navMenu.OnNavigateParentReady += navHandler;
-        }
-
-        private void navHandler(object sender, EventArgs e)
-        {
-            var page = sender as Type;
-            Frame.Navigate(page);
         }
     }
 }
