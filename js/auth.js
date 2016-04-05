@@ -80,7 +80,14 @@ function customRegister(emailString, passwordString)
   		} 
   		else 
   		{
+
     		console.log("Successfully created user account with uid:", userData);
+    		ref.child("users").child(userData.uid).set({
+			      provider: "custom",
+			      name: ""  // retrieves name from payload
+			    });
+    		console.log("Successfully created user account on Firebase");
+
   		}
 	});
 }
@@ -100,6 +107,11 @@ function customLogin(emailString, passwordString)
     		console.log("Authenticated successfully with payload:", authData);
   		}
 	});
+}
+
+function setAccount()
+{
+
 }
 
 
