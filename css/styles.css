@@ -19,6 +19,7 @@ ul
 {
 	list-style: none;
 }
+/************* Main navbar classes start *****1200+*****/
 #main-nav
 {
 	background-color: #4585A1;
@@ -77,22 +78,75 @@ ul
 	display: block;
 	float: right;
 }
+/************* Main navbar classes end ******1200+******/
+/************* All pages classes start ******1200+******/
 #wrapper
 {
 	margin-top: 75px;
 	min-height: 65%;
 	width: 100%
 }
-#about .row div
+.carousel .item
 {
-	padding-left: 0px;
+	height: 170px;
+	margin: 0px auto;
+	text-align: center;
 }
-#about .divider.row div
+.item .food-col
+{
+	float: left;
+}
+.item h3
+{
+	margin-top: 0px;
+}
+.item img
+{
+	height: 170px;
+	text-align: center;
+}
+.carousel-control
+{
+	opacity: 1;
+}
+.carousel-control.left,
+.carousel-control.right
+{
+	background-image: none;
+	background-repeat: none;
+}
+.turquois
+{
+	color: #326076;
+}
+/************* All pages classes end ********1200+******/
+/************* Landing classes start ********1200+******/
+#landing .divider.row div
 {
 	border-bottom: 2px solid #E5E5E5;
 	margin-bottom: 10px;
 	margin-top: 10px;
 }
+#landing .row img
+{
+	height: 170px;
+}
+#main-fitbit > div,
+#main-recipes > div,
+#main-groceries > div
+{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+#carousel-groceries ul li
+{
+	background-image: url('../images/icon-checkmark.png');
+	background-repeat: no-repeat;
+	height: 26px;
+	line-height: 13px;
+}
+/************* Landing classes end **********1200+******/
+/************* Extraneous pages classes start ***1200+**/
 #about table,
 #faq table,
 #contact table
@@ -105,6 +159,8 @@ ul
 {
 	font-weight: bold;
 }
+/************* Extraneous pages classes end *****1200+**/
+/************* Social links classes start ****1200+*****/
 #social
 {
 	margin-bottom: 10px;
@@ -117,6 +173,8 @@ ul
 {
 	margin: 10px;
 }
+/************* Social links classes end *****1200+******/
+/************* Footer classes start *********1200+******/
 footer
 {
 	background-color: #4585A1;
@@ -159,6 +217,7 @@ footer > .row > .link-column
 	padding-left: 0px;
 	padding-right: 0px;
 }
+/**************** Footer classes end ********1200+******/
 @media screen and (max-width: 767px) {
 	#about .table-responsive > .table > tbody > tr > td,
 	#faq .table-responsive > .table > tbody > tr > td,
