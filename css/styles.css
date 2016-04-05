@@ -92,10 +92,6 @@ ul
 	margin: 0px auto;
 	text-align: center;
 }
-.item .food-col
-{
-	float: left;
-}
 .item h3
 {
 	margin-top: 0px;
@@ -138,12 +134,29 @@ ul
 	padding-left: 0px;
 	padding-right: 0px;
 }
+#carousel-groceries .item
+{
+	margin-left: auto;
+	margin-right: auto;
+	width: 75%;
+}
+#carousel-groceries ul
+{
+	float: left;
+	margin-right: 15px;
+	max-width: 28%;
+	min-width: 28%;
+}
 #carousel-groceries ul li
 {
 	background-image: url('../images/icon-checkmark.png');
 	background-repeat: no-repeat;
 	height: 26px;
-	line-height: 13px;
+	line-height: 26px;
+	margin-bottom: 5px;
+	overflow: hidden;
+	padding-left: 30px;
+	text-align: left;
 }
 /************* Landing classes end **************All****/
 /************* Extraneous pages classes start ***All****/
@@ -218,7 +231,24 @@ footer > .row > .link-column
 	padding-right: 0px;
 }
 /**************** Footer classes end ************All****/
+@media screen and (max-width: 991px) {
+/************* Landing classes start ************All****/
+	#carousel-groceries .item
+	{
+		width: 98%;
+	}
+/************* Landing classes end **************All****/
+/************* Extraneous pages classes start **767-****/
+	
+
+/************* Extraneous pages classes end ****767-****/
+}
+/**************** Footer classes end ************All****/
 @media screen and (max-width: 767px) {
+/************* Landing classes start ************All****/
+	
+	
+/************* Landing classes end **************All****/
 /************* Extraneous pages classes start **767-****/
 	#about .table-responsive > .table > tbody > tr > td,
 	#faq .table-responsive > .table > tbody > tr > td,
