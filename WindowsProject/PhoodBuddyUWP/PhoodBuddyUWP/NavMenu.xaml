@@ -12,17 +12,18 @@
     <SplitView Name="menu"
                Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                DisplayMode="CompactOverlay"
-               CompactPaneLength="60">
+               PaneBackground="{StaticResource PhoodBuddyPrimaryColor}">
 
         <SplitView.Resources>
             <Style TargetType="Button">
                 <Setter Property="Background"
                         Value="#00000000"/>
-                <Setter Property="FontFamily"
-                        Value="Segoe MDL2 Assets"/>
                 <Setter Property="Margin"
-                        Value="0"/>
+                        Value="0, 4"/>
+                <Setter Property="HorizontalAlignment"
+                        Value="Left"/>
             </Style>
+            
             <Style TargetType="TextBlock">
                 <Setter Property="Margin"
                         Value="20, 0, 0, 0"/>
@@ -33,53 +34,65 @@
                 <Setter Property="FontFamily"
                         Value="SegoeUI"/>
             </Style>
+
+            <Style TargetType="TextBlock" x:Key="MenuIcon">
+                <Setter Property="FontFamily"
+                        Value="Segoe MDL2 Assets"/>
+                <Setter Property="FontSize"
+                        Value="24"/>
+            </Style>
         </SplitView.Resources>
 
         <SplitView.Pane>
-            <ListView Background="{StaticResource PhoodBuddyPrimaryColor}">
+            <StackPanel HorizontalAlignment="Left">
 
-                <!-- Menu Header -->
+                 <!--Menu Header--> 
                 <Button Click="MenuButton_Click">
                     <StackPanel Orientation="Horizontal">
-                        <SymbolIcon Symbol="List" />
+                        <TextBlock Text="&#xE700;"
+                                   Style="{StaticResource MenuIcon}"/>
                         <TextBlock Text="Menu"
                                    FontWeight="Bold"/>
                     </StackPanel>
                 </Button>
                 
-                <!-- Shopping List Navigation -->
+                 <!--Shopping List Navigation--> 
                 <Button Click="ShoppingListButton_Click">
                     <StackPanel Orientation="Horizontal">
-                        <SymbolIcon Symbol="Edit"/>
+                        <TextBlock Text="&#xE14D;"
+                                   Style="{StaticResource MenuIcon}"/>
                         <TextBlock Text="Shopping List"/>
                     </StackPanel>
                 </Button>
 
-                <!-- Pantry List Navigation -->
+                 <!--Pantry List Navigation--> 
                 <Button Click="PantryListButton_Click">
                     <StackPanel Orientation="Horizontal">
-                        <SymbolIcon Symbol="Edit"/>
+                        <TextBlock Text="&#xE292;"
+                                   Style="{StaticResource MenuIcon}"/>
                         <TextBlock Text="Pantry List"/>
                     </StackPanel>
                 </Button>
                 
-                <!-- User Profile -->
+                 <!--User Profile--> 
                 <Button Click="ProfileButton_Click">
                     <StackPanel Orientation="Horizontal">
-                        <SymbolIcon Symbol="Contact"/>
+                        <TextBlock Text="&#xE13D;"
+                                   Style="{StaticResource MenuIcon}"/>
                         <TextBlock Text="User Profile"/>
                     </StackPanel>
                 </Button>
                 
-                <!-- Favorite Recipes -->
+                 <!--Favorite Recipes--> 
                 <Button Click="FavoriteRecipesButton_Click">
                     <StackPanel Orientation="Horizontal">
-                        <SymbolIcon Symbol="Favorite"/>
+                        <TextBlock Text="&#xE0B4;"
+                                   Style="{StaticResource MenuIcon}"/>
                         <TextBlock Text="Favorite Recipes"/>
                     </StackPanel>
                 </Button>
                 
-            </ListView>
+            </StackPanel>
         </SplitView.Pane>
         
         <SplitView.Content>
