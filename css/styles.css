@@ -19,7 +19,7 @@ ul
 {
 	list-style: none;
 }
-/************* Main navbar classes start *****1200+*****/
+/************* Main navbar classes start ********All****/
 #main-nav
 {
 	background-color: #4585A1;
@@ -78,8 +78,8 @@ ul
 	display: block;
 	float: right;
 }
-/************* Main navbar classes end ******1200+******/
-/************* All pages classes start ******1200+******/
+/************* Main navbar classes end **********All****/
+/************* All pages classes start **********All****/
 #wrapper
 {
 	margin-top: 75px;
@@ -119,8 +119,8 @@ ul
 {
 	color: #326076;
 }
-/************* All pages classes end ********1200+******/
-/************* Landing classes start ********1200+******/
+/************* All pages classes end ************All****/
+/************* Landing classes start ************All****/
 #landing .divider.row div
 {
 	border-bottom: 2px solid #E5E5E5;
@@ -145,8 +145,8 @@ ul
 	height: 26px;
 	line-height: 13px;
 }
-/************* Landing classes end **********1200+******/
-/************* Extraneous pages classes start ***1200+**/
+/************* Landing classes end **************All****/
+/************* Extraneous pages classes start ***All****/
 #about table,
 #faq table,
 #contact table
@@ -159,8 +159,8 @@ ul
 {
 	font-weight: bold;
 }
-/************* Extraneous pages classes end *****1200+**/
-/************* Social links classes start ****1200+*****/
+/************* Extraneous pages classes end *****All****/
+/************* Social links classes start *******All****/
 #social
 {
 	margin-bottom: 10px;
@@ -173,8 +173,8 @@ ul
 {
 	margin: 10px;
 }
-/************* Social links classes end *****1200+******/
-/************* Footer classes start *********1200+******/
+/************* Social links classes end *********All****/
+/************* Footer classes start *************All****/
 footer
 {
 	background-color: #4585A1;
@@ -217,12 +217,14 @@ footer > .row > .link-column
 	padding-left: 0px;
 	padding-right: 0px;
 }
-/**************** Footer classes end ********1200+******/
+/**************** Footer classes end ************All****/
 @media screen and (max-width: 767px) {
+/************* Extraneous pages classes start **767-****/
 	#about .table-responsive > .table > tbody > tr > td,
 	#faq .table-responsive > .table > tbody > tr > td,
 	#contact .table-responsive > .table > tbody > tr > td
 	{
 		white-space: normal;
 	}
+/************* Extraneous pages classes end ****767-****/
 }
