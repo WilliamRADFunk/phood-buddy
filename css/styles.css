@@ -19,7 +19,7 @@ ul
 {
 	list-style: none;
 }
-/************* Main navbar classes start ********All****/
+/************* Main navbar page start ***********All****/
 #main-nav
 {
 	background-color: #4585A1;
@@ -78,8 +78,8 @@ ul
 	display: block;
 	float: right;
 }
-/************* Main navbar classes end **********All****/
-/************* All pages classes start **********All****/
+/************* Main navbar page end *************All****/
+/************* All pages page start *************All****/
 #wrapper
 {
 	margin-top: 75px;
@@ -115,8 +115,8 @@ ul
 {
 	color: #326076;
 }
-/************* All pages classes end ************All****/
-/************* Landing classes start ************All****/
+/************* All pages page end ***************All****/
+/************* Landing page start ***************All****/
 #landing .divider.row div
 {
 	border-bottom: 2px solid #E5E5E5;
@@ -179,8 +179,61 @@ ul
 	padding-left: 30px;
 	text-align: left;
 }
-/************* Landing classes end **************All****/
-/************* Extraneous pages classes start ***All****/
+/************* Landing page end *****************All****/
+/************* Deals page start *****************All****/
+#deals .divider.row div
+{
+	border-bottom: 2px solid #E5E5E5;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+#deals .row
+{
+	margin-bottom: 20px;
+}
+#deals .row img
+{
+	height: 170px;
+}
+#deals-featured > div
+{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+#carousel-deals .item
+{
+	background-color: #E2EEF4;
+	padding-bottom: 23px;
+	padding-top: 23px;
+}
+#carousel-deals .item img
+{
+	height: 124px;
+	text-align: left;
+}
+#carousel-deals p,
+#carousel-deals h3
+{
+	text-align: left;
+}
+#carousel-deals h4
+{
+	font-size: 13px;
+	text-align: left;
+}
+#deals .row.deal-list img
+{
+	border: 2px solid #E5E5E5;
+	height: auto;
+	width: 100%;
+}
+#deals .row.deal-list .deal-details div
+{
+	background-color: #E5E5E5;
+	height: 30px;
+}
+/************* Deals page end *******************All****/
+/************* Extraneous pages page start ******All****/
 #about table,
 #faq table,
 #contact table
@@ -193,8 +246,8 @@ ul
 {
 	font-weight: bold;
 }
-/************* Extraneous pages classes end *****All****/
-/************* Social links classes start *******All****/
+/************* Extraneous pages page end ********All****/
+/************* Social links page start **********All****/
 #social
 {
 	margin-bottom: 10px;
@@ -207,8 +260,8 @@ ul
 {
 	margin: 10px;
 }
-/************* Social links classes end *********All****/
-/************* Footer classes start *************All****/
+/************* Social links page end ************All****/
+/************* Footer page start ****************All****/
 footer
 {
 	background-color: #4585A1;
@@ -251,23 +304,24 @@ footer > .row > .link-column
 	padding-left: 0px;
 	padding-right: 0px;
 }
-/**************** Footer classes end ************All****/
+/**************** Footer page end ***************All****/
 @media screen and (max-width: 991px) {
-/************* Landing classes start ************All****/
+/************* Landing page start ***************All****/
 	#carousel-groceries .item
 	{
 		width: 98%;
 	}
-/************* Landing classes end **************All****/
-/************* Extraneous pages classes start **767-****/
+/************* Landing page end *****************All****/
+/************* Extraneous pages page start *****767-****/
 	
 
-/************* Extraneous pages classes end ****767-****/
+/************* Extraneous pages page end *******767-****/
 }
-/**************** Footer classes end ************All****/
+/**************** Footer page end ***************All****/
 @media screen and (max-width: 767px) {
-/************* Landing classes start ***********767-****/
-	#landing .row img {
+/************* Landing page start **************767-****/
+	#landing .row img
+	{
 	    height: auto;
 	    margin-bottom: 20px;
 	    width: 100%;
@@ -278,14 +332,14 @@ footer > .row > .link-column
 	{
 		margin-bottom: 20px;
 	}
+	#carousel-groceries .item
+	{
+		overflow: hidden;
+	}
 	#carousel-recipes .item
 	{
 		background-color: #E2EEF4;
 		height: 100%;
-	}
-	#carousel-groceries .item
-	{
-		overflow: hidden;
 	}
 	#carousel-recipes p
 	{
@@ -304,13 +358,47 @@ footer > .row > .link-column
 		font-size: 11px;
 		text-align: center;
 	}
-/************* Landing classes end *************767-****/
-/************* Extraneous pages classes start **767-****/
+/************* Landing page end ****************767-****/
+/************* Landing page start **************767-****/
+	#deals .row img
+	{
+	    height: auto;
+	    margin-bottom: 20px;
+	    width: 100%;
+	}
+	#deals-featured > div > a
+	{
+		margin-bottom: 20px;
+	}
+	#carousel-deals .item
+	{
+		background-color: #E2EEF4;
+		height: 100%;
+	}
+	#carousel-deals p
+	{
+		font-size: 18px;
+		padding-left: 0%;
+	}
+	#carousel-deals h3
+	{
+		display: block;
+		font-size: 24px;
+		padding-left: 0%;
+		text-align: center;
+	}
+	#carousel-deals h4
+	{
+		font-size: 11px;
+		text-align: center;
+	}
+/************* Landing page end ****************767-****/
+/************* Extraneous pages page start *****767-****/
 	#about .table-responsive > .table > tbody > tr > td,
 	#faq .table-responsive > .table > tbody > tr > td,
 	#contact .table-responsive > .table > tbody > tr > td
 	{
 		white-space: normal;
 	}
-/************* Extraneous pages classes end ****767-****/
+/************* Extraneous pages page end *******767-****/
 }

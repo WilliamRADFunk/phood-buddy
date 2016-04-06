@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,IE=11,IE=EmulateIE11,IE=10,IE=EmulateIE10,IE=9,IE=EmulateIE9,IE=8,IE=EmulateIE8,IE=7,IE=EmulateIE7" />
+
+    <title>Phood Buddy</title>
+    <!-- Resets all default browser stylings for a clean slate -->
+    <link rel="stylesheet" href="css/reset_author_richard_clark.css"/>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Customized styles by William R.A.D. Funk -->
+    <link rel="stylesheet" href="css/styles.css"/>
+	<!-- Google Open Sans font -->
+    <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+    <!-- JQUERY Library for additional functionality -->
+    <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/respond.min.js"></script>  
+    <!-- Firebase Library for database communication -->
+    <!--<script type="text/javascript" src="#"></script>-->
+    <!-- Custom Scripts -->
+    <script type="text/javascript" async src="js/scripts.js"></script>
+</head>
+
+<body>
+<!-- Main Navigation starts here -->
+    <nav id="main-nav" class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="collapse">
+            <ul id="hamburger-nav" class="nav navbar-nav">
+                <li><a href="favorite-recipes.html" target="_self">RECIPES</a></li>
+                <li><a href="https://www.fitbit.com/login" target="_blank">FITBIT</a></li>
+                <li><a href="groceries.html" target="_self">SHOPPING LIST</a></li>
+                <li><a href="schedule.html" target="_self">SCHEDULE</a></li>
+                <li><a href="profile.html" target="_self">PROFILE</a></li>
+            </ul>
+            <ul id="login-register" class="nav navbar-nav">
+                <li><a href="login.html" target="_self">LOGIN</a></li>
+                <li><a href="register.html" target="_self">REGISTER</a></li>
+            </ul>
+        </div>
+    </nav>
+<!-- Main Navigation ends here -->
+<!-- Main Content Wrapper starts here -->
+    <div id="wrapper" class="container">
+        <div id="deals">
+<!-- Featured Deals row starts here -->
+            <div id="deals-featured" class="row">
+                <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-12">
+                    <a href="deals.html" target="_self"><img class="img-responsive" src="images/img-category-deals.jpg"></a>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div id="carousel-deals" class="carousel slide" data-ride="carousel">
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active row">
+                                <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-12">
+                                    <img src="images/placeholder-deal.jpg" alt="Product Example 1">
+                                </div>
+                                <div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-12">
+                                    <h3>Product Example 1</h3>
+                                    <h4>$<span>12.99</span> per bag</h4>
+                                    <p>Premium coffee from the rainforests of Peru.</p>
+                                </div>
+                            </div>
+                            <div class="item row">
+                                <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-12">
+                                    <img src="images/placeholder-deal.jpg" alt="Product Example 2">
+                                </div>
+                                <div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-12">
+                                    <h3>Product Example 2</h3>
+                                    <h4>$<span>1.99</span> per can</h4>
+                                    <p>Crushed tomatoes at an all time low.</p>
+                                </div>
+                            </div>
+                            <div class="item row">
+                                <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-12">
+                                    <img src="images/placeholder-deal.jpg" alt="Product Example 3">
+                                </div>
+                                <div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-12">
+                                    <h3>Product Example 3</h3>
+                                    <h4><span>10.49</span> per pound</h4>
+                                    <p>White flour for all your baking needs.</p>
+                                </div>
+                            </div>
+                            <div class="item row">
+                                <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-12">
+                                    <img src="images/placeholder-deal.jpg" alt="Product Example 4">
+                                </div>
+                                <div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-12">
+                                    <h3>Product Example 4</h3>
+                                    <h4><span>3.99</span> per can</h4>
+                                    <p>Cambell's soup makes for a wholesome meal in minutes.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Left and right controls -->
+                        <a class="left carousel-control" href="#carousel-deals" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left turquois" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-deals" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right turquois" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+<!-- Featured Deals row ends here -->
+            <div class="divider row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12"></div>
+            </div>
+<!-- Current Deals row starts here -->
+            <div class="row deal-list">
+                <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-12">
+                    <img src="images/placeholder-deal.jpg"/>
+                    <div class="row deal-details">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            Product Example
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            $12.99
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                    <img src="images/placeholder-deal.jpg"/>
+                    <div class="row deal-details">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            Product Example
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            $12.99
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                    <img src="images/placeholder-deal.jpg"/>
+                    <div class="row deal-details">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            Product Example
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            $12.99
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                    <img src="images/placeholder-deal.jpg"/>
+                    <div class="row deal-details">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            Product Example
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            $12.99
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row deal-list">
+                <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-12">
+                    <img src="images/placeholder-deal.jpg"/>
+                    <div class="row deal-details">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            Product Example
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            $12.99
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                    <img src="images/placeholder-deal.jpg"/>
+                    <div class="row deal-details">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            Product Example
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            $12.99
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                    <img src="images/placeholder-deal.jpg"/>
+                    <div class="row deal-details">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            Product Example
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            $12.99
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                    <img src="images/placeholder-deal.jpg"/>
+                    <div class="row deal-details">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            Product Example
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            $12.99
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!-- Current Deals row ends here -->
+            <div class="divider row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12"></div>
+            </div>
+        </div>
+    </div>
+<!-- Main Content Wrapper ends here -->
+<!-- Social starts here -->
+    <div id="social" class="container">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
+            <a href="https://www.facebook.com/" target="_blank"><img src="images/icon-facebook.png" height="50" width="50" /></a>
+            <a href="https://vimeo.com/" target="_blank"><img src="images/icon-vimeo.png" height="50" width="50" /></a>
+            <a href="https://twitter.com/" target="_blank"><img src="images/icon-twitter.png" height="50" width="50" /></a>
+            <a href="https://plus.google.com" target="_blank"><img src="images/icon-google.png" height="50" width="50" /></a>
+            <a href="https://www.instagram.com/" target="_blank"><img src="images/icon-insta.png" height="50" width="50" /></a>
+            <a href="https://www.pinterest.com/" target="_blank"><img src="images/icon-pinterest.png" height="50" width="50" /></a>
+            </div>
+        </div>
+    </div>
+<!-- Social ends here -->
+<!-- Footer starts here -->
+    <footer>
+        <div class="row">
+            <div class="link-column col-lg-2 col-lg-offset-3 col-md-2 col-md-offset-3 col-sm-2 col-sm-offset-3 col-xs-12">
+                <h3>PHOOD BUDDY</h3>
+                <a href="about.html" target="_self">About Us</a>
+                <a href="favorite-recipes.html" target="_self">Favorite Recipes</a>
+                <a href="groceries.html" target="_self">Shopping List</a>
+                <a href="deals.html" target="_self">Deals</a>
+            </div>
+            <div class="link-column col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                <h3>SUPPORT</h3>
+                <a href="faq.html" target="_self">FAQ</a>
+                <a href="contact.html" target="_self">Contact Us</a>
+                <a href="documentation/terms-conditions.pdf" target="_blank">Terms of Service</a>
+                <a href="documentation/privacy.pdf" target="_blank">Privacy Policy</a>
+            </div>
+            <div class="link-column col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                <h3>GET THE APP</h3>
+                <a href="https://play.google.com/store/apps/details?id=com.phoodbuddy" target="_blank">Android</a>
+                <a href="http://itunes.apple.com/us/app/phoodbuddy/id1?mt=8" target="_blank">iPhone</a>
+                <a href="http://www.windowsphone.com/english-us/store/app/phoodbuddy/1" target="_blank">Windows Phone</a>
+                <a href="https://play.google.com/store/apps/details?id=com.phoodbuddy" target="_blank">Kindle Fire</a>
+            </div>
+        </div>
+    </footer>
+<!-- Footer ends here -->
+</body>
+</html>
