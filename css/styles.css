@@ -223,14 +223,45 @@ ul
 }
 #deals .row.deal-list img
 {
-	border: 2px solid #E5E5E5;
+	border: 2px solid #E2EEF4;
 	height: auto;
 	width: 100%;
 }
-#deals .row.deal-list .deal-details div
+#deals .deal-details
 {
-	background-color: #E5E5E5;
+	background-color: #E2EEF4;
 	height: 30px;
+	width: 100%;
+}
+#deals .deal-details span
+{
+	display: inline-block;
+	overflow: hidden;
+	padding-top: 5px;
+	white-space: nowrap;
+}
+#deals .deal-details span.left
+{
+	float: left;
+	padding-left: 2%;
+	text-align: left;
+	width: 60%;
+}
+#deals .deal-details span.right
+{
+	float: right;
+	padding-right: 2%;
+	text-align: right;
+	width: 30%;
+}
+#deals .deal-wrapper-outer
+{
+	padding-top: 20px;
+}
+#deals .deal-wrapper-inner
+{
+	background-color: #E2EEF4;
+	width: 100%;
 }
 /************* Deals page end *******************All****/
 /************* Extraneous pages page start ******All****/
@@ -306,16 +337,16 @@ footer > .row > .link-column
 }
 /**************** Footer page end ***************All****/
 @media screen and (max-width: 991px) {
-/************* Landing page start ***************All****/
+/************* Landing page start ***********768-991****/
 	#carousel-groceries .item
 	{
 		width: 98%;
 	}
-/************* Landing page end *****************All****/
-/************* Extraneous pages page start *****767-****/
+/************* Landing page end *************768-991****/
+/************* Extraneous pages page start **768-991****/
 	
 
-/************* Extraneous pages page end *******767-****/
+/************* Extraneous pages page end ****768-991****/
 }
 /**************** Footer page end ***************All****/
 @media screen and (max-width: 767px) {
@@ -363,8 +394,12 @@ footer > .row > .link-column
 	#deals .row img
 	{
 	    height: auto;
-	    margin-bottom: 20px;
+	    margin-bottom: 10px;
 	    width: 100%;
+	}
+	#deals .deal-details span
+	{
+		padding-top: 0px;
 	}
 	#deals-featured > div > a
 	{
@@ -384,6 +419,7 @@ footer > .row > .link-column
 	{
 		display: block;
 		font-size: 24px;
+		margin-top: 10px;
 		padding-left: 0%;
 		text-align: center;
 	}
