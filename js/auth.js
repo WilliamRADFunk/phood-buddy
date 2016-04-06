@@ -67,7 +67,6 @@ function authDataCallback(authData) {
 //var ref = new Firebase("https://<YOUR-FIREBASE-APP>.firebaseio.com");
 //ref.onAuth(authDataCallback);
 
-
 function customRegister(emailString, passwordString)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
@@ -113,7 +112,7 @@ function setAccount(userData)
 
 	ref.child("users").child(userData.uid).set({
 			      provider: "password",
-			      name: ""  // retrieves name from payload
+			      name: ""
 			    });
 }
 
@@ -211,4 +210,82 @@ function checkIfUserExists(userId, authData) {
   	}
 });
   
+}
+
+function createGroceryList()
+{
+	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth == null)
+		{
+			return;
+		}
+	
+	var data = ref.getAuth();
+    var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery")
+	
+	  	console.log("Creating new grocery list... even if there was an old one...")
+	  	gref.child(data.uid).set({
+	  		baby: "",
+	  		bakery: "",
+	  		beverages: "",
+	  		"canned goods": "",
+	  		cereals: "",
+	  		"cleaning and household": "",
+	  		condiments: "",
+	  		dairy: "",
+	  		frozen: "",
+	  		meats: "",
+	  		produce: "",
+	  		"baking and spices": "",
+	  		miscellaneous: ""
+	  		
+	})
+
+}
+
+function getGroceryList()
+{
+	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth == null)
+		{
+			return;
+		}
+
+	var data = ref.getAuth();
+	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/");
+
+	var groceryList = "";
+
+	gref.once('value', function(snapshot){
+		if(snapshot.hasChild(data.uid))
+		{
+			console.log("User has groceryList, proceed normally");
+			groceryListSnapshot = snapshot.child(data.uid);
+			groceryList = groceryListSnapshot.val();
+		}
+		else
+		{
+			return;
+		}
+	})
+
+	return groceryList;
+	
+}
+
+
+function setGroceryList(list)
+{
+	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
+	if(ref.getAuth == null)
+	{
+		return;
+	}
+
+	var data = ref.getAuth();
+	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/");
+
+	gref.child(data.uid).set(list);
 }
