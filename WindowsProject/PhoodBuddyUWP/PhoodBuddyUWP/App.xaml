@@ -19,6 +19,7 @@
         <Style TargetType="Button">
             <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
             <Setter Property="FontSize" Value="{ThemeResource ContentControlFontSize}"/>
+            <Setter Property="Foreground" Value="White"/>
             <Setter Property="Margin" Value="8"/>
             <Setter Property="Background" Value="{StaticResource PhoodBuddyPrimaryColor}"/>
         </Style>

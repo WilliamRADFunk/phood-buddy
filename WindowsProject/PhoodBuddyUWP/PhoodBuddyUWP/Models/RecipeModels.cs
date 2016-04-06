@@ -53,13 +53,26 @@ namespace PhoodBuddyUWP.Models
         public string Title { get; set; }
         public List<RecipeIngredient> Ingredients { get; set; }
         public List<RecipeInstruction> Instructions { get; set; }
+        public System.Uri Picture { get; set; }
 
         //Constructor
         public Recipe(string t, List<RecipeIngredient> ingredients = null, List<RecipeInstruction> instructions = null)
         {
+            //Initializes the title
             Title = t;
+
+            //Initializes the ingredients
+            if (ingredients == null)
+                ingredients = new List<RecipeIngredient>();
             Ingredients = ingredients;
+
+            //Initializes the instructions
+            if (instructions == null)
+                instructions = new List<RecipeInstruction>();
             Instructions = instructions;
+
+            //Initializes the picture
+            Picture = new System.Uri("https://culinaryadventuresinthekitchen.files.wordpress.com/2012/03/frozen-yog-cake.jpg");
         }
     }
 }

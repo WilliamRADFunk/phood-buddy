@@ -35,10 +35,10 @@ namespace PhoodBuddyUWP.Pages
             base.OnNavigatedTo(e);
 
             //Casts the parameters to the recipe type
-            recipe = (Recipe)e.Parameter;
+            recipe = e.Parameter as Recipe;
 
-            //For debugging purposes
-            System.Diagnostics.Debug.WriteLine(recipe.Title);
+            //Sets the image on the page
+            recipeImg.Source = new Windows.UI.Xaml.Media.Imaging.BitmapImage(recipe.Picture);
         }
     }
 }

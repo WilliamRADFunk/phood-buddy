@@ -13,7 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
+using PhoodBuddyUWP.Models;
 
 namespace PhoodBuddyUWP.Pages
 {
@@ -33,7 +33,20 @@ namespace PhoodBuddyUWP.Pages
             var page = sender as Type;
 
             if (page == typeof(RecipeViewerPage))
-                Frame.Navigate(page, new Models.Recipe("Title"));
+            {
+                var recipe = new Recipe("Cake");
+
+                recipe.Ingredients.Add(new RecipeIngredient("Flour", "Cup", 3));
+                recipe.Ingredients.Add(new RecipeIngredient("Milk", "Cup", 2));
+                recipe.Ingredients.Add(new RecipeIngredient("Lie", "Ounce", 1));
+
+                recipe.Instructions.Add(new RecipeInstruction(1, "Mix Ingredients"));
+                recipe.Instructions.Add(new RecipeInstruction(2, "Let Rest"));
+                recipe.Instructions.Add(new RecipeInstruction(3, "Bake For an hour"));
+
+                Frame.Navigate(page, recipe);
+            }
+                
             else
                 Frame.Navigate(page);
         }
