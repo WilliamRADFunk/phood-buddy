@@ -8,7 +8,7 @@ function authLogin(error, authData)
 {
 	if (error)
 	{
-		console.log("Login Failed!", error)
+		console.log("Login Failed!", error);
 	}
 	else
 	{
@@ -279,7 +279,7 @@ function getGroceryList()
 function setGroceryList(list)
 {
 	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
-	if(ref.getAuth == null)
+	if(ref.getAuth() == null)
 	{
 		return;
 	}
@@ -289,3 +289,92 @@ function setGroceryList(list)
 
 	gref.child(data.uid).set(list);
 }
+
+function postRecipe()
+{
+	var recipeJson = {name:"Tossed Salad and Scambled Eggs", author: "Trump"} 
+
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+	if(ref.getAuth() == null)
+	{
+		return;
+	}
+
+	var data = ref.getAuth();
+	var recipeRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory");
+	var newRecipeRef = recipeRef.push();
+	newRecipeRef.set(recipeJson);
+
+	var recipeId = newRecipeRef.key();
+
+	var storeJson = {};
+	storeJson[recipeId] = true;
+
+	ref.child("users").child(data.uid).child("created-recipe").update(storeJson);
+}
+
+function getUserRecipes()
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() == null)
+	{
+		return;
+	}
+
+	var data = ref.getAuth();
+
+	var checkRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid);
+	var recipesExist;
+	var recipeList;
+	var recipeContent;
+
+	//Check reference point made of user account and check if 'created-recipe' child exists
+	checkRef.once('value', function(snapshot){
+
+		//Snapshot contains child 'created-recipe'
+		if(snapshot.child("created-recipe").exists())
+		{
+			recipesExists = true;
+			//Set recipeList to snapshot value of 
+			recipeList = snapshot.child("created-recipe");
+		}
+	});
+
+
+
+	if(recipesExist)
+	{
+		recipeContent = getUserRecipeContent(recipeList);
+
+
+	}
+	else
+	{
+		return null;
+	}
+
+}
+
+function getUserRecipeContent(rList)
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory");
+
+	var recipeData;
+
+	 ref.once("value", function(snapshot){
+	 	rList.forEach(function (rListSnapshot){
+	 		snapshot.forEach(function(childSnapshot){
+
+	 			if(rListSnapshot.key() == childSnapshot.key())
+	 			{
+	 				recipeData += childSnapshot; 
+	 			}
+
+	 		})
+	 	})
+	 	
+	 })
+}
+
+
