@@ -265,12 +265,15 @@ ul
 }
 /************* Deals page end *******************All****/
 /************* Login page start *****************All****/
-#login table
+#login table,
+#lost-password table
 {
 	background-color: #E2EEF4;
 }
 #login input[type="text"],
-#login input[type="password"]
+#login input[type="password"],
+#lost-password input[type="text"],
+#lost-password input[type="password"]
 {
 	background-color: #FFFFFF !important;
 	text-align: center;
@@ -278,12 +281,14 @@ ul
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
-#login > div > div > table
+#login > div > div > table,
+#lost-password > div > div > table
 {
 	margin-bottom: 50px;
 	margin-top: 50px;
 }
-#login .table-responsive > .table > tbody > tr > td
+#login .table-responsive > .table > tbody > tr > td,
+#lost-password .table-responsive > .table > tbody > tr > td
 {
 	text-align: center;
 }
@@ -293,7 +298,8 @@ input:-webkit-autofill {
 	height: 60px;
 	padding-top: 60px;
 }
-#login .table-responsive > .table > tbody > tr > td > button
+#login .table-responsive > .table > tbody > tr > td > button,
+#lost-password .table-responsive > .table > tbody > tr > td > button
 {
 	color: #FFFFFF;
 	height: 50px;
@@ -306,10 +312,17 @@ input:-webkit-autofill {
 	border-bottom: none;
 	border-top: none;
 }
-#login .table-responsive > .table > tbody > tr > td > .table > tbody > tr > td > a
+#login .table-responsive > .table > tbody > tr > td > .table > tbody > tr > td > a,
+#login .table-responsive > .table > tbody > tr > td > .table > tbody > tr > td > a:visited,
+#login .table-responsive > .table > tbody > tr > td > .table > tbody > tr > td > a:active
 {
 	font-size: 12px;
 	font-style: italic;
+	text-decoration: none;
+}
+#login .table-responsive > .table > tbody > tr > td > .table > tbody > tr > td > a:hover
+{
+	text-decoration: underline;
 }
 #btn-facebook
 {
@@ -328,6 +341,18 @@ input:-webkit-autofill {
 	background-color: #4585A2;
 	width: 25%;
 }
+#lost-password
+{
+	display: none;
+}
+#lost-password label
+{
+	margin-right: 20px;
+}
+#btn-reset
+{
+	background-color: #4585A2;
+}
 /************* Login page end *******************All****/
 /************* Extraneous pages page start ******All****/
 #about table,
@@ -336,6 +361,10 @@ input:-webkit-autofill {
 #faq table span
 {
 	font-weight: bold;
+}
+#error-page
+{
+	text-align: center;
 }
 /************* Extraneous pages page end ********All****/
 /************* Social links page start **********All****/
@@ -489,11 +518,13 @@ footer > .row > .link-column
 	}
 /************* Landing page end ****************767-****/
 /************* Login page start ****************767-****/
-	#login .table > tbody > tr > td
+	#login .table > tbody > tr > td,
+	#lost-password .table > tbody > tr > td
 	{
 		padding: 8px 0px;
 	}
-	#login > .row > .col-xs-12
+	#login > .row > .col-xs-12,
+	#lost-password > .row > .col-xs-12
 	{
 		padding-left: 0px;
 		padding-right: 0px;

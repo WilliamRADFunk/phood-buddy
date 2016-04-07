@@ -8,3 +8,7 @@ $(window).resize(function()
 {
 	
 });
+function lostPassword()
+{
+	console.log("User clicked 'Forgot Password' link.");
+}
