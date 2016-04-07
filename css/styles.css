@@ -265,9 +265,33 @@ ul
 }
 /************* Deals page end *******************All****/
 /************* Login page start *****************All****/
+#login table
+{
+	background-color: #E2EEF4;
+}
+#login input[type="text"],
+#login input[type="password"]
+{
+	background-color: #FFFFFF !important;
+	text-align: center;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+#login > div > div > table
+{
+	margin-bottom: 50px;
+	margin-top: 50px;
+}
 #login .table-responsive > .table > tbody > tr > td
 {
 	text-align: center;
+}
+#login .table-responsive > .table > tbody > tr > td.separate
+{
+	border-top: 1px solid #DDDDDD !important;
+	height: 60px;
+	padding-top: 60px;
 }
 #login .table-responsive > .table > tbody > tr > td > button
 {
@@ -282,6 +306,11 @@ ul
 	border-bottom: none;
 	border-top: none;
 }
+#login .table-responsive > .table > tbody > tr > td > .table > tbody > tr > td > a
+{
+	font-size: 12px;
+	font-style: italic;
+}
 #btn-facebook
 {
 	background-color: #3A5898;
@@ -294,17 +323,16 @@ ul
 {
 	background-color: #DD4937;
 }
+#login .table-responsive > .table > tbody > tr > td > #btn-login
+{
+	background-color: #4585A2;
+	width: 25%;
+}
 /************* Login page end *******************All****/
 /************* Extraneous pages page start ******All****/
 #about table,
 #faq table,
-#contact table,
-#login table
-{
-	background-color: #E2EEF4;
-	margin-bottom: 50px;
-	margin-top: 50px;
-}
+#contact table
 #faq table span
 {
 	font-weight: bold;
@@ -461,9 +489,21 @@ footer > .row > .link-column
 	}
 /************* Landing page end ****************767-****/
 /************* Login page start ****************767-****/
-	#login .table-responsive > .table > tbody > tr > td
+	#login .table > tbody > tr > td
 	{
-		white-space: normal;
+		padding: 8px 0px;
+	}
+	#login > .row > .col-xs-12
+	{
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	#login .table-responsive > .table > tbody > tr > td > #btn-facebook,
+	#login .table-responsive > .table > tbody > tr > td > #btn-twitter,
+	#login .table-responsive > .table > tbody > tr > td > #btn-google
+	{
+		margin: 0px 0px;
+		width: 100%;
 	}
 /************* Login page end ******************767-****/
 /************* Extraneous pages page start *****767-****/
