@@ -325,7 +325,6 @@ function getUserRecipes()
 	var data = ref.getAuth();
 
 	var checkRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid);
-	var recipesExist;
 	var recipeList;
 	var recipeContent;
 
@@ -335,24 +334,45 @@ function getUserRecipes()
 		//Snapshot contains child 'created-recipe'
 		if(snapshot.child("created-recipe").exists())
 		{
-			recipesExists = true;
 			//Set recipeList to snapshot value of 
-			recipeList = snapshot.child("created-recipe");
+			recipeList = snapshot.child("created-recipe").val();
+			console.log(recipeList);
+
+			var directoryRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory");
+
+			directoryRef.once("value", function(snapshot)
+			{
+
+				snapshot.forEach(function(childSnapshot)
+				{
+					console.log("The key is... " + childSnapshot.key());
+					var directoryKey = childSnapshot.key();
+					for(var key in recipeList)
+					{
+						if(recipeList.hasOwnProperty(key))
+						{
+
+							if(key == directoryKey)
+							{
+								console.log("Key hit!");
+								break;
+							}
+							console.log(key) // + " -> " + recipeList[key]);
+						}
+					}
+
+				});
+
+
+			});
+
+			
 		}
 	});
 
 
 
-	if(recipesExist)
-	{
-		recipeContent = getUserRecipeContent(recipeList);
-
-
-	}
-	else
-	{
-		return null;
-	}
+	
 
 }
 
