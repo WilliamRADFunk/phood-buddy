@@ -264,10 +264,42 @@ ul
 	width: 100%;
 }
 /************* Deals page end *******************All****/
+/************* Login page start *****************All****/
+#login .table-responsive > .table > tbody > tr > td
+{
+	text-align: center;
+}
+#login .table-responsive > .table > tbody > tr > td > button
+{
+	color: #FFFFFF;
+	height: 50px;
+	margin: 0px auto;
+	width: 95%;
+}
+#login .table-responsive > .table.borderless > tbody > tr > td,
+#login .table-responsive > .table.borderless > tbody > tr > td > .table > tbody > tr > td
+{
+	border-bottom: none;
+	border-top: none;
+}
+#btn-facebook
+{
+	background-color: #3A5898;
+}
+#btn-twitter
+{
+	background-color: #28AAE1;
+}
+#btn-google
+{
+	background-color: #DD4937;
+}
+/************* Login page end *******************All****/
 /************* Extraneous pages page start ******All****/
 #about table,
 #faq table,
-#contact table
+#contact table,
+#login table
 {
 	background-color: #E2EEF4;
 	margin-bottom: 50px;
@@ -335,7 +367,7 @@ footer > .row > .link-column
 	padding-left: 0px;
 	padding-right: 0px;
 }
-/**************** Footer page end ***************All****/
+/**************** Footer page end ***************All****//****************************/
 @media screen and (max-width: 991px) {
 /************* Landing page start ***********768-991****/
 	#carousel-groceries .item
@@ -346,9 +378,8 @@ footer > .row > .link-column
 /************* Extraneous pages page start **768-991****/
 	
 
-/************* Extraneous pages page end ****768-991****/
+/************* Extraneous pages page end ****768-991****//****************************/
 }
-/**************** Footer page end ***************All****/
 @media screen and (max-width: 767px) {
 /************* Landing page start **************767-****/
 	#landing .row img
@@ -429,6 +460,12 @@ footer > .row > .link-column
 		text-align: center;
 	}
 /************* Landing page end ****************767-****/
+/************* Login page start ****************767-****/
+	#login .table-responsive > .table > tbody > tr > td
+	{
+		white-space: normal;
+	}
+/************* Login page end ******************767-****/
 /************* Extraneous pages page start *****767-****/
 	#about .table-responsive > .table > tbody > tr > td,
 	#faq .table-responsive > .table > tbody > tr > td,
@@ -436,5 +473,5 @@ footer > .row > .link-column
 	{
 		white-space: normal;
 	}
-/************* Extraneous pages page end *******767-****/
+/************* Extraneous pages page end *******767-****//****************************/
 }
