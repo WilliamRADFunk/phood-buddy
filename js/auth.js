@@ -292,7 +292,7 @@ function setGroceryList(list)
 
 function postRecipe()
 {
-	var recipeJson = {name:"Tossed Salad and Scambled Eggs", author: "Trump"} 
+	var recipeJson = {name:"Tossed Salad and Scambled Eggs", author: "Trump", custom: false} 
 
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 	if(ref.getAuth() == null)
@@ -326,7 +326,9 @@ function getUserRecipes()
 
 	var checkRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid);
 	var recipeList;
-	var recipeContent;
+	var recipeContentString = '{"info":[]}';
+	var recipeContentJson = JSON.parse(recipeContentString);
+	console.log(recipeContentJson);
 
 	//Check reference point made of user account and check if 'created-recipe' child exists
 	checkRef.once('value', function(snapshot){
@@ -334,45 +336,41 @@ function getUserRecipes()
 		//Snapshot contains child 'created-recipe'
 		if(snapshot.child("created-recipe").exists())
 		{
-			//Set recipeList to snapshot value of 
+
+			//Set recipeList to snapshot value of all content of 'created-recipe' from user
 			recipeList = snapshot.child("created-recipe").val();
-			console.log(recipeList);
 
 			var directoryRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory");
 
+			//Retrieve snapshot of all recipes in directory
 			directoryRef.once("value", function(snapshot)
 			{
-
+				//cycle through each key of previous snapshot
 				snapshot.forEach(function(childSnapshot)
 				{
-					console.log("The key is... " + childSnapshot.key());
+					//Set current key of 'recipe-directory' to temporary variable
+					//Cycle through the keys provided by snapshot of users 'created-recipe' to find link
 					var directoryKey = childSnapshot.key();
 					for(var key in recipeList)
 					{
 						if(recipeList.hasOwnProperty(key))
 						{
 
+							//Keys match! Append data to JSON array
 							if(key == directoryKey)
 							{
-								console.log("Key hit!");
+								recipeContentJson['info'].push(childSnapshot.val());
 								break;
 							}
-							console.log(key) // + " -> " + recipeList[key]);
 						}
 					}
-
-				});
-
-
-			});
-
-			
-		}
-	});
+				});//End: forEach -> 'recipe-directory'
+			});//END: snapshot -> 'recipe-directory'
+		}//END: if user has created recipes
+	});//END: snapshot -> 'users/uid'
 
 
-
-	
+	return recipeContentJson;
 
 }
 
