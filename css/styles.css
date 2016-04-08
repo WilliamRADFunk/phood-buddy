@@ -27,6 +27,16 @@ ul
 	height: 50px;
 	padding-left: 10%;
 	padding-right: 10%;
+	position: relative;
+}
+#main-nav > img
+{
+	display: inline-block;
+	height: 20px;
+	left: 15%;
+	position: absolute;
+	top: 15px;
+	width: auto;
 }
 .navbar-default,
 .navbar-inverse
@@ -44,40 +54,65 @@ ul
 }
 .navbar-default .navbar-nav > .disabled > a,
 .navbar-default .navbar-nav > .disabled > a:hover,
-.navbar-default .navbar-nav > .disabled > a:focus
+.navbar-default .navbar-nav > .disabled > a:focus,
+.navbar-default .navbar-nav > li > a,
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-text
 {
     color: #FFFFFF;
 }
-.navbar-default .navbar-nav > li > a
-{
-    color: #FFFFFF;
-}
-.navbar-default .navbar-nav > li:hover
+#main-nav > div > ul > li > a:hover
 {
     background-color: #326077;
-}
-.navbar-default .navbar-nav > li > a:focus,
-.navbar-default .navbar-nav > li > a:hover
-{
-    color: #FFFFFF;
-}
-.navbar-default .navbar-nav > li > a:focus
-{
-    color: #FFFFFF;
 }
 .navbar-default .navbar-nav > ul
 {
     padding-left: 20px;
 }
-.navbar-default .navbar-text
+#collapse
 {
-    color: #FFFFFF;
+    background-color: #4585A1;
+    margin-top: 50px;
 }
 #login-register
 {
 	display: block;
 	float: right;
 }
+/*** Hamburger Menu Collapse Start ***/
+/*** Ensures the hamburger menu ***/
+/*** remains collapse for all screen sizes ***/
+.navbar-header {
+	float: left;
+}
+.navbar-toggle {
+	display: block;
+}
+.navbar-collapse {
+	border-top: 1px solid transparent;
+	box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+}
+.navbar-collapse.collapse {
+	display: none!important;
+}
+.navbar-collapse.collapse.in{
+	display: block!important;
+}
+.navbar-nav {
+	float: none!important;
+	margin: 7.5px -15px;
+}
+.navbar-nav>li {
+	float: none;
+}
+.navbar-nav>li>a {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+/*** Hamburger Menu Collapse End ***/
+
+
 /************* Main navbar page end *************All****/
 /************* All pages page start *************All****/
 #wrapper
@@ -354,6 +389,38 @@ input:-webkit-autofill {
 	background-color: #4585A2;
 }
 /************* Login page end *******************All****/
+/************* Groceries page start *************All****/
+#groceries h2
+{
+	display: inline-block;
+	margin-right: 40px;
+}
+#groceries .row
+{
+	
+}
+#groceries .divider.row div
+{
+	border-bottom: 2px solid #E5E5E5;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+#groceries .col-1,
+#groceries .col-2,
+#groceries .col-5,
+#groceries .col-6
+{
+	width: 10%;
+}
+#groceries .col-3
+{
+	width: 20%;
+}
+#groceries .col-4
+{
+	width: 40%;
+}
+/************* Groceries page end ***************All****/
 /************* Extraneous pages page start ******All****/
 #about table,
 #faq table,
@@ -435,6 +502,12 @@ footer > .row > .link-column
 }
 /**************** Footer page end ***************All****//****************************/
 @media screen and (max-width: 991px) {
+/************* Main navbar page start **********767-****/
+	#main-nav > img
+	{
+		left: 20%;
+	}
+/************* Main navbar page end ************767-****/
 /************* Landing page start ***********768-991****/
 	#carousel-groceries .item
 	{
@@ -447,6 +520,16 @@ footer > .row > .link-column
 /************* Extraneous pages page end ****768-991****//****************************/
 }
 @media screen and (max-width: 767px) {
+/************* Main navbar page start **********767-****/
+	#main-nav > img
+	{
+		left: 15px;
+	}
+	.navbar-header
+	{
+	    float: right;
+	}
+/************* Main navbar page end ************767-****/
 /************* Landing page start **************767-****/
 	#landing .row img
 	{
@@ -546,6 +629,32 @@ footer > .row > .link-column
 		width: 100%;
 	}
 /************* Login page end ******************767-****/
+/************* Groceries page start ************767-****/
+	#groceries h2
+	{
+		display: block;
+		margin-bottom: 30px;
+		text-align: center;
+	}
+	#groceries h3
+	{
+		text-align: center;
+	}
+	#groceries .table-responsive.col-xs-12
+	{
+		border: none;
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	#groceries .table-responsive > .table
+	{
+		font-size: 60%;
+	}
+	#groceries .table-responsive > .table > tbody > tr > td
+	{
+		white-space: normal;
+	}
+/************* Groceries page end **************767-****/
 /************* Extraneous pages page start *****767-****/
 	#about .table-responsive > .table > tbody > tr > td,
 	#faq .table-responsive > .table > tbody > tr > td,
