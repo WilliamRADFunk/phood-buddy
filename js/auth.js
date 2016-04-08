@@ -226,19 +226,18 @@ function createGroceryList()
 	
 	  	console.log("Creating new grocery list... even if there was an old one...")
 	  	gref.child(data.uid).set({
-	  		baby: "",
-	  		bakery: "",
-	  		beverages: "",
+	  		"baby": "",
+	  		"bakery": "",
+	  		"beverages": "",
 	  		"canned goods": "",
-	  		cereals: "",
-	  		"cleaning and household": "",
-	  		condiments: "",
-	  		dairy: "",
-	  		frozen: "",
-	  		meats: "",
-	  		produce: "",
+	  		"cereals": "",
+	  		"condiments": "",
+	  		"dairy": "",
+	  		"frozen": "",
+	  		"meats": "",
+	  		"produce": "",
 	  		"baking and spices": "",
-	  		miscellaneous: ""
+	  		"miscellaneous": ""
 	  		
 	})
 
@@ -264,6 +263,7 @@ function getGroceryList()
 			console.log("User has groceryList, proceed normally");
 			groceryListSnapshot = snapshot.child(data.uid);
 			groceryList = groceryListSnapshot.val();
+			console.log(groceryList);
 		}
 		else
 		{
@@ -271,6 +271,7 @@ function getGroceryList()
 		}
 	})
 
+	console.log(groceryList);
 	return groceryList;
 	
 }
@@ -289,6 +290,55 @@ function setGroceryList(list)
 
 	gref.child(data.uid).set(list);
 }
+
+function addGrocery()
+{
+	var contentJson = { "name": "apple", "description": "That thing", "quantity": "3", "unit": "loafes", "category": "meat"};
+
+	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
+	if(ref.getAuth() == null)
+	{
+		return;
+	}
+
+	var data = ref.getAuth();
+	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/");
+
+	var newGroceryRef = gref.child(data.uid).push();
+	newGroceryRef.set(contentJson);
+	console.log(contentJson);
+
+}
+
+function editGrocery()
+{
+	//WARNING ::: Convert impending input into JSON object, set equal to 'contentJson'
+	var contentJson = {"-KEnu2ENxPZIixIbbXG4":{"name": "banana", "description": "That other thing", "quantity": "2", "unit": "loafes", "category": "meat"}};
+
+	var keys = Object.keys(contentJson);
+
+	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
+	if(ref.getAuth() == null)
+	{
+		return;
+	}
+
+	var data = ref.getAuth();
+	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/");
+
+	console.log(keys[0]);
+
+	gref.once('value', function(snapshot){
+		console.log("Im here");
+		if(snapshot.hasChild(keys[0]))
+		{
+			var newGrocery = contentJson[keys[0]];
+			gref.child(keys[0]).set(newGrocery);
+		}
+	});
+}
+
+
 
 function postRecipe()
 {
@@ -369,30 +419,43 @@ function getUserRecipes()
 		}//END: if user has created recipes
 	});//END: snapshot -> 'users/uid'
 
-
+	console.log(recipeContentJson);
 	return recipeContentJson;
 
 }
 
-function getUserRecipeContent(rList)
+function getUserCreatedRecipes()
 {
-	var ref = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory");
+	var directoryRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory");
 
-	var recipeData;
+	var recipeContentString = '{"info":[]}';
+	var recipeContentJson = JSON.parse(recipeContentString);
 
-	 ref.once("value", function(snapshot){
-	 	rList.forEach(function (rListSnapshot){
-	 		snapshot.forEach(function(childSnapshot){
+	var query = directoryRef.orderByChild("custom").equalTo(true);
 
-	 			if(rListSnapshot.key() == childSnapshot.key())
-	 			{
-	 				recipeData += childSnapshot; 
-	 			}
+	
+	query.once("value", function(querySnapshot)
+	{
+		console.log(querySnapshot.val());
+		//fn(querySnapshot.val());
 
-	 		})
-	 	})
-	 	
-	 })
+		querySnapshot.forEach(function(childSnapshot){
+
+			recipeContentJson['info'].push(childSnapshot.val());
+
+		});
+	});
+
+	console.log(recipeContentJson);
+
 }
 
+function getThatRecipe()
+{
+	getUserCreatedRecipes(function (data){
+		return data;
+	});
+
+	console.log(superData);
+}
 
