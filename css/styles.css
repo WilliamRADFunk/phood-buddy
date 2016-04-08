@@ -372,7 +372,8 @@ input:-webkit-autofill {
 {
 	display: block;
 	height: auto;
-	width: 100%;
+	margin: 0px auto;
+	width: 60%;
 }
 /************* Extraneous pages page end ********All****/
 /************* Social links page start **********All****/
@@ -551,6 +552,11 @@ footer > .row > .link-column
 	#contact .table-responsive > .table > tbody > tr > td
 	{
 		white-space: normal;
+	}
+	#error-page img
+	{
+		margin: 0px;
+		width: 100%;
 	}
 /************* Extraneous pages page end *******767-****//****************************/
 }
