@@ -364,7 +364,15 @@ input:-webkit-autofill {
 }
 #error-page
 {
+	clear: both;
+	position: relative;
 	text-align: center;
+}
+#error-page img
+{
+	display: block;
+	height: auto;
+	width: 100%;
 }
 /************* Extraneous pages page end ********All****/
 /************* Social links page start **********All****/
