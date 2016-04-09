@@ -450,6 +450,17 @@ input:-webkit-autofill {
 	width: 60%;
 }
 /************* Extraneous pages page end ********All****/
+/************* Modal start **********************All****/
+.modal-header
+{
+	background-color: #4585A1;
+	color: #FFFFFF;
+}
+.modal-footer > button
+{
+	background-color: #8ECDE9;
+}
+/************* Modal end ************************All****/
 /************* Social links page start **********All****/
 #social
 {
