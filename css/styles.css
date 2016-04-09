@@ -404,6 +404,33 @@ input:-webkit-autofill {
 {
 	width: 40%;
 }
+#groceries #add-item
+{
+	display: none;
+}
+#groceries #add-item-link
+{
+	background-image: url('../images/btn-plus.jpg');
+	background-repeat: no-repeat;
+	padding-left: 30px;
+}
+#groceries #print-list
+{
+	background-image: url('../images/btn-print.jpg');
+	background-repeat: no-repeat;
+	padding-left: 30px;
+}
+#groceries #add-item input[type="text"],
+#groceries #add-item input[type="number"],
+#groceries #add-item select,
+#groceries #add-item button
+{
+	height: 30px;
+}
+#groceries #add-item button
+{
+	background-color: #8ECDE9;
+}
 /************* Groceries page end ***************All****/
 /************* Extraneous pages page start ******All****/
 #about table,
@@ -450,7 +477,7 @@ input:-webkit-autofill {
 	margin-top: 10px;
 	min-height: 13%;
 	text-align: center;
-	width: 100%
+	width: 100%;
 }
 #social img
 {

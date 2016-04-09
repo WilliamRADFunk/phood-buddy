@@ -6,22 +6,31 @@ $(document).ready(function ()
 	});
 	// Specifies content and functionality of modal when
 	// user clicks specific links/buttons.
-	$("#print-list").click(function(){
-		$("#modal").modal({backdrop: "static", keyboard: false, show: true});
-		$(".modal-header").html("Print Grocery List");
-		$(".modal-body").html("<p>Are you sure you want to print your grocery list?</p>");
-    });
     $("#lost-password").click(function(){
     	$("#modal").modal({backdrop: "static", keyboard: false, show: true});
 		$(".modal-header").html("Reset Password");
 		$(".modal-body").html("<form><label>Registered Email: </label><input type='text' /></form>");
+		$("#btn-confirm").click(function(){
+			/* TODO: Send reset password email */
+		});
     });
 });
-$(window).resize(function()
+function addItem()
 {
-	
-});
-function lostPassword()
+	$("#add-item").show();
+	$("#add-item-link").hide();
+}
+function cancelItem()
 {
-	console.log("User clicked 'Forgot Password' link.");
+	$("#add-item").hide();
+	$("#add-item-link").show();
+	/* TODO: Clear all fields */
+}
+function submitItem()
+{
+	$("#add-item").hide();
+	$("#add-item-link").show();
+	/* TODO: Send item to database */
+	/* TODO: Have modal show success or failure */
+	/* TODO: Reload page with new grocery list */
 }
