@@ -423,7 +423,10 @@ input:-webkit-autofill {
 #groceries #add-item input[type="text"],
 #groceries #add-item input[type="number"],
 #groceries #add-item select,
-#groceries #add-item button
+#groceries #add-item button,
+#modal #editing-item input[type="text"],
+#modal #editing-item input[type="number"],
+#modal #editing-item select
 {
 	height: 30px;
 }

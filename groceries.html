@@ -79,7 +79,7 @@
                     <div class="row">
                         <a id="add-item-link" href="javascript:addItem()">Add Item</a>
                         <div id="add-item">
-                            <select class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                            <select class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
                                 <option value="" disabled selected>Category</option>
                                 <option value="baked goods">Baked Goods</option>
                                 <option value="beverages">Beverages</option>
@@ -93,10 +93,10 @@
                                 <option value="baking and spices">Baking &amp; Spices</option>
                                 <option value="miscellaneous">Miscellaneous</option>
                             </select>
-                            <input type="text" name="name" placeholder="Name" class="col-lg-2 col-md-2 col-sm-2 col-xs-12"/>
-                            <input type="text" name="description" placeholder="Description" class="col-lg-2 col-md-2 col-sm-2 col-xs-12"/>
-                            <input type="number" name="quantity" placeholder="Quantity" class="col-lg-2 col-md-2 col-sm-2 col-xs-12"/>
-                            <select class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                            <input type="text" name="name" placeholder="Name" class="col-lg-2 col-md-12 col-sm-12 col-xs-12"/>
+                            <input type="text" name="description" placeholder="Description" class="col-lg-2 col-md-12 col-sm-12 col-xs-12"/>
+                            <input type="number" name="quantity" placeholder="Quantity" class="col-lg-2 col-md-12 col-sm-12 col-xs-12"/>
+                            <select class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
                                 <option value="" disabled selected>Unit</option>
                                 <option value="teaspoons">teaspoons</option>
                                 <option value="tablespoons">tablespoons</option>
@@ -119,8 +119,8 @@
                                 <option value="meters">meters</option>
                                 <option value="inches">inches</option>
                             </select>
-                            <button id="submit-item" onclick="submitItem()" class="col-lg-1 col-md-1 col-sm-1 col-xs-6">Add</button>
-                            <button id="cancel-item" onclick="cancelItem()" class="col-lg-1 col-md-1 col-sm-1 col-xs-6">Cancel</button>
+                            <button id="submit-item" onclick="submitItem()" class="col-lg-1 col-md-6 col-sm-6 col-xs-6">Add</button>
+                            <button id="cancel-item" onclick="cancelItem()" class="col-lg-1 col-md-6 col-sm-6 col-xs-6">Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -141,24 +141,24 @@
                             <th class="col-6">Unit</th>
                         </tr>
                         <tr>
-                            <td class="grocery-options"><a id="delete-item-1" href="">Delete</a></td>
-                            <td class="grocery-options"><a id="edit-item-1" href="">Edit</a></td>
+                            <td class="grocery-options"><a id="delete-item-1" class="delete-item" href="javascript:void(0)">Delete</a></td>
+                            <td class="grocery-options"><a id="edit-item-1" class="edit-item" href="javascript:void(0)">Edit</a></td>
                             <td>Fried Chicken</td>
                             <td>Crispy, breaded, drumsticks, preferably large.</td>
                             <td>12</td>
                             <td>pieces</td>
                         </tr>
                         <tr>
-                            <td class="grocery-options"><a id="delete-item-2" href="">Delete</a></td>
-                            <td class="grocery-options"><a id="edit-item-2" href="">Edit</a></td>
+                            <td class="grocery-options"><a id="delete-item-2" class="delete-item" href="javascript:void(0)">Delete</a></td>
+                            <td class="grocery-options"><a id="edit-item-2" class="edit-item" href="javascript:void(0)">Edit</a></td>
                             <td>Skirt Steak</td>
                             <td>Razor thin, shoulderblade cuts.</td>
                             <td>2</td>
                             <td>pounds</td>
                         </tr>
                         <tr>
-                            <td class="grocery-options"><a id="delete-item-3" href="">Delete</a></td>
-                            <td class="grocery-options"><a id="edit-item-3" href="">Edit</a></td>
+                            <td class="grocery-options"><a id="delete-item-3" class="delete-item" href="javascript:void(0)">Delete</a></td>
+                            <td class="grocery-options"><a id="edit-item-3" class="edit-item" href="javascript:void(0)">Edit</a></td>
                             <td>Salmon Filets</td>
                             <td>Fresh from today's catch.</td>
                             <td>1</td>
@@ -181,24 +181,24 @@
                             <th class="col-6">Unit</th>
                         </tr>
                         <tr>
-                            <td class="grocery-options"><a id="delete-item-4" href="">Delete</a></td>
-                            <td class="grocery-options"><a id="edit-item-4" href="">Edit</a></td>
+                            <td class="grocery-options"><a id="delete-item-4" class="delete-item" href="javascript:void(0)">Delete</a></td>
+                            <td class="grocery-options"><a id="edit-item-4" class="edit-item" href="javascript:void(0)">Edit</a></td>
                             <td>Italian Bread</td>
                             <td>Long and thin, fresh from the oven.</td>
                             <td>2</td>
                             <td>loaf/loaves</td>
                         </tr>
                         <tr>
-                            <td class="grocery-options"><a id="delete-item-5" href="">Delete</a></td>
-                            <td class="grocery-options"><a id="edit-item-5" href="">Edit</a></td>
+                            <td class="grocery-options"><a id="delete-item-5" class="delete-item" href="javascript:void(0)">Delete</a></td>
+                            <td class="grocery-options"><a id="edit-item-5" class="edit-item" href="javascript:void(0)">Edit</a></td>
                             <td>Pumpernickel</td>
                             <td>Whole wheat only.</td>
                             <td>1</td>
                             <td>loaf/loaves</td>
                         </tr>
                         <tr>
-                            <td class="grocery-options"><a id="delete-item-6" href="">Delete</a></td>
-                            <td class="grocery-options"><a id="edit-item-6" href="">Edit</a></td>
+                            <td class="grocery-options"><a id="delete-item-6" class="delete-item" href="javascript:void(0)">Delete</a></td>
+                            <td class="grocery-options"><a id="edit-item-6" class="edit-item" href="javascript:void(0)">Edit</a></td>
                             <td>Death By Chocolate Cake</td>
                             <td>Seven layers of chocolate, and a layer of moose between each.</td>
                             <td>12</td>
@@ -221,32 +221,32 @@
                             <th class="col-6">Unit</th>
                         </tr>
                         <tr>
-                            <td class="grocery-options"><a id="delete-item-7" href="">Delete</a></td>
-                            <td class="grocery-options"><a id="edit-item-7" href="">Edit</a></td>
+                            <td class="grocery-options"><a id="delete-item-7" class="delete-item" href="javascript:void(0)">Delete</a></td>
+                            <td class="grocery-options"><a id="edit-item-7" class="edit-item" href="javascript:void(0)">Edit</a></td>
                             <td>Cumin</td>
                             <td>Light brown, powdered.</td>
                             <td>2</td>
                             <td>teaspoon(s)</td>
                         </tr>
                         <tr>
-                            <td class="grocery-options"><a id="delete-item-8" href="">Delete</a></td>
-                            <td class="grocery-options"><a id="edit-item-8" href="">Edit</a></td>
+                            <td class="grocery-options"><a id="delete-item-8" class="delete-item" href="javascript:void(0)">Delete</a></td>
+                            <td class="grocery-options"><a id="edit-item-8" class="edit-item" href="javascript:void(0)">Edit</a></td>
                             <td>Salt</td>
                             <td>Coarse grained sea salt.</td>
                             <td>1</td>
                             <td>tablespoon(s)</td>
                         </tr>
                         <tr>
-                            <td class="grocery-options"><a id="delete-item-9" href="">Delete</a></td>
-                            <td class="grocery-options"><a id="edit-item-9" href="">Edit</a></td>
+                            <td class="grocery-options"><a id="delete-item-9" class="delete-item" href="javascript:void(0)">Delete</a></td>
+                            <td class="grocery-options"><a id="edit-item-9" class="edit-item" href="javascript:void(0)">Edit</a></td>
                             <td>Dijon Mustard</td>
                             <td>High quality brand.</td>
                             <td>1/4</td>
                             <td>cup</td>
                         </tr>
                         <tr>
-                            <td class="grocery-options"><a id="delete-item-10" href="">Delete</a></td>
-                            <td class="grocery-options"><a id="edit-item-10" href="">Edit</a></td>
+                            <td class="grocery-options"><a id="delete-item-10" class="delete-item" href="javascript:void(0)">Delete</a></td>
+                            <td class="grocery-options"><a id="edit-item-10" class="edit-item" href="javascript:void(0)">Edit</a></td>
                             <td>Olive Oil</td>
                             <td>Virgin. Only cold pressed.</td>
                             <td>2</td>
