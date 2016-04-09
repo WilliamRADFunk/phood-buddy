@@ -52,7 +52,7 @@
                 <li><a href="https://www.fitbit.com/login" target="_blank">FITBIT</a></li>
                 <li><a href="groceries.html" target="_self">SHOPPING LIST</a></li>
                 <li><a href="schedule.html" target="_self">SCHEDULE</a></li>
-                <li><a href="profile.html" target="_self">PROFILE</a></li>
+                <li><a href="profile.html" target="_self">SETTINGS</a></li>
             </ul>
             <ul id="login-register" class="nav navbar-nav">
                 <li><a href="login.html" target="_self">LOGIN</a></li>
@@ -87,7 +87,7 @@
                                     </tr>
                                     <tr>
                                         <td><a href="register.html">Register</a></td>
-                                        <td><a href="javascript:lostPassword();">Forgot Password</a></td>
+                                        <td><a id="lost-password" href="javascript:void(0)">Forgot Password</a></td>
                                     </tr>
                                 </table>
                             </td>
@@ -97,19 +97,6 @@
             </div>
         </div>
 <!-- Login ends here -->
-<!-- Lost Password starts here -->
-        <div id="lost-password">
-            <h1>Forgot Your Password?</h1>
-            <div class="row">
-                <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12 table-responsive">
-                    <table class="table">
-                        <tr><td><label name="email">Email: </label><input type="text" name="email"/></td></tr>
-                        <tr><td><button id="btn-reset">Reset Password</button></td></tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-<!-- Lost Password ends here -->
     </div>
 <!-- Main Content Wrapper ends here -->
 <!-- Social starts here -->
@@ -165,8 +152,8 @@
             <p>Some text in the modal.</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Confirm</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button id="btn-confirm" type="button" class="btn btn-default" data-dismiss="modal">Confirm</button>
+            <button id="btn-cancel" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>
 

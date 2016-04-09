@@ -14,6 +14,7 @@ body
 h1
 {
 	margin-bottom: 30px;
+	margin-top: 0px;
 	text-align: center;
 }
 ul
@@ -123,7 +124,7 @@ ul
 /************* All pages page start *************All****/
 #wrapper
 {
-	margin-top: 75px;
+	margin-top: 40px;
 	min-height: 65%;
 	width: 100%
 }
@@ -306,15 +307,12 @@ ul
 }
 /************* Deals page end *******************All****/
 /************* Login page start *****************All****/
-#login table,
-#lost-password table
+#login table
 {
 	background-color: #E2EEF4;
 }
 #login input[type="text"],
-#login input[type="password"],
-#lost-password input[type="text"],
-#lost-password input[type="password"]
+#login input[type="password"]
 {
 	background-color: #FFFFFF !important;
 	text-align: center;
@@ -322,14 +320,11 @@ ul
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
-#login > div > div > table,
-#lost-password > div > div > table
+#login > div > div > table
 {
 	margin-bottom: 50px;
-	margin-top: 50px;
 }
-#login .table-responsive > .table > tbody > tr > td,
-#lost-password .table-responsive > .table > tbody > tr > td
+#login .table-responsive > .table > tbody > tr > td
 {
 	text-align: center;
 }
@@ -339,8 +334,7 @@ input:-webkit-autofill {
 	height: 60px;
 	padding-top: 60px;
 }
-#login .table-responsive > .table > tbody > tr > td > button,
-#lost-password .table-responsive > .table > tbody > tr > td > button
+#login .table-responsive > .table > tbody > tr > td > button
 {
 	color: #FFFFFF;
 	height: 50px;
@@ -381,18 +375,6 @@ input:-webkit-autofill {
 {
 	background-color: #4585A2;
 	width: 25%;
-}
-#lost-password
-{
-	display: none;
-}
-#lost-password label
-{
-	margin-right: 20px;
-}
-#btn-reset
-{
-	background-color: #4585A2;
 }
 /************* Login page end *******************All****/
 /************* Groceries page start *************All****/
