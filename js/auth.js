@@ -19,12 +19,14 @@ function authLogin(error, authData)
 	  	if(snapshot.hasChild(authData.uid))
 	  	{
 	  		console.log("User stays logged in for having an account");
+	  		cb(true);
 	  	}
 	  	else
 	  	{
 	  		console.log("USER MUST CREATE ACCOUNT")
 	  		var ref = new Firebase("https://phoodbuddy.firebaseio.com");
 	  		ref.unauth();
+	  		cb(false);
 	  	}
 		
 		})
@@ -97,12 +99,19 @@ function customLogin(emailString, passwordString)
 	}, function(error, authData) {
   		if (error) {
     		console.log("Login Failed!", error);
+    		cb(false);
   		} 
   		else 
   		{
     		console.log("Authenticated successfully with payload:", authData);
+    		cb(true);
   		}
 	});
+}
+
+function cb(error, authData)
+{
+
 }
 
 function setAccount(userData)
@@ -293,6 +302,9 @@ function setGroceryList(list)
 
 function addGrocery()
 {
+
+	//WARNING ::: Convert impending input into Javascript object, set equal to 'contentJson'
+
 	var contentJson = { "name": "apple", "description": "That thing", "quantity": "3", "unit": "loafes", "category": "meat"};
 
 	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
@@ -312,7 +324,7 @@ function addGrocery()
 
 function editGrocery()
 {
-	//WARNING ::: Convert impending input into JSON object, set equal to 'contentJson'
+	//WARNING ::: Convert impending input into Javascript object, set equal to 'contentJson'
 	var contentJson = {"-KEnu2ENxPZIixIbbXG4":{"name": "banana", "description": "That other thing", "quantity": "2", "unit": "loafes", "category": "meat"}};
 
 	var keys = Object.keys(contentJson);
@@ -338,6 +350,23 @@ function editGrocery()
 	});
 }
 
+function deleteGrocery()
+{
+	//WARNING ::: Convert impending input into Javascript object, set equal to 'contentJson'
+
+	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
+	if(ref.getAuth() == null)
+	{
+		return;
+	}
+
+	var data = ref.getAuth();
+
+	//Needs to add key to URL path and remove using 'gref.remove()'
+	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/");
+
+}
+
 
 
 function postRecipe()
@@ -354,6 +383,7 @@ function postRecipe()
 	var recipeRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory");
 	var newRecipeRef = recipeRef.push();
 	newRecipeRef.set(recipeJson);
+	console.log(newRecipeRef);
 
 	var recipeId = newRecipeRef.key();
 
