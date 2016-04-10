@@ -60,7 +60,6 @@ function authHandler(error, authData)
   else //Users login attemp successful. Have access to authData
   {
     console.log("Authenticated successfully with payload:", authData);
-
     checkIfUserExists(authData.uid, authData);  //Checks to see if user payload alaready has account
 	
   }	
@@ -79,7 +78,7 @@ function authDataCallback(authData) {
 //var ref = new Firebase("https://<YOUR-FIREBASE-APP>.firebaseio.com");
 //ref.onAuth(authDataCallback);
 
-function customRegister(fnameString, lnameString, emailString, passwordString)
+function customRegister(fnameString, lnameString, emailString, passwordString, cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
 	ref.createUser({
@@ -104,7 +103,7 @@ function customRegister(fnameString, lnameString, emailString, passwordString)
 	});
 }
 
-function customLogin(emailString, passwordString)
+function customLogin(emailString, passwordString, cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
 	ref.authWithPassword({
@@ -135,7 +134,7 @@ function setAccount(userData)
 }
 
 
-function fbRegister()
+function fbRegister(cb)
 {
 	// Simple login for facebook. authData has user data
 
@@ -144,13 +143,13 @@ function fbRegister()
 	ref.authWithOAuthPopup("facebook", authHandler);
 }
 
-function fbLogin()
+function fbLogin(cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
 	ref.authWithOAuthPopup("facebook", authLogin);
 }
 
-function twitterRegister() 
+function twitterRegister(cb) 
 {
 	//Simple login for twitter. authData has user data
 
@@ -159,14 +158,14 @@ function twitterRegister()
 	ref.authWithOAuthPopup("twitter", authHandler);
 }
 
-function twitterLogin()
+function twitterLogin(cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
 	ref.authWithOAuthPopup("twitter", authLogin);
 }
 
 
-function googleRegister(){
+function googleRegister(cb){
 
 	//Simple login for twitter. authData has user data
 	//This creates reference to database that than uses that reference call to authenticate with current user.
@@ -175,7 +174,7 @@ function googleRegister(){
 	ref.authWithOAuthPopup("google", authHandler);
 }
 
-function googleLogin()
+function googleLogin(cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
 	ref.authWithOAuthPopup("google", authLogin);
@@ -446,3 +445,20 @@ function getUserCreatedRecipes()
 
 
 }
+
+
+{ "user-id" : { 
+	monday: { 
+		0: "recipe-uid", 
+		1: "recipe-uid", 
+		2: "recipe-uid"}
+	tuesday:{
+		0: "recipe-uid", 
+		1: "recipe-uid", 
+		2: "recipe-uid"}
+
+	}}}
+
+dayOfWeek, object
+
+
