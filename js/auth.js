@@ -60,7 +60,6 @@ function authHandler(error, authData)
   else //Users login attemp successful. Have access to authData
   {
     console.log("Authenticated successfully with payload:", authData);
-
     checkIfUserExists(authData.uid, authData);  //Checks to see if user payload alaready has account
 	
   }	
@@ -79,7 +78,7 @@ function authDataCallback(authData) {
 //var ref = new Firebase("https://<YOUR-FIREBASE-APP>.firebaseio.com");
 //ref.onAuth(authDataCallback);
 
-function customRegister(fnameString, lnameString, emailString, passwordString)
+function customRegister(fnameString, lnameString, emailString, passwordString, cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
 	ref.createUser({
@@ -104,7 +103,7 @@ function customRegister(fnameString, lnameString, emailString, passwordString)
 	});
 }
 
-function customLogin(emailString, passwordString)
+function customLogin(emailString, passwordString, cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
 	ref.authWithPassword({
@@ -135,52 +134,171 @@ function setAccount(userData)
 }
 
 
-function fbRegister()
+function fbRegister(cb)
 {
 	// Simple login for facebook. authData has user data
 
 	//This creates reference to database that than uses that reference call to authenticate with current user. 
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
-	ref.authWithOAuthPopup("facebook", authHandler);
+	ref.authWithOAuthPopup("facebook", function(error, authData) {
+		if (error) 
+		{
+		  console.log("Login Failed!", error);
+		  cb(false);
+		} 
+		else //Users login attemp successful. Have access to authData
+		{
+		  console.log("Authenticated successfully with payload:", authData);
+		  checkIfUserExists(authData.uid, authData, cb);  //Checks to see if user payload alaready has account
+		}	
+	});
 }
 
-function fbLogin()
+function fbLogin(cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
-	ref.authWithOAuthPopup("facebook", authLogin);
+	ref.authWithOAuthPopup("facebook", function(error, authData) {
+
+		if (error)
+		{
+			console.log("Login Failed!", error);
+			cb(false);
+		}
+		else
+		{
+			console.log("Authenticated successfully with payload:", authData);
+
+			var usersRef = new Firebase("https://phoodbuddy.firebaseio.com/users");
+		  	usersRef.once('value', function(snapshot){
+			  if(snapshot.hasChild(authData.uid))
+			  {
+			  	console.log("User stays logged in for having an account");
+			  	cb(true);
+			  }
+			  else
+			  {
+			  	console.log("USER MUST CREATE ACCOUNT")
+			  	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
+			  	ref.unauth();
+			  	cb(false);
+			  }
+				
+			});
+		}
+
+	});
 }
 
-function twitterRegister() 
+function twitterRegister(cb) 
 {
 	//Simple login for twitter. authData has user data
 
 	//This creates reference to database that than uses that reference call to authenticate with current user.
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
-	ref.authWithOAuthPopup("twitter", authHandler);
+	ref.authWithOAuthPopup("twitter", function(error, authData) {
+		if (error) 
+		{
+		  console.log("Login Failed!", error);
+		  cb(false);
+		} 
+		else //Users login attemp successful. Have access to authData
+		{
+		  console.log("Authenticated successfully with payload:", authData);
+		  checkIfUserExists(authData.uid, authData, cb);  //Checks to see if user payload alaready has account
+		}	
+	});
 }
 
-function twitterLogin()
+function twitterLogin(cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
-	ref.authWithOAuthPopup("twitter", authLogin);
+	ref.authWithOAuthPopup("twitter", function(error, authData) {
+
+		if (error)
+		{
+			console.log("Login Failed!", error);
+			cb(false);
+		}
+		else
+		{
+			console.log("Authenticated successfully with payload:", authData);
+
+			var usersRef = new Firebase("https://phoodbuddy.firebaseio.com/users");
+		  	usersRef.once('value', function(snapshot){
+			  if(snapshot.hasChild(authData.uid))
+			  {
+			  	console.log("User stays logged in for having an account");
+			  	cb(true);
+			  }
+			  else
+			  {
+			  	console.log("USER MUST CREATE ACCOUNT")
+			  	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
+			  	ref.unauth();
+			  	cb(false);
+			  }
+				
+			});
+		}
+
+	});
 }
 
 
-function googleRegister(){
+function googleRegister(cb){
 
 	//Simple login for twitter. authData has user data
 	//This creates reference to database that than uses that reference call to authenticate with current user.
 
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
-	ref.authWithOAuthPopup("google", authHandler);
+	ref.authWithOAuthPopup("facebook", function(error, authData) {
+		if (error) 
+		{
+		  console.log("Login Failed!", error);
+		  cb(false);
+		} 
+		else //Users login attemp successful. Have access to authData
+		{
+		  console.log("Authenticated successfully with payload:", authData);
+		  checkIfUserExists(authData.uid, authData, cb);  //Checks to see if user payload alaready has account
+		}	
+	});
 }
 
-function googleLogin()
+function googleLogin(cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
-	ref.authWithOAuthPopup("google", authLogin);
-}
+	ref.authWithOAuthPopup("google", function(error, authData) {
 
+		if (error)
+		{
+			console.log("Login Failed!", error);
+			cb(false);
+		}
+		else
+		{
+			console.log("Authenticated successfully with payload:", authData);
+
+			var usersRef = new Firebase("https://phoodbuddy.firebaseio.com/users");
+		  	usersRef.once('value', function(snapshot){
+			  if(snapshot.hasChild(authData.uid))
+			  {
+			  	console.log("User stays logged in for having an account");
+			  	cb(true);
+			  }
+			  else
+			  {
+			  	console.log("USER MUST CREATE ACCOUNT")
+			  	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
+			  	ref.unauth();
+			  	cb(false);
+			  }
+				
+			});
+		}
+
+	});
+}
 
 // find a suitable name based on the meta info given by each provider
 function getName(authData) {
@@ -197,7 +315,7 @@ function getName(authData) {
 }
 
 //Checks authentication payload if user already exists. Returns true if UserID does not exist in users tree
-function checkIfUserExists(userId, authData) {
+function checkIfUserExists(userId, authData, cb) {
 
   var usersRef = new Firebase("https://phoodbuddy.firebaseio.com/users");
   usersRef.once('value', function(snapshot){
@@ -358,7 +476,7 @@ function postRecipe()
 	ref.child("users").child(data.uid).child("created-recipe").update(storeJson);
 }
 
-function getUserRecipes()
+function getUserRecipes(cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
@@ -446,3 +564,5 @@ function getUserCreatedRecipes()
 
 
 }
+
+

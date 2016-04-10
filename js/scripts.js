@@ -15,9 +15,9 @@ $(document).ready(function ()
 	});
 	// System tries to login with values provided in the two text fields.
 	$("#btn-login").click(function(){
-		var email = $("login-email").val() + "";
-		var pwd = $("login-password").val() + "";
-		if( (email === null || email === undefined) || (pwd === null || pwd === undefined) )
+		var email = $("#login-email").val() + "";
+		var pwd = $("#login-password").val() + "";
+		if( (email === "") || (pwd === "") )
 		{
 			$("#modal").modal({backdrop: "static", keyboard: false, show: true});
 			$(".modal-header").html("Login Failed");
@@ -47,12 +47,12 @@ $(document).ready(function ()
 	});
 	// System tries to login with values provided in the two text fields.
 	$("#btn-register").click(function(){
-		var email = $("register-email").val() + "";
-		var pwd = $("register-password").val() + "";
-		var fname = $("register-fname").val() + "";
-		var lname = $("register-lname").val() + "";
-		if( (fname === null || fname === undefined) || (lname === null || lname === undefined) ||
-			(email === null || email === undefined) || (pwd === null || pwd === undefined) )
+		var email = $("#register-email").val() + "";
+		var pwd = $("#register-password").val() + "";
+		var fname = $("#register-fname").val() + "";
+		var lname = $("#register-lname").val() + "";
+		console.log(fname, lname, email, pwd);
+		if( (fname === "") || (lname === "") ||	(email === "") || (pwd === "") )
 		{
 			$("#modal").modal({backdrop: "static", keyboard: false, show: true});
 			$(".modal-header").html("Registration Failed");
