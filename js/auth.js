@@ -357,7 +357,7 @@ function postRecipe()
 	ref.child("users").child(data.uid).child("created-recipe").update(storeJson);
 }
 
-function getUserRecipes()
+function getUserRecipes(cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
@@ -445,20 +445,5 @@ function getUserCreatedRecipes()
 
 
 }
-
-
-{ "user-id" : { 
-	monday: { 
-		0: "recipe-uid", 
-		1: "recipe-uid", 
-		2: "recipe-uid"}
-	tuesday:{
-		0: "recipe-uid", 
-		1: "recipe-uid", 
-		2: "recipe-uid"}
-
-	}}}
-
-dayOfWeek, object
 
 
