@@ -38,7 +38,7 @@ function authLogin(error, authData)
 	  		cb(false);
 	  	}
 		
-		})
+		});
 	}
 }
 
@@ -79,10 +79,12 @@ function authDataCallback(authData) {
 //var ref = new Firebase("https://<YOUR-FIREBASE-APP>.firebaseio.com");
 //ref.onAuth(authDataCallback);
 
-function customRegister(emailString, passwordString)
+function customRegister(fnameString, lnameString, emailString, passwordString)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
 	ref.createUser({
+		fname    : fnameString,
+		lname    : lnameString,
   		email    : emailString,
   		password : passwordString
 	}, function(error, userData) {
@@ -235,7 +237,7 @@ function getGroceryList()
 {
 	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
 
-	if(ref.getAuth == null)
+	if(ref.getAuth === null)
 		{
 			return;
 		}
@@ -257,7 +259,7 @@ function getGroceryList()
 		{
 			return;
 		}
-	})	
+	});	
 }
 
 function addGrocery(contentJson)
@@ -267,7 +269,7 @@ function addGrocery(contentJson)
 	// DEBUG :  DUMMY VALUE var contentJson = { "name": "apple", "description": "That thing", "quantity": "3", "unit": "loafes", "category": "meat"};
 
 	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
-	if(ref.getAuth() == null)
+	if(ref.getAuth() === null)
 	{
 		return;
 	}
@@ -291,7 +293,7 @@ function editGrocery(contentJson)
 	var keys = Object.keys(contentJson);
 
 	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
-	if(ref.getAuth() == null)
+	if(ref.getAuth() === null)
 	{
 		return;
 	}
@@ -316,7 +318,7 @@ function deleteGrocery(contentKey)
 	//WARNING ::: Convert impending input into Javascript object, set equal to 'contentJson'
 
 	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
-	if(ref.getAuth() == null)
+	if(ref.getAuth() === null)
 	{
 		return;
 	}
@@ -334,10 +336,10 @@ function deleteGrocery(contentKey)
 
 function postRecipe()
 {
-	var recipeJson = {name:"Tossed Salad and Scambled Eggs", author: "Trump", custom: false} 
+	var recipeJson = {name:"Tossed Salad and Scambled Eggs", author: "Trump", custom: false};
 
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
-	if(ref.getAuth() == null)
+	if(ref.getAuth() === null)
 	{
 		return;
 	}
@@ -360,7 +362,7 @@ function getUserRecipes()
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
-	if(ref.getAuth() == null)
+	if(ref.getAuth() === null)
 	{
 		return;
 	}
@@ -402,7 +404,7 @@ function getUserRecipes()
 							//Keys match! Append data to JSON array
 							if(key == directoryKey)
 							{
-								recipeContentJson['info'].push(childSnapshot.val());
+								recipeContentJson.info.push(childSnapshot.val());
 								break;
 							}
 						}
@@ -431,15 +433,14 @@ function getUserCreatedRecipes()
 	query.once("value", function(querySnapshot)
 	{
 		console.log(querySnapshot.val());
-		//fn(querySnapshot.val());
 
 		querySnapshot.forEach(function(childSnapshot){
 
-			recipeContentJson['info'].push(childSnapshot.val());
+			recipeContentJson.info.push(childSnapshot.val());
 
 		});
 
-		cb(recipeContetnJson);
+		//cb(recipeContetnJson);
 
 	});
 
