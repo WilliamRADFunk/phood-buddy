@@ -311,7 +311,7 @@ ul
 {
 	background-color: #E2EEF4;
 }
-#login input[type="text"],
+#login input[type="email"],
 #login input[type="password"]
 {
 	background-color: #FFFFFF !important;

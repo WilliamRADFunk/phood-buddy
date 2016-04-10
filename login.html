@@ -28,7 +28,8 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/respond.min.js"></script>    
     <!-- Firebase Library for database communication -->
-    <!--<script type="text/javascript" src="#"></script> -->
+    <script type="text/javascript" async src="js/firebase.js"></script>
+    <script type="text/javascript" async src="js/auth.js"></script>
     <!-- Custom Scripts -->
     <script type="text/javascript" async src="js/scripts.js"></script>
 </head>
@@ -78,12 +79,12 @@
                             <td>
                                 <table class="table">
                                     <tr>
-                                        <td>Username</td>
+                                        <td>Email</td>
                                         <td>Password</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="text"/></td>
-                                        <td><input type="password"/></td>
+                                        <td><input id="login-email" type="email"/></td>
+                                        <td><input id="login-password" type="password"/></td>
                                     </tr>
                                     <tr>
                                         <td><a href="register.html">Register</a></td>

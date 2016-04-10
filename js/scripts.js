@@ -1,5 +1,37 @@
 $(document).ready(function ()
 {
+	// System attempts to log user in through Facebook, Twitter, or Google Plus
+	$("#btn-facebook").click(function(){
+		$(".modal-body").html("<p>Logging into Facebook failed. Is this your first time at Phood Buddy?</p>");
+		fbLogin(loginCallback);
+	});
+	$("#btn-twitter").click(function(){
+		$(".modal-body").html("<p>Logging into Twitter failed. Is this your first time at Phood Buddy?</p>");
+		twitterLogin(loginCallback);
+	});
+	$("#btn-google").click(function(){
+		$(".modal-body").html("<p>Logging into Google failed. Is this your first time at Phood Buddy?</p>");
+		googleLogin(loginCallback);
+	});
+	// System tries to login with values provided in the two text fields.
+	$("#btn-login").click(function(){
+		var email = $("login-email").val() + "";
+		var pwd = $("login-password").val() + "";
+		if( (email === null || email === undefined) || (pwd === null || pwd === undefined) )
+		{
+			$("#modal").modal({backdrop: "static", keyboard: false, show: true});
+			$(".modal-header").html("Login Failed");
+			$(".modal-body").html("<p>We need a valid email and password to log you in.<br/>Is this your first time at Phood Buddy?</p>");
+			$("#btn-confirm").click(function(){
+				window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/register.html";
+			});
+		}
+		else
+		{
+			$(".modal-body").html("<p>Logging into Facebook failed. Is this your first time at Phood Buddy?</p>");
+			customLogin($("login-email").val() + "", $("login-password").val() + "", loginCallback);
+		}
+	});
 	// Controls how long between carousel transitions.
 	$('.carousel').carousel({
 	    interval: 2000
@@ -9,7 +41,7 @@ $(document).ready(function ()
     $("#lost-password").click(function(){
     	$("#modal").modal({backdrop: "static", keyboard: false, show: true});
 		$(".modal-header").html("Reset Password");
-		$(".modal-body").html("<form><label>Registered Email: </label><input type='text' /></form>");
+		$(".modal-body").html("<form><label>Registered Email:&nbsp;&nbsp;</label><input type='text' /></form>");
 		$("#btn-confirm").click(function(){
 			/* TODO: Send reset password email */
 		});
@@ -74,6 +106,21 @@ $(document).ready(function ()
 		});
     });
 });
+function loginCallback(result)
+{
+	if(result === true)
+	{
+		window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/index.html";
+	}
+	else
+	{
+		$("#modal").modal({backdrop: "static", keyboard: false, show: true});
+		$(".modal-header").html("Login Failed");
+		$("#btn-confirm").click(function(){
+			window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/register.html";
+		});
+	}
+}
 function addItem()
 {
 	$("#add-item").show();

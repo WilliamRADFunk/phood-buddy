@@ -88,7 +88,7 @@ function customRegister(emailString, passwordString)
 	});
 }
 
-function customLogin(emailString, passwordString)
+function customLogin(emailString, passwordString, cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
 	ref.authWithPassword({
@@ -97,9 +97,11 @@ function customLogin(emailString, passwordString)
 	}, function(error, authData) {
   		if (error) {
     		console.log("Login Failed!", error);
+    		cb(false);
   		} 
   		else 
   		{
+  			cb(true);
     		console.log("Authenticated successfully with payload:", authData);
   		}
 	});
