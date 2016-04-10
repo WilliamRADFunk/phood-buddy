@@ -22,7 +22,7 @@ namespace PhoodBuddyUWP.Pages
     /// </summary>
     public sealed partial class RecipeViewerPage : Page
     {
-        private Recipe recipe;
+        private RecipeModel recipe;
 
         public RecipeViewerPage()
         {
@@ -35,7 +35,7 @@ namespace PhoodBuddyUWP.Pages
             base.OnNavigatedTo(e);
 
             //Casts the parameters to the recipe type
-            recipe = e.Parameter as Recipe;
+            recipe = e.Parameter as RecipeModel;
 
             //Sets the image on the page
             recipeImg.Source = new Windows.UI.Xaml.Media.Imaging.BitmapImage(recipe.Picture);

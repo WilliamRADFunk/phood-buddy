@@ -29,7 +29,7 @@
             <Setter Property="Margin" Value="8"/>
             <Setter Property="SelectionHighlightColor" Value="{StaticResource PhoodBuddyPrimaryColor}"/>
         </Style>
-
+        
         <!-- TextBox -->
         <Style TargetType="TextBox">
             <Setter Property="Margin" Value="8"/>

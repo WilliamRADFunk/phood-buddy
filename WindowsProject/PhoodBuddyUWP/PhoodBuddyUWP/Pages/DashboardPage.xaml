@@ -30,6 +30,11 @@
     </Page.Resources>
     <controls:NavMenu x:Name="navMenu"
                       HeaderText="Dashboard">
-        
+        <controls:NavMenu.MainContent>
+            <Grid>
+                <Button>My Button</Button>
+                <Button>My Button 2</Button>
+            </Grid>
+        </controls:NavMenu.MainContent>
     </controls:NavMenu>
 </Page>

@@ -34,15 +34,15 @@ namespace PhoodBuddyUWP.Pages
 
             if (page == typeof(RecipeViewerPage))
             {
-                var recipe = new Recipe("Cake");
+                var recipe = new RecipeModel("Cake");
 
-                recipe.Ingredients.Add(new RecipeIngredient("Flour", "Cup", 3));
-                recipe.Ingredients.Add(new RecipeIngredient("Milk", "Cup", 2));
-                recipe.Ingredients.Add(new RecipeIngredient("Lie", "Ounce", 1));
+                recipe.Ingredients.Add(new RecipeIngredientModel("Flour", "Cup", 3));
+                recipe.Ingredients.Add(new RecipeIngredientModel("Milk", "Cup", 2));
+                recipe.Ingredients.Add(new RecipeIngredientModel("Lie", "Ounce", 1));
 
-                recipe.Instructions.Add(new RecipeInstruction(1, "Mix Ingredients"));
-                recipe.Instructions.Add(new RecipeInstruction(2, "Let Rest"));
-                recipe.Instructions.Add(new RecipeInstruction(3, "Bake For an hour"));
+                recipe.Instructions.Add(new RecipeInstructionModel(1, "Mix Ingredients"));
+                recipe.Instructions.Add(new RecipeInstructionModel(2, "Let Rest"));
+                recipe.Instructions.Add(new RecipeInstructionModel(3, "Bake For an hour"));
 
                 Frame.Navigate(page, recipe);
             }

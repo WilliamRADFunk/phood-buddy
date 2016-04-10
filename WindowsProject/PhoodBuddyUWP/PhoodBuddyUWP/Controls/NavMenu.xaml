@@ -12,86 +12,78 @@
     <SplitView Name="menu"
                Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                DisplayMode="CompactOverlay"
-               PaneBackground="{StaticResource PhoodBuddyPrimaryColor}">
+               PaneBackground="{StaticResource PhoodBuddyPrimaryColor}"
+               CompactPaneLength="60">
 
         <SplitView.Resources>
-            <Style TargetType="Button">
-                <Setter Property="Background"
-                        Value="#00000000"/>
-                <Setter Property="Margin"
-                        Value="0, 4"/>
-                <Setter Property="HorizontalAlignment"
-                        Value="Left"/>
+            <Style TargetType="Button" x:Key="NavButton">
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
             </Style>
-            
-            <Style TargetType="TextBlock">
-                <Setter Property="Margin"
-                        Value="20, 0, 0, 0"/>
-                <Setter Property="VerticalAlignment"
-                        Value="Center"/>
-                <Setter Property="HorizontalAlignment"
-                        Value="Center"/>
-                <Setter Property="FontFamily"
-                        Value="SegoeUI"/>
+            <Style TargetType="TextBlock" x:Key="NavIcon">
+                <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+                <Setter Property="FontSize" Value="24"/>
             </Style>
-
-            <Style TargetType="TextBlock" x:Key="MenuIcon">
-                <Setter Property="FontFamily"
-                        Value="Segoe MDL2 Assets"/>
-                <Setter Property="FontSize"
-                        Value="24"/>
+            <Style TargetType="TextBlock" x:Key="NavLabel">
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontSize" Value="{ThemeResource ContentControlFontSize}"/>
+                <Setter Property="Margin" Value="20, 0, 0, 0"/>
             </Style>
         </SplitView.Resources>
-
         <SplitView.Pane>
             <StackPanel HorizontalAlignment="Left">
 
-                 <!--Menu Header--> 
+                <!-- Menu Button -->
                 <Button Click="MenuButton_Click">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="&#xE700;"
-                                   Style="{StaticResource MenuIcon}"/>
-                        <TextBlock Text="Menu"
+                        <TextBlock Style="{StaticResource NavIcon}"
+                                   Text="&#xE700;"/>
+                        <TextBlock Style="{StaticResource NavLabel}"
+                                   Text="Menu"
                                    FontWeight="Bold"/>
                     </StackPanel>
                 </Button>
-                
-                 <!--Shopping List Navigation--> 
+
+                <!-- Shopping List -->
                 <Button Click="ShoppingListButton_Click">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="&#xE14D;"
-                                   Style="{StaticResource MenuIcon}"/>
-                        <TextBlock Text="Shopping List"/>
+                        <TextBlock Style="{StaticResource NavIcon}"
+                                   Text="&#xE14D;"/>
+                        <TextBlock Style="{StaticResource NavLabel}"
+                                   Text="Shopping List"/>
                     </StackPanel>
                 </Button>
 
-                 <!--Pantry List Navigation--> 
+                <!-- Pantry -->
                 <Button Click="PantryListButton_Click">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="&#xE292;"
-                                   Style="{StaticResource MenuIcon}"/>
-                        <TextBlock Text="Pantry List"/>
+                        <TextBlock Style="{StaticResource NavIcon}"
+                                   Text="&#xE292;"/>
+                        <TextBlock Style="{StaticResource NavLabel}"
+                                   Text="Pantry List"/>
                     </StackPanel>
                 </Button>
-                
-                 <!--User Profile--> 
+
+                <!-- Profile -->
                 <Button Click="ProfileButton_Click">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="&#xE13D;"
-                                   Style="{StaticResource MenuIcon}"/>
-                        <TextBlock Text="User Profile"/>
+                        <TextBlock Style="{StaticResource NavIcon}"
+                                   Text="&#xE13D;"/>
+                        <TextBlock Style="{StaticResource NavLabel}"
+                                   Text="User Profile"/>
                     </StackPanel>
                 </Button>
-                
-                 <!--Favorite Recipes--> 
+
+                <!--  -->
                 <Button Click="FavoriteRecipesButton_Click">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="&#xE0B4;"
-                                   Style="{StaticResource MenuIcon}"/>
-                        <TextBlock Text="Favorite Recipes"/>
+                        <TextBlock Style="{StaticResource NavIcon}"
+                                   Text="&#xE0B4;"/>
+                        <TextBlock Style="{StaticResource NavLabel}"
+                                   Text="Favorite Recipes"/>
                     </StackPanel>
                 </Button>
-                
+
             </StackPanel>
         </SplitView.Pane>
         
@@ -107,6 +99,9 @@
                 <TextBlock Name="Header"
                            Style="{StaticResource PhoodBuddyPageHeader}"
                            Text="{x:Bind HeaderText}"/>
+                
+                <!-- Remainder of the content -->
+                <ContentPresenter Grid.Row="1" Content="{x:Bind MainContent}"/>
 
             </Grid>
         </SplitView.Content>

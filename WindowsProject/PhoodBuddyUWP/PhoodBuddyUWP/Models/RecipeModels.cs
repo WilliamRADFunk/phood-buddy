@@ -2,7 +2,7 @@
 
 namespace PhoodBuddyUWP.Models
 {
-    class RecipeIngredient
+    class RecipeIngredientModel
     {
         //Properties
         public string Name { get; set; }
@@ -10,7 +10,7 @@ namespace PhoodBuddyUWP.Models
         public float Amount { get; set; }
 
         //Constructor
-        public RecipeIngredient(string n, string u, int a)
+        public RecipeIngredientModel(string n, string u, int a)
         {
             Name = n;
             Unit = u;
@@ -27,14 +27,14 @@ namespace PhoodBuddyUWP.Models
         }
     }
 
-    class RecipeInstruction
+    class RecipeInstructionModel
     {
         //Properties
         public int StepNumber { get; set; }
         public string Instruction { get; set; }
 
         //Constructor
-        public RecipeInstruction(int n, string i)
+        public RecipeInstructionModel(int n, string i)
         {
             StepNumber = n;
             Instruction = i;
@@ -47,28 +47,28 @@ namespace PhoodBuddyUWP.Models
         }
     }
 
-    class Recipe
+    class RecipeModel
     {
         //Properties
         public string Title { get; set; }
-        public List<RecipeIngredient> Ingredients { get; set; }
-        public List<RecipeInstruction> Instructions { get; set; }
+        public List<RecipeIngredientModel> Ingredients { get; set; }
+        public List<RecipeInstructionModel> Instructions { get; set; }
         public System.Uri Picture { get; set; }
 
         //Constructor
-        public Recipe(string t, List<RecipeIngredient> ingredients = null, List<RecipeInstruction> instructions = null)
+        public RecipeModel(string t, List<RecipeIngredientModel> ingredients = null, List<RecipeInstructionModel> instructions = null)
         {
             //Initializes the title
             Title = t;
 
             //Initializes the ingredients
             if (ingredients == null)
-                ingredients = new List<RecipeIngredient>();
+                ingredients = new List<RecipeIngredientModel>();
             Ingredients = ingredients;
 
             //Initializes the instructions
             if (instructions == null)
-                instructions = new List<RecipeInstruction>();
+                instructions = new List<RecipeInstructionModel>();
             Instructions = instructions;
 
             //Initializes the picture

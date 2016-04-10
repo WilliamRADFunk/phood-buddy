@@ -5,60 +5,52 @@
     xmlns:local="using:PhoodBuddyUWP.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    xmlns:controls="using:PhoodBuddyUWP.Controls">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-          DataContext="{Binding recipe}">
+    <controls:NavMenu Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                      HeaderText="{x:Bind recipe.Title}">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <controls:NavMenu.MainContent>
+            <ScrollViewer VerticalScrollMode="Auto">
+                <Grid>
 
-        <!-- Page Title (Recipe) -->
-        <TextBlock Style="{StaticResource PhoodBuddyPageHeader}"
-                   Text="{x:Bind recipe.Title}"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
 
-        <!-- Recipe Content -->
-        <ScrollViewer Grid.Row="1"
-                      VerticalScrollMode="Enabled" >
-            <Grid>
+                    <!-- Recipe Picture -->
+                    <Image Name="recipeImg"
+                           Grid.Row="0"
+                           Width="200"/>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                
-                <!-- Recipe Picture -->
-                <Image Name="recipeImg"
-                       Grid.Row="0"
-                       Width="200"/>
+                    <!-- Ingredients List -->
+                    <ListView Grid.Row="1"
+                              ItemsSource="{x:Bind recipe.Ingredients}"
+                              Header="Ingredients"
+                              Margin="4, 8">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
 
-                <!-- Ingredients List -->
-                <ListView Grid.Row="1"
-                          ItemsSource="{x:Bind recipe.Ingredients}"
-                          Header="Ingredients"
-                          Margin="4, 8">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding}"/>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-
-                <!-- Recipe Instructions -->
-                <ListView Grid.Row="2"
+                    <!-- Recipe Instructions -->
+                    <ListView Grid.Row="2"
                           ItemsSource="{x:Bind recipe.Instructions}"
                           Header="Instructions"
                           Margin="4, 8">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding}"/>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Grid>
-        </ScrollViewer>
-    </Grid>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </ScrollViewer>
+        </controls:NavMenu.MainContent>
+    </controls:NavMenu>
 </Page>

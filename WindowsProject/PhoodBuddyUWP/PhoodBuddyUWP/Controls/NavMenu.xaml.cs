@@ -26,9 +26,7 @@ namespace PhoodBuddyUWP.Controls
             this.InitializeComponent();
         }
 
-        /*
-         * DEPENDENCY PROPERTIES
-         */
+        //DEPENDENCY PROPERTIES
         public string HeaderText
         {
             get { return (string)GetValue(HeaderTextProperty); }
@@ -36,32 +34,33 @@ namespace PhoodBuddyUWP.Controls
         }
 
         public static readonly DependencyProperty HeaderTextProperty =
-            DependencyProperty.Register("HeaderText", typeof(string), typeof(NavMenu), new PropertyMetadata(0));
+            DependencyProperty.Register(nameof(HeaderText), typeof(string), typeof(NavMenu), new PropertyMetadata("<Header Text>"));
 
-        private static void OnHeaderTextPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
+        public UIElement MainContent
         {
-            NavMenu nm = dependencyObject as NavMenu;
-            nm.OnPropertyChanged("HeaderText");
-            nm.OnHeaderTextPropertyChanged(e);
+            get { return (UIElement)GetValue(MainContentProperty); }
+            set { SetValue(MainContentProperty, value); }
         }
 
-        private void OnHeaderTextPropertyChanged(DependencyPropertyChangedEventArgs e)
-        {
-            Header.Text = HeaderText;
-        }
+        public static readonly DependencyProperty MainContentProperty =
+            DependencyProperty.Register(nameof(MainContent), typeof(UIElement), typeof(NavMenu), new PropertyMetadata(new Grid()));
+
+
+
 
         //DELEGATES
         public delegate void NavigationDelegate(object source, EventArgs e);
 
+        
         //EVENTS
         public event NavigationDelegate OnNavigateParentReady;
         public event PropertyChangedEventHandler PropertyChanged;
         
 
+        //EVENT HANDLERS
         private void OnPropertyChanged(string propertyName)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
