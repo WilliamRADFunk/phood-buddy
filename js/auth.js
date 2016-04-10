@@ -2,46 +2,10 @@
 //*** USE OF SCRIPT REQUIRES WEBPAGE TO INCORPORATE... firebase.js, auth.js ***
 
 
-/*List of Callback Functions for Frontend use
-	
-	- cb(boolean) = User resgistration/login was successful or failed
-	- grocerycb(Object) = contains user grocerylist object. 
-
-*/
-
 
 
 //This function is used as a input for auth functions that manages return of either error or authData
 //To be used with: fblogin, twitterlogin, googlelogin.
-function authLogin(error, authData)
-{
-	if (error)
-	{
-		console.log("Login Failed!", error);
-	}
-	else
-	{
-		console.log("Authenticated successfully with payload:", authData);
-
-		var usersRef = new Firebase("https://phoodbuddy.firebaseio.com/users");
-  		usersRef.once('value', function(snapshot){
-	  	if(snapshot.hasChild(authData.uid))
-	  	{
-	  		console.log("User stays logged in for having an account");
-	  		cb(true);
-	  	}
-	  	else
-	  	{
-	  		console.log("USER MUST CREATE ACCOUNT")
-	  		var ref = new Firebase("https://phoodbuddy.firebaseio.com");
-	  		ref.unauth();
-	  		cb(false);
-	  	}
-		
-		});
-	}
-}
-
 function authLogout()
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
@@ -82,8 +46,6 @@ function customRegister(fnameString, lnameString, emailString, passwordString, c
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
 	ref.createUser({
-		fname    : fnameString,
-		lname    : lnameString,
   		email    : emailString,
   		password : passwordString
 	}, function(error, userData) {
@@ -95,7 +57,7 @@ function customRegister(fnameString, lnameString, emailString, passwordString, c
   		{
 
     		console.log("Successfully created user account with uid:", userData);
-    		setAccount(userData);
+    		setAccount(userData, fnameString, lnameString, emailString);
     		cb(true);
    
 
@@ -122,14 +84,16 @@ function customLogin(emailString, passwordString, cb)
 	});
 }
 
-function setAccount(userData)
+function setAccount(userData, fnameString, lnameString, emailString)
 {
 
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
 
 	ref.child("users").child(userData.uid).set({
 			      provider: "password",
-			      name: ""
+			      fname: fnameString,
+			      lname: lnameString,
+			      email: emailString
 			    });
 }
 
@@ -177,7 +141,7 @@ function fbLogin(cb)
 			  }
 			  else
 			  {
-			  	console.log("USER MUST CREATE ACCOUNT")
+			  	console.log("USER MUST CREATE ACCOUNT");
 			  	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
 			  	ref.unauth();
 			  	cb(false);
@@ -232,7 +196,7 @@ function twitterLogin(cb)
 			  }
 			  else
 			  {
-			  	console.log("USER MUST CREATE ACCOUNT")
+			  	console.log("USER MUST CREATE ACCOUNT");
 			  	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
 			  	ref.unauth();
 			  	cb(false);
@@ -288,7 +252,7 @@ function googleLogin(cb)
 			  }
 			  else
 			  {
-			  	console.log("USER MUST CREATE ACCOUNT")
+			  	console.log("USER MUST CREATE ACCOUNT");
 			  	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
 			  	ref.unauth();
 			  	cb(false);
@@ -452,9 +416,9 @@ function deleteGrocery(contentKey)
 
 
 
-function postRecipe()
+function postRecipe(recipeJson)
 {
-	var recipeJson = {name:"Tossed Salad and Scambled Eggs", author: "Trump", custom: false};
+	//var recipeJson = {name:"Tossed Salad and Scambled Eggs", author: "Trump", custom: false};
 
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 	if(ref.getAuth() === null)
@@ -466,7 +430,7 @@ function postRecipe()
 	var recipeRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory");
 	var newRecipeRef = recipeRef.push();
 	newRecipeRef.set(recipeJson);
-	console.log(newRecipeRef); //DEBUG
+	//DEBUG console.log(newRecipeRef); 
 
 	var recipeId = newRecipeRef.key();
 
@@ -491,7 +455,7 @@ function getUserRecipes(cb)
 	var recipeList;
 	var recipeContentString = '{"info":[]}';
 	var recipeContentJson = JSON.parse(recipeContentString);
-	console.log(recipeContentJson);
+	// DEUBG: console.log(recipeContentJson);
 
 	//Check reference point made of user account and check if 'created-recipe' child exists
 	checkRef.once('value', function(snapshot){
@@ -532,10 +496,6 @@ function getUserRecipes(cb)
 			cb(recipeContentJson); //This cb will return the JSON of all recipes
 		}//END: if user has created recipes
 	});//END: snapshot -> 'users/uid'
-
-	console.log(recipeContentJson); //DEBUG: This currently works for retrieving information.
-	return recipeContentJson;
-
 }
 
 function getUserCreatedRecipes()
@@ -562,6 +522,69 @@ function getUserCreatedRecipes()
 
 	});
 
+
+}
+
+function editUserProfile(fname, lname, email, city, country, extra, about, cb) 
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+
+	if(ref.getAuth() === null)
+	{
+		cb(false);
+		return;
+	}
+
+	//Stores authData of package
+	var data = ref.getAuth();
+
+	//Assemble package to store
+	var profileData = {
+		"fname"   : fname, 
+		"lname"   : lname, 
+		"email"   : email, 
+		"city"    : city, 
+		"country" : country, 
+		"extra"   : extra, 
+		"about"   : about
+	};
+		
+	//DEBUG console.log(profileData);
+
+	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+
+	userRef.update(profileData);
+	cb(true);
+
+}
+
+
+function getUsersSettings(cb)
+{
+	//Creates reference to firebase to test authentication
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		return;
+	}
+
+	//Stores authData of package
+	var data = ref.getAuth();
+
+	//Create new reference to users information
+	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+
+	//Snapshot current userRef to obtain users info JSON
+	userRef.once("value", function(snapshot){
+
+		var dataPackage = snapshot.val();
+		console.log(dataPackage);
+
+		//Return to callback the data of user (JSON)
+		cb(dataPackage);
+	});
 
 }
 
