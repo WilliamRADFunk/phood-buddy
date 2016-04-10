@@ -2,6 +2,15 @@
 //*** USE OF SCRIPT REQUIRES WEBPAGE TO INCORPORATE... firebase.js, auth.js ***
 
 
+/*List of Callback Functions for Frontend use
+	
+	- cb(boolean) = User resgistration/login was successful or failed
+	- grocerycb(Object) = contains user grocerylist object. 
+
+*/
+
+
+
 //This function is used as a input for auth functions that manages return of either error or authData
 //To be used with: fblogin, twitterlogin, googlelogin.
 function authLogin(error, authData)
@@ -19,15 +28,17 @@ function authLogin(error, authData)
 	  	if(snapshot.hasChild(authData.uid))
 	  	{
 	  		console.log("User stays logged in for having an account");
+	  		cb(true);
 	  	}
 	  	else
 	  	{
 	  		console.log("USER MUST CREATE ACCOUNT")
 	  		var ref = new Firebase("https://phoodbuddy.firebaseio.com");
 	  		ref.unauth();
+	  		cb(false);
 	  	}
 		
-		})
+		});
 	}
 }
 
@@ -44,6 +55,7 @@ function authHandler(error, authData)
   if (error) 
   {
     console.log("Login Failed!", error);
+    cb(false);
   } 
   else //Users login attemp successful. Have access to authData
   {
@@ -67,28 +79,32 @@ function authDataCallback(authData) {
 //var ref = new Firebase("https://<YOUR-FIREBASE-APP>.firebaseio.com");
 //ref.onAuth(authDataCallback);
 
-function customRegister(emailString, passwordString)
+function customRegister(fnameString, lnameString, emailString, passwordString)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
 	ref.createUser({
+		fname    : fnameString,
+		lname    : lnameString,
   		email    : emailString,
   		password : passwordString
 	}, function(error, userData) {
   		if (error) {
    	 		console.log("Error creating user:", error);
+   	 		cb(false);
   		} 
   		else 
   		{
 
     		console.log("Successfully created user account with uid:", userData);
     		setAccount(userData);
+    		cb(true);
    
 
   		}
 	});
 }
 
-function customLogin(emailString, passwordString, cb)
+function customLogin(emailString, passwordString)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
 	ref.authWithPassword({
@@ -101,8 +117,8 @@ function customLogin(emailString, passwordString, cb)
   		} 
   		else 
   		{
-  			cb(true);
     		console.log("Authenticated successfully with payload:", authData);
+    		cb(true);
   		}
 	});
 }
@@ -188,6 +204,7 @@ function checkIfUserExists(userId, authData) {
   	if(snapshot.hasChild(userId))
   	{
   		console.log("User Already Exists");
+  		cb(false);
   	}
   	else
   	{
@@ -203,53 +220,24 @@ function checkIfUserExists(userId, authData) {
 			      provider: authData.provider,
 			      name: getName(authData)  // retrieves name from payload
 			    });
+			    cb(true);
 			 }
 			 else
 			 {
+			 	cb(false);
 			 	console.log("invalid payload");
 			 }
 		});
   	}
-});
-  
+  });
 }
 
-function createGroceryList()
-{
-	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
-
-	if(ref.getAuth == null)
-		{
-			return;
-		}
-	
-	var data = ref.getAuth();
-    var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery")
-	
-	  	console.log("Creating new grocery list... even if there was an old one...")
-	  	gref.child(data.uid).set({
-	  		"baby": "",
-	  		"bakery": "",
-	  		"beverages": "",
-	  		"canned goods": "",
-	  		"cereals": "",
-	  		"condiments": "",
-	  		"dairy": "",
-	  		"frozen": "",
-	  		"meats": "",
-	  		"produce": "",
-	  		"baking and spices": "",
-	  		"miscellaneous": ""
-	  		
-	})
-
-}
 
 function getGroceryList()
 {
 	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
 
-	if(ref.getAuth == null)
+	if(ref.getAuth === null)
 		{
 			return;
 		}
@@ -265,40 +253,23 @@ function getGroceryList()
 			console.log("User has groceryList, proceed normally");
 			groceryListSnapshot = snapshot.child(data.uid);
 			groceryList = groceryListSnapshot.val();
-			console.log(groceryList);
+			cb(groceryList);
 		}
 		else
 		{
 			return;
 		}
-	})
-
-	console.log(groceryList);
-	return groceryList;
-	
+	});	
 }
 
-
-function setGroceryList(list)
+function addGrocery(contentJson)
 {
-	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
-	if(ref.getAuth() == null)
-	{
-		return;
-	}
 
-	var data = ref.getAuth();
-	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/");
-
-	gref.child(data.uid).set(list);
-}
-
-function addGrocery()
-{
-	var contentJson = { "name": "apple", "description": "That thing", "quantity": "3", "unit": "loafes", "category": "meat"};
+	//DEBUG : WARNING ::: Convert impending input into Javascript object, set equal to 'contentJson
+	// DEBUG :  DUMMY VALUE var contentJson = { "name": "apple", "description": "That thing", "quantity": "3", "unit": "loafes", "category": "meat"};
 
 	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
-	if(ref.getAuth() == null)
+	if(ref.getAuth() === null)
 	{
 		return;
 	}
@@ -310,17 +281,19 @@ function addGrocery()
 	newGroceryRef.set(contentJson);
 	console.log(contentJson);
 
+	cb(newGroceryRef.name()); //This cb contains the name of the created key for new object. May not need callback
+
 }
 
-function editGrocery()
+function editGrocery(contentJson)
 {
-	//WARNING ::: Convert impending input into JSON object, set equal to 'contentJson'
-	var contentJson = {"-KEnu2ENxPZIixIbbXG4":{"name": "banana", "description": "That other thing", "quantity": "2", "unit": "loafes", "category": "meat"}};
+	//WARNING ::: Convert impending input into Javascript object (if not already), and set equal to 'contentJson'
+	// DEBUG :  DUMMY VALUE var contentJson = {"-KEnu2ENxPZIixIbbXG4":{"name": "banana", "description": "That other thing", "quantity": "2", "unit": "loafes", "category": "meat"}};
 
 	var keys = Object.keys(contentJson);
 
 	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
-	if(ref.getAuth() == null)
+	if(ref.getAuth() === null)
 	{
 		return;
 	}
@@ -331,7 +304,7 @@ function editGrocery()
 	console.log(keys[0]);
 
 	gref.once('value', function(snapshot){
-		console.log("Im here");
+
 		if(snapshot.hasChild(keys[0]))
 		{
 			var newGrocery = contentJson[keys[0]];
@@ -340,14 +313,33 @@ function editGrocery()
 	});
 }
 
+function deleteGrocery(contentKey)
+{
+	//WARNING ::: Convert impending input into Javascript object, set equal to 'contentJson'
+
+	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
+	if(ref.getAuth() === null)
+	{
+		return;
+	}
+
+	var data = ref.getAuth();
+
+	//Needs to add key to URL path and remove using 'gref.remove()'
+	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/" + contentKey);
+	gref.remove();
+
+
+}
+
 
 
 function postRecipe()
 {
-	var recipeJson = {name:"Tossed Salad and Scambled Eggs", author: "Trump", custom: false} 
+	var recipeJson = {name:"Tossed Salad and Scambled Eggs", author: "Trump", custom: false};
 
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
-	if(ref.getAuth() == null)
+	if(ref.getAuth() === null)
 	{
 		return;
 	}
@@ -356,6 +348,7 @@ function postRecipe()
 	var recipeRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory");
 	var newRecipeRef = recipeRef.push();
 	newRecipeRef.set(recipeJson);
+	console.log(newRecipeRef); //DEBUG
 
 	var recipeId = newRecipeRef.key();
 
@@ -369,7 +362,7 @@ function getUserRecipes()
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
-	if(ref.getAuth() == null)
+	if(ref.getAuth() === null)
 	{
 		return;
 	}
@@ -411,17 +404,18 @@ function getUserRecipes()
 							//Keys match! Append data to JSON array
 							if(key == directoryKey)
 							{
-								recipeContentJson['info'].push(childSnapshot.val());
+								recipeContentJson.info.push(childSnapshot.val());
 								break;
 							}
 						}
 					}
 				});//End: forEach -> 'recipe-directory'
 			});//END: snapshot -> 'recipe-directory'
+			cb(recipeContentJson); //This cb will return the JSON of all recipes
 		}//END: if user has created recipes
 	});//END: snapshot -> 'users/uid'
 
-	console.log(recipeContentJson);
+	console.log(recipeContentJson); //DEBUG: This currently works for retrieving information.
 	return recipeContentJson;
 
 }
@@ -439,25 +433,16 @@ function getUserCreatedRecipes()
 	query.once("value", function(querySnapshot)
 	{
 		console.log(querySnapshot.val());
-		//fn(querySnapshot.val());
 
 		querySnapshot.forEach(function(childSnapshot){
 
-			recipeContentJson['info'].push(childSnapshot.val());
+			recipeContentJson.info.push(childSnapshot.val());
 
 		});
+
+		//cb(recipeContetnJson);
+
 	});
 
-	console.log(recipeContentJson);
 
 }
-
-function getThatRecipe()
-{
-	getUserCreatedRecipes(function (data){
-		return data;
-	});
-
-	console.log(superData);
-}
-

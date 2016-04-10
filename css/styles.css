@@ -306,13 +306,16 @@ ul
 	width: 100%;
 }
 /************* Deals page end *******************All****/
-/************* Login page start *****************All****/
-#login table
+/************* Login/Register page start ********All****/
+#login table,
+#register table
 {
 	background-color: #E2EEF4;
 }
 #login input[type="email"],
-#login input[type="password"]
+#login input[type="password"],
+#register input[type="email"],
+#register input[type="password"]
 {
 	background-color: #FFFFFF !important;
 	text-align: center;
@@ -320,11 +323,13 @@ ul
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
-#login > div > div > table
+#login > div > div > table,
+#register > div > div > table
 {
 	margin-bottom: 50px;
 }
-#login .table-responsive > .table > tbody > tr > td
+#login .table-responsive > .table > tbody > tr > td,
+#register .table-responsive > .table > tbody > tr > td
 {
 	text-align: center;
 }
@@ -334,7 +339,8 @@ input:-webkit-autofill {
 	height: 60px;
 	padding-top: 60px;
 }
-#login .table-responsive > .table > tbody > tr > td > button
+#login .table-responsive > .table > tbody > tr > td > button,
+#register .table-responsive > .table > tbody > tr > td > button
 {
 	color: #FFFFFF;
 	height: 50px;
@@ -342,7 +348,9 @@ input:-webkit-autofill {
 	width: 95%;
 }
 #login .table-responsive > .table.borderless > tbody > tr > td,
-#login .table-responsive > .table.borderless > tbody > tr > td > .table > tbody > tr > td
+#login .table-responsive > .table.borderless > tbody > tr > td > .table > tbody > tr > td,
+#register .table-responsive > .table.borderless > tbody > tr > td,
+#register .table-responsive > .table.borderless > tbody > tr > td > .table > tbody > tr > td
 {
 	border-bottom: none;
 	border-top: none;
@@ -359,24 +367,28 @@ input:-webkit-autofill {
 {
 	text-decoration: underline;
 }
-#btn-facebook
+#btn-facebook,
+#btn-facebook-reg
 {
 	background-color: #3A5898;
 }
-#btn-twitter
+#btn-twitter,
+#btn-twitter-reg
 {
 	background-color: #28AAE1;
 }
-#btn-google
+#btn-google,
+#btn-google-reg
 {
 	background-color: #DD4937;
 }
-#login .table-responsive > .table > tbody > tr > td > #btn-login
+#login .table-responsive > .table > tbody > tr > td > #btn-login,
+#register .table-responsive > .table > tbody > tr > td > #btn-register
 {
 	background-color: #4585A2;
 	width: 25%;
 }
-/************* Login page end *******************All****/
+/************* Login/Register pages end *********All****/
 /************* Groceries page start *************All****/
 #groceries h2
 {
@@ -639,26 +651,29 @@ footer > .row > .link-column
 		text-align: center;
 	}
 /************* Deals page end ******************767-****/
-/************* Login page start ****************767-****/
+/************* Login/Register page start *******767-****/
 	#login .table > tbody > tr > td,
-	#lost-password .table > tbody > tr > td
+	#register .table > tbody > tr > td
 	{
 		padding: 8px 0px;
 	}
 	#login > .row > .col-xs-12,
-	#lost-password > .row > .col-xs-12
+	#register > .row > .col-xs-12
 	{
 		padding-left: 0px;
 		padding-right: 0px;
 	}
 	#login .table-responsive > .table > tbody > tr > td > #btn-facebook,
 	#login .table-responsive > .table > tbody > tr > td > #btn-twitter,
-	#login .table-responsive > .table > tbody > tr > td > #btn-google
+	#login .table-responsive > .table > tbody > tr > td > #btn-google,
+	#register .table-responsive > .table > tbody > tr > td > #btn-facebook-reg,
+	#register .table-responsive > .table > tbody > tr > td > #btn-twitter-reg,
+	#register .table-responsive > .table > tbody > tr > td > #btn-google-reg
 	{
 		margin: 0px 0px;
 		width: 100%;
 	}
-/************* Login page end ******************767-****/
+/************* Login/Register page end *********767-****/
 /************* Groceries page start ************767-****/
 	#groceries h2
 	{

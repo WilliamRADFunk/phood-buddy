@@ -28,8 +28,48 @@ $(document).ready(function ()
 		}
 		else
 		{
-			$(".modal-body").html("<p>Logging into Facebook failed. Is this your first time at Phood Buddy?</p>");
+			$(".modal-body").html("<p>Logging in failed. Is this your first time at Phood Buddy?</p>");
 			customLogin($("login-email").val() + "", $("login-password").val() + "", loginCallback);
+		}
+	});
+	// System attempts to register user in through Facebook, Twitter, or Google Plus
+	$("#btn-facebook-reg").click(function(){
+		$(".modal-body").html("<p>Registering with Facebook failed.</p>");
+		fbRegister(registerCallback);
+	});
+	$("#btn-twitter-reg").click(function(){
+		$(".modal-body").html("<p>Registering with Twitter failed.</p>");
+		twitterRegister(registerCallback);
+	});
+	$("#btn-google-reg").click(function(){
+		$(".modal-body").html("<p>Registering with Google failed.</p>");
+		googleRegister(registerCallback);
+	});
+	// System tries to login with values provided in the two text fields.
+	$("#btn-register").click(function(){
+		var email = $("register-email").val() + "";
+		var pwd = $("register-password").val() + "";
+		var fname = $("register-fname").val() + "";
+		var lname = $("register-lname").val() + "";
+		if( (fname === null || fname === undefined) || (lname === null || lname === undefined) ||
+			(email === null || email === undefined) || (pwd === null || pwd === undefined) )
+		{
+			$("#modal").modal({backdrop: "static", keyboard: false, show: true});
+			$(".modal-header").html("Registration Failed");
+			$(".modal-body").html("<p>All four fields need to be filled out correctly.</p>");
+			$("#btn-cancel").css("display", "none");
+			$("#btn-confirm").click(function(){
+				$("#btn-cancel").css("display", "block");
+			});
+		}
+		else
+		{
+			$(".modal-body").html("<p>Manual registration failed. Try a different email?</p>");
+			customRegister( $("register-fname").val() + "",
+							$("register-lname").val() + "",
+							$("register-email").val() + "",
+							$("register-password").val() + "",
+							registerCallback);
 		}
 	});
 	// Controls how long between carousel transitions.
@@ -106,6 +146,30 @@ $(document).ready(function ()
 		});
     });
 });
+function registerCallback(result)
+{
+	if(result === true)
+	{
+		$("#modal").modal({backdrop: "static", keyboard: false, show: true});
+		$(".modal-body").html("<p>You're account has been created, using some default value.<br/><br/>For Phood Buddy to give you recipes and information that helps <i>you</i> the most,<br/>it needs to know you better.<br/><br/> Would you like to fill out your profile now?</p>");
+		$(".modal-header").html("Registration Successful");
+		$("#btn-confirm").click(function(){
+			window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/profile.html";
+		});
+		$("#btn-cancel").click(function(){
+			window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/index.html";
+		});
+	}
+	else
+	{
+		$("#modal").modal({backdrop: "static", keyboard: false, show: true});
+		$(".modal-header").html("Registration Failed");
+		$("#btn-cancel").css("display", "none");
+		$("#btn-confirm").click(function(){
+			$("#btn-cancel").css("display", "block");
+		});
+	}
+}
 function loginCallback(result)
 {
 	if(result === true)
