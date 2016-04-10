@@ -146,7 +146,35 @@ function fbRegister(cb)
 function fbLogin(cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
-	ref.authWithOAuthPopup("facebook", authLogin);
+	ref.authWithOAuthPopup("facebook", function(error, authData, cb) {
+
+		if (error)
+		{
+			console.log("Login Failed!", error);
+		}
+		else
+		{
+			console.log("Authenticated successfully with payload:", authData);
+
+			var usersRef = new Firebase("https://phoodbuddy.firebaseio.com/users");
+		  	usersRef.once('value', function(snapshot){
+			  if(snapshot.hasChild(authData.uid))
+			  {
+			  	console.log("User stays logged in for having an account");
+			  	cb(true);
+			  }
+			  else
+			  {
+			  	console.log("USER MUST CREATE ACCOUNT")
+			  	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
+			  	ref.unauth();
+			  	cb(false);
+			  }
+				
+			});
+		}
+
+	});
 }
 
 function twitterRegister(cb) 
@@ -161,7 +189,35 @@ function twitterRegister(cb)
 function twitterLogin(cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
-	ref.authWithOAuthPopup("twitter", authLogin);
+	ref.authWithOAuthPopup("twitter", function(error, authData) {
+
+		if (error)
+		{
+			console.log("Login Failed!", error);
+		}
+		else
+		{
+			console.log("Authenticated successfully with payload:", authData);
+
+			var usersRef = new Firebase("https://phoodbuddy.firebaseio.com/users");
+		  	usersRef.once('value', function(snapshot){
+			  if(snapshot.hasChild(authData.uid))
+			  {
+			  	console.log("User stays logged in for having an account");
+			  	cb(true);
+			  }
+			  else
+			  {
+			  	console.log("USER MUST CREATE ACCOUNT")
+			  	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
+			  	ref.unauth();
+			  	cb(false);
+			  }
+				
+			});
+		}
+
+	});
 }
 
 
@@ -177,9 +233,49 @@ function googleRegister(cb){
 function googleLogin(cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
-	ref.authWithOAuthPopup("google", authLogin);
+	ref.authWithOAuthPopup("facebook", function(error, authData) {
+
+		if (error)
+		{
+			console.log("Login Failed!", error);
+		}
+		else
+		{
+			console.log("Authenticated successfully with payload:", authData);
+
+			var usersRef = new Firebase("https://phoodbuddy.firebaseio.com/users");
+		  	usersRef.once('value', function(snapshot){
+			  if(snapshot.hasChild(authData.uid))
+			  {
+			  	console.log("User stays logged in for having an account");
+			  	cb(true);
+			  }
+			  else
+			  {
+			  	console.log("USER MUST CREATE ACCOUNT")
+			  	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
+			  	ref.unauth();
+			  	cb(false);
+			  }
+				
+			});
+		}
+
+	});
 }
 
+
+function cb(target)
+{
+	if(target)
+	{
+		console.log("Its ALIVE!");
+	}
+	else
+	{
+		console.log("it worked?");
+	}
+}
 
 // find a suitable name based on the meta info given by each provider
 function getName(authData) {
