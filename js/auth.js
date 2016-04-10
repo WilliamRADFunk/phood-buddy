@@ -564,5 +564,3 @@ function getUserCreatedRecipes()
 
 
 }
-
-

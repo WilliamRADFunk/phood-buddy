@@ -312,10 +312,10 @@ ul
 {
 	background-color: #E2EEF4;
 }
-#login input[type="email"],
-#login input[type="password"],
-#register input[type="email"],
-#register input[type="password"]
+#login input[type='email'],
+#login input[type='password'],
+#register input[type='email'],
+#register input[type='password']
 {
 	background-color: #FFFFFF !important;
 	text-align: center;
@@ -389,6 +389,48 @@ input:-webkit-autofill {
 	width: 25%;
 }
 /************* Login/Register pages end *********All****/
+/************* Profile page start  **************All****/
+#profile .btn-profile
+{
+	background-color: #326077;
+	color: #FFFFFF;
+	display: block;
+	height: 50px;
+	margin-bottom: 3px;
+	width: 100%;
+}
+#profile .btn-profile:hover,
+#profile .btn-profile:active,
+#profile .btn-profile.active
+{
+	background-color: #4585A1;
+}
+#profile #personal-profile
+{
+	background-image: url('..images/icon-profile.png');
+	background-repeat: no-repeat;
+}
+#profile #risk-profile
+{
+	background-image: url('..images/icon-risks.png');
+	background-repeat: no-repeat;
+}
+#profile #exercise-profile
+{
+	background-image: url('..images/icon-exercise.png');
+	background-repeat: no-repeat;
+}
+#profile #taste-profile
+{
+	background-image: url('..images/icon-tastes.png');
+	background-repeat: no-repeat;
+}
+#profile #logout
+{
+	background-image: url('..images/icon-logout.png');
+	background-repeat: no-repeat;
+}
+/************* Profile page end *****************All****/
 /************* Groceries page start *************All****/
 #groceries h2
 {
@@ -432,12 +474,12 @@ input:-webkit-autofill {
 	background-repeat: no-repeat;
 	padding-left: 30px;
 }
-#groceries #add-item input[type="text"],
-#groceries #add-item input[type="number"],
+#groceries #add-item input[type='text'],
+#groceries #add-item input[type='number'],
 #groceries #add-item select,
 #groceries #add-item button,
-#modal #editing-item input[type="text"],
-#modal #editing-item input[type="number"],
+#modal #editing-item input[type='text'],
+#modal #editing-item input[type='number'],
 #modal #editing-item select
 {
 	height: 30px;
