@@ -2,6 +2,15 @@
 //*** USE OF SCRIPT REQUIRES WEBPAGE TO INCORPORATE... firebase.js, auth.js ***
 
 
+/*List of Callback Functions for Frontend use
+	
+	- cb(boolean) = User resgistration/login was successful or failed
+	- grocerycb(Object) = contains user grocerylist object. 
+
+*/
+
+
+
 //This function is used as a input for auth functions that manages return of either error or authData
 //To be used with: fblogin, twitterlogin, googlelogin.
 function authLogin(error, authData)
@@ -46,6 +55,7 @@ function authHandler(error, authData)
   if (error) 
   {
     console.log("Login Failed!", error);
+    cb(false);
   } 
   else //Users login attemp successful. Have access to authData
   {
@@ -78,12 +88,14 @@ function customRegister(emailString, passwordString)
 	}, function(error, userData) {
   		if (error) {
    	 		console.log("Error creating user:", error);
+   	 		cb(false);
   		} 
   		else 
   		{
 
     		console.log("Successfully created user account with uid:", userData);
     		setAccount(userData);
+    		cb(true);
    
 
   		}
@@ -107,11 +119,6 @@ function customLogin(emailString, passwordString)
     		cb(true);
   		}
 	});
-}
-
-function cb(error, authData)
-{
-
 }
 
 function setAccount(userData)
@@ -195,6 +202,7 @@ function checkIfUserExists(userId, authData) {
   	if(snapshot.hasChild(userId))
   	{
   		console.log("User Already Exists");
+  		cb(false);
   	}
   	else
   	{
@@ -210,47 +218,18 @@ function checkIfUserExists(userId, authData) {
 			      provider: authData.provider,
 			      name: getName(authData)  // retrieves name from payload
 			    });
+			    cb(true);
 			 }
 			 else
 			 {
+			 	cb(false);
 			 	console.log("invalid payload");
 			 }
 		});
   	}
-});
-  
+  });
 }
 
-function createGroceryList()
-{
-	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
-
-	if(ref.getAuth == null)
-		{
-			return;
-		}
-	
-	var data = ref.getAuth();
-    var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery")
-	
-	  	console.log("Creating new grocery list... even if there was an old one...")
-	  	gref.child(data.uid).set({
-	  		"baby": "",
-	  		"bakery": "",
-	  		"beverages": "",
-	  		"canned goods": "",
-	  		"cereals": "",
-	  		"condiments": "",
-	  		"dairy": "",
-	  		"frozen": "",
-	  		"meats": "",
-	  		"produce": "",
-	  		"baking and spices": "",
-	  		"miscellaneous": ""
-	  		
-	})
-
-}
 
 function getGroceryList()
 {
@@ -272,40 +251,20 @@ function getGroceryList()
 			console.log("User has groceryList, proceed normally");
 			groceryListSnapshot = snapshot.child(data.uid);
 			groceryList = groceryListSnapshot.val();
-			console.log(groceryList);
+			cb(groceryList);
 		}
 		else
 		{
 			return;
 		}
-	})
-
-	console.log(groceryList);
-	return groceryList;
-	
+	})	
 }
 
-
-function setGroceryList(list)
-{
-	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
-	if(ref.getAuth() == null)
-	{
-		return;
-	}
-
-	var data = ref.getAuth();
-	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/");
-
-	gref.child(data.uid).set(list);
-}
-
-function addGrocery()
+function addGrocery(contentJson)
 {
 
-	//WARNING ::: Convert impending input into Javascript object, set equal to 'contentJson'
-
-	var contentJson = { "name": "apple", "description": "That thing", "quantity": "3", "unit": "loafes", "category": "meat"};
+	//DEBUG : WARNING ::: Convert impending input into Javascript object, set equal to 'contentJson
+	// DEBUG :  DUMMY VALUE var contentJson = { "name": "apple", "description": "That thing", "quantity": "3", "unit": "loafes", "category": "meat"};
 
 	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
 	if(ref.getAuth() == null)
@@ -320,12 +279,14 @@ function addGrocery()
 	newGroceryRef.set(contentJson);
 	console.log(contentJson);
 
+	cb(newGroceryRef.name()); //This cb contains the name of the created key for new object. May not need callback
+
 }
 
-function editGrocery()
+function editGrocery(contentJson)
 {
-	//WARNING ::: Convert impending input into Javascript object, set equal to 'contentJson'
-	var contentJson = {"-KEnu2ENxPZIixIbbXG4":{"name": "banana", "description": "That other thing", "quantity": "2", "unit": "loafes", "category": "meat"}};
+	//WARNING ::: Convert impending input into Javascript object (if not already), and set equal to 'contentJson'
+	// DEBUG :  DUMMY VALUE var contentJson = {"-KEnu2ENxPZIixIbbXG4":{"name": "banana", "description": "That other thing", "quantity": "2", "unit": "loafes", "category": "meat"}};
 
 	var keys = Object.keys(contentJson);
 
@@ -341,7 +302,7 @@ function editGrocery()
 	console.log(keys[0]);
 
 	gref.once('value', function(snapshot){
-		console.log("Im here");
+
 		if(snapshot.hasChild(keys[0]))
 		{
 			var newGrocery = contentJson[keys[0]];
@@ -350,7 +311,7 @@ function editGrocery()
 	});
 }
 
-function deleteGrocery()
+function deleteGrocery(contentKey)
 {
 	//WARNING ::: Convert impending input into Javascript object, set equal to 'contentJson'
 
@@ -363,7 +324,9 @@ function deleteGrocery()
 	var data = ref.getAuth();
 
 	//Needs to add key to URL path and remove using 'gref.remove()'
-	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/");
+	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/" + contentKey);
+	gref.remove();
+
 
 }
 
@@ -383,7 +346,7 @@ function postRecipe()
 	var recipeRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory");
 	var newRecipeRef = recipeRef.push();
 	newRecipeRef.set(recipeJson);
-	console.log(newRecipeRef);
+	console.log(newRecipeRef); //DEBUG
 
 	var recipeId = newRecipeRef.key();
 
@@ -446,10 +409,11 @@ function getUserRecipes()
 					}
 				});//End: forEach -> 'recipe-directory'
 			});//END: snapshot -> 'recipe-directory'
+			cb(recipeContentJson); //This cb will return the JSON of all recipes
 		}//END: if user has created recipes
 	});//END: snapshot -> 'users/uid'
 
-	console.log(recipeContentJson);
+	console.log(recipeContentJson); //DEBUG: This currently works for retrieving information.
 	return recipeContentJson;
 
 }
@@ -474,18 +438,10 @@ function getUserCreatedRecipes()
 			recipeContentJson['info'].push(childSnapshot.val());
 
 		});
+
+		cb(recipeContetnJson);
+
 	});
 
-	console.log(recipeContentJson);
 
 }
-
-function getThatRecipe()
-{
-	getUserCreatedRecipes(function (data){
-		return data;
-	});
-
-	console.log(superData);
-}
-
