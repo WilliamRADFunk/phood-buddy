@@ -499,7 +499,7 @@ function getUserRecipes(cb)
 	});//END: snapshot -> 'users/uid'
 }
 
-function getFavFatSecret()
+function getFavUserRecipe()
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
@@ -542,33 +542,107 @@ function getFavFatSecret()
 			
 			var directoryRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory");
 
+			var query = directoryRef.orderByChild("custom").equalTo(true);
+
 			//Retrieve snapshot of all recipes in directory
-			directoryRef.once("value", function(snapshot)
+			query.once("value", function(snapshot)
 			{
 				//cycle through each key of previous snapshot
 				snapshot.forEach(function(childSnapshot)
 				{
-
 					//console.log(childSnapshot.val());
 					//Set current key of 'recipe-directory' to temporary variable
 					//Cycle through the keys provided by snapshot of users 'created-recipe' to find link
 					var directoryKey = childSnapshot.key();
 					for(var superkey in array)
 					{
-							console.log(array[superkey]);
-							console.log(directoryKey);
 							//Keys match! Append data to JSON array
 							if(array[superkey] == (directoryKey))
 							{
 								recipeContentJson.info.push(childSnapshot.val());
-								console.log("IM NEVER HERE!");
+						
 								break;
 							}
 					}
 
 					
 				});//End: forEach -> 'recipe-directory'
-				console.log(recipeContentJson);
+				console.log(recipeContentJson);   //CALL cb here
+			});//END: snapshot -> 'recipe-directory'
+			//cb(recipeContentJson); //This cb will return the JSON of all recipes
+		}//END: if user has created recipes
+	});//END: snapshot -> 'users/uid'
+}
+
+function getFavFatSecret()
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		return;
+	}
+
+	var data = ref.getAuth();
+
+	var checkRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid);
+	var recipeList;
+	var recipeContentString = '{"info":[]}';
+	var recipeContentJson = JSON.parse(recipeContentString);
+	// DEUBG: console.log(recipeContentJson);
+
+	//Check reference point made of user account and check if 'favorited' child exists
+	checkRef.once('value', function(snapshot){
+
+		//Snapshot contains child 'created-recipe'
+		if(snapshot.child("favorited-recipe").exists())
+		{
+
+			//Set recipeList to snapshot value of all content of 'favorited-recipe' from user
+			recipeList = snapshot.child("favorited-recipe").val();
+
+			var array = [];
+
+			for(var key in recipeList)
+			{
+				if(key.length != 20)
+				{
+					array.push(key + "");
+				}
+			}
+
+			console.log(array);
+
+
+			
+			var directoryRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory");
+
+			var query = directoryRef.orderByChild("custom").equalTo(false);
+
+			//Retrieve snapshot of all recipes in directory
+			query.once("value", function(snapshot)
+			{
+				//cycle through each key of previous snapshot
+				snapshot.forEach(function(childSnapshot)
+				{
+					//console.log(childSnapshot.val());
+					//Set current key of 'recipe-directory' to temporary variable
+					//Cycle through the keys provided by snapshot of users 'created-recipe' to find link
+					var directoryKey = childSnapshot.key();
+					for(var superkey in array)
+					{
+							//Keys match! Append data to JSON array
+							if(array[superkey] == (directoryKey))
+							{
+								recipeContentJson.info.push(childSnapshot.val());
+						
+								break;
+							}
+					}
+
+					
+				});//End: forEach -> 'recipe-directory'
+				console.log(recipeContentJson);   //CALL cb here
 			});//END: snapshot -> 'recipe-directory'
 			//cb(recipeContentJson); //This cb will return the JSON of all recipes
 		}//END: if user has created recipes
