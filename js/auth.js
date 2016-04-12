@@ -1,4 +1,3 @@
-
 //*** USE OF SCRIPT REQUIRES WEBPAGE TO INCORPORATE... firebase.js, auth.js ***
 
 
@@ -91,9 +90,11 @@ function setAccount(userData, fnameString, lnameString, emailString)
 
 	ref.child("users").child(userData.uid).set({
 			      provider: "password",
-			      fname: fnameString,
-			      lname: lnameString,
-			      email: emailString
+			      email: emailString,
+			      profile: {
+			      	fname: fnameString,
+			      	lname: lnameString,
+			      }
 			    });
 }
 
@@ -498,7 +499,65 @@ function getUserRecipes(cb)
 	});//END: snapshot -> 'users/uid'
 }
 
-function getUserCreatedRecipes()
+function getfavFatSecret()
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		return;
+	}
+
+	var data = ref.getAuth();
+
+	var checkRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid);
+	var recipeList;
+	var recipeContentString = '{"info":[]}';
+	var recipeContentJson = JSON.parse(recipeContentString);
+	// DEUBG: console.log(recipeContentJson);
+
+	//Check reference point made of user account and check if 'created-recipe' child exists
+	checkRef.once('value', function(snapshot){
+
+		//Snapshot contains child 'created-recipe'
+		if(snapshot.child("favorited-recipe").exists())
+		{
+
+			//Set recipeList to snapshot value of all content of 'favorited-recipe' from user
+			recipeList = snapshot.child("favorited-recipe").val();
+
+			var directoryRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory");
+
+			//Retrieve snapshot of all recipes in directory
+			directoryRef.once("value", function(snapshot)
+			{
+				//cycle through each key of previous snapshot
+				snapshot.forEach(function(childSnapshot)
+				{
+					//Set current key of 'recipe-directory' to temporary variable
+					//Cycle through the keys provided by snapshot of users 'created-recipe' to find link
+					var directoryKey = childSnapshot.key();
+					for(var key in recipeList)
+					{
+						if(recipeList.hasOwnProperty(key))
+						{
+
+							//Keys match! Append data to JSON array
+							if(key == directoryKey)
+							{
+								recipeContentJson.info.push(childSnapshot.val());
+								break;
+							}
+						}
+					}
+				});//End: forEach -> 'recipe-directory'
+			});//END: snapshot -> 'recipe-directory'
+			cb(recipeContentJson); //This cb will return the JSON of all recipes
+		}//END: if user has created recipes
+	});//END: snapshot -> 'users/uid'
+}
+
+function getUserCreatedRecipes(count, cb) 
 {
 	var directoryRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory");
 
@@ -514,25 +573,116 @@ function getUserCreatedRecipes()
 
 		querySnapshot.forEach(function(childSnapshot){
 
-			recipeContentJson.info.push(childSnapshot.val());
-
+			if(count > 0)
+			{
+				count--;
+			}
+			else
+			{
+				if(decount > 0)
+				{
+					recipeContentJson.info.push(childSnapshot.val());
+					decount--; 
+				}
+			}
+			
 		});
 
-		//cb(recipeContetnJson);
+		cb(recipeContentJson);
 
 	});
 
-
 }
 
-function editUserProfile(fname, lname, email, city, country, extra, about, cb) 
+function getFatSecretRecipes (count, cb)
+{
+	var directoryRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory");
+
+	var recipeContentString = '{"info":[]}';
+	var recipeContentJson = JSON.parse(recipeContentString);
+
+	var query = directoryRef.orderByChild("custom").equalTo(false);
+
+	var decount = 10;
+
+	
+	query.once("value", function(querySnapshot)
+	{
+		console.log(querySnapshot.val());
+
+		querySnapshot.forEach(function(childSnapshot){
+
+			if(count > 0)
+			{
+				count--;
+			}
+			else
+			{
+				if(decount > 0)
+				{
+					recipeContentJson.info.push(childSnapshot.val());
+					decount--;
+				}
+			}
+
+		});
+
+		cb(recipeContentJson);
+
+	});
+}
+
+function getAllRecipes(count, cb)
+{
+	var directoryRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory");
+
+	var recipeContentString = '{"info":[]}';
+	var recipeContentJson = JSON.parse(recipeContentString);
+	var decount = 10;
+
+	directoryRef.once("value", function(snapshot)
+	{
+		console.log(snapshot.val());
+
+		snapshot.forEach(function(childSnapshot){
+
+			if(count > 0)
+			{
+				count--;
+			}
+			else
+			{
+				if(decount > 0)
+				{
+					recipeContentJson.info.push(childSnapshot.val());
+					decount--;
+				}
+			}
+		});
+
+		cb(recipeContentJson);
+
+	});
+}
+
+//Function to retireve list of users favorited recipes
+//Function to retrieve 
+
+// getTaste
+// AddAlergy (String)
+//DeleteAlergy (String)
+// *Make sure user created profile has an empty string for taste.
+
+//function getUserRecipe
+
+function editUserProfile(fname, lname, email, city, country, state, street, age, favdish, favdrink, gender, about, cb) //
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
 
 	if(ref.getAuth() === null)
 	{
-		cb(false);
+		//cb(false);
 		return;
 	}
 
@@ -540,23 +690,35 @@ function editUserProfile(fname, lname, email, city, country, extra, about, cb)
 	var data = ref.getAuth();
 
 	//Assemble package to store
-	var profileData = {
+	var profileData = 
+	{ 
 		"fname"   : fname, 
 		"lname"   : lname, 
 		"email"   : email, 
-		"city"    : city, 
-		"country" : country, 
-		"extra"   : extra, 
+		"city"    : city,
+		"state"   : state, 
+		"country" : country,
+		"street"  : street, 
+		"age"     : age,
+		"favdish" : favdish,
+		"favdrink": favdrink,
+		"gender"  : gender,
 		"about"   : about
+	
 	};
 		
 	//DEBUG console.log(profileData);
 
-	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/profile/");
 
 	userRef.update(profileData);
-	cb(true);
+	//cb(true);
 
+}
+
+function editUserTaste(first, second, third, fourth, fifth, cb)
+{
+	
 }
 
 
