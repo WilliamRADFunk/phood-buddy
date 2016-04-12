@@ -72,9 +72,41 @@ $(document).ready(function ()
 							registerCallback);
 		}
 	});
+	// Turns content on and off depending on Settings/Profile tab selected.
+	$("#btn-personal-profile").click(function(){
+		$("#my-personal").css("display", "block");
+        $("#my-risks").css("display", "none");
+        $("#my-exercise").css("display", "none");
+        $("#my-taste").css("display", "none");
+        $("#my-logout").css("display", "none");
+	});
+	$("#btn-risk-profile").click(function(){
+		$("#my-profile").css("display", "none");
+        $("#my-risks").css("display", "block");
+        $("#my-exercise").css("display", "none");
+        $("#my-taste").css("display", "none");
+        $("#my-logout").css("display", "none");
+	});
+	$("#btn-exercise-profile").click(function(){
+		$("#my-profile").css("display", "none");
+        $("#my-risks").css("display", "none");
+        $("#my-exercise").css("display", "block");
+        $("#my-taste").css("display", "none");
+        $("#my-logout").css("display", "none");
+	});
+	$("#btn-taste-profile").click(function(){
+		$("#my-profile").css("display", "none");
+        $("#my-risks").css("display", "none");
+        $("#my-exercise").css("display", "none");
+        $("#my-taste").css("display", "block");
+        $("#my-logout").css("display", "none");
+	});
+	$("#btn-logout").click(function(){
+		window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html";
+	});
 	// Controls how long between carousel transitions.
 	$('.carousel').carousel({
-	    interval: 2000
+	    interval: 4000
 	});
 	// Specifies content and functionality of modal when
 	// user clicks specific links/buttons.

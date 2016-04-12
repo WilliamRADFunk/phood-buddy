@@ -390,6 +390,37 @@ input:-webkit-autofill {
 }
 /************* Login/Register pages end *********All****/
 /************* Profile page start  **************All****/
+#profile #profile-header
+{
+	background-color: #E2EEF4;
+	height: 127px;
+	margin-bottom: 15px;
+	padding-top: 15px;
+}
+#profile #profile-header > img
+{
+	display: inline-block;
+	float: left;
+	height: 97px;
+}
+#profile #profile-header > button
+{
+	background-color: #326077;
+	color: #FFFFFF;
+	display: inline-block;
+	float: right;
+	height: 40px;
+}
+#profile h1
+{
+	color: #517488;
+	display: inline-block;
+	float: left;
+	font-weight: lighter;
+	line-height: 97px;
+	margin-left: 15px;
+	text-align: left;
+}
 #profile h2
 {
 	border-bottom: 1px solid #DDDDDD;
