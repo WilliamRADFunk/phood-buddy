@@ -390,6 +390,45 @@ input:-webkit-autofill {
 }
 /************* Login/Register pages end *********All****/
 /************* Profile page start  **************All****/
+#profile h2
+{
+	border-bottom: 1px solid #DDDDDD;
+	color: #316178;
+	font-size: 21px;
+	margin: 0px 0px 10px 0px;
+	padding-bottom: 10px;
+}
+#profile input[type="text"],
+#profile input[type="number"],
+#profile input[type="email"],
+#profile select,
+#profile form button
+{
+	height: 35px;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+}
+#profile form button
+{
+	background-color: #8ECDE9;
+	color: #326077;
+}
+#profile table
+{
+	margin-bottom: 30px;
+	width: 100%;
+}
+#profile td
+{
+	width: 50%;
+}
+#profile #bio
+{
+	border-bottom: 1px solid #DDDDDD;
+	margin: 0px 0px 10px 0px;
+	padding-bottom: 10px;
+}
 #profile .btn-profile
 {
 	background-color: #326077;
@@ -405,30 +444,34 @@ input:-webkit-autofill {
 {
 	background-color: #4585A1;
 }
+#profile #personal-profile,
+#profile #risk-profile,
+#profile #exercise-profile,
+#profile #taste-profile,
+#profile #logout
+{
+	background-repeat: no-repeat;
+	background-position: 10px 0px;
+}
 #profile #personal-profile
 {
-	background-image: url('..images/icon-profile.png');
-	background-repeat: no-repeat;
+	background-image: url('../images/icon-profile.png');
 }
 #profile #risk-profile
 {
-	background-image: url('..images/icon-risks.png');
-	background-repeat: no-repeat;
+	background-image: url('../images/icon-risks.png');
 }
 #profile #exercise-profile
 {
-	background-image: url('..images/icon-exercise.png');
-	background-repeat: no-repeat;
+	background-image: url('../images/icon-exercise.png');
 }
 #profile #taste-profile
 {
-	background-image: url('..images/icon-tastes.png');
-	background-repeat: no-repeat;
+	background-image: url('../images/icon-tastes.png');
 }
 #profile #logout
 {
-	background-image: url('..images/icon-logout.png');
-	background-repeat: no-repeat;
+	background-image: url('../images/icon-logout.png');
 }
 /************* Profile page end *****************All****/
 /************* Groceries page start *************All****/
@@ -487,6 +530,7 @@ input:-webkit-autofill {
 #groceries #add-item button
 {
 	background-color: #8ECDE9;
+	color: #326077;
 }
 /************* Groceries page end ***************All****/
 /************* Extraneous pages page start ******All****/

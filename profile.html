@@ -66,6 +66,7 @@
     <div id="wrapper" class="container">
 <!-- Profile starts here -->
         <div id="profile">
+        <!-- My Profile starts here -->
             <div class="row">
                 <div class="col-lg-3 col-lg-offset-2 col-md-3 col-md-offset-2 col-sm-3 col-sm-offset-2 col-xs-12">
                     <button id="personal-profile" class="btn-profile active">MY PROFILE</button>
@@ -75,9 +76,119 @@
                     <button id="logout" class="btn-profile">LOGOUT</button>
                 </div>
                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
-                    and biscuits
+                    <form>
+                        <h2>Personal Information</h2>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" name="fname" placeholder="First name"/></td>
+                                    <td><input type="text" name="lname" placeholder="Last name"/></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="email" name="email" placeholder="Email"/></td>
+                                    <td><button id="btn-reset-password">Password Reset</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h2>Address</h2>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" name="city" placeholder="City"/></td>
+                                    <td>
+                                        <select id="state" name="state">
+                                            <option value=""  disabled selected>State</option>
+                                            <option value="AK">Alaska</option>
+                                            <option value="AL">Alabama</option>
+                                            <option value="AR">Arkansas</option>
+                                            <option value="AZ">Arizona</option>
+                                            <option value="CA">California</option>
+                                            <option value="CO">Colorado</option>
+                                            <option value="CT">Connecticut</option>
+                                            <option value="DC">District of Columbia</option>
+                                            <option value="DE">Delaware</option>
+                                            <option value="FL">Florida</option>
+                                            <option value="GA">Georgia</option>
+                                            <option value="HI">Hawaii</option>
+                                            <option value="IA">Iowa</option>
+                                            <option value="ID">Idaho</option>
+                                            <option value="IL">Illinois</option>
+                                            <option value="IN">Indiana</option>
+                                            <option value="KS">Kansas</option>
+                                            <option value="KY">Kentucky</option>
+                                            <option value="LA">Louisiana</option>
+                                            <option value="MA">Massachusetts</option>
+                                            <option value="MD">Maryland</option>
+                                            <option value="ME">Maine</option>
+                                            <option value="MI">Michigan</option>
+                                            <option value="MN">Minnesota</option>
+                                            <option value="MO">Missouri</option>
+                                            <option value="MS">Mississippi</option>
+                                            <option value="MT">Montana</option>
+                                            <option value="NC">North Carolina</option>
+                                            <option value="ND">North Dakota</option>
+                                            <option value="NE">Nebraska</option>
+                                            <option value="NH">New Hampshire</option>
+                                            <option value="NJ">New Jersey</option>
+                                            <option value="NM">New Mexico</option>
+                                            <option value="NV">Nevada</option>
+                                            <option value="NY">New York</option>
+                                            <option value="OH">Ohio</option>
+                                            <option value="OK">Oklahoma</option>
+                                            <option value="OR">Oregon</option>
+                                            <option value="PA">Pennsylvania</option>
+                                            <option value="PR">Puerto Rico</option>
+                                            <option value="RI">Rhode Island</option>
+                                            <option value="SC">South Carolina</option>
+                                            <option value="SD">South Dakota</option>
+                                            <option value="TN">Tennessee</option>
+                                            <option value="TX">Texas</option>
+                                            <option value="UT">Utah</option>
+                                            <option value="VA">Virginia</option>
+                                            <option value="VT">Vermont</option>
+                                            <option value="WA">Washington</option>
+                                            <option value="WI">Wisconsin</option>
+                                            <option value="WV">West Virginia</option>
+                                            <option value="WY">Wyoming</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" name="country" placeholder="Country"/></td>
+                                    <td><input type="text" name="street address" placeholder="Street Address"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h2>Extra Info</h2>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td><input type="number" name="age" placeholder="Age"/></td>
+                                    <td>
+                                        <select name="gender">
+                                            <option value=""  disabled selected>Gender</option>
+                                            <option value="AK">Female</option>
+                                            <option value="AL">Male</option>
+                                            <option value="AR">Other</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" name="favdish" placeholder="favdish"/></td>
+                                    <td><input type="text" name="favdrink" placeholder="favdrink"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h2>About Me</h2>
+                        <div id="bio"><p>From scaling mountains to backpacking through more than twenty foreign lands, William R.A.D. Funk has sought out the interesting and the inspirational in an attempt to enrich the stories taking shape in his mind. A former Civil Engineer and Police Officer, he has dabbled in everything from the manual to the intellectual.</p>
+                        <p>Based in Florida, with his wife Andrea, William has been published in a number of online magazines from Penumbra to T. Gene Davis’s Speculative Fiction Blog. His stories range through Science Fiction, Fantasy, and Horror, with a few not quite fitting in any specific genre. Though he’s working on additional short stories, a series of novels are in the works.</p>
+                        <p>Outside of his accomplishments in written prose are the screenplays. In collaboration with Montreal, Canada’s ever-evolving director, Danny MAlin, two films have been made: "Separation" and "Turned Inside Out." The former was nominated for Best Script in the 2014 Mascara &amp; Popcorn Film Festival.</p>
+                        <p>In his quest to experiment with various storytelling mediums, William is currently pursuing education in computer programming with the intention to learn game development. From there, his stories can become interactive.</p>
+                        <p>Feel free to follow William as his career progresses by adding your email to the mailing list through the contact form available.</p>
+                    </form>
                 </div>
             </div>
+        <!-- My Profile ends here -->
         </div>
 <!-- Profile ends here -->
     </div>
