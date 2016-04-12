@@ -92,8 +92,19 @@ function setAccount(userData, fnameString, lnameString, emailString)
 			      provider: "password",
 			      email: emailString,
 			      profile: {
-			      	fname: fnameString,
-			      	lname: lnameString,
+			      	fname    : fnameString,
+			      	lname    : lnameString,
+			      	email    : email, 
+					city     : city,
+					state    : state, 
+					country  : country,
+					street   : street, 
+					age      : age,
+					favdish  : favdish,
+					favdrink : favdrink,
+					gender   : gender,
+					about    : about
+
 			      }
 			    });
 }
@@ -111,7 +122,7 @@ function fbRegister(cb)
 		  console.log("Login Failed!", error);
 		  cb(false);
 		} 
-		else //Users login attemp successful. Have access to authData
+		else //Users login attempt successful. Have access to authData
 		{
 		  console.log("Authenticated successfully with payload:", authData);
 		  checkIfUserExists(authData.uid, authData, cb);  //Checks to see if user payload alaready has account
@@ -677,7 +688,7 @@ function getFavFatSecret(count, cb)
 	});//END: snapshot -> 'users/uid'
 }
 
-function getFavAll(count)
+function getFavAll(count, cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
@@ -754,7 +765,7 @@ function getFavAll(count)
 
 					
 				});//End: forEach -> 'recipe-directory'
-				console.log(recipeContentJson);   //CALL cb here
+				cb(recipeContentJson);   //CALL cb here
 			});//END: snapshot -> 'recipe-directory'
 			//cb(recipeContentJson); //This cb will return the JSON of all recipes
 		}//END: if user has created recipes
@@ -920,9 +931,36 @@ function editUserProfile(fname, lname, email, city, country, state, street, age,
 
 }
 
+function getUserProfileSettings()
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+
+	if(ref.getAuth() === null)
+	{
+		//cb(false);
+		return;
+	}
+
+	//Stores authData of package
+	var data = ref.getAuth();
+
+	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/profile/");
+
+	userRef.once("value", function(snapshot){
+
+		console.log(snapshot.val());
+
+	});
+
+
+
+
+}
+
 function editUserTaste(first, second, third, fourth, fifth, cb)
 {
-	
+
 }
 
 
@@ -953,5 +991,62 @@ function getUsersSettings(cb)
 	});
 
 }
+
+function getTasteProfile(cb)
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		return;
+	}
+
+	//Stores authData of package
+	var data = ref.getAuth();
+
+	var tasteRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+
+	tasteRef.child("taste").once("value", function(snapshot){
+		
+		var tasteJson = snapshot.val();
+		cb(tasteJson);
+
+	});
+
+}
+
+function editTasteProfile()
+{
+
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		return;
+	}
+
+	//Stores authData of package
+	var data = ref.getAuth();
+
+	var contentJson = {
+		bitter: "2.0",
+		sour  : "3.0",
+		spicy : "4.5",
+		sweet : "1.5",
+		salty : "2.0"
+	}
+
+	console.log(contentJson);
+
+	tasteRef = new Firebase("https://phoodbuddy.firebaseio.com/")
+
+
+}
+
+//High Blood Pressure = hypertension
+//High Choloestorl
+//Diabetes
+// Low Blood Pressure = hypotension
+
 
 
