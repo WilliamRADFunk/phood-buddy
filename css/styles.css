@@ -423,6 +423,18 @@ input:-webkit-autofill {
 {
 	padding-left: 0px;
 }
+#profile #user-allergy,
+#profile #user-health
+{
+	border: 1px solid rgb(169, 169, 169);
+	cursor: default;
+	-webkit-user-select: none;
+}
+#profile #user-allergy li,
+#profile #user-health li
+{
+	text-align: center;
+}
 #profile .profile-content
 {
 	padding-right: 0px;
@@ -448,6 +460,7 @@ input:-webkit-autofill {
 #profile input[type="text"],
 #profile input[type="number"],
 #profile input[type="email"],
+#profile input[type="password"],
 #profile select,
 #profile form button
 {
@@ -455,6 +468,10 @@ input:-webkit-autofill {
 	margin: 0px;
 	padding: 0px;
 	width: 100%;
+}
+#profile #my-exercise input[type="password"]
+{
+	margin-top: 25px;
 }
 #profile form button
 {

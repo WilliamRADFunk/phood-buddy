@@ -204,22 +204,32 @@
                         <h2>Health Conditions</h2>
                         <table>
                             <tbody>
-                                <tr>
+                                 <tr>
                                     <td>Your Conditions: </td>
-                                    <td><input type="number" name="bitter" placeholder="2.5"/></td>
+                                    <td>
+                                        <ul id="user-health">
+                                            <li value="diabetes-2">Diabetes 2</li>
+                                        </ul>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Add: </td>
                                     <td>
                                         <select id="add-health">
-                                            <option value="high"
+                                            <option value="" disable selected>Add a condition</option>
+                                            <option value="diabetes-1">Diabetes 1</option>
+                                            <option value="high-cholesterol">High Cholesterol</option>
+                                            <option value="hypertension">Hypertension</option>
+                                            <option value="hypotension">Hypotension</option>
                                         </select>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Remove: </td>
                                     <td>
-                                    <select id="remove-health">
+                                        <select id="remove-health">
+                                            <option value="" disable selected>Remove an allergy</option>
+                                            <option value="diabetes-2">Diabetes 2</option>
                                         </select>
                                     </td>
                                 </tr>
@@ -230,7 +240,14 @@
                             <tbody>
                                 <tr>
                                     <td>Your Allergies: </td>
-                                    <td><textarea id="user-allergy">Peanut<br/>Tree Nut<br/>Shell Fish<br/>Sesame Seeds</textarea></td>
+                                    <td>
+                                        <ul id="user-allergy">
+                                            <li value="peanut">Peanut</li>
+                                            <li value="tree-nut">Tree Nut</li>
+                                            <li value="shell-fish">Shell Fish</li>
+                                            <li value="sesame">Sesame Seeds</li>
+                                        </ul>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Add: </td>
@@ -266,6 +283,21 @@
                 <!-- My Risks ends here -->
                 <!-- My Exercise starts here -->
                 <div id="my-exercise" class="profile-content col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                    <form autocomplete="off">
+                        <h2>FitBit Integration</h2>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Username: </td>
+                                    <td><input type="text" name="fitbit-username" placeholder="FitBit Username" autocomplete="off" value=""/></td>
+                                </tr>
+                                <tr>
+                                    <td>Password: </td>
+                                    <td><input type="password" name="fitbit-password" placeholder="password"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
                 <!-- My Exercise ends here -->
                 <!-- My Tastes starts here -->
