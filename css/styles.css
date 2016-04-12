@@ -395,6 +395,7 @@ input:-webkit-autofill {
 	background-color: #E2EEF4;
 	height: 127px;
 	margin-bottom: 15px;
+	padding-right: 0px;
 	padding-top: 15px;
 }
 #profile #profile-header > img
@@ -410,6 +411,21 @@ input:-webkit-autofill {
 	display: inline-block;
 	float: right;
 	height: 40px;
+	margin-top: 29px;
+}
+#profile #profile-header #btn-edit-risks,
+#profile #profile-header #btn-edit-exercise,
+#profile #profile-header #btn-edit-tastes
+{
+	display: none;
+}
+#profile #buttons
+{
+	padding-left: 0px;
+}
+#profile .profile-content
+{
+	padding-right: 0px;
 }
 #profile h1
 {
@@ -475,32 +491,32 @@ input:-webkit-autofill {
 {
 	background-color: #4585A1;
 }
-#profile #personal-profile,
-#profile #risk-profile,
-#profile #exercise-profile,
-#profile #taste-profile,
-#profile #logout
+#profile #btn-personal-profile,
+#profile #btn-risk-profile,
+#profile #btn-exercise-profile,
+#profile #btn-taste-profile,
+#profile #btn-logout
 {
 	background-repeat: no-repeat;
 	background-position: 10px 0px;
 }
-#profile #personal-profile
+#profile #btn-personal-profile
 {
 	background-image: url('../images/icon-profile.png');
 }
-#profile #risk-profile
+#profile #btn-risk-profile
 {
 	background-image: url('../images/icon-risks.png');
 }
-#profile #exercise-profile
+#profile #btn-exercise-profile
 {
 	background-image: url('../images/icon-exercise.png');
 }
-#profile #taste-profile
+#profile #btn-taste-profile
 {
 	background-image: url('../images/icon-tastes.png');
 }
-#profile #logout
+#profile #btn-logout
 {
 	background-image: url('../images/icon-logout.png');
 }

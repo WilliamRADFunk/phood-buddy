@@ -71,18 +71,21 @@
                     <img src="images/avatar-funk.jpg"/>
                     <h1>WFunk</h1>
                     <button id="btn-edit-profile">EDIT PROFILE</button>
+                    <button id="btn-edit-risks">EDIT RISKS</button>
+                    <button id="btn-edit-exercise">EDIT EXERCISE</button>
+                    <button id="btn-edit-tastes">EDIT TASTES</button>
                 </div>
             </div>
         <!-- My Profile starts here -->
-            <div id="my-profile" class="row">
-                <div class="col-lg-3 col-lg-offset-2 col-md-3 col-md-offset-2 col-sm-3 col-sm-offset-2 col-xs-12">
+            <div id="profile-body" class="row">
+                <div id="buttons" class="col-lg-3 col-lg-offset-2 col-md-3 col-md-offset-2 col-sm-3 col-sm-offset-2 col-xs-12">
                     <button id="btn-personal-profile" class="btn-profile active">MY PROFILE</button>
                     <button id="btn-risk-profile" class="btn-profile">MY RISKS</button>
                     <button id="btn-exercise-profile" class="btn-profile">MY EXERCISE</button>
                     <button id="btn-taste-profile" class="btn-profile">MY TASTES</button>
                     <button id="btn-logout" class="btn-profile">LOGOUT</button>
                 </div>
-                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                <div id="my-profile" class="profile-content col-lg-5 col-md-5 col-sm-5 col-xs-12">
                     <form>
                         <h2>Personal Information</h2>
                         <table>
@@ -191,15 +194,112 @@
                         <p>Based in Florida, with his wife Andrea, William has been published in a number of online magazines from Penumbra to T. Gene Davis’s Speculative Fiction Blog. His stories range through Science Fiction, Fantasy, and Horror, with a few not quite fitting in any specific genre. Though he’s working on additional short stories, a series of novels are in the works.</p>
                         <p>Outside of his accomplishments in written prose are the screenplays. In collaboration with Montreal, Canada’s ever-evolving director, Danny MAlin, two films have been made: "Separation" and "Turned Inside Out." The former was nominated for Best Script in the 2014 Mascara &amp; Popcorn Film Festival.</p>
                         <p>In his quest to experiment with various storytelling mediums, William is currently pursuing education in computer programming with the intention to learn game development. From there, his stories can become interactive.</p>
-                        <p>Feel free to follow William as his career progresses by adding your email to the mailing list through the contact form available.</p>
+                        <p>Feel free to follow William as his career progresses by adding your email to the mailing list through the contact form available.</p></div>
                     </form>
                 </div>
-            </div>
-        <!-- My Profile ends here -->
-        <!-- My Tastes starts here -->
-            <div id="my-tastes" class="row">
-            </div>
-        <!-- My Tastes ends here -->
+                <!-- My Profile ends here -->
+                <!-- My Risks starts here -->
+                <div id="my-risks" class="profile-content col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                    <form>
+                        <h2>Health Conditions</h2>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Your Conditions: </td>
+                                    <td><input type="number" name="bitter" placeholder="2.5"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Add: </td>
+                                    <td>
+                                        <select id="add-health">
+                                            <option value="high"
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Remove: </td>
+                                    <td>
+                                    <select id="remove-health">
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h2>Allergies</h2>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Your Allergies: </td>
+                                    <td><textarea id="user-allergy">Peanut<br/>Tree Nut<br/>Shell Fish<br/>Sesame Seeds</textarea></td>
+                                </tr>
+                                <tr>
+                                    <td>Add: </td>
+                                    <td>
+                                        <select id="add-allergy">
+                                            <option value="" disable selected>Add an allergy</option>
+                                            <option value="corn">Corn</option>
+                                            <option value="red-meat">Red Meat</option>
+                                            <option value="milk">Milk</option>
+                                            <option value="egg">Egg</option>
+                                            <option value="soy">Soy</option>
+                                            <option value="fish">Fish</option>
+                                            <option value="gluten">gluten</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Remove: </td>
+                                    <td>
+                                        <select id="remove-allergy">
+                                            <option value="" disable selected>Remove an allergy</option>
+                                            <option value="peanut">Peanut</option>
+                                            <option value="tree-nut">Tree Nut</option>
+                                            <option value="shell-fish">Shell Fish</option>
+                                            <option value="sesame">Sesame Seeds</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+                <!-- My Risks ends here -->
+                <!-- My Exercise starts here -->
+                <div id="my-exercise" class="profile-content col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                </div>
+                <!-- My Exercise ends here -->
+                <!-- My Tastes starts here -->
+                <div id="my-tastes" class="profile-content col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                    <form>
+                    <h2>Taste Preferences</h2>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Bitter: </td>
+                                    <td><input type="number" name="bitter" placeholder="2.5"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Salty: </td>
+                                    <td><input type="number" name="salty" placeholder="2.5"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Sour: </td>
+                                    <td><input type="number" name="sour" placeholder="2.5"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Spicy: </td>
+                                    <td><input type="number" name="spicy" placeholder="2.5"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Sweet: </td>
+                                    <td><input type="number" name="sweet" placeholder="2.5"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+                <!-- My Tastes ends here -->
+            </div>        
         </div>
 <!-- Profile ends here -->
     </div>

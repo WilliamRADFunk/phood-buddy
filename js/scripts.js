@@ -74,32 +74,60 @@ $(document).ready(function ()
 	});
 	// Turns content on and off depending on Settings/Profile tab selected.
 	$("#btn-personal-profile").click(function(){
-		$("#my-personal").css("display", "block");
+		$("#my-profile").css("display", "block");
+		$("#btn-edit-profile").css("display", "block");
+		$("#btn-personal-profile").addClass("active");
         $("#my-risks").css("display", "none");
+        $("#btn-edit-risks").css("display", "none");
+        $("#btn-risk-profile").removeClass("active");
         $("#my-exercise").css("display", "none");
-        $("#my-taste").css("display", "none");
-        $("#my-logout").css("display", "none");
+        $("#btn-edit-exercise").css("display", "none");
+        $("#btn-exercise-profile").removeClass("active");
+        $("#my-tastes").css("display", "none");
+        $("#btn-edit-tastes").css("display", "none");
+        $("#btn-taste-profile").removeClass("active");
 	});
 	$("#btn-risk-profile").click(function(){
 		$("#my-profile").css("display", "none");
+		$("#btn-edit-profile").css("display", "none");
+		$("#btn-personal-profile").removeClass("active");
         $("#my-risks").css("display", "block");
+        $("#btn-edit-risks").css("display", "block");
+        $("#btn-risk-profile").addClass("active");
         $("#my-exercise").css("display", "none");
-        $("#my-taste").css("display", "none");
-        $("#my-logout").css("display", "none");
+        $("#btn-edit-exercise").css("display", "none");
+        $("#btn-exercise-profile").removeClass("active");
+        $("#my-tastes").css("display", "none");
+        $("#btn-edit-tastes").css("display", "none");
+        $("#btn-taste-profile").removeClass("active");
 	});
 	$("#btn-exercise-profile").click(function(){
 		$("#my-profile").css("display", "none");
+		$("#btn-edit-profile").css("display", "none");
+		$("#btn-personal-profile").removeClass("active");
         $("#my-risks").css("display", "none");
+        $("#btn-edit-risks").css("display", "none");
+        $("#btn-risk-profile").removeClass("active");
         $("#my-exercise").css("display", "block");
-        $("#my-taste").css("display", "none");
-        $("#my-logout").css("display", "none");
+        $("#btn-edit-exercise").css("display", "block");
+        $("#btn-exercise-profile").addClass("active");
+        $("#my-tastes").css("display", "none");
+        $("#btn-edit-tastes").css("display", "none");
+        $("#btn-taste-profile").removeClass("active");
 	});
 	$("#btn-taste-profile").click(function(){
 		$("#my-profile").css("display", "none");
+		$("#btn-edit-profile").css("display", "none");
+		$("#btn-personal-profile").removeClass("active");
         $("#my-risks").css("display", "none");
+        $("#btn-edit-risks").css("display", "none");
+        $("#btn-risk-profile").removeClass("active");
         $("#my-exercise").css("display", "none");
-        $("#my-taste").css("display", "block");
-        $("#my-logout").css("display", "none");
+        $("#btn-edit-exercise").css("display", "none");
+        $("#btn-exercise-profile").removeClass("active");
+        $("#my-tastes").css("display", "block");
+        $("#btn-edit-tastes").css("display", "block");
+        $("#btn-taste-profile").addClass("active");
 	});
 	$("#btn-logout").click(function(){
 		window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html";
