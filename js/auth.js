@@ -5,6 +5,15 @@
 
 //This function is used as a input for auth functions that manages return of either error or authData
 //To be used with: fblogin, twitterlogin, googlelogin.
+function showAuth()
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	var data = ref.getAuth();
+
+	console.log(data);
+}
+
 function checkAuth()
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
@@ -139,6 +148,12 @@ function setAccount(userData, fnameString, lnameString, emailString)
 			      	sour  : 2.5,
 			      	spicy : 2.5,
 			      	sweet : 2.5
+			      },
+			      health:{
+			      	hypertension      : false,
+			      	hypotension       : false,
+			      	"high-cholestorol": false,
+			      	diabetes          : false
 			      }
 
 			    });
@@ -348,7 +363,42 @@ function checkIfUserExists(userId, authData, cb) {
 			    // save the user's profile into the database so we can list users,
 			    ref.child("users").child(authData.uid).set({
 			      provider: authData.provider,
-			      name: getName(authData)  // retrieves name from payload
+			      name: getName(authData), // retrieves name from payload
+			      profile: {
+			      	fname    : "",
+			      	lname    : "",
+			      	email    : "", 
+					city     : "",
+					state    : "", 
+					country  : "",
+					street   : "", 
+					age      : "",
+					favdish  : "",
+					favdrink : "",
+					gender   : "",
+					about    : ""
+			      },
+			      allergies: {
+			      	corn          : false,
+			      	egg           : false,
+			      	fish          : false,
+			      	glutten       : false,
+			      	milk          : false,
+			      	peanut        : false,
+			      	"red-meat"    : false,
+			      	sesame        : false,
+			      	"shell-fish"  : false,
+			      	soy           : false,
+			      	"tree-nut"    : false
+			      },
+			      taste:{
+			      	bitter: 2.5,
+			      	salty : 2.5,
+			      	sour  : 2.5,
+			      	spicy : 2.5,
+			      	sweet : 2.5
+			      }
+
 			    });
 			    cb(true);
 			 }
@@ -585,7 +635,7 @@ function getFavUserRecipe(count, cb)
 				}
 			}
 
-			console.log(array);
+			// DEBUG console.log(array);
 
 
 			
@@ -673,7 +723,7 @@ function getFavFatSecret(count, cb)
 				}
 			}
 
-			console.log(array);
+			// DEBUG console.log(array);
 
 
 			
@@ -1029,8 +1079,8 @@ function getTasteProfile(cb)
 
 	if(ref.getAuth() === null)
 	{
+		cb("");
 		return;
-		//Return cb of false
 	}
 
 	//Stores authData of package
@@ -1080,7 +1130,7 @@ function getUserAllergies(cb)
 	if(ref.getAuth() === null)
 	{
 		return;
-		cb(false); //cb HELP
+		cb(""); //cb FIX
 	}
 
 	//Stores authData of package
@@ -1100,7 +1150,53 @@ function getUserAllergies(cb)
 
 }
 
-function editUserAllergies()
+function editUserAllergies(contentJson, cb)
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		return;
+		cb(false);
+	}
+
+	//Stores authData of package
+	var data = ref.getAuth();
+
+	tasteRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+
+	tasteRef.child("allergies").update(contentJson);
+	cb(true);
+}
+
+function getUserHealth(cb) //FIX
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		return;
+		cb(""); //cb HELP
+	}
+
+	//Stores authData of package
+	var data = ref.getAuth();
+
+	var allergyRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+
+	allergyRef.once("value", function(snapshot)
+	{
+		if(snapshot.child("allergies").exists())
+		{
+			var contentJson = snapshot.child("allergies").val()
+			cb(contentJson);
+		}
+
+	});
+
+}
+
+function editUserHealth(contentJson, cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
@@ -1119,12 +1215,9 @@ function editUserAllergies()
 
 	tasteRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
 
-	tasteRef.child("allergies").update(contentJson);
+	tasteRef.child("health").update(contentJson);
 	cb(true);
 }
-
-function 
-
 
 
 //High Blood Pressure = hypertension
