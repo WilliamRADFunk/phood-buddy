@@ -5,6 +5,22 @@
 
 //This function is used as a input for auth functions that manages return of either error or authData
 //To be used with: fblogin, twitterlogin, googlelogin.
+function checkAuth()
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		return false;	
+	}
+	else
+	{
+		return true;
+	}
+
+	return true;
+}
+
 function authLogout()
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
@@ -90,23 +106,43 @@ function setAccount(userData, fnameString, lnameString, emailString)
 
 	ref.child("users").child(userData.uid).set({
 			      provider: "password",
-			      email: emailString,
 			      profile: {
 			      	fname    : fnameString,
 			      	lname    : lnameString,
-			      	email    : email, 
-					city     : city,
-					state    : state, 
-					country  : country,
-					street   : street, 
-					age      : age,
-					favdish  : favdish,
-					favdrink : favdrink,
-					gender   : gender,
-					about    : about
-
+			      	email    : emailString, 
+					city     : "",
+					state    : "", 
+					country  : "",
+					street   : "", 
+					age      : "",
+					favdish  : "",
+					favdrink : "",
+					gender   : "",
+					about    : ""
+			      },
+			      allergies: {
+			      	corn          : false,
+			      	egg           : false,
+			      	fish          : false,
+			      	glutten       : false,
+			      	milk          : false,
+			      	peanut        : false,
+			      	"red-meat"    : false,
+			      	sesame        : false,
+			      	"shell-fish"  : false,
+			      	soy           : false,
+			      	"tree-nut"    : false
+			      },
+			      taste:{
+			      	bitter: 2.5,
+			      	salty : 2.5,
+			      	sour  : 2.5,
+			      	spicy : 2.5,
+			      	sweet : 2.5
 			      }
+
 			    });
+
 }
 
 
@@ -958,11 +994,6 @@ function getUserProfileSettings()
 
 }
 
-function editUserTaste(first, second, third, fourth, fifth, cb)
-{
-
-}
-
 
 function getUsersSettings(cb)
 {
@@ -999,6 +1030,7 @@ function getTasteProfile(cb)
 	if(ref.getAuth() === null)
 	{
 		return;
+		//Return cb of false
 	}
 
 	//Stores authData of package
@@ -1015,7 +1047,7 @@ function getTasteProfile(cb)
 
 }
 
-function editTasteProfile()
+function editTasteProfile(contentJson, cb)
 {
 
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
@@ -1023,25 +1055,77 @@ function editTasteProfile()
 	if(ref.getAuth() === null)
 	{
 		return;
+		cb(false);
 	}
 
 	//Stores authData of package
 	var data = ref.getAuth();
 
-	var contentJson = {
-		bitter: "2.0",
-		sour  : "3.0",
-		spicy : "4.5",
-		sweet : "1.5",
-		salty : "2.0"
-	}
+	
 
 	console.log(contentJson);
 
-	tasteRef = new Firebase("https://phoodbuddy.firebaseio.com/")
+	tasteRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+
+	tasteRef.child("taste").update(contentJson);
+	cb(true);
 
 
 }
+
+function getUserAllergies(cb)
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		return;
+		cb(false); //cb HELP
+	}
+
+	//Stores authData of package
+	var data = ref.getAuth();
+
+	var allergyRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+
+	allergyRef.once("value", function(snapshot)
+	{
+		if(snapshot.child("allergies").exists())
+		{
+			var contentJson = snapshot.child("allergies").val()
+			cb(contentJson);
+		}
+
+	});
+
+}
+
+function editUserAllergies()
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		return;
+		cb(false);
+	}
+
+	//Stores authData of package
+	var data = ref.getAuth();
+
+	
+
+	console.log(contentJson);
+
+	tasteRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+
+	tasteRef.child("allergies").update(contentJson);
+	cb(true);
+}
+
+function 
+
+
 
 //High Blood Pressure = hypertension
 //High Choloestorl
