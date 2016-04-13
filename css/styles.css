@@ -607,6 +607,56 @@ input:-webkit-autofill {
 	color: #326077;
 }
 /************* Groceries page end ***************All****/
+/************* Favorite Recipes page start ******All****/
+#favorite-recipes #filter-bar
+{
+	margin-bottom: 10px;
+	min-height: 50px;
+	padding-bottom: 12px;
+	padding-top: 25px;
+}
+#favorite-recipes #filter-bar > div
+{
+	background-color: #E2EEF4;
+	padding-bottom: 25px;
+	padding-top: 25px;
+	white-space: normal;
+}
+#favorite-recipes #filter-bar > div.col-xs-6
+{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+#favorite-recipes #filter-bar > div.col-xs-6 > input[type="radio"]
+{
+	margin-left: 25px;
+}
+#favorite-recipes img
+{
+	float: left;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+}
+#favorite-recipes .divider.row div
+{
+	border-bottom: 2px solid #E5E5E5;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+#favorite-recipes .fav-recipe
+{
+	white-space: normal;
+}
+#favorite-recipes .text-left
+{
+	text-align: left;
+}
+#favorite-recipes .text-right
+{
+	text-align: right;
+}
+/************* Favorite Recipes page end ********All****/
 /************* Extraneous pages page start ******All****/
 #about table,
 #faq table,
