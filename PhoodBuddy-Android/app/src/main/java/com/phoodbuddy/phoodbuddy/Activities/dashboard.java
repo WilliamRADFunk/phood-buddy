@@ -45,8 +45,29 @@ public class dashboard extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         holder = new ViewHolder();
         holder.fitbit = (ImageView) findViewById(R.id.dash_fitbit);
+        holder.fitbit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(dashboard.this, health_profile.class);
+                startActivity(i);
+            }
+        });
         holder.shopping_list = (ImageView) findViewById(R.id.dash_shopping_list);
+        holder.shopping_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent j = new Intent(dashboard.this, shopping_list.class);
+                startActivity(j);
+            }
+        });
         holder.allRecipes = (ImageView) findViewById(R.id.dash_fav_recipe);
+        holder.allRecipes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent k = new Intent(dashboard.this, FavRecipes.class);
+                startActivity(k);
+            }
+        });
     }
 
     public void onClick(View v)
@@ -54,12 +75,16 @@ public class dashboard extends AppCompatActivity
         switch(v.getId())
         {
             case R.id.dash_fitbit:
-
+                Intent i = new Intent(dashboard.this, health_profile.class);
+                startActivity(i);
                 break;
             case R.id.dash_shopping_list:
-
+                Intent j = new Intent(dashboard.this, shopping_list.class);
+                startActivity(j);
                 break;
             case R.id.dash_fav_recipe:
+                Intent k = new Intent(dashboard.this, FavRecipes.class);
+                startActivity(k);
                 break;
             default:
                 break;
@@ -89,8 +114,6 @@ public class dashboard extends AppCompatActivity
             startActivity(i);
         }
         else if (id == R.id.nav_deals) {
-            Intent i = new Intent(dashboard.this, deals.class);
-            startActivity(i);
         }
         else if (id == R.id.nav_recipes) {
             Intent i = new Intent(dashboard.this, recipes.class);

@@ -4,6 +4,22 @@
         "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\src\\main\\res\\menu\\dashboard.xml"
     },
     {
+        "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\res\\merged\\debug\\menu\\searchview.xml",
+        "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\src\\main\\res\\menu\\searchview.xml"
+    },
+    {
+        "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\app\\build\\intermediates\\res\\merged\\debug\\menu\\main.xml",
+        "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\app\\src\\main\\res\\menu\\main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\app\\build\\intermediates\\res\\merged\\debug\\menu\\dashboard_drawer.xml",
+        "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\app\\src\\main\\res\\menu\\dashboard_drawer.xml"
+    },
+    {
+        "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\app\\build\\intermediates\\res\\merged\\debug\\menu\\dashboard.xml",
+        "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\app\\src\\main\\res\\menu\\dashboard.xml"
+    },
+    {
         "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_main.xml",
         "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\src\\main\\res\\menu\\menu_main.xml"
     },
@@ -12,11 +28,15 @@
         "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\src\\main\\res\\menu\\dashboard_drawer.xml"
     },
     {
+        "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\app\\build\\intermediates\\res\\merged\\debug\\menu\\searchview.xml",
+        "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\app\\src\\main\\res\\menu\\searchview.xml"
+    },
+    {
         "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\res\\merged\\debug\\menu\\main.xml",
         "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\src\\main\\res\\menu\\main.xml"
     },
     {
-        "merged": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_main.xml",
-        "source": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\src\\main\\res\\menu\\menu_main.xml"
+        "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_main.xml",
+        "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\app\\src\\main\\res\\menu\\menu_main.xml"
     }
 ]

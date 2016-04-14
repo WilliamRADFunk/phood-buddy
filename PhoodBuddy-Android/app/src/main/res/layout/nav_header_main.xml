@@ -13,10 +13,10 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="96dp"
+        android:layout_height="61dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:src="@android:drawable/sym_def_app_icon" />
+        android:src="@drawable/logo1" />
 
     <TextView
         android:layout_width="match_parent"
@@ -29,6 +29,6 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="evan.glazer@knights.ucf.edu" />
+        android:text="evanowner@live.com" />
 
 </LinearLayout>

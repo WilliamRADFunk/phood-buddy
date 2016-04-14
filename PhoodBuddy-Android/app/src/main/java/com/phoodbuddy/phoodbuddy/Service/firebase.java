@@ -2,6 +2,7 @@ package com.phoodbuddy.phoodbuddy.Service;
 
 import android.app.Application;
 
+
 import com.facebook.FacebookSdk;
 import com.firebase.client.Firebase;
 /**
@@ -12,8 +13,9 @@ public class firebase extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        //Fabric.with(this, new Crashlytics());
         Firebase.setAndroidContext(this);
-        FacebookSdk.sdkInitialize(this);
+        //FacebookSdk.sdkInitialize(this);
     }
 
 

@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.util.Base64;
 import android.util.Log;
 
+import com.phoodbuddy.phoodbuddy.Utilities.Globals;
+
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -25,29 +27,23 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 public class FatSecretSearch {
-    final static private String APP_METHOD = "GET";
-    final static private String APP_KEY = "4d7aafe8c2bb44e39c716cbead1f8c3d";
-    final static private String APP_SECRET = "33cc603c4e33407da31c0d9ce1cc057e";
-    final static private String APP_URL = "http://platform.fatsecret.com/rest/server.api";
-    private static final String HMAC_SHA1_ALGORITHM = "HmacSHA1";
-
     public JSONObject searchFood(String searchFood, int page) {
+        Log.e("Search", Uri.encode(searchFood) + searchFood);
         List<String> params = new ArrayList<>(Arrays.asList(generateOauthParams(page)));
         String[] template = new String[1];
-        params.add("method=foods.search");
+        params.add("method=recipes.search");
         params.add("search_expression=" + Uri.encode(searchFood));
-        params.add("oauth_signature=" + sign(APP_METHOD, APP_URL, params.toArray(template)));
-
+        params.add("oauth_signature=" + sign(Globals.APP_METHOD, Globals.APP_URL, params.toArray(template)));
         JSONObject foods = null;
         try {
-            URL url = new URL(APP_URL + "?" + paramify(params.toArray(template)));
+            URL url = new URL(Globals.APP_URL + "?" + paramify(params.toArray(template)));
             URLConnection api = url.openConnection();
             String line;
             StringBuilder builder = new StringBuilder();
             BufferedReader reader = new BufferedReader(new InputStreamReader(api.getInputStream()));
             while ((line = reader.readLine()) != null) builder.append(line);
             JSONObject food = new JSONObject(builder.toString());   // { first
-            foods = food.getJSONObject("foods");                    // { second
+            foods = food.getJSONObject("recipes"); //second
         } catch (Exception exception) {
             Log.e("FatSecret Error", exception.toString());
             exception.printStackTrace();
@@ -57,23 +53,23 @@ public class FatSecretSearch {
 
     private static String[] generateOauthParams(int i) {
         return new String[]{
-                "oauth_consumer_key=" + APP_KEY,
+                "oauth_consumer_key=" + Globals.APP_KEY,
                 "oauth_signature_method=HMAC-SHA1",
                 "oauth_timestamp=" +
-                        Long.valueOf(System.currentTimeMillis() * 2).toString(),
+                        Long.valueOf(System.currentTimeMillis() * 1000).toString(),
                 "oauth_nonce=" + nonce(),
                 "oauth_version=1.0",
                 "format=json",
-                "page_number=" + i,
-                "max_results=" + 20};
+                "page_number=" + 1,
+                "max_results=" + 30};
     }
 
     private static String sign(String method, String uri, String[] params) {
         String[] p = {method, Uri.encode(uri), Uri.encode(paramify(params))};
         String s = join(p, "&");
-        SecretKey sk = new SecretKeySpec(APP_SECRET.getBytes(), HMAC_SHA1_ALGORITHM);
+        SecretKey sk = new SecretKeySpec(Globals.APP_SECRET.getBytes(), Globals.HMAC_SHA1_ALGORITHM);
         try {
-            Mac m = Mac.getInstance(HMAC_SHA1_ALGORITHM);
+            Mac m = Mac.getInstance(Globals.HMAC_SHA1_ALGORITHM);
             m.init(sk);
             return Uri.encode(new String(Base64.encode(m.doFinal(s.getBytes()), Base64.DEFAULT)).trim());
         } catch (java.security.NoSuchAlgorithmException e) {

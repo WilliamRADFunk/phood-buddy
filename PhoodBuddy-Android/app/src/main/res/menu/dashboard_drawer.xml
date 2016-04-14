@@ -4,23 +4,23 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_dashboard"
-            android:icon="@drawable/ic_menu_send"
+            android:icon="@drawable/ic_dashboardicond3x"
             android:title="Dashboard" />
         <item
             android:id="@+id/nav_shopping_list"
-            android:icon="@drawable/ic_menu_send"
+            android:icon="@drawable/ic_tos3x"
             android:title="Shopping List" />
         <item
             android:id="@+id/nav_deals"
-            android:icon="@drawable/ic_menu_send"
+            android:icon="@android:drawable/btn_star_big_on"
             android:title="Deals (coming soon!)" />
         <item
             android:id="@+id/nav_recipes"
-            android:icon="@drawable/ic_menu_send"
+            android:icon="@android:drawable/list_selector_background"
             android:title="Recipes" />
         <item
             android:id="@+id/nav_agenda"
-            android:icon="@drawable/ic_menu_send"
+            android:icon="@android:drawable/ic_menu_my_calendar"
             android:title="Planner" />
     </group>
 
@@ -33,7 +33,7 @@
 
             <item
                 android:id="@+id/nav_health_profile"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_tos3x"
                 android:title="Health Profile" />
             <item
                 android:id="@+id/nav_settings"

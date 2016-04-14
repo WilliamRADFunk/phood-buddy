@@ -61,8 +61,6 @@ public class planner extends AppCompatActivity
             startActivity(i);
         }
         else if (id == R.id.nav_deals) {
-            Intent i = new Intent(planner.this, deals.class);
-            startActivity(i);
         }
         else if (id == R.id.nav_recipes) {
             Intent i = new Intent(planner.this, recipes.class);

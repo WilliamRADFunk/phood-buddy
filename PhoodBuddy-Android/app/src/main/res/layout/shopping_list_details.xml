@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
 
 
     <EditText
@@ -10,19 +11,19 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/quantityEdit"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/itemName"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="155dp" />
+        android:textColor="#ffffff" />
 
     <Spinner
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/servingSpinner"
-        android:layout_alignBottom="@+id/servingEdit"
-        android:layout_toRightOf="@+id/servingEdit"
+        android:spinnerMode="dropdown"
         android:layout_alignRight="@+id/quantityEdit"
         android:layout_alignEnd="@+id/quantityEdit"
-        android:spinnerMode="dropdown" />
+        android:layout_below="@+id/quantityEdit"
+        android:layout_alignBottom="@+id/servingEdit" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -30,11 +31,12 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/servingEdit"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/quantityEdit"
         android:layout_alignLeft="@+id/quantityEdit"
         android:layout_alignStart="@+id/quantityEdit"
-        android:layout_alignRight="@+id/quantityText"
-        android:layout_alignEnd="@+id/quantityText" />
+        android:layout_alignRight="@+id/itemName"
+        android:layout_alignEnd="@+id/itemName"
+        android:textColor="#ffffff" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -44,7 +46,8 @@
         android:id="@+id/quantityText"
         android:layout_alignBaseline="@+id/quantityEdit"
         android:layout_alignBottom="@+id/quantityEdit"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffff" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -52,9 +55,13 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="     Serving"
         android:id="@+id/ServingText"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/servingEdit"
-        android:layout_alignStart="@+id/servingEdit" />
+        android:textColor="#ffffff"
+        android:layout_alignBaseline="@+id/servingEdit"
+        android:layout_alignBottom="@+id/servingEdit"
+        android:layout_toLeftOf="@+id/serving_complete"
+        android:layout_toStartOf="@+id/serving_complete"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -62,20 +69,21 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/itemName"
-        android:layout_above="@+id/quantityText"
-        android:layout_alignLeft="@+id/quantityEdit"
-        android:layout_alignStart="@+id/quantityEdit"
-        android:layout_marginBottom="47dp"
-        android:layout_alignRight="@+id/quantityEdit"
-        android:layout_alignEnd="@+id/quantityEdit" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="171dp"
+        android:textColor="#ffffff"
+        android:textStyle="normal" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Complete"
         android:id="@+id/serving_complete"
+        android:background="@drawable/button_border_white"
         android:layout_below="@+id/servingSpinner"
         android:layout_alignRight="@+id/servingSpinner"
         android:layout_alignEnd="@+id/servingSpinner"
-        android:background="@drawable/button_border_primary" />
+        android:layout_marginTop="11dp"
+        android:textColor="#ffffff" />
 </RelativeLayout>

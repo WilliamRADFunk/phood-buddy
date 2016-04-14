@@ -12,17 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:textAlignment="center"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:textColor="#ffffff" />
 
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/login_with_facebook"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/login_with_facebook"
-        android:layout_above="@+id/login_with_twitter"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/login_with_twitter"
@@ -31,16 +23,123 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/login_with_password"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="#55acee"
+        android:textColor="#ffffff"
+        android:textAlignment="center" />
 
     <Button
         android:id="@+id/login_with_password"
-        android:text="@string/login_with_password"
+        android:text="Login with Fitbit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/login_status"
-        android:layout_toEndOf="@+id/login_status" />
+        android:layout_toEndOf="@+id/login_status"
+        android:background="#4cc2c4"
+        android:textColor="#ffffff"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/button"
+        android:text="Login with Google"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/login_with_twitter"
+        android:layout_toRightOf="@+id/login_status"
+        android:layout_toEndOf="@+id/login_status"
+        android:background="#F44336"
+        android:textColor="#ffffff"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/button3"
+        android:text="Login with Facebook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button"
+        android:layout_toRightOf="@+id/login_status"
+        android:layout_toEndOf="@+id/login_status"
+        android:background="#3b5998"
+        android:textColor="#ffffff"
+        android:textAlignment="center" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Username"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:layout_below="@+id/login_with_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="77dp"
+        android:textColor="#ffffff"
+        android:editable="true"
+        android:textAlignment="center" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/editText2"
+        android:layout_below="@+id/editText"
+        android:layout_alignRight="@+id/editText"
+        android:layout_alignEnd="@+id/editText"
+        android:textColor="#ffffff"
+        android:text="Password"
+        android:editable="true"
+        android:textAlignment="center" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:id="@+id/button4"
+        android:layout_below="@+id/editText2"
+        android:layout_alignRight="@+id/editText2"
+        android:layout_alignEnd="@+id/editText2"
+        android:background="@drawable/button_border_white"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Login with Phood Buddy"
+        android:id="@+id/textView28"
+        android:textColor="#ffffff"
+        android:layout_above="@+id/imageView15"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView15"
+        android:src="@drawable/line"
+        android:layout_alignTop="@+id/editText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:id="@+id/button5"
+        android:layout_alignBottom="@+id/button4"
+        android:layout_alignLeft="@+id/editText2"
+        android:layout_alignStart="@+id/editText2"
+        android:background="@drawable/button_border_white"
+        android:textColor="#ffffff" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView18"
+        android:src="@drawable/logo"
+        android:layout_above="@+id/button3"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

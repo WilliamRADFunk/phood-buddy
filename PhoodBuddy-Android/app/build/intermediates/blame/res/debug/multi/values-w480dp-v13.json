@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\res\\merged\\debug\\values-w480dp-v13\\values-w480dp-v13.xml",
+        "outputFile": "C:\\Users\\Evan\\Desktop\\phood-buddy\\app\\build\\intermediates\\res\\merged\\debug\\values-w480dp-v13\\values-w480dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 112
                 },
                 "from": {
-                    "file": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-w480dp\\values-w480dp.xml",
+                    "file": "C:\\Users\\Evan\\Desktop\\phood-buddy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-w480dp\\values-w480dp.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -30,7 +30,7 @@
                     "endOffset": 184
                 },
                 "from": {
-                    "file": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-w480dp\\values-w480dp.xml",
+                    "file": "C:\\Users\\Evan\\Desktop\\phood-buddy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-w480dp\\values-w480dp.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -58,9 +58,9 @@
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
-                        "startOffset": 235,
+                        "startOffset": 231,
                         "endColumn": 61,
-                        "endOffset": 292
+                        "endOffset": 288
                     }
                 }
             },
@@ -77,9 +77,9 @@
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
-                        "startOffset": 477,
+                        "startOffset": 470,
                         "endColumn": 71,
-                        "endOffset": 544
+                        "endOffset": 537
                     }
                 }
             }

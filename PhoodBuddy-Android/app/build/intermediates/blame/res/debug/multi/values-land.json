@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\res\\merged\\debug\\values-land\\values-land.xml",
+        "outputFile": "C:\\Users\\Evan\\Desktop\\phood-buddy\\app\\build\\intermediates\\res\\merged\\debug\\values-land\\values-land.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 112
                 },
                 "from": {
-                    "file": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-land\\values-land.xml",
+                    "file": "C:\\Users\\Evan\\Desktop\\phood-buddy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-land\\values-land.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -30,7 +30,7 @@
                     "endOffset": 184
                 },
                 "from": {
-                    "file": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-land\\values-land.xml",
+                    "file": "C:\\Users\\Evan\\Desktop\\phood-buddy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-land\\values-land.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -49,7 +49,7 @@
                     "endOffset": 254
                 },
                 "from": {
-                    "file": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-land\\values-land.xml",
+                    "file": "C:\\Users\\Evan\\Desktop\\phood-buddy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-land\\values-land.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
@@ -68,7 +68,7 @@
                     "endOffset": 318
                 },
                 "from": {
-                    "file": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-land\\values-land.xml",
+                    "file": "C:\\Users\\Evan\\Desktop\\phood-buddy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-land\\values-land.xml",
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
@@ -87,7 +87,7 @@
                     "endOffset": 389
                 },
                 "from": {
-                    "file": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-land\\values-land.xml",
+                    "file": "C:\\Users\\Evan\\Desktop\\phood-buddy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-land\\values-land.xml",
                     "position": {
                         "startLine": 16,
                         "startColumn": 4,
@@ -106,7 +106,7 @@
                     "endOffset": 457
                 },
                 "from": {
-                    "file": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-land\\values-land.xml",
+                    "file": "C:\\Users\\Evan\\Desktop\\phood-buddy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-land\\values-land.xml",
                     "position": {
                         "startLine": 17,
                         "startColumn": 4,
@@ -126,7 +126,7 @@
                     "endOffset": 639
                 },
                 "from": {
-                    "file": "C:\\Users\\Evan\\Desktop\\PhoodBuddy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.1.1\\res\\values-land\\values-land.xml",
+                    "file": "C:\\Users\\Evan\\Desktop\\phood-buddy\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.1.1\\res\\values-land\\values-land.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -155,9 +155,9 @@
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
-                        "startOffset": 233,
+                        "startOffset": 229,
                         "endColumn": 61,
-                        "endOffset": 290
+                        "endOffset": 286
                     }
                 }
             },
@@ -174,9 +174,9 @@
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
-                        "startOffset": 473,
+                        "startOffset": 466,
                         "endColumn": 71,
-                        "endOffset": 540
+                        "endOffset": 533
                     }
                 }
             },
@@ -193,9 +193,9 @@
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
-                        "startOffset": 732,
+                        "startOffset": 722,
                         "endColumn": 69,
-                        "endOffset": 797
+                        "endOffset": 787
                     }
                 }
             },
@@ -212,9 +212,9 @@
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
-                        "startOffset": 980,
+                        "startOffset": 967,
                         "endColumn": 63,
-                        "endOffset": 1039
+                        "endOffset": 1026
                     }
                 }
             },
@@ -231,9 +231,9 @@
                     "position": {
                         "startLine": 16,
                         "startColumn": 4,
-                        "startOffset": 1231,
+                        "startOffset": 1215,
                         "endColumn": 70,
-                        "endOffset": 1297
+                        "endOffset": 1281
                     }
                 }
             },
@@ -250,9 +250,9 @@
                     "position": {
                         "startLine": 17,
                         "startColumn": 4,
-                        "startOffset": 1303,
+                        "startOffset": 1286,
                         "endColumn": 67,
-                        "endOffset": 1366
+                        "endOffset": 1349
                     }
                 }
             },
@@ -270,10 +270,10 @@
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
-                        "startOffset": 228,
+                        "startOffset": 224,
                         "endLine": 7,
                         "endColumn": 12,
-                        "endOffset": 408
+                        "endOffset": 401
                     }
                 }
             }
