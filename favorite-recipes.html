@@ -21,7 +21,7 @@
     <!-- Customized styles by William R.A.D. Funk -->
     <link rel="stylesheet" href="css/styles.css"/>
 	<!-- Google Open Sans font -->
-    <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
     <!-- JQUERY Library for additional functionality -->
     <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
     <!-- Bootstrap core JavaScript -->
@@ -51,13 +51,15 @@
                 <li><a href="index.html" target="_self">HOME</a></li>
                 <li><a href="https://www.fitbit.com/login" target="_blank">FITBIT</a></li>
                 <li><a href="favorite-recipes.html" target="_self">FAVORITE RECIPES</a></li>
-                <li><a href="recipe.html" target="_blank">GET A RECIPE</a></li>
+                <li><a href="recipe.html" target="_self">GET A RECIPE</a></li>
+                <li><a href="create-recipe.html" target="_self">ADD A RECIPE</a></li>
                 <li><a href="groceries.html" target="_self">SHOPPING LIST</a></li>
                 <li><a href="schedule.html" target="_self">SCHEDULE</a></li>
                 <li><a href="profile.html" target="_self">SETTINGS</a></li>
             </ul>
             <ul id="login-register" class="nav navbar-nav">
-                <li><a href="login.html" target="_self">LOGIN</a></li>
+                <li id="login-link"><a href="login.html" target="_self">LOGIN</a></li>
+                <li id="logout-link"><a href="login.html" target="_self">LOGOUT</a></li>
                 <li><a href="register.html" target="_self">REGISTER</a></li>
             </ul>
         </div>

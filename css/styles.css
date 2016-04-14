@@ -92,6 +92,10 @@ ul
 	display: block;
 	float: right;
 }
+#logout-link
+{
+	display: none;
+}
 /*** Hamburger Menu Collapse Start ***/
 /*** Ensures the hamburger menu ***/
 /*** remains collapse for all screen sizes ***/
@@ -657,6 +661,41 @@ input:-webkit-autofill {
 	text-align: right;
 }
 /************* Favorite Recipes page end ********All****/
+/************* Create Recipe page start *********All****/
+#add-recipe #upload-img
+{
+	background-color: #BBBBBB;
+	border: 3px dashed #326077;
+	color: #E2EEF4;
+	font-weight: bolder;
+	height: 175px;
+	margin-bottom: 40px;
+}
+#add-recipe #upload-img h2
+{
+	display: block;
+	margin-bottom: 10px;
+	text-align: center;
+}
+#add-recipe #upload-img h3
+{
+	display: block;
+	font-size: 14px;
+	margin-bottom: 30px;
+	margin-top: 0px;
+	text-align: center;
+}
+#add-recipe #upload-img input[type="file"]
+{
+	display: inline-block;
+	float: left;
+}
+#add-recipe #upload-img input[type="text"]
+{
+	display: inline-block;
+	float: right;
+}
+/************* Create Recipe page end ********All****/
 /************* Extraneous pages page start ******All****/
 #about table,
 #faq table,
