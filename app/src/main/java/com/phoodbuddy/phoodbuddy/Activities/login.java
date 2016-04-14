@@ -13,9 +13,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.facebook.AccessToken;
-import com.facebook.AccessTokenTracker;
-import com.facebook.CallbackManager;
-import com.facebook.login.widget.LoginButton;
 import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -49,16 +46,16 @@ public class login extends AppCompatActivity {
 
     /* Listener for Firebase session changes */
         Firebase.AuthStateListener mAuthStateListener;
-
     /* *************************************
      *              FACEBOOK               *
      ***************************************/
     /* The login button for Facebook */
-        LoginButton mFacebookLoginButton;
+      //  LoginButton mFacebookLoginButton;
     /* The callback manager for Facebook */
-        CallbackManager mFacebookCallbackManager;
+      //  CallbackManager mFacebookCallbackManager;
     /* Used to track user logging in/out off Facebook */
-        AccessTokenTracker mFacebookAccessTokenTracker;
+       // AccessTokenTracker mFacebookAccessTokenTracker;
+
 
 
     /* *************************************
@@ -84,19 +81,7 @@ public class login extends AppCompatActivity {
             String text;
             first =getSharedPreferences("FirstTime", Context.MODE_PRIVATE);
             firstTime = Boolean.valueOf(first.getBoolean("firstTime", true));
-        /* *************************************
-         *              FACEBOOK               *
-         ***************************************/
-        /* Load the Facebook login button and set up the tracker to monitor access token changes */
-            mFacebookCallbackManager = CallbackManager.Factory.create();
-            mFacebookLoginButton = (LoginButton) findViewById(R.id.login_with_facebook);
-            mFacebookAccessTokenTracker = new AccessTokenTracker() {
-                @Override
-                protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
-                    Log.i(TAG, "Facebook.AccessTokenTracker.OnCurrentAccessTokenChanged");
-                    login.this.onFacebookAccessTokenChange(currentAccessToken);
-                }
-            };
+
 
         /* *************************************
          *                TWITTER              *
@@ -150,10 +135,7 @@ public class login extends AppCompatActivity {
         @Override
         protected void onDestroy() {
             super.onDestroy();
-            // if user logged in with Facebook, stop tracking their token
-            if (mFacebookAccessTokenTracker != null) {
-                mFacebookAccessTokenTracker.stopTracking();
-            }
+
 
             // if changing configurations, stop tracking firebase session.
             mFirebaseRef.removeAuthStateListener(mAuthStateListener);
@@ -174,7 +156,6 @@ public class login extends AppCompatActivity {
                 authWithFirebase("twitter", options);
             } else {
             /* Otherwise, it's probably the request by the Facebook login button, keep track of the session */
-                mFacebookCallbackManager.onActivityResult(requestCode, resultCode, data);
             }
         }
 
@@ -203,7 +184,6 @@ public class login extends AppCompatActivity {
         private void setAuthenticatedUser(AuthData authData) {
             if (authData != null) {
             /* Hide all the login buttons */
-                mFacebookLoginButton.setVisibility(View.GONE);
                 mTwitterLoginButton.setVisibility(View.GONE);
                 mPasswordLoginButton.setVisibility(View.GONE);
                 mLoggedInStatusTextView.setVisibility(View.VISIBLE);
@@ -236,7 +216,6 @@ public class login extends AppCompatActivity {
                    }
             } else {
             /* No authenticated user show all the login buttons */
-                mFacebookLoginButton.setVisibility(View.VISIBLE);
                 mTwitterLoginButton.setVisibility(View.VISIBLE);
                 mPasswordLoginButton.setVisibility(View.VISIBLE);
                 mLoggedInStatusTextView.setVisibility(View.GONE);

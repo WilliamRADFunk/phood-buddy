@@ -9,7 +9,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 
+import com.firebase.client.AuthData;
+import com.firebase.client.Firebase;
 import com.phoodbuddy.phoodbuddy.R;
 
 /**
@@ -17,6 +21,21 @@ import com.phoodbuddy.phoodbuddy.R;
  */
 public class settings extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+
+
+    /* A reference to the Firebase */
+    private Firebase mFirebaseRef;
+    /* Data from the authenticated user */
+    private AuthData mAuthData;
+
+    ImageButton profile;
+    ImageButton tasteProfile;
+    ImageButton logout;
+    ImageButton favRecipes;
+    ImageButton healthProfile;
+
+    Intent i;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +43,47 @@ public class settings extends AppCompatActivity
         setTitle("                Settings");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        profile = (ImageButton) findViewById(R.id.myProfile);
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // Intent i = new Intent(settings.this, MyProfile.class);
+                //startActivity(i);
+            }
+        });
+        tasteProfile = (ImageButton) findViewById(R.id.tasteProfile);
+        tasteProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(settings.this, TasteProfile.class);
+                startActivity(i);
+            }
+        });
+        logout = (ImageButton) findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
+        favRecipes = (ImageButton) findViewById(R.id.favRecipes);
+        favRecipes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(settings.this, FavRecipes.class);
+                startActivity(i);
+            }
+        });
+        healthProfile = (ImageButton) findViewById(R.id.healthProfile);
+        healthProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(settings.this, health_profile.class);
+                startActivity(i);
+            }
+        });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -33,6 +93,8 @@ public class settings extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
     }
     @Override
     public void onBackPressed() {
@@ -44,6 +106,45 @@ public class settings extends AppCompatActivity
         }
     }
 
+    public void onClick(View v)
+    {
+        switch(v.getId())
+        {
+            case R.id.myProfile:
+               // i = new Intent(settings.this, MyProfile.class);
+                //startActivity(i);
+                break;
+            case R.id.favRecipes:
+                i = new Intent(settings.this, FavRecipes.class);
+                startActivity(i);
+                break;
+            case R.id.tasteProfile:
+                i = new Intent(settings.this, TasteProfile.class);
+                startActivity(i);
+                break;
+            case R.id.healthProfile:
+                i = new Intent(settings.this, health_profile.class);
+                startActivity(i);
+                break;
+            case R.id.logout:
+                logout();
+                i = new Intent(settings.this, login.class);
+                startActivity(i);
+                break;
+            default:
+                break;
+        }
+
+
+
+    }
+
+    private void logout() {
+        if (this.mAuthData != null) {
+            /* logout of Firebase */
+            mFirebaseRef.unauth();
+        }
+        }
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

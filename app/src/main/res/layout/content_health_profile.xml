@@ -8,8 +8,11 @@
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:id="@+id/imageView3"
+        android:background="#EEEEEE"
+        android:layout_marginTop="59dp"
         android:layout_alignParentTop="true"
-        android:background="#EEEEEE" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <ImageView
         android:layout_width="match_parent"
@@ -25,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Today, April 11"
+        android:text="Today, April 15"
         android:id="@+id/textView2"
         android:layout_alignBottom="@+id/imageView3"
         android:layout_alignParentLeft="true"
@@ -149,13 +152,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/progressBar"
-        android:layout_alignBottom="@+id/imageView9"
-        android:layout_toRightOf="@+id/textView9"
-        android:layout_alignRight="@+id/textView18"
-        android:layout_alignEnd="@+id/textView18"
         android:background="#EEEEEE"
-        android:layout_marginBottom="15dp"
-        android:max="5" />
+        android:max="5"
+        android:layout_below="@+id/imageView9"
+        android:layout_toRightOf="@+id/textView9"
+        android:layout_alignRight="@+id/textView20"
+        android:layout_alignEnd="@+id/textView20" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -165,9 +167,10 @@
         android:id="@+id/textView19"
         android:textColor="#777777"
         android:textStyle="bold"
-        android:layout_above="@+id/progressBar"
-        android:layout_alignLeft="@+id/progressBar"
-        android:layout_alignStart="@+id/progressBar" />
+        android:layout_alignBaseline="@+id/textView20"
+        android:layout_alignBottom="@+id/textView20"
+        android:layout_alignLeft="@+id/textView16"
+        android:layout_alignStart="@+id/textView16" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -178,8 +181,8 @@
         android:textColor="#777777"
         android:textStyle="bold"
         android:layout_above="@+id/progressBar"
-        android:layout_alignRight="@+id/progressBar"
-        android:layout_alignEnd="@+id/progressBar" />
+        android:layout_alignRight="@+id/textView18"
+        android:layout_alignEnd="@+id/textView18" />
 
     <TextView
         android:layout_width="wrap_content"

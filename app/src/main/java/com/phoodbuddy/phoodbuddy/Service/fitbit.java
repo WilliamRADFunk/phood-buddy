@@ -54,7 +54,7 @@ public class fitbit extends AppCompatActivity {
         webView.getSettings().setUserAgentString("Android");
         webView.getSettings().setSupportZoom(true);
         new GetOauthKey().execute();
-
+/*
         Toolbar toolbar_fitbit = (Toolbar) findViewById(R.id.toolbar_fitbit);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             toolbar_fitbit.setTitle("Connect Fitbit");
@@ -66,7 +66,7 @@ public class fitbit extends AppCompatActivity {
                 }
             });
         }
-
+*/
     }
 
     private void loadWebView() {

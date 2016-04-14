@@ -5,20 +5,21 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.phoodbuddy.phoodbuddy.Controllers.RecipeDetailController;
-import com.phoodbuddy.phoodbuddy.Models.Recipe;
 import com.phoodbuddy.phoodbuddy.Models.RecipeDetail;
 import com.phoodbuddy.phoodbuddy.R;
 import com.phoodbuddy.phoodbuddy.Service.FatSecretGet;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,28 +33,43 @@ public class recipe_detail extends AppCompatActivity {
     List<RecipeDetail> recipeList = new ArrayList<>();
     ListView listView;
     RecipeDetailController adapter;
-    String foodName;
     HashMap<String, String> dir;
+    ViewHolder holder;
+    Long id;
+    String image;
+    String cooking_time;
+    String serving;
+    String rating;
+    String prep_time;
+    String foodName;
+    List<String> list;
     private FatSecretGet mFatSecretGet = new FatSecretGet();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recipe_detail);
-/*
+
         Bundle i = getIntent().getExtras();
-        Long id = i.getLong("id");
+        id = i.getLong("id");
         foodName = i.getString("foodName");
+        image = i.getString("url");
         Log.d("ID", id +"");
-*/
-        foodName = "Broiled Parmesan Tilapia";
-        getFood(91);
+
+        holder = new ViewHolder();
+        holder.ingredients = (ListView) findViewById(R.id.recipe_ingredients);
+        holder.foodName = (TextView) findViewById(R.id.foodName_Detail);
+        holder.img = (ImageView) findViewById(R.id.food_recipeDetail);
+        holder.serving = (TextView) findViewById(R.id.serving_recipeDetail);
+        holder.cookingTime = (TextView) findViewById(R.id.textView3);
+        holder.prepTime = (TextView) findViewById(R.id.prep_recipeDetail);
+        holder.rating = (TextView) findViewById(R.id.textView29);
+        getFood(id);
 
     }
 
     /**
      * FatSecret get
      */
-
     private void getFood(final long id) {
         new AsyncTask<String, String, String>() {
             @Override
@@ -67,16 +83,22 @@ public class recipe_detail extends AppCompatActivity {
 
                     if (foodGet != null) {
                         StringBuffer buff = new StringBuffer();
-                        buff.append(foodGet.getString("cooking_time_min") + "\n");
-                        buff.append(foodGet.getString("number_of_servings") + "\n");
-                        buff.append(foodGet.getString("rating") + "\n");
-                        buff.append(foodGet.getString("preparation_time_min") + "\n");
-                        Log.e("", buff.toString());
+                        list = new ArrayList<String>();
+                        JSONObject recipe = foodGet.getJSONObject("recipe");
+                        cooking_time = recipe.getInt("cooking_time_min") +"";
 
-                        JSONObject recipe = new JSONObject(buffer.toString());
+                        serving = recipe.getString("number_of_servings")+"";
+                        Log.e("", serving );
+                        rating = recipe.getInt("rating")+"";
+                        Log.e("", rating );
+                        prep_time = recipe.getInt("preparation_time_min") +"";
+                        Log.e("", prep_time );
+
+                       System.out.println(prep_time + rating + serving + cooking_time);
 
                         JSONObject directions = recipe.getJSONObject("directions");
                         JSONArray direction = directions.getJSONArray("direction");
+
                         // looping through All Contacts
                         for (int i = 0; i < direction.length(); i++) {
                             JSONObject c = direction.getJSONObject(i);
@@ -87,18 +109,8 @@ public class recipe_detail extends AppCompatActivity {
                             // tmp hashmap for single dir
                             dir = new HashMap<String, String>();
                             dir.put(step, direction_description);
+                            list.add(direction_description);
                         }
-
-                        JSONObject ingredients = recipe.getJSONObject("ingredients");
-                        JSONArray ingredient = ingredients.getJSONArray("ingredient");
-                        // looping through All Contacts
-                        for (int i = 0; i < direction.length(); i++) {
-                            JSONObject c = ingredient.getJSONObject(i);
-
-                            String foodName = c.getString("food_name");
-                            Log.e("" + i, foodName );
-                        }
-
 
                     }
 
@@ -111,7 +123,15 @@ public class recipe_detail extends AppCompatActivity {
             @Override
             protected void onPostExecute(String result) {
                 super.onPostExecute(result);
-
+//
+                holder.foodName.setText(foodName + "");
+                Picasso.with(mContext).load(image).into(holder.img);
+                holder.serving.setText("This recipe can serve up to " +serving + " people.");
+               // holder.rating.setText(rating+"/5");
+                holder.cookingTime.setText(cooking_time +"min");
+                holder.prepTime.setText(prep_time +"min");
+                RecipeDetailController detail = new RecipeDetailController(getApplicationContext(), list);
+                holder.ingredients.setAdapter(detail);
                     if (result.equals("Error"))
                     Toast.makeText(getApplicationContext(), "No Items Containing Your Search", Toast.LENGTH_SHORT).show();
                     else
@@ -124,5 +144,16 @@ public class recipe_detail extends AppCompatActivity {
         }.execute();
 
         }
+    public class ViewHolder{
+        ImageView img;
+        TextView foodName;
+        TextView rating;
+        TextView serving;
+        TextView cookingTime;
+        TextView prepTime;
+        ListView ingredients;
+
+    }
+
 
 }

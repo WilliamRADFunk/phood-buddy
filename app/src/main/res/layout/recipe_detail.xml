@@ -19,7 +19,10 @@
         android:id="@+id/foodName_Detail"
         android:layout_below="@+id/food_recipeDetail"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:gravity="center|center_horizontal" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,23 +38,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Rating"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/serving_recipeDetail"
-        android:layout_alignRight="@+id/foodName_Detail"
-        android:layout_alignEnd="@+id/foodName_Detail"
-        android:layout_marginTop="15dp"
-        android:textStyle="bold|italic" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Cooking Time"
         android:id="@+id/textView5"
-        android:layout_alignBottom="@+id/textView3"
-        android:layout_centerHorizontal="true"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold|italic"
+        android:layout_below="@+id/serving_recipeDetail"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -59,43 +50,22 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Prep Time"
         android:id="@+id/textView7"
-        android:layout_marginRight="14dp"
-        android:layout_marginEnd="14dp"
-        android:layout_alignTop="@+id/textView5"
+        android:textStyle="bold|italic"
+        android:layout_marginRight="19dp"
+        android:layout_marginEnd="19dp"
+        android:layout_below="@+id/serving_recipeDetail"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:textStyle="bold|italic" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/carbs_recipeDetail"
-        android:text="4/5"
-        android:layout_below="@+id/textView3"
-        android:layout_toRightOf="@+id/serving_recipeDetail"
-        android:layout_toEndOf="@+id/serving_recipeDetail" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/cooking_recipeDetail"
-        android:text="10 min"
-        android:layout_alignBottom="@+id/carbs_recipeDetail"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/prep_recipeDetail"
-        android:text="10min"
-        android:layout_alignTop="@+id/cooking_recipeDetail"
-        android:layout_alignRight="@+id/textView7"
-        android:layout_alignEnd="@+id/textView7"
-        android:layout_marginRight="15dp"
-        android:layout_marginEnd="15dp" />
+        android:text="10 min"
+        android:layout_below="@+id/textView7"
+        android:layout_alignLeft="@+id/textView7"
+        android:layout_alignStart="@+id/textView7" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -103,25 +73,64 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Directions"
         android:id="@+id/textView14"
-        android:layout_below="@+id/carbs_recipeDetail"
+        android:textStyle="bold|italic"
+        android:layout_below="@+id/textView3"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="14dp"
-        android:textStyle="bold|italic" />
+        android:layout_marginTop="16dp" />
 
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:id="@+id/recipe_ingredients"
         android:layout_below="@+id/textView14"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true" />
 
-    <ImageButton
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/nutrition_popup"
-        android:layout_below="@+id/foodName_Detail"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="10min"
+        android:id="@+id/textView3"
+        android:layout_alignTop="@+id/prep_recipeDetail"
+        android:layout_centerHorizontal="true" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="4/5"
+            android:id="@+id/textView29"
+            android:layout_marginTop="209dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginEnd="6dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/textView8"
+            android:layout_alignEnd="@+id/textView8" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Rating"
+            android:id="@+id/textView8"
+            android:textStyle="bold|italic"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="33dp"
+            android:layout_marginStart="33dp"
+            android:layout_alignBottom="@+id/textView29"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
+
 </RelativeLayout>

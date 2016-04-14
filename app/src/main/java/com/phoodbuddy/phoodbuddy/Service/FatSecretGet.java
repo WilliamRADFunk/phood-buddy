@@ -34,6 +34,7 @@ public class FatSecretGet {
         params.add("recipe_id=" + ab);
         params.add("oauth_signature=" + sign(Globals.APP_METHOD, Globals.APP_URL, params.toArray(template)));
         JSONObject food = null;
+        JSONObject foodGet = null;
         try {
             URL url = new URL(Globals.APP_URL + "?" + paramify(params.toArray(template)));
             URLConnection api = url.openConnection();
@@ -42,13 +43,12 @@ public class FatSecretGet {
             BufferedReader reader = new BufferedReader(new InputStreamReader(api.getInputStream()));
             while ((line = reader.readLine()) != null)
                 builder.append(line);
-            JSONObject foodGet = new JSONObject(builder.toString());
-            food = foodGet.getJSONObject("recipe");
+            foodGet = new JSONObject(builder.toString());
         } catch (Exception e) {
             Log.w("", e.toString());
             e.printStackTrace();
         }
-        return food;
+        return foodGet;
     }
 
     private static String[] generateOauthParams() {

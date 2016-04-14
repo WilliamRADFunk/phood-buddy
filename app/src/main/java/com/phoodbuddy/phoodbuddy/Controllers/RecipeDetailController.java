@@ -5,11 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.phoodbuddy.phoodbuddy.Models.RecipeDetail;
 import com.phoodbuddy.phoodbuddy.R;
 
 import java.util.ArrayList;
@@ -20,10 +18,10 @@ import java.util.List;
  */
 public class RecipeDetailController extends BaseAdapter {
     Context mContext;
-    List<RecipeDetail> recipeList;
+    List<String> recipeList;
     LayoutInflater inflater;
     ViewHolder holder;
-    public RecipeDetailController(Context c, List<RecipeDetail> data)
+    public RecipeDetailController(Context c, List<String> data)
     {
         recipeList = new ArrayList<>();
         mContext = c;
@@ -38,7 +36,7 @@ public class RecipeDetailController extends BaseAdapter {
     }
 
     @Override
-    public RecipeDetail getItem(int position) {
+    public String getItem(int position) {
         return recipeList.get(position);
     }
 
@@ -52,19 +50,16 @@ public class RecipeDetailController extends BaseAdapter {
         holder = new ViewHolder();
         if(convertView == null)
         {
-            convertView = inflater.inflate(R.layout.recipes_child, null);
-            holder.foodName = (TextView) convertView.findViewById(R.id.foodName);
-            holder.img = (ImageView) convertView.findViewById(R.id.food_recipeDetail);
-            holder.serving = (TextView) convertView.findViewById(R.id.serving_recipeDetail);
-            holder.carbs = (TextView) convertView.findViewById(R.id.carbs_recipeDetail);
-            holder.cookingTime = (TextView) convertView.findViewById(R.id.cooking_recipeDetail);
-            holder.prepTime = (TextView) convertView.findViewById(R.id.prep_recipeDetail);
-            holder.ingredients = (ListView) convertView.findViewById(R.id.recipe_ingredients);
+            convertView = inflater.inflate(R.layout.recipe_detail_child, null);
 
+            holder.ingredient = (TextView) convertView.findViewById(R.id.ingredient_recipe);
+            holder.step = (TextView) convertView.findViewById(R.id.steps_detail);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
+        holder.step.setText("Step"+ " "+ (position+1));
+        holder.ingredient.setText(recipeList.get(position).toString());
 
         //Picasso.with(mContext).load(recipeList.get(position).getImage()).into(holder.img);
         //holder.foodName.setText(recipeList.get(position).getName());
@@ -73,14 +68,9 @@ public class RecipeDetailController extends BaseAdapter {
     }
 
     public class ViewHolder{
-        ImageView img;
-        TextView foodName;
-        TextView serving;
-        TextView carbs;
-        TextView cookingTime;
-        TextView prepTime;
         ListView ingredients;
-
+        TextView ingredient;
+        TextView step;
     }
 }
 
