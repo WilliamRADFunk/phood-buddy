@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="firebase_url">https://phoodbuddy.firebaseio.com</string>
+
+    <!-- Your Facebook App ID from your app settings on https://developers.facebook.com/ -->
+    <!-- More details here: https://www.firebase.com/docs/android/guide/login/facebook.html -->
+    <string name="facebook_app_id">542117312626112</string>
+
+    <!-- Your Twitter consumer key and secret from your app settings on https://apps.twitter.com/ -->
+    <!-- More details here: https://www.firebase.com/docs/android/guide/login/twitter.html -->
+    <string name="twitter_consumer_key">CbwL6yJGMdKg80NQnt8MaWuv3</string>
+    <string name="twitter_consumer_secret">r5IupNkiOPfZ6zWHOMuHi4n8vmr8aMOL7TnnBiTHtk0wE7nJdq</string>
+</resources>

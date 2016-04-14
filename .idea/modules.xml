@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/PhoodBuddy-Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/23.1.1.iml" filepath="$PROJECT_DIR$/PhoodBuddy-Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/23.1.1.iml" />
       <module fileurl="file://$PROJECT_DIR$/PhoodBuddy-Android/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/23.1.1.iml" filepath="$PROJECT_DIR$/PhoodBuddy-Android/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/23.1.1.iml" />
       <module fileurl="file://$PROJECT_DIR$/PhoodBuddy-Android/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/23.1.1.iml" filepath="$PROJECT_DIR$/PhoodBuddy-Android/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/23.1.1.iml" />
@@ -14,6 +15,11 @@
       <module fileurl="file://$PROJECT_DIR$/PhoodBuddy-Android/app/src/main/main.iml" filepath="$PROJECT_DIR$/PhoodBuddy-Android/app/src/main/main.iml" />
       <module fileurl="file://$PROJECT_DIR$/PhoodBuddy-Android/app/build/generated/source/r/r.iml" filepath="$PROJECT_DIR$/PhoodBuddy-Android/app/build/generated/source/r/r.iml" />
       <module fileurl="file://$PROJECT_DIR$/PhoodBuddy-Android/app/src/test/test.iml" filepath="$PROJECT_DIR$/PhoodBuddy-Android/app/src/test/test.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libs/libs.iml" filepath="$PROJECT_DIR$/libs/libs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/phood-buddy.iml" filepath="$PROJECT_DIR$/phood-buddy.iml" />
+>>>>>>> master
     </modules>
   </component>
 </project>
