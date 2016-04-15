@@ -113,6 +113,8 @@ function setAccount(userData, fnameString, lnameString, emailString)
 
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
 
+	var plannerJsonInit = {sunday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},monday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},tuesday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},wednesday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},thursday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},friday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},sunday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}}};
+
 	ref.child("users").child(userData.uid).set({
 			      provider: "password",
 			      profile: {
@@ -153,12 +155,17 @@ function setAccount(userData, fnameString, lnameString, emailString)
 			      	hypertension      : false,
 			      	hypotension       : false,
 			      	"high-cholestorol": false,
-			      	diabetes          : false
+			      	diabetes          : false,
+			      	vegetarian: false
 			      }
 
 			    });
 
+	ref.child("planner").child(userData.uid).set(plannerJsonInit);
+
 }
+
+
 
 
 function fbRegister(cb)
@@ -355,6 +362,8 @@ function checkIfUserExists(userId, authData, cb) {
   	{
   		var ref = new Firebase("https://phoodbuddy.firebaseio.com");
 
+  		var plannerJsonInit = {sunday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},monday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},tuesday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},wednesday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},thursday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},friday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},sunday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}}};
+
 		ref.onAuth(function(authData) 
 		{
 			 if (authData)
@@ -398,8 +407,17 @@ function checkIfUserExists(userId, authData, cb) {
 			      	spicy : 2.5,
 			      	sweet : 2.5
 			      }
+			      health:{
+			      	hypertension      : false,
+			      	hypotension       : false,
+			      	"high-cholestorol": false,
+			      	diabetes          : false,
+			      	vegetarian: false
+			      }
 
 			    });
+
+			    ref.child("planner").child(userData.uid).set(plannerJsonInit);
 			    cb(true);
 			 }
 			 else
@@ -1219,11 +1237,57 @@ function editUserHealth(contentJson, cb)
 	cb(true);
 }
 
+function getPlanner(cb)
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		return;
+		cb(false);
+	}
+	//Stores authData of package
+	var data = ref.getAuth();
+
+	var plannerRef = new Firebase("https://phoodbuddy.firebaseio.com/planner/" + data.uid + "/");
+
+	plannerRef.once("value", function(snapshot){
+
+		cb(snapshot.val());
+	});
+}
+
+function updatePlanner(dayOfWeek, timeOfDay, name, recipeId, cb)
+{
+	var plannerRef = new Firebase("https://phoodbuddy.firebaseio.com/planner/" + data.uid + "/");
+
+	var dataJson = {
+		dayOfWeek:{
+			timeOfDay:{
+				"name": name,
+				"recipeId": recipeId
+			}
+		}
+	}
+
+	plannerRef.update(dataJson);
+
+	cb(true);
+}
+
+function test()
+{
+	var planner = {sunday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},monday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},tuesday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},wednesday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},thursday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},friday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},sunday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}}};
+	console.log(planner);
+}
+
 
 //High Blood Pressure = hypertension
 //High Choloestorl
 //Diabetes
 // Low Blood Pressure = hypotension
+//Vegetarian
+
 
 
 
