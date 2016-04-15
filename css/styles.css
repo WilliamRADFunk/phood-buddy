@@ -662,22 +662,52 @@ input:-webkit-autofill {
 }
 /************* Favorite Recipes page end ********All****/
 /************* Create Recipe page start *********All****/
-#add-recipe #upload-img
+#add-recipe button
 {
-	background-color: #BBBBBB;
-	border: 3px dashed #326077;
-	color: #E2EEF4;
-	font-weight: bolder;
-	height: 175px;
-	margin-bottom: 40px;
+	background-color: #8ECDE9;
+	color: #FFFFFF;
+	display: block;
+	margin: 0px auto 20px auto;
+	width: 150px;
 }
-#add-recipe #upload-img h2
+#add-recipe hr
+{
+	margin-top: 20px;
+	width: 100%;
+}
+#add-recipe #upload-img,
+#add-recipe #main-data,
+#add-recipe #ingredients,
+#add-recipe #directions,
+#add-recipe #times
+{
+	background-color: #EFEFEF;
+	border-bottom: 1px solid #DDDDDD;
+	border-top: 1px solid #DDDDDD;
+	color: #326077;
+	font-weight: bolder;
+	height: auto;
+	margin-bottom: 30px;
+}
+#add-recipe #main-data,
+#add-recipe #ingredients,
+#add-recipe #directions,
+#add-recipe #times
+{
+	padding-bottom: 20px;
+	padding-top: 20px;
+}
+#add-recipe #upload-img h2,
+#add-recipe #ingredients h2,
+#add-recipe #directions h2
 {
 	display: block;
 	margin-bottom: 10px;
 	text-align: center;
 }
-#add-recipe #upload-img h3
+#add-recipe #upload-img h3,
+#add-recipe #ingredients h3,
+#add-recipe #directions h3
 {
 	display: block;
 	font-size: 14px;
@@ -685,15 +715,76 @@ input:-webkit-autofill {
 	margin-top: 0px;
 	text-align: center;
 }
+#add-recipe #times input[type="number"]
+{
+	width: 60%;
+}
 #add-recipe #upload-img input[type="file"]
 {
 	display: inline-block;
 	float: left;
+	margin-bottom: 20px;
+}
+#add-recipe #upload-img .input-group
+{
+	width: 40%;
+}
+#add-recipe #upload-img .input-group,
+#add-recipe #upload-img .input-group .form-control
+{
+	float: left;
+	width: 40%;
+}
+#add-recipe #upload-img .input-group-btn
+{
+	display: inline-block;
+	width: 58%;
+}
+#add-recipe #upload-img .bootstrap-filestyle.input-group input[type="text"].form-control
+{
+	float: left !important;
+	margin-bottom: 20px;
 }
 #add-recipe #upload-img input[type="text"]
 {
 	display: inline-block;
 	float: right;
+	margin-bottom: 20px;
+	text-align: center;
+}
+#add-recipe #main-data label,
+#add-recipe #ingredients label,
+#add-recipe #directions label
+{
+	float: left;
+}
+#add-recipe #directions label
+{
+	width: 5%;
+}
+#add-recipe #main-data input,
+#add-recipe #ingredients input
+{
+	float: right;
+	text-align: center;
+	width: 40%;
+}
+#add-recipe #directions input
+{
+	float: right;
+	margin-right: 5%;
+	text-align: center;
+	width: 85%;
+}
+#add-recipe #ingredients .ingredient-chunk
+{
+	padding-bottom: 50px;
+	padding-top: 50px;
+}
+#add-recipe #directions .direction-chunk
+{
+	padding-bottom: 10px;
+	padding-top: 10px;
 }
 /************* Create Recipe page end ********All****/
 /************* Extraneous pages page start ******All****/
@@ -949,6 +1040,40 @@ footer > .row > .link-column
 		white-space: normal;
 	}
 /************* Groceries page end **************767-****/
+/************* Create Recipe page start ********767-****/
+#add-recipe #upload-img h3
+{
+	font-size: 12px;
+}
+#add-recipe #upload-img .input-group
+{
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+}
+#add-recipe #upload-img .input-group .form-control
+{
+	float: none;
+	width: 55%;
+}
+#add-recipe #upload-img .input-group-btn
+{
+	float: none;
+	width: 45%;
+}
+#add-recipe #upload-img .bootstrap-filestyle.input-group input[type="text"].form-control
+{
+	margin-bottom: 20px;
+}
+#add-recipe #upload-img input[type="text"]
+{
+	display: block;
+	float: none;
+	margin: 0px auto 20px auto;
+	width: 80%;
+}
+/************* Create Recipe page end **********767-****/
 /************* Extraneous pages page start *****767-****/
 	#about .table-responsive > .table > tbody > tr > td,
 	#faq .table-responsive > .table > tbody > tr > td,

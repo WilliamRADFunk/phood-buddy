@@ -1,5 +1,7 @@
 $(document).ready(function ()
 {
+	// Enables certain Bootstrap styles for import file buttons
+	$(":file").filestyle({buttonText: "Browse..."});
 	// System attempts to log user in through Facebook, Twitter, or Google Plus
 	$("#btn-facebook").click(function(){
 		$(".modal-body").html("<p>Logging into Facebook failed. Is this your first time at Phood Buddy?</p>");
