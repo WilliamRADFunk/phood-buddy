@@ -675,6 +675,10 @@ input:-webkit-autofill {
 	margin-top: 20px;
 	width: 100%;
 }
+#add-recipe input[type="number"]
+{
+	text-align: center;
+}
 #add-recipe #upload-img,
 #add-recipe #main-data,
 #add-recipe #ingredients,
@@ -763,11 +767,35 @@ input:-webkit-autofill {
 	width: 5%;
 }
 #add-recipe #main-data input,
-#add-recipe #ingredients input
+#add-recipe #main-data select,
+#add-recipe #ingredients input,
+#add-recipe #ingredients select
 {
 	float: right;
+	height: 25px;
 	text-align: center;
 	width: 40%;
+}
+#add-recipe #main-data select,
+#add-recipe #ingredients select
+{
+	text-align-last: center;
+}
+#add-recipe ::-webkit-input-placeholder
+{
+	color: #326077;
+}
+#add-recipe :-moz-placeholder
+{
+	color: #326077;
+}
+#add-recipe ::-moz-placeholder
+{
+	color: #326077;
+}
+#add-recipe :-ms-input-placeholder
+{
+	color: #326077;
 }
 #add-recipe #directions input
 {
