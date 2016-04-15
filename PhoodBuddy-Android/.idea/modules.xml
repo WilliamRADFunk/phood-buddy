@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/PhoodBuddy-Android.iml" filepath="$PROJECT_DIR$/PhoodBuddy-Android.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/libs/libs.iml" filepath="$PROJECT_DIR$/libs/libs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smartloginlibrary-v0.5beta/smartloginlibrary-v0.5beta.iml" filepath="$PROJECT_DIR$/smartloginlibrary-v0.5beta/smartloginlibrary-v0.5beta.iml" />
     </modules>
   </component>
 </project>

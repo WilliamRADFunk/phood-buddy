@@ -30,8 +30,7 @@
         android:id="@+id/next"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:visibility="invisible" />
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -46,7 +45,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:backgroundTint="#ffffff"
+        android:clickable="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -61,7 +62,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/next"
-        android:layout_alignEnd="@+id/next" />
+        android:layout_alignEnd="@+id/next"
+        android:backgroundTint="#ffffff"
+        android:clickable="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -76,7 +79,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/next"
-        android:layout_alignEnd="@+id/next" />
+        android:layout_alignEnd="@+id/next"
+        android:backgroundTint="#ffffff"
+        android:clickable="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -89,7 +94,10 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/next"
-        android:layout_alignEnd="@+id/next" />
+        android:layout_alignEnd="@+id/next"
+        android:backgroundTint="#ffffff"
+        android:clickable="true"
+        android:inputType="number" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -102,7 +110,10 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:backgroundTint="#ffffff"
+        android:clickable="true"
+        android:inputType="number" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -115,7 +126,10 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/next"
-        android:layout_alignEnd="@+id/next" />
+        android:layout_alignEnd="@+id/next"
+        android:backgroundTint="#ffffff"
+        android:clickable="true"
+        android:inputType="number" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -128,7 +142,10 @@
         android:layout_alignRight="@+id/next"
         android:layout_alignEnd="@+id/next"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:backgroundTint="#ffffff"
+        android:clickable="true"
+        android:inputType="number" />
 
     <Button
         android:layout_width="wrap_content"

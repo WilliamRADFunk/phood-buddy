@@ -13,12 +13,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.myschoolflow.schoolflow.permission.SET_ALARM" />
 
-    <activity android:name="com.facebook.FacebookActivity" />
-
-    <meta-data
-        android:name="io.fabric.ApiKey"
-        android:value="40aef9f2ed56dbe6483cc69a101e2809df36e495" />
-
     <application
         android:name="com.phoodbuddy.phoodbuddy.Service.firebase"
         android:allowBackup="true"
@@ -41,12 +35,6 @@
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name="com.phoodbuddy.phoodbuddy.Activities.intro"
-            android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
         <!-- Get Fit Bit User Data -->
         <activity
             android:name="com.phoodbuddy.phoodbuddy.Service.fitbit"
@@ -68,6 +56,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name="com.phoodbuddy.phoodbuddy.Activities.intro"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name="com.phoodbuddy.phoodbuddy.Activities.settings"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
@@ -80,8 +73,7 @@
         <activity
             android:name="com.phoodbuddy.phoodbuddy.Activities.login"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.phoodbuddy.phoodbuddy.Activities.health_profile"
             android:configChanges="orientation|screenSize"
@@ -115,23 +107,15 @@
             android:name="com.phoodbuddy.phoodbuddy.Controllers.LoginController"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="com.phoodbuddy.phoodbuddy.Activities.FavRecipes"
-            android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.phoodbuddy.phoodbuddy.Activities.TasteProfile"
-            android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait" />
         <activity android:name="com.phoodbuddy.phoodbuddy.Service.TwitterOAuthActivity" />
+        <activity android:name="com.facebook.FacebookActivity" />
 
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="40aef9f2ed56dbe6483cc69a101e2809df36e495" />
-        <!--
-             ATTENTION: This was auto-generated to add Google Play services to your project for
-             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
-        -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

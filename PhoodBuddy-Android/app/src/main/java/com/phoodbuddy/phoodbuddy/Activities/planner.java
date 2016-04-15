@@ -9,6 +9,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CalendarView;
+import android.widget.TextView;
 
 import com.phoodbuddy.phoodbuddy.R;
 
@@ -31,7 +35,13 @@ public class planner extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
         setTitle("                Planner");
+        CalendarView cv = (CalendarView) this.findViewById(R.id.calendarView);
+        ViewGroup vg = (ViewGroup) cv.getChildAt(0);
+        View child = vg.getChildAt(0);
 
+        if(child instanceof TextView) {
+            ((TextView)child).setTextColor(getResources().getColor(R.color.black_button));
+        }
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 

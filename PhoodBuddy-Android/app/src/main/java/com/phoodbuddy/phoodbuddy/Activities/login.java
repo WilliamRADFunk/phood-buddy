@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.AccessToken;
@@ -64,6 +66,13 @@ public class login extends AppCompatActivity {
        final int RC_TWITTER_LOGIN = 2;
 
         Button mTwitterLoginButton;
+        Button facebook;
+        Button google;
+        ImageView line1;
+        ImageView line2;
+        TextView or;
+        EditText username;
+        EditText password;
 
     /* *************************************
      *              PASSWORD               *
@@ -76,17 +85,23 @@ public class login extends AppCompatActivity {
             super.onCreate(savedInstanceState);
         /* Load the view and display it */
             setContentView(R.layout.login);
+            setTitle("                            Login");
 
             SharedPreferences first;
             String text;
             first =getSharedPreferences("FirstTime", Context.MODE_PRIVATE);
             firstTime = Boolean.valueOf(first.getBoolean("firstTime", true));
-
-
+            facebook = (Button)findViewById(R.id.mFacebookLoginButton);
+            google = (Button)findViewById(R.id.mGoogleLoginButton);
+            line1 = (ImageView) findViewById(R.id.line1);
+            line2 = (ImageView) findViewById(R.id.line2);
+            or = (TextView) findViewById(R.id.or);
+            username = (EditText) findViewById(R.id.username);
+            password = (EditText) findViewById(R.id.password);
         /* *************************************
          *                TWITTER              *
          ***************************************/
-            mTwitterLoginButton = (Button) findViewById(R.id.login_with_twitter);
+            mTwitterLoginButton = (Button) findViewById(R.id.mTwitterLoginButton);
             mTwitterLoginButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -192,6 +207,13 @@ public class login extends AppCompatActivity {
             if (authData != null) {
             /* Hide all the login buttons */
                 mTwitterLoginButton.setVisibility(View.GONE);
+                facebook.setVisibility(View.GONE);
+                or.setVisibility(View.GONE);
+                google.setVisibility(View.GONE);
+                line1.setVisibility(View.GONE);
+                line2.setVisibility(View.GONE);
+                username.setVisibility(View.GONE);
+                password.setVisibility(View.GONE);
                 mPasswordLoginButton.setVisibility(View.GONE);
                 mLoggedInStatusTextView.setVisibility(View.VISIBLE);
             /* show a provider specific status text */

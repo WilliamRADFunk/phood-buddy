@@ -26,6 +26,7 @@
         android:id="@+id/calendarView"
         android:paddingTop="45dp"
         android:showWeekNumber="false"
+        android:focusedMonthDateColor="@color/black_button"
         android:layout_gravity="center_horizontal|top"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"

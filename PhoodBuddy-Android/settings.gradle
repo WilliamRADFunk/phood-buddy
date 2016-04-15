@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':smartloginlibrary-v0.5beta'
 include ':libs'

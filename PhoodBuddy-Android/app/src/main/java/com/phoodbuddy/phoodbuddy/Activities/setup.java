@@ -70,7 +70,7 @@ public class setup extends AppCompatActivity {
         holder.zipcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                holder.zipcode.setText("");
             }
         });
 
@@ -90,24 +90,6 @@ public class setup extends AppCompatActivity {
             case R.id.fitbit:
                 Intent j = new Intent(setup.this, fitbit.class);
                 startActivity(j);
-                break;
-            case R.id.allergies:
-                // take to allergies page and save in profile sql db
-                // then tke back to setup.
-                break;
-            case R.id.fullName:
-                break;
-            case R.id.birthYear:
-                break;
-            case R.id.gender:
-                break;
-            case R.id.weight:
-                break;
-            case R.id.height1:
-                break;
-            case R.id.height2:
-                break;
-            case R.id.zipcode:
                 break;
         }
 

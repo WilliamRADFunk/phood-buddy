@@ -170,8 +170,6 @@ public class shopping_list extends AppCompatActivity
            // startActivity(i);
         }
         else if (id == R.id.nav_deals) {
-            Intent i = new Intent(shopping_list.this, deals.class);
-            startActivity(i);
         }
         else if (id == R.id.nav_recipes) {
             Intent i = new Intent(shopping_list.this, recipes.class);
