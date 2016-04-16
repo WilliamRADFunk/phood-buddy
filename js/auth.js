@@ -1,8 +1,5 @@
 //*** USE OF SCRIPT REQUIRES WEBPAGE TO INCORPORATE... firebase.js, auth.js ***
 
-
-
-
 //This function is used as a input for auth functions that manages return of either error or authData
 //To be used with: fblogin, twitterlogin, googlelogin.
 function showAuth()
@@ -420,7 +417,7 @@ function checkIfUserExists(userId, authData, cb) {
 }
 
 
-function getGroceryList()
+function getGroceryList(cb)
 {
 	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
 
@@ -444,12 +441,12 @@ function getGroceryList()
 		}
 		else
 		{
-			return;
+			cb(false);
 		}
 	});	
 }
 
-function addGrocery(contentJson)
+function addGrocery(contentJson, cb)
 {
 
 	//DEBUG : WARNING ::: Convert impending input into Javascript object, set equal to 'contentJson
@@ -458,6 +455,7 @@ function addGrocery(contentJson)
 	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
 	if(ref.getAuth() === null)
 	{
+		cb(false);
 		return;
 	}
 
@@ -465,14 +463,14 @@ function addGrocery(contentJson)
 	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/");
 
 	var newGroceryRef = gref.child(data.uid).push();
-	newGroceryRef.set(contentJson);
+	newGroceryRef.update(contentJson);
 	console.log(contentJson);
 
-	cb(newGroceryRef.name()); //This cb contains the name of the created key for new object. May not need callback
+	cb(newGroceryRef.name()); //This cb contains the name of the created key for new object.
 
 }
 
-function editGrocery(contentJson)
+function editGrocery(contentJson, cb)
 {
 	//WARNING ::: Convert impending input into Javascript object (if not already), and set equal to 'contentJson'
 	// DEBUG :  DUMMY VALUE var contentJson = {"-KEnu2ENxPZIixIbbXG4":{"name": "banana", "description": "That other thing", "quantity": "2", "unit": "loafes", "category": "meat"}};
@@ -482,6 +480,7 @@ function editGrocery(contentJson)
 	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
 	if(ref.getAuth() === null)
 	{
+		cb(false);
 		return;
 	}
 
@@ -496,17 +495,23 @@ function editGrocery(contentJson)
 		{
 			var newGrocery = contentJson[keys[0]];
 			gref.child(keys[0]).set(newGrocery);
+			cb(true);
+		}
+		else
+		{
+			cb(false);
 		}
 	});
 }
 
-function deleteGrocery(contentKey)
+function deleteGrocery(contentKey, cb)
 {
 	//WARNING ::: Convert impending input into Javascript object, set equal to 'contentJson'
 
 	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
 	if(ref.getAuth() === null)
 	{
+		cb(false);
 		return;
 	}
 
@@ -514,7 +519,31 @@ function deleteGrocery(contentKey)
 
 	//Needs to add key to URL path and remove using 'gref.remove()'
 	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/" + contentKey);
+
+	if(gref == null)
+	{
+		cb(false);
+	}
+
 	gref.remove();
+	cb(true);
+}
+
+function removeAllGrocery(cb)
+{
+	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
+	if(ref.getAuth() === null)
+	{
+		cb(false);
+		return;
+	}
+
+	var data = ref.getAuth();
+
+	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/");
+
+	gref.remove();
+	cb(true);
 }
 
 
@@ -967,16 +996,6 @@ function getAllRecipes(count, cb)
 	});
 }
 
-//Function to retireve list of users favorited recipes
-//Function to retrieve 
-
-// getTaste
-// AddAlergy (String)
-//DeleteAlergy (String)
-// *Make sure user created profile has an empty string for taste.
-
-//function getUserRecipe
-
 function editUserProfile(fname, lname, email, city, country, state, street, age, favdish, favdrink, gender, about, cb) //
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
@@ -1028,21 +1047,14 @@ function getUserProfileSettings()
 		//cb(false);
 		return;
 	}
-
 	//Stores authData of package
 	var data = ref.getAuth();
 
 	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/profile/");
 
 	userRef.once("value", function(snapshot){
-
 		console.log(snapshot.val());
-
 	});
-
-
-
-
 }
 
 
@@ -1112,8 +1124,6 @@ function editTasteProfile(contentJson, cb)
 	//Stores authData of package
 	var data = ref.getAuth();
 
-	
-
 	console.log(contentJson);
 
 	tasteRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
@@ -1160,7 +1170,6 @@ function editUserAllergies(contentJson, cb)
 		return;
 		cb(false);
 	}
-
 	//Stores authData of package
 	var data = ref.getAuth();
 
