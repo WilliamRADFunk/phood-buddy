@@ -1,5 +1,20 @@
+var imageUpload = "";
+
 $(document).ready(function ()
 {
+	// Starts to upload image once user picks an image
+	$("input[type=file]").change(function(){
+		imageUpload = $("input[type=file]")[0].files[0];
+		var reader = new FileReader();
+		reader.readAsDataURL(imageUpload);
+		console.log("image uploading");
+		reader.onload = function(e)
+		{
+			// browser completed reading file - display it
+			imageUpload = e.target.result;
+			console.log("image uploaded");
+		};
+	});
 	// Enables certain Bootstrap styles for import file buttons
 	$(":file").filestyle({buttonText: "Browse..."});
 	// System attempts to log user in through Facebook, Twitter, or Google Plus
@@ -409,14 +424,21 @@ function removeDirection(elem)
 	var count = $("#directions").find("label > span");
 	for(var i = 0; i < count.length; i++) { count[i].innerHTML = (i + 1); }
 }
-// Collects, validates, and organizes data from "create a recipe" and passes it to the Firebase API
+// Collects, validates, and organizes data from "create a recipe" and passes it to the Firebase API.
 function submitRecipe()
 {
-	var imageUpload = $("input > .filestyle");
+	// Collecting image ul data.
+	var img;
 	var imagePasted = $("#img-url").val();
+	// Checking to see which of the two options for image upload the user chose.
+	if(imageUpload === "") img = imagePasted;
+	else img = imageUpload;
+	console.log(img);
+	// Collect data from all fields.
 	var title = $("#recipe-title").val();
-	var dominantTaste = $("#taste:selected").text();
-	var mealTime = $("#meal-time:selected").text();
+	var dominantTaste = $("#taste").val();
+	var mealTime = $("#meal-time").val();
+	var synopsis = $("#recipe-description").val();
 	var ingredients = $("#ingredients").children();
 	var ingrLength = ingredients.length - 1;
 	var ingNames = $("#ingredients").find(".ingredient-name");
@@ -427,22 +449,62 @@ function submitRecipe()
 	var prepTime = $("#pTime").val();
 	var cookTime = $("#cTime").val();
 	var totalTime = $("#tTime").val();
-
+	var confirm;
+	// Verifies user left no field empty. If so, spawn modal and return from function.
+	if( (img === "" || img === null || img === undefined) ||
+		(title === "" || title === null || title === undefined) ||
+		(dominantTaste === "" || dominantTaste === null || dominantTaste === undefined) ||
+		(mealTime === "" || mealTime === null || mealTime === undefined) ||
+		(synopsis === "" || synopsis === null || synopsis === undefined) ||
+		(prepTime === "" || prepTime === null || prepTime === undefined) ||
+		(cookTime === "" || cookTime === null || cookTime === undefined) ||
+		(totalTime === "" || totalTime === null || totalTime === undefined) )
+	{
+		confirm = function() {window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/create-recipe.html";};
+		spawnModal("Invalid Input", "<p>You left one or more fields empty. Would you like to reset the page</p>", confirm);
+		return;
+	}
+	// Collect ingredient data.
 	var ingreds = [];
 	for(var i = 0; i < ingrLength; i++)
 	{
+		// Verifies user left no field empty. If so, spawn modal and return from function.
+		if( (ingNames[i].value === "" || ingNames[i].value === null || ingNames[i].value === undefined) ||
+		(ingDescriptions[i].value === "" || ingDescriptions[i].value === null || ingDescriptions[i].value === undefined) ||
+		(ingQuantities[i].value === "" || ingQuantities[i].value === null || ingQuantities[i].value === undefined)
+		(ingUnits[i].value === "" || ingUnits[i].value === null || ingUnits[i].value === undefined) )
+		{
+			spawnModal("Invalid Input", "<p>You left one or more fields empty. Would you like to reset the page</p>", confirm);
+			return;
+		}
+		// Collects data from each field and inputs into double array.
 		ingreds[i] = [];
 		ingreds[i].push(ingNames[i].value);
 		ingreds[i].push(ingDescriptions[i].value);
 		ingreds[i].push(ingQuantities[i].value);
 		ingreds[i].push(ingUnits[i].value);
 	}
+	// Collect direction data.
 	var directs = [];
 	for(var j = 0; j < directions.length; j++)
 	{
+		// Verifies user left no field empty. If so, spawn modal and return from function.
+		if( (directions[j].value === "" || directions[j].value === null || directions[j].value === undefined) )
+		{
+			spawnModal("Invalid Input", "<p>You left one or more fields empty. Would you like to reset the page</p>", confirm);
+			return;
+		}
 		directs[j] = directions[j].value;
 	}
-	console.log(ingreds, directs);
+	// Sends collected, and validated data, to the data layer for proper assembly
+	assembleRecipe(synopsis, img, title, dominantTaste, ingreds, directs, cookTime, prepTime, totalTime, mealTime, function(response){console.log("Mission Success: " + response);});
+}
+function spawnModal(header, body, confirm, cancel)
+{
+	$("#modal").modal({backdrop: "static", keyboard: false, show: true});
+	$(".modal-header").html(header);
+	$(".modal-body").html(body);
+	$("#btn-confirm").click(function(){confirm();});
 }
 // User chose a mealtime to populate in the "weekly schedule"
 // Options are loaded into the Dom.

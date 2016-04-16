@@ -31,6 +31,7 @@
     <!-- Firebase Library for database communication -->
     <script type="text/javascript" async src="js/firebase.js"></script>
     <script type="text/javascript" async src="js/auth.js"></script>
+    <script type="text/javascript" async src="js/data.js"></script>
     <!-- Custom Scripts -->
     <script type="text/javascript" async src="js/scripts.js"></script>
 </head>
@@ -99,7 +100,7 @@
                                     <option value="sweet">Sweet</option>
                                 </select>
                             </div>
-                            <div class="stand-alonecol-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <label>Meal Type: </label>
                                 <select id="meal-time">
                                     <option value="" class="placeholder" disabled selected>-----</option>
@@ -107,6 +108,10 @@
                                     <option value="lunch">Lunch</option>
                                     <option value="dinner">Dinner</option>
                                 </select>
+                            </div>
+                            <div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <label>Recipe Synopsis: </label>
+                                <input id="recipe-description" type="text" placeholder="Super yummy pasta plate"/>
                             </div>
                         </div>
 <!-- Section for Title, Taste, Meal End -->
