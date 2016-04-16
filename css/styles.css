@@ -814,7 +814,36 @@ input:-webkit-autofill {
 	padding-bottom: 10px;
 	padding-top: 10px;
 }
-/************* Create Recipe page end ********All****/
+/************* Create Recipe page end ********All*******/
+/************* Schedule page start ***********All*******/
+#week-schedule
+{
+	margin-bottom: 25px;
+}
+#week-schedule .weekday
+{
+	background-color: #EFEFEF;
+	border: 2px solid #DDDDDD;
+	color: #326077;
+	padding-bottom: 10px;
+	text-align: center;
+}
+#week-schedule .weekday > h3
+{
+	margin-bottom: 20px;
+}
+#week-schedule .weekday > div
+{
+	cursor: pointer;
+	height: 40px;
+	line-height: 40px;
+}
+#week-schedule .weekday > div:hover
+{
+	background-color: #326077;
+	color: #FFFFFF;
+}
+/************* Schedule page end *************All*******/
 /************* Extraneous pages page start ******All****/
 #about table,
 #faq table,
