@@ -131,31 +131,53 @@ function removeAllGrocery(cb)
 
 function assembleRecipe(author, description, img, name, taste, ingredients, directions, cookTime, prepTime, totalTime, mealTime, cb)
 {
-
-	var ingredientList = [];
-
-	for(var i = 0; i < ingredients.length; i++)
+	
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+	var data = ref.getAuth();
+	if(data == null)
 	{
-		var miniObject = { "name": ingredients[i][0], "quantity": ingredients[i][1], "unit": ingredients[i][2], "description": ingredients[i][3]}
-		ingredientList[i] = miniObject;
+		cb(false);
 	}
 
-	var recipeJson =  {
-					  "author" : author,
-					  "cookTime" : cookTime,
-					  "custom" : true,
-					  "description" : description,
-					  ingredientList,
-					  "img" : img,
-					  directions,
-					  "mealTime" : mealTime,
-					  "name" : name,
-					  "prepTime" : prepTime,
-					  "taste" : taste,
-					  "totalTime" : totalTime
-					}
+	var fullName;
 
-	postRecipe(recipeJson, cb);
+	var subRef = ref.child("users/" + data.uid + "/");
+
+	subRef.once("value", function(snapshot){
+
+		var nameSnap = snapshot.child("name");
+		fullName = nameSnap.val();
+
+		var ingredientList = [];
+
+		for(var i = 0; i < ingredients.length; i++)
+		{
+			var miniObject = { "name": ingredients[i][0], "quantity": ingredients[i][1], "unit": ingredients[i][2], "description": ingredients[i][3]}
+			ingredientList[i] = miniObject;
+		}
+
+		var recipeJson =  {
+						  "author" : fullName,
+						  "cookTime" : cookTime,
+						  "custom" : true,
+						  "description" : description,
+						  ingredientList,
+						  "img" : img,
+						  directions,
+						  "mealTime" : mealTime,
+						  "name" : name,
+						  "prepTime" : prepTime,
+						  "taste" : taste,
+						  "totalTime" : totalTime
+						}
+
+		postRecipe(recipeJson, cb);
+	});
+
+
+
+
+	
 }
 
 function postRecipe(recipeJson, cb)
@@ -165,8 +187,8 @@ function postRecipe(recipeJson, cb)
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 	if(ref.getAuth() === null)
 	{
-		return;
 		cb(false);
+		return;
 	}
 
 	var data = ref.getAuth();
@@ -643,9 +665,12 @@ function editUserProfile(fname, lname, email, city, country, state, street, age,
 		
 	//DEBUG console.log(profileData);
 
-	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/profile/");
+	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
 
-	userRef.update(profileData);
+	var fullName = fname + " " + lname;
+
+	userRef.child("name").update(fullName);
+	userRef.child("profile").update(profileData);
 	//cb(true);
 
 }
@@ -882,8 +907,13 @@ function updatePlanner(dayOfWeek, timeOfDay, name, recipeId, cb)
 
 function test()
 {
-	var planner = {sunday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},monday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},tuesday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},wednesday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},thursday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},friday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},sunday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}}};
-	console.log(planner);
+	var fname = "Jorge"
+	var lname = "Rodriguez"
+	var fullName = fname + " " + lname;
+
+	console.log("First name: " + fname + " with last name " + lname);
+	console.log("Full name: " + fullName);
+	console.log("END");
 }
 
 //AJAX Functions (Hollow)
