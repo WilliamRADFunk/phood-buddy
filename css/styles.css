@@ -843,6 +843,10 @@ input:-webkit-autofill {
 }
 #week-schedule button
 {
+	background-color: #8ECDE9;
+	color: #FFFFFF;
+	height: 30px;
+	line-height: 24px;
 	width: 100px;
 }
 #week-schedule .weekday > h3

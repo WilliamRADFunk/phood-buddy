@@ -455,8 +455,7 @@ function submitRecipe()
 		(cookTime === "" || cookTime === null || cookTime === undefined) ||
 		(totalTime === "" || totalTime === null || totalTime === undefined) )
 	{
-		confirm = function() {window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/create-recipe.html";};
-		spawnModal("Invalid Input", "<p>You left one or more fields empty. Would you like to reset the page</p>", confirm);
+		spawnModal("Invalid Input", "<p>You left one or more fields empty. Would you like to reset the page</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/create-recipe.html", true);
 		return;
 	}
 	// Collect ingredient data.
@@ -466,10 +465,10 @@ function submitRecipe()
 		// Verifies user left no field empty. If so, spawn modal and return from function.
 		if( (ingNames[i].value === "" || ingNames[i].value === null || ingNames[i].value === undefined) ||
 		(ingDescriptions[i].value === "" || ingDescriptions[i].value === null || ingDescriptions[i].value === undefined) ||
-		(ingQuantities[i].value === "" || ingQuantities[i].value === null || ingQuantities[i].value === undefined)
+		(ingQuantities[i].value === "" || ingQuantities[i].value === null || ingQuantities[i].value === undefined) ||
 		(ingUnits[i].value === "" || ingUnits[i].value === null || ingUnits[i].value === undefined) )
 		{
-			spawnModal("Invalid Input", "<p>You left one or more fields empty. Would you like to reset the page</p>", confirm);
+			spawnModal("Invalid Input", "<p>You left one or more fields empty. Would you like to reset the page</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/create-recipe.html", true);
 			return;
 		}
 		// Collects data from each field and inputs into double array.
@@ -486,20 +485,32 @@ function submitRecipe()
 		// Verifies user left no field empty. If so, spawn modal and return from function.
 		if( (directions[j].value === "" || directions[j].value === null || directions[j].value === undefined) )
 		{
-			spawnModal("Invalid Input", "<p>You left one or more fields empty. Would you like to reset the page</p>", confirm);
+			spawnModal("Invalid Input", "<p>You left one or more fields empty. Would you like to reset the page</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/create-recipe.html", true);
 			return;
 		}
 		directs[j] = directions[j].value;
 	}
 	// Sends collected, and validated data, to the data layer for proper assembly
-	assembleRecipe(synopsis, img, title, dominantTaste, ingreds, directs, cookTime, prepTime, totalTime, mealTime, function(response){console.log("Mission Success: " + response);});
+	assembleRecipe(synopsis, img, title, dominantTaste, ingreds, directs, cookTime, prepTime, totalTime, mealTime, addRecipeReply);
 }
-function spawnModal(header, body, confirm, cancel)
+function addRecipeReply(result)
+{
+	if(result) spawnModal("Submission Success", "<p>Your recipe has found its new home at Phood Buddy</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/create-recipe.html", false);
+	else spawnModal("Submission Failed", "<p>Your recipe wasn't submitted. Double check your inputs</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/create-recipe.html", false);
+}
+function spawnModal(header, body, redirect, moreThanOneBtn, cancel)
 {
 	$("#modal").modal({backdrop: "static", keyboard: false, show: true});
 	$(".modal-header").html(header);
 	$(".modal-body").html(body);
-	$("#btn-confirm").click(function(){confirm();});
+
+	if(moreThanOneBtn) $("#btn-cancel").css("display", "block");
+	else  $("#btn-cancel").css("display", "none");
+
+	$("#btn-confirm").click(function() {
+		window.location = redirect;
+		$("#btn-cancel").css("display", "block");
+	});
 }
 // User chose a mealtime to populate in the "weekly schedule"
 // Options are loaded into the Dom.
@@ -508,7 +519,7 @@ function openRecipeOptions(day, mealTime)
 	var activeDiv = $("#" + day + " > ." + mealTime);
 	activeDiv.html(
 		"<button id='" + day + "-" + mealTime + "' class='phood-buddy-choice'>Pick For Me</button>" +
-		"<button id='" + day + "-" + mealTime + "' class='phood-buddy-choice'>Fav Recipe</button>" + 
-		"<button id='" + day + "-" + mealTime + "' class='phood-buddy-choice'>Cancel</button>"
+		"<button id='" + day + "-" + mealTime + "' class='phood-buddy-fav'>Fav Recipe</button>" + 
+		"<button id='" + day + "-" + mealTime + "' class='phood-buddy-cancel'>Cancel</button>"
 	);
 }
