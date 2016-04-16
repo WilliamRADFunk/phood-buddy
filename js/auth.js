@@ -406,7 +406,7 @@ function checkIfUserExists(userId, authData, cb) {
 						vegetarian: false
 					}
 				});
-				ref.child("planner").child(userData.uid).set(plannerJsonInit);
+				ref.child("planner").child(authData.uid).set(plannerJsonInit);
 				cb(true);
 			}
 			else
@@ -418,8 +418,6 @@ function checkIfUserExists(userId, authData, cb) {
 		}
 	});
 }
-
-
 
 
 //High Blood Pressure = hypertension
