@@ -105,12 +105,15 @@ function customLogin(emailString, passwordString, cb)
 function setAccount(userData, fnameString, lnameString, emailString)
 {
 
+	var fullName = fnameString + " " + lnameString;
+
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
 
 	var plannerJsonInit = {sunday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},monday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},tuesday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},wednesday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},thursday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},friday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},sunday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}}};
 
 	ref.child("users").child(userData.uid).set({
 					provider: "password",
+					"name": fullName,
 					profile: {
 						fname    : fnameString,
 						lname    : lnameString,
