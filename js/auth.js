@@ -394,7 +394,7 @@ function checkIfUserExists(userId, authData, cb) {
 						sour  : 2.5,
 						spicy : 2.5,
 						sweet : 2.5
-					}
+					},
 					health:{
 						hypertension      : false,
 						hypotension       : false,
@@ -573,6 +573,7 @@ function postRecipe(recipeJson, cb)
 	ref.child("users").child(data.uid).child("created-recipe").update(storeJson);
 	cb(true);
 }
+
 
 function getUserRecipes(cb)
 {
