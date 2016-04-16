@@ -79,134 +79,134 @@ $(document).ready(function ()
 		$("#my-profile").css("display", "block");
 		$("#btn-edit-profile").css("display", "block");
 		$("#btn-personal-profile").addClass("active");
-        $("#my-risks").css("display", "none");
-        $("#btn-edit-risks").css("display", "none");
-        $("#btn-risk-profile").removeClass("active");
-        $("#my-exercise").css("display", "none");
-        $("#btn-edit-exercise").css("display", "none");
-        $("#btn-exercise-profile").removeClass("active");
-        $("#my-tastes").css("display", "none");
-        $("#btn-edit-tastes").css("display", "none");
-        $("#btn-taste-profile").removeClass("active");
+		$("#my-risks").css("display", "none");
+		$("#btn-edit-risks").css("display", "none");
+		$("#btn-risk-profile").removeClass("active");
+		$("#my-exercise").css("display", "none");
+		$("#btn-edit-exercise").css("display", "none");
+		$("#btn-exercise-profile").removeClass("active");
+		$("#my-tastes").css("display", "none");
+		$("#btn-edit-tastes").css("display", "none");
+		$("#btn-taste-profile").removeClass("active");
 	});
 	$("#btn-risk-profile").click(function(){
 		$("#my-profile").css("display", "none");
 		$("#btn-edit-profile").css("display", "none");
 		$("#btn-personal-profile").removeClass("active");
-        $("#my-risks").css("display", "block");
-        $("#btn-edit-risks").css("display", "block");
-        $("#btn-risk-profile").addClass("active");
-        $("#my-exercise").css("display", "none");
-        $("#btn-edit-exercise").css("display", "none");
-        $("#btn-exercise-profile").removeClass("active");
-        $("#my-tastes").css("display", "none");
-        $("#btn-edit-tastes").css("display", "none");
-        $("#btn-taste-profile").removeClass("active");
+		$("#my-risks").css("display", "block");
+		$("#btn-edit-risks").css("display", "block");
+		$("#btn-risk-profile").addClass("active");
+		$("#my-exercise").css("display", "none");
+		$("#btn-edit-exercise").css("display", "none");
+		$("#btn-exercise-profile").removeClass("active");
+		$("#my-tastes").css("display", "none");
+		$("#btn-edit-tastes").css("display", "none");
+		$("#btn-taste-profile").removeClass("active");
 	});
 	$("#btn-exercise-profile").click(function(){
 		$("#my-profile").css("display", "none");
 		$("#btn-edit-profile").css("display", "none");
 		$("#btn-personal-profile").removeClass("active");
-        $("#my-risks").css("display", "none");
-        $("#btn-edit-risks").css("display", "none");
-        $("#btn-risk-profile").removeClass("active");
-        $("#my-exercise").css("display", "block");
-        $("#btn-edit-exercise").css("display", "block");
-        $("#btn-exercise-profile").addClass("active");
-        $("#my-tastes").css("display", "none");
-        $("#btn-edit-tastes").css("display", "none");
-        $("#btn-taste-profile").removeClass("active");
+		$("#my-risks").css("display", "none");
+		$("#btn-edit-risks").css("display", "none");
+		$("#btn-risk-profile").removeClass("active");
+		$("#my-exercise").css("display", "block");
+		$("#btn-edit-exercise").css("display", "block");
+		$("#btn-exercise-profile").addClass("active");
+		$("#my-tastes").css("display", "none");
+		$("#btn-edit-tastes").css("display", "none");
+		$("#btn-taste-profile").removeClass("active");
 	});
 	$("#btn-taste-profile").click(function(){
 		$("#my-profile").css("display", "none");
 		$("#btn-edit-profile").css("display", "none");
 		$("#btn-personal-profile").removeClass("active");
-        $("#my-risks").css("display", "none");
-        $("#btn-edit-risks").css("display", "none");
-        $("#btn-risk-profile").removeClass("active");
-        $("#my-exercise").css("display", "none");
-        $("#btn-edit-exercise").css("display", "none");
-        $("#btn-exercise-profile").removeClass("active");
-        $("#my-tastes").css("display", "block");
-        $("#btn-edit-tastes").css("display", "block");
-        $("#btn-taste-profile").addClass("active");
+		$("#my-risks").css("display", "none");
+		$("#btn-edit-risks").css("display", "none");
+		$("#btn-risk-profile").removeClass("active");
+		$("#my-exercise").css("display", "none");
+		$("#btn-edit-exercise").css("display", "none");
+		$("#btn-exercise-profile").removeClass("active");
+		$("#my-tastes").css("display", "block");
+		$("#btn-edit-tastes").css("display", "block");
+		$("#btn-taste-profile").addClass("active");
 	});
 	$("#btn-logout").click(function(){
 		window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html";
 	});
 	// Controls how long between carousel transitions.
 	$('.carousel').carousel({
-	    interval: 4000
+		interval: 4000
 	});
 	// Specifies content and functionality of modal when
 	// user clicks specific links/buttons.
-    $("#lost-password").click(function(){
-    	$("#modal").modal({backdrop: "static", keyboard: false, show: true});
+	$("#lost-password").click(function(){
+		$("#modal").modal({backdrop: "static", keyboard: false, show: true});
 		$(".modal-header").html("Reset Password");
 		$(".modal-body").html("<form><label>Registered Email:&nbsp;&nbsp;</label><input type='text' /></form>");
 		$("#btn-confirm").click(function(){
 			/* TODO: Send reset password email */
 		});
-    });
-    $(".delete-item").click(function(e){
-    	$("#modal").modal({backdrop: "static", keyboard: false, show: true});
+	});
+	$(".delete-item").click(function(e){
+		$("#modal").modal({backdrop: "static", keyboard: false, show: true});
 		$(".modal-header").html("Delete Item");
 		$(".modal-body").html("<p>Are you sure you want to delete this item from your list?</p>");
 		$("#btn-confirm").click(function(){
 			/* TODO: Delete item from the list */
 			/* TODO: Reload Groceries page */
 		});
-    });
-    $(".edit-item").click(function(e){
-    	$("#modal").modal({backdrop: "static", keyboard: false, show: true});
+	});
+	$(".edit-item").click(function(e){
+		$("#modal").modal({backdrop: "static", keyboard: false, show: true});
 		$(".modal-header").html("Edit Item");
 		$(".modal-body").html('<div class="row">' +
 			'<div id="editing-item">' +
-	            '<select class="col-lg-12 col-md-12 col-sm-12 col-xs-12">' +
-	                '<option value="" disabled selected>Category</option>' +
-	                '<option value="baked goods">Baked Goods</option>' +
-	                '<option value="beverages">Beverages</option>' +
-	                '<option value="canned goods">Canned Goods</option>' +
-	                '<option value="cereals">Cereals</option>' +
-	                '<option value="condiments">Condiments</option>' +
-	                '<option value="dairy">Dairy</option>' +
-	                '<option value="frozen">Frozen Foods</option>' +
-	                '<option value="meats">Meats, Fish, &amp; Poultry</option>' +
-	                '<option value="produce">Produce</option>' +
-	                '<option value="baking and spices">Baking &amp; Spices</option>' +
-	                '<option value="miscellaneous">Miscellaneous</option>' +
-	            '</select>' +
-	            '<input type="text" name="name" placeholder="Name" class="col-lg-12 col-md-12 col-sm-12 col-xs-12"/>' +
-	            '<input type="text" name="description" placeholder="Description" class="col-lg-12 col-md-12 col-sm-12 col-xs-12"/>' +
-	            '<input type="number" name="quantity" placeholder="Quantity" class="col-lg-12 col-md-12 col-sm-12 col-xs-12"/>' +
-	            '<select class="col-lg-12 col-md-12 col-sm-12 col-xs-12">' +
-	                '<option value="" disabled selected>Unit</option>' +
-	                '<option value="teaspoons">teaspoons</option>' +
-	                '<option value="tablespoons">tablespoons</option>' +
-	                '<option value="fluid ounces">fluid ounces</option>' +
-	                '<option value="gills">gills</option>' +
-	                '<option value="cups">cups</option>' +
-	                '<option value="pints">pints</option>' +
-	                '<option value="quarts">quarts</option>' +
-	                '<option value="gallons">gallons</option>' +
-	                '<option value="milliliters">milliliters</option>' +
-	                '<option value="liters">liters</option>' +
-	                '<option value="deciliters">deciliters</option>' +
-	                '<option value="pounds">pounds</option>' +
-	                '<option value="ounces">ounces</option>' +
-	                '<option value="milligrams">milligrams</option>' +
-	                '<option value="grams">grams</option>' +
-	                '<option value="kilograms">kilograms</option>' +
-	                '<option value="millimeters">millimeters</option>' +
-	                '<option value="centimeters">centimeters</option>' +
-	                '<option value="meters">meters</option>' +
-	                '<option value="inches">inches</option>' +
-	            '</select>');
+			'<select class="col-lg-12 col-md-12 col-sm-12 col-xs-12">' +
+				'<option value="" disabled selected>Category</option>' +
+				'<option value="baked goods">Baked Goods</option>' +
+				'<option value="beverages">Beverages</option>' +
+				'<option value="canned goods">Canned Goods</option>' +
+				'<option value="cereals">Cereals</option>' +
+				'<option value="condiments">Condiments</option>' +
+				'<option value="dairy">Dairy</option>' +
+				'<option value="frozen">Frozen Foods</option>' +
+				'<option value="meats">Meats, Fish, &amp; Poultry</option>' +
+				'<option value="produce">Produce</option>' +
+				'<option value="baking and spices">Baking &amp; Spices</option>' +
+				'<option value="miscellaneous">Miscellaneous</option>' +
+			'</select>' +
+			'<input type="text" name="name" placeholder="Name" class="col-lg-12 col-md-12 col-sm-12 col-xs-12"/>' +
+			'<input type="text" name="description" placeholder="Description" class="col-lg-12 col-md-12 col-sm-12 col-xs-12"/>' +
+			'<input type="number" name="quantity" placeholder="Quantity" class="col-lg-12 col-md-12 col-sm-12 col-xs-12"/>' +
+			'<select class="col-lg-12 col-md-12 col-sm-12 col-xs-12">' +
+				'<option value="" disabled selected>Unit</option>' +
+				'<option value="teaspoons">teaspoons</option>' +
+				'<option value="tablespoons">tablespoons</option>' +
+				'<option value="fluid ounces">fluid ounces</option>' +
+				'<option value="gills">gills</option>' +
+				'<option value="cups">cups</option>' +
+				'<option value="pints">pints</option>' +
+				'<option value="quarts">quarts</option>' +
+				'<option value="gallons">gallons</option>' +
+				'<option value="milliliters">milliliters</option>' +
+				'<option value="liters">liters</option>' +
+				'<option value="deciliters">deciliters</option>' +
+				'<option value="pounds">pounds</option>' +
+				'<option value="ounces">ounces</option>' +
+				'<option value="milligrams">milligrams</option>' +
+				'<option value="grams">grams</option>' +
+				'<option value="kilograms">kilograms</option>' +
+				'<option value="millimeters">millimeters</option>' +
+				'<option value="centimeters">centimeters</option>' +
+				'<option value="meters">meters</option>' +
+				'<option value="inches">inches</option>' +
+			'</select>');
 		$("#btn-confirm").click(function(){
 			/* TODO: Send edited data */
 			/* TODO: Reload Groceries page */
 		});
-    });
+	});
 });
 function registerCallback(result)
 {
@@ -265,4 +265,141 @@ function submitItem()
 	/* TODO: Send item to database */
 	/* TODO: Have modal show success or failure */
 	/* TODO: Reload page with new grocery list */
+}
+// Adds a new ingredient for user to fill in.
+function addIngredient(elem)
+{
+	var ingredients = $("#ingredients").children();
+	var ingrLength = ingredients.length;
+	var btnsToHideAdd = $("#ingredients").find(".add-ingredient");
+	var btnsToHideDel = $("#ingredients").find(".delete-ingredient");
+	var btnsToShow = $("#ingredients").find(".remove-ingredient");
+
+	for(var i = 0; i < btnsToHideAdd.length; i++)
+	{
+		if(btnsToHideAdd[i]) btnsToHideAdd[i].style.display = "none";
+		if(btnsToHideDel[i]) btnsToHideDel[i].style.display = "none";
+		if(btnsToShow[i]) btnsToShow[i].style.display = "block";
+	}
+
+	$("#ingredients").append(
+		'<div id="ingredient-' + ingrLength + '" class="ingredient-chunk">' +
+			'<hr/>' +
+			'<h3>Ingredient #<span>' + ingrLength + '</span></h3>' +
+			'<div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12">' +
+				'<label>Ingredient: </label>' +
+				'<input class="ingredient-name" type="text" placeholder="Carrots"/>' +
+			'</div>' +
+			'<div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12">' +
+				'<label>Description: </label>' +
+				'<input class="ingredient-desc" type="text" placeholder="diced"/>' +
+			'</div>' +
+			'<div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12">' +
+				'<label>Quantity: </label>' +
+				'<input class="ingredient-quant" type="number" placeholder="0"/>' +
+			'</div>' +
+			'<div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12">' +
+				'<label>Unit: </label>' +
+				'<select class="ingredient-unit">' +
+					'<option value="" class="placeholder"  disabled selected>Select Unit</option>' +
+					'<option value="teaspoons">teaspoons</option>' +
+					'<option value="tablespoons">tablespoons</option>' +
+					'<option value="fluid ounces">fluid ounces</option>' +
+					'<option value="gills">gills</option>' +
+					'<option value="cups">cups</option>' +
+					'<option value="pints">pints</option>' +
+					'<option value="quarts">quarts</option>' +
+					'<option value="gallons">gallons</option>' +
+					'<option value="milliliters">milliliters</option>' +
+					'<option value="liters">liters</option>' +
+					'<option value="deciliters">deciliters</option>' +
+					'<option value="pounds">pounds</option>' +
+					'<option value="ounces">ounces</option>' +
+					'<option value="milligrams">milligrams</option>' +
+					'<option value="grams">grams</option>' +
+					'<option value="kilograms">kilograms</option>' +
+					'<option value="millimeters">millimeters</option>' +
+					'<option value="centimeters">centimeters</option>' +
+					'<option value="meters">meters</option>' +
+					'<option value="inches">inches</option>' +
+				'</select>' +
+			'</div>' +
+			'<div class="stand-alone col-lg-6 col-md-6 col-sm-6 col-xs-12">' +
+				'<button class="add-ingredient" onclick="addIngredient()">Add Ingredient</button>' +
+			'</div>' +
+			'<div class="stand-alone col-lg-6 col-md-6 col-sm-6 col-xs-12">' +
+				'<button class="delete-ingredient" onclick="removeIngredient(\'ingredient-' + ingrLength + '\')">Remove Ingredient</button>' +
+			'</div>' +
+			'<div class="stand-alone col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-12">' +
+				'<button class="remove-ingredient" onclick="removeIngredient(\'ingredient-' + ingrLength + '\')" style="display:none;">Remove Ingredient</button>' +
+			'</div>' +
+		'</div>');
+}
+// Removes an new ingredient for user to fill in.
+function removeIngredient(elem)
+{
+	var ingredients = $("#ingredients").children();
+	var ingrLength = ingredients.length - 1;
+	console.log(ingrLength);
+	if(ingrLength > 1) $("#" + elem).remove();
+
+	var btnsAdd = $("#ingredients").find(".add-ingredient");
+	var btnsDel = $("#ingredients").find(".delete-ingredient");
+	var btnsRem = $("#ingredients").find(".remove-ingredient");
+
+	if(btnsAdd[btnsAdd.length-1])btnsAdd[btnsAdd.length-1].style.display = "block";
+	if(btnsDel[btnsDel.length-1])btnsDel[btnsDel.length-1].style.display = "block";
+	if(btnsRem[btnsRem.length-1])btnsRem[btnsRem.length-1].style.display = "none";
+
+	var count = $("#ingredients").find("h3 > span");
+	var countLength = count.length;
+	for(var i = 0; i < countLength; i++)
+	{
+		count[i].innerHTML = (i + 1);
+	}
+}
+// Collects, validates, and organizes data from "create a recipe" and passes it to the Firebase API
+function submitRecipe()
+{
+	var imageUpload = $("input > .filestyle");
+	var imagePasted = $("#img-url").val();
+	var title = $("#recipe-title").val();
+	var dominantTaste = $("#taste:selected").text();
+	var mealTime = $("#meal-time:selected").text();
+	var ingredients = $("#ingredients").children();
+	var ingrLength = ingredients.length - 1;
+	var ingNames = $("#ingredients").find(".ingredient-name");
+	var ingDescriptions = $("#ingredients").find(".ingredient-desc");
+	var ingQuantities = $("#ingredients").find(".ingredient-quant");
+	var ingUnits = $("#ingredients").find(".ingredient-unit");
+	var directions = $("#directions").find("input");
+	var prepTime = $("#pTime").val();
+	var cookTime = $("#cTime").val();
+	var totalTime = $("#tTime").val();
+
+	var ingreds = [];
+	for(var i = 0; i < ingrLength; i++)
+	{
+		ingreds[i] = [];
+		ingreds[i].push(ingNames[i].value);
+		ingreds[i].push(ingDescriptions[i].value);
+		ingreds[i].push(ingQuantities[i].value);
+		ingreds[i].push(ingUnits[i].value);
+	}
+	var directs = [];
+	for(var j = 0; j < directions.length; j++)
+	{
+		directs[j] = directions[j].value;
+	}
+	console.log(ingreds, directs);
+}
+// User chose a mealtime to populate in the "weekly schedule"
+// Options are loaded into the Dom.
+function openRecipeOptions(day, mealTime)
+{
+	var activeDiv = $("#" + day + " > ." + mealTime);
+	activeDiv.html(
+		"<button id='" + day + "-" + mealTime + "' class='phood-buddy-choice'>Pick For Me</button>" +
+		"<button id='" + day + "-" + mealTime + "' class='phood-buddy-choice'>Pick For Me</button>"
+	);
 }

@@ -666,6 +666,9 @@ input:-webkit-autofill {
 {
 	background-color: #8ECDE9;
 	color: #FFFFFF;
+}
+#add-recipe #submit-recipe
+{
 	display: block;
 	margin: 0px auto 20px auto;
 	width: 150px;
@@ -780,6 +783,16 @@ input:-webkit-autofill {
 #add-recipe #ingredients select
 {
 	text-align-last: center;
+}
+#add-recipe #ingredients > .ingredient-chunk > .stand-alone > button,
+#add-recipe #ingredients > .ingredient-chunk > .stand-alone > button
+{
+	margin-top: 20px;
+	width: 100%;
+}
+#add-recipe #ingredients #btn-first-ingredient-del
+{
+	display: none;
 }
 #add-recipe ::-webkit-input-placeholder
 {

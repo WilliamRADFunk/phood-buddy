@@ -70,39 +70,42 @@
     <div id="wrapper" class="container">
         <div id="add-recipe">
             <h1>Add a Recipe</h1>
-            <button id="submit-recipe">SUBMIT RECIPE</button>
+            <button id="submit-recipe" onclick="submitRecipe()">SUBMIT RECIPE</button>
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">
-                    <form autocomplete="off" class="row">
+                    <div autocomplete="off" class="row">
 <!-- Section for Image Upload Start -->
                         <div id="upload-img" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <h2>Upload Image</h2>
                             <h3>(load from local source, or enter remote url)</h3>
                             <input type="file" class="filestyle" data-buttonBefore="true" data-buttonText=" Browse...">
-                            <input type="text" placeholder="Enter image URL"/>
+                            <input id="img-url" type="text" placeholder="Enter image URL"/>
                         </div>
 <!-- Section for Image Upload End -->
 <!-- Section for Title, Taste, Meal Start -->
                         <div id="main-data" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12"><label>Recipe Title: </label><input type="text" placeholder="My Awesome Recipe"/></div>
+                            <div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <label>Recipe Title: </label>
+                                <input id="recipe-title" type="text" placeholder="My Awesome Recipe"/>
+                            </div>
                             <div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <label>Dominant Taste: </label>
-                                <select>
+                                <select id="taste">
                                     <option value="" class="placeholder"  disabled selected>-----</option>
-                                    <option id="taste-bitter" value="bitter">Bitter</option>
-                                    <option id="taste-salty" value="salty">Salty</option>
-                                    <option id="taste-sour" value="sour">Sour</option>
-                                    <option id="taste-spicy" value="spicy">Spicy</option>
-                                    <option id="taste-sweet" value="sweet">Sweet</option>
+                                    <option value="bitter">Bitter</option>
+                                    <option value="salty">Salty</option>
+                                    <option value="sour">Sour</option>
+                                    <option value="spicy">Spicy</option>
+                                    <option value="sweet">Sweet</option>
                                 </select>
                             </div>
                             <div class="stand-alonecol-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <label>Meal Type: </label>
-                                <select>
+                                <select id="meal-time">
                                     <option value="" class="placeholder" disabled selected>-----</option>
-                                    <option id="meal-breakfast" value="breakfast">Breakfast</option>
-                                    <option id="meal-lunch" value="lunch">Lunch</option>
-                                    <option id="taste-dinner" value="dinner">Dinner</option>
+                                    <option value="breakfast">Breakfast</option>
+                                    <option value="lunch">Lunch</option>
+                                    <option value="dinner">Dinner</option>
                                 </select>
                             </div>
                         </div>
@@ -110,15 +113,24 @@
 <!-- Section for Ingredients Start -->
                         <div id="ingredients" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <h2>Ingredients</h2>
-                            <div id="ingredient-1" class="ingredient-chunk">
+                            <div id="ingredient-0" class="ingredient-chunk">
                                 <hr/>
                                 <h3>Ingredient #<span>1</span></h3>
-                                <div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12"><label>Ingredient: </label><input type="text" placeholder="Carrots"/></div>
-                                <div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12"><label>Description: </label><input type="text" placeholder="diced"/></div>
-                                <div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12"><label>Quantity: </label><input type="number" placeholder="0"/></div>
+                                <div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <label>Ingredient: </label>
+                                    <input class="ingredient-name" type="text" placeholder="Carrots"/>
+                                </div>
+                                <div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <label>Description: </label>
+                                    <input class="ingredient-desc" type="text" placeholder="diced"/>
+                                </div>
+                                <div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <label>Quantity: </label>
+                                    <input class="ingredient-quant" type="number" placeholder="0"/>
+                                </div>
                                 <div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <label>Unit: </label>
-                                    <select>
+                                    <select class="ingredient-unit">
                                         <option value="" class="placeholder"  disabled selected>Select Unit</option>
                                         <option value="teaspoons">teaspoons</option>
                                         <option value="tablespoons">tablespoons</option>
@@ -142,38 +154,11 @@
                                         <option value="inches">inches</option>
                                     </select>
                                 </div>
-                            </div>
-                            <div id="ingredient-2" class="ingredient-chunk">
-                                <hr/>
-                                <h3>Ingredient #<span>2</span></h3>
-                                <div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12"><label>Ingredient: </label><input type="text" placeholder="Carrots"/></div>
-                                <div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12"><label>Description: </label><input type="text" placeholder="diced"/></div>
-                                <div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12"><label>Quantity: </label><input type="number" placeholder="0"/></div>
-                                <div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <label>Unit: </label>
-                                    <select>
-                                        <option value="" class="placeholder"  disabled selected>Select Unit</option>
-                                        <option value="teaspoons">teaspoons</option>
-                                        <option value="tablespoons">tablespoons</option>
-                                        <option value="fluid ounces">fluid ounces</option>
-                                        <option value="gills">gills</option>
-                                        <option value="cups">cups</option>
-                                        <option value="pints">pints</option>
-                                        <option value="quarts">quarts</option>
-                                        <option value="gallons">gallons</option>
-                                        <option value="milliliters">milliliters</option>
-                                        <option value="liters">liters</option>
-                                        <option value="deciliters">deciliters</option>
-                                        <option value="pounds">pounds</option>
-                                        <option value="ounces">ounces</option>
-                                        <option value="milligrams">milligrams</option>
-                                        <option value="grams">grams</option>
-                                        <option value="kilograms">kilograms</option>
-                                        <option value="millimeters">millimeters</option>
-                                        <option value="centimeters">centimeters</option>
-                                        <option value="meters">meters</option>
-                                        <option value="inches">inches</option>
-                                    </select>
+                                <div class="stand-alone col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-12">
+                                    <button class="add-ingredient" onclick="addIngredient()">Add Ingredient</button>
+                                </div>
+                                <div class="stand-alone col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-12">
+                                    <button class="remove-ingredient" onclick="removeIngredient('ingredient-0')" style="display:none;">Remove Ingredient</button>
                                 </div>
                             </div>
                         </div>
@@ -183,11 +168,17 @@
                             <h2>Directions</h2>
                             <div id="direction-1" class="direction-chunk">
                                 <hr/>
-                                <div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12"><label>1: </label><input type="text" placeholder="Do this in a certain way"/></div>
+                                <div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <label>1: </label>
+                                    <input type="text" placeholder="Do this in a certain way"/>
+                                </div>
                             </div>
                             <div id="direction-2" class="direction-chunk">
                                 <hr/>
-                                <div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12"><label>2: </label><input type="text" placeholder="Do this in a certain way"/></div>
+                                <div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <label>2: </label>
+                                    <input type="text" placeholder="Do this in a certain way"/>
+                                </div>
                             </div>
                         </div>
 <!-- Section for Directions End -->
@@ -195,19 +186,19 @@
                         <div id="times" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div id="prep-time" class="col-lg-3 col-lg-offset-2 col-md-3 col-md-offset-1 col-sm-4 col-xs-12">
                                 <h2>Prep Time</h2>
-                                <div><input type="number" placeholder="0"/> mins</div>
+                                <div><input id="pTime" type="number" placeholder="0"/> mins</div>
                             </div>
                             <div id="cook-time" class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                                 <h2>Cook Time</h2>
-                                <div><input type="number" placeholder="0"/> mins</div>
+                                <div><input id="cTime" type="number" placeholder="0"/> mins</div>
                             </div>
                             <div id="total-time" class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                                 <h2>Total Time</h2>
-                                <div><input type="number" placeholder="0"/> mins</div>
+                                <div><input id="tTime" type="number" placeholder="0"/> mins</div>
                             </div>
                         </div>
 <!-- Section for Prep, Cook, Total Times End -->
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
