@@ -433,7 +433,7 @@ function submitRecipe()
 	// Checking to see which of the two options for image upload the user chose.
 	if(imageUpload === "") img = imagePasted;
 	else img = imageUpload;
-	console.log(img);
+	
 	// Collect data from all fields.
 	var title = $("#recipe-title").val();
 	var dominantTaste = $("#taste").val();
