@@ -1,6 +1,8 @@
 package com.phoodbuddy.phoodbuddy.Activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,32 +21,48 @@ import com.vlonjatg.android.apptourlibrary.MaterialSlide;
  */
 public class intro extends AppTour {
 
+        Boolean firstTime = false;
+        SharedPreferences first;
         @Override
         public void init(Bundle savedInstanceState) {
-                int firstColor = Color.parseColor("#0097A7");
-                int secondColor = Color.parseColor("#FFA000");
-                int customSlideColor = Color.parseColor("#4585A1");
+                first =getSharedPreferences("FirstTime", Context.MODE_PRIVATE);
+                firstTime = Boolean.valueOf(first.getBoolean("firstTime", true));
 
-                //Create pre-created fragments
-                Fragment firstSlide = MaterialSlide.newInstance(R.drawable.charge, "Integrate with Fitbit",
-                        "Get Fitbit data to go along with your daily meals!", Color.WHITE, Color.WHITE);
+                if(firstTime) {
+                        int firstColor = Color.parseColor("#3EC1C1");
+                        int secondColor = Color.parseColor("#62A4B5");
+                        int customSlideColor = Color.parseColor("#008040");
 
-                // image of recipe list
-                Fragment secondSlide = MaterialSlide.newInstance(R.drawable.charge, "Phood Buddy will be the your food-finding friend",
-                        "Suggesting recipes catered to your unique taste profile and health conditions.", Color.WHITE, Color.WHITE);
+                        //Create pre-created fragments
+                        Fragment firstSlide = MaterialSlide.newInstance(R.drawable.charge, "Phood Buddy will integrate with Fitbit",
+                                "Get Fitbit data to go along with your daily meals!", Color.WHITE, Color.WHITE);
+
+                        // image of recipe list
+                        Fragment secondSlide = MaterialSlide.newInstance(R.drawable.target, "Phood Buddy will be the your food friend",
+                                "Suggesting recipes catered to your unique taste profile and health conditions.", Color.WHITE, Color.WHITE);
 
 
-                //Add slides
-                addSlide(firstSlide, firstColor);
-                addSlide(secondSlide, secondColor);
+                        //Add slides
+                        addSlide(firstSlide, firstColor);
+                        addSlide(secondSlide, secondColor);
 
-                //Custom slide
-                addSlide(new CustomSlide(), customSlideColor);
+                        //Custom slide
+                        addSlide(new CustomSlide(), customSlideColor);
 
-                //Customize tour
-                setSkipButtonTextColor(Color.WHITE);
-                setNextButtonColorToWhite();
-                setDoneButtonTextColor(Color.WHITE);
+                        //Customize tour
+                        setSkipButtonTextColor(Color.WHITE);
+                        setNextButtonColorToWhite();
+                        setDoneButtonTextColor(Color.WHITE);
+
+
+                }
+                else
+                {
+                        Intent i = new Intent(intro.this, login.class);
+                        startActivity(i);
+                }
+
+
 
         }
 
@@ -60,7 +78,7 @@ public class intro extends AppTour {
 
         @Override
         public void onDonePressed() {
-                Intent i = new Intent(intro.this, setup.class);
+                Intent i = new Intent(intro.this, login.class);
                 startActivity(i);
                 finish();
 

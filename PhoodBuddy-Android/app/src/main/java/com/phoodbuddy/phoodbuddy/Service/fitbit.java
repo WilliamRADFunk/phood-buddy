@@ -113,7 +113,6 @@ public class fitbit extends AppCompatActivity {
                 finalizeOAuthInputs.set_CallbackID(callbacks);
                 finalizeOAuthInputs.set_OAuthTokenSecret(secret);
                 finalizeOAuthInputs.set_ConsumerSecret(Globals.CUSTOMER_SECRET);
-                finalizeOAuthInputs.set_ConsumerKey(Globals.CUSTOMER_KEY);
                 FinalizeOAuth.FinalizeOAuthResultSet finalizeOAuthResults = finalizeOAuthChoreo.execute(finalizeOAuthInputs);
                 Log.e("token", finalizeOAuthResults.get_AccessToken());
                 Log.e("secret", finalizeOAuthResults.get_AccessTokenSecret());

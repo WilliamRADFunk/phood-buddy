@@ -61,8 +61,8 @@ public class RecipeDetailController extends BaseAdapter {
         holder.step.setText("Step"+ " "+ (position+1));
         holder.ingredient.setText(recipeList.get(position).toString());
 
-        //Picasso.with(mContext).load(recipeList.get(position).getImage()).into(holder.img);
-        //holder.foodName.setText(recipeList.get(position).getName());
+        //Picasso.with(mContext).load(favRecipes.get(position).getImage()).into(holder.img);
+        //holder.foodName.setText(favRecipes.get(position).getName());
 
         return convertView;
     }

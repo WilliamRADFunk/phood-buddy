@@ -20,6 +20,10 @@
     <string name="login_with_facebook">Login with Facebook</string>
     <string name="login_with_twitter">Login with Twitter</string>
     <string name="login_with_password">Login with Password</string>
+    <string name="breakfest_today">Mark as Breakfest Today</string>
+    <string name="lunch_today">Mark as Lunch Today</string>
+    <string name="dinner_today">Mark as Dinner Today</string>
+    <string name="meal_custom">Meal Custom</string>
 
 
 </resources>

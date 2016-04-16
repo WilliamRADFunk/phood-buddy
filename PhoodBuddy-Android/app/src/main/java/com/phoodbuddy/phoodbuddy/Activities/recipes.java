@@ -3,6 +3,7 @@ package com.phoodbuddy.phoodbuddy.Activities;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -16,9 +17,12 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.phoodbuddy.phoodbuddy.Controllers.RecipeController;
@@ -56,6 +60,9 @@ View v;
         setContentView(R.layout.recipe_list);
         setTitle("                Recipes");
         mContext = this;
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         android.support.v7.app.ActionBar ab = getSupportActionBar();
         ab.setDisplayShowCustomEnabled(true);
         ab.setDisplayShowTitleEnabled(false);
@@ -76,8 +83,6 @@ View v;
                 startActivity(i);
             }
         });
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -221,9 +226,9 @@ View v;
                 listView.invalidate();
                 adapter = new RecipeController(getApplicationContext(), recipeList);
                 listView.setAdapter(adapter);
-                if (result.equals("Error"))
-                    Toast.makeText(getApplicationContext(), "No Items Containing Your Search", Toast.LENGTH_SHORT).show();
-
+                if (result.equals("Error")) {
+                   // Toast.makeText(getApplicationContext(), "No Items Containing Your Search", Toast.LENGTH_SHORT).show();
+                }
             }
         }.execute();
     }

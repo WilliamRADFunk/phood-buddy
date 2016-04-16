@@ -16,7 +16,7 @@
             android:title="Deals (coming soon!)" />
         <item
             android:id="@+id/nav_recipes"
-            android:icon="@android:drawable/list_selector_background"
+            android:icon="@android:drawable/ic_menu_slideshow"
             android:title="Recipes" />
         <item
             android:id="@+id/nav_agenda"
@@ -37,7 +37,7 @@
                 android:title="Health Profile" />
             <item
                 android:id="@+id/nav_settings"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_settingsicond3x"
                 android:title="Settings" />
         </menu>
     </item>

@@ -52,7 +52,6 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="phone"
         android:ems="10"
         android:textColor="@color/white"
         android:id="@+id/birthYear"
@@ -64,12 +63,12 @@
         android:layout_alignRight="@+id/next"
         android:layout_alignEnd="@+id/next"
         android:backgroundTint="#ffffff"
-        android:clickable="true" />
+        android:clickable="true"
+        android:inputType="date" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="date"
         android:ems="10"
         android:textColor="@color/white"
         android:onClick="onClick"
@@ -81,7 +80,8 @@
         android:layout_alignRight="@+id/next"
         android:layout_alignEnd="@+id/next"
         android:backgroundTint="#ffffff"
-        android:clickable="true" />
+        android:clickable="true"
+        android:inputType="number" />
 
     <EditText
         android:layout_width="wrap_content"

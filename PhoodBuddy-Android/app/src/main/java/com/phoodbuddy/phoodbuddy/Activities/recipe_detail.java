@@ -2,11 +2,15 @@ package com.phoodbuddy.phoodbuddy.Activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -48,17 +52,20 @@ public class recipe_detail extends AppCompatActivity {
     List<String> list;
     View v;
     ImageView backButton;
+    SQLiteDatabase db;
     private FatSecretGet mFatSecretGet = new FatSecretGet();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recipe_detail);
+        db=openOrCreateDatabase("FavRecipe", Context.MODE_PRIVATE, null);
+        db.execSQL("CREATE TABLE IF NOT EXISTS favRecipes(image VARCHAR,name VARCHAR,id TEXT);");
 
         Bundle i = getIntent().getExtras();
         id = i.getLong("id");
         foodName = i.getString("foodName");
         image = i.getString("url");
-        Log.d("ID", id +"");
+        Log.d("ID", id + "");
 
         holder = new ViewHolder();
         holder.ingredients = (ListView) findViewById(R.id.recipe_ingredients);
@@ -76,27 +83,39 @@ public class recipe_detail extends AppCompatActivity {
         android.support.v7.app.ActionBar ab = getSupportActionBar();
         ab.setDisplayShowCustomEnabled(true);
         ab.setDisplayShowTitleEnabled(false);
+
         LayoutInflater inflator = (LayoutInflater) this
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         v = inflator.inflate(R.layout.back_button, null);
         ab.setCustomView(v);
-
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        backButton = (ImageView) findViewById(R.id.back_button);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(recipe_detail.this, recipes.class);
-                startActivity(i);
-            }
-        });
-
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.fav_rec:
+                db.execSQL("INSERT INTO favRecipes VALUES('"+ image+"','"+foodName+
+                        "','"+id+"');");
+                return true;
+            case R.id.breakfest_today:
+                return true;
+            case R.id.lunch_today:
+                return true;
+            case R.id.dinner_today:
+                return true;
+            case R.id.meal_custom:
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     /**
      * FatSecret get
@@ -163,9 +182,10 @@ public class recipe_detail extends AppCompatActivity {
                 holder.prepTime.setText(prep_time +"min");
                 RecipeDetailController detail = new RecipeDetailController(getApplicationContext(), list);
                 holder.ingredients.setAdapter(detail);
-                    if (result.equals("Error"))
-                    Toast.makeText(getApplicationContext(), "No Items Containing Your Search", Toast.LENGTH_SHORT).show();
-                    else
+                    if (result.equals("Error")) {
+                     //   Toast.makeText(getApplicationContext(), "No Items Containing Your Search", Toast.LENGTH_SHORT).show();
+
+                    }else
                     {
 
                     }

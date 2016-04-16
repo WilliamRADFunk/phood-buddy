@@ -385,8 +385,9 @@
     <string name="async_error">Could not download events from the internet</string>
     <string name="auth_google_play_services_client_facebook_display_name">Facebook</string>
     <string name="auth_google_play_services_client_google_display_name">Google</string>
+    <string name="breakfest_today">Mark as Breakfest Today</string>
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
-    <string name="com.crashlytics.android.build_id" ns1:ignore="UnusedResources,TypographyDashes" translatable="false">46263f56-adfb-4f8b-ae76-f5091e1b199a</string>
+    <string name="com.crashlytics.android.build_id" ns1:ignore="UnusedResources,TypographyDashes" translatable="false">0a30c1b5-82b5-44d9-a497-9a2459b0b6b6</string>
     <string name="com_facebook_image_download_unknown_error">Unexpected error while downloading an image.</string>
     <string name="com_facebook_internet_permission_error_message">WebView login requires INTERNET permission</string>
     <string name="com_facebook_internet_permission_error_title">AndroidManifest Error</string>
@@ -433,12 +434,15 @@
     <string name="common_google_play_services_updating_text"><ns1:g id="app_name">%1$s</ns1:g> won\'t run without Google Play services, which are currently updating.</string>
     <string name="common_google_play_services_updating_title">Google Play services are updating</string>
     <string name="common_open_on_phone">Open on phone</string>
+    <string name="dinner_today">Mark as Dinner Today</string>
     <string name="facebook_app_id">542117312626112</string>
     <string name="firebase_url">https://phoodbuddy.firebaseio.com</string>
     <string name="hello_world">Hello world!</string>
     <string name="login_with_facebook">Login with Facebook</string>
     <string name="login_with_password">Login with Password</string>
     <string name="login_with_twitter">Login with Twitter</string>
+    <string name="lunch_today">Mark as Lunch Today</string>
+    <string name="meal_custom">Meal Custom</string>
     <string name="messenger_send_button_text">Send</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

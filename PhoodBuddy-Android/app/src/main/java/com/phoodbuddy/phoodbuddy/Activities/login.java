@@ -73,7 +73,7 @@ public class login extends AppCompatActivity {
         TextView or;
         EditText username;
         EditText password;
-
+        TextView register;
     /* *************************************
      *              PASSWORD               *
      ***************************************/
@@ -85,7 +85,7 @@ public class login extends AppCompatActivity {
             super.onCreate(savedInstanceState);
         /* Load the view and display it */
             setContentView(R.layout.login);
-            setTitle("                            Login");
+            setTitle("                           Login");
 
             SharedPreferences first;
             String text;
@@ -98,6 +98,7 @@ public class login extends AppCompatActivity {
             or = (TextView) findViewById(R.id.or);
             username = (EditText) findViewById(R.id.username);
             password = (EditText) findViewById(R.id.password);
+            register = (TextView) findViewById(R.id.register);
         /* *************************************
          *                TWITTER              *
          ***************************************/
@@ -214,6 +215,7 @@ public class login extends AppCompatActivity {
                 line2.setVisibility(View.GONE);
                 username.setVisibility(View.GONE);
                 password.setVisibility(View.GONE);
+                register.setVisibility(View.GONE);
                 mPasswordLoginButton.setVisibility(View.GONE);
                 mLoggedInStatusTextView.setVisibility(View.VISIBLE);
             /* show a provider specific status text */
@@ -234,7 +236,7 @@ public class login extends AppCompatActivity {
                        editor.putBoolean("firsTime", false);
                        editor.commit();
 
-                       Intent i = new Intent(login.this, intro.class);
+                       Intent i = new Intent(login.this, setup.class);
                        startActivity(i);
                    }
                     else

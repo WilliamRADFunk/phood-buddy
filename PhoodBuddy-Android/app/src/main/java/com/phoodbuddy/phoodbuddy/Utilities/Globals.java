@@ -11,7 +11,7 @@ public class Globals {
     final static public String APP_URL = "http://platform.fatsecret.com/rest/server.api";
     final public static String HMAC_SHA1_ALGORITHM = "HmacSHA1";
 
-    final static public String CUSTOMER_KEY = "227PST";
+    final static public String CUSTOMER_KEY = "";
     final static public String CUSTOMER_SECRET = "0808955b42f81e0d5092a299fe543b77";
 
 }
