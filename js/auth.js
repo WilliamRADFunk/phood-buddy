@@ -548,14 +548,15 @@ function removeAllGrocery(cb)
 
 
 
-function postRecipe(recipeJson)
+function postRecipe(recipeJson, cb)
 {
-	//var recipeJson = {name:"Tossed Salad and Scambled Eggs", author: "Trump", custom: false};
+	//var recipeJson = {name:"Tossed Salad and Scambled Eggs", author: "Trump", custom: true};
 
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 	if(ref.getAuth() === null)
 	{
 		return;
+		cb(false);
 	}
 
 	var data = ref.getAuth();
@@ -570,6 +571,7 @@ function postRecipe(recipeJson)
 	storeJson[recipeId] = true;
 
 	ref.child("users").child(data.uid).child("created-recipe").update(storeJson);
+	cb(true);
 }
 
 function getUserRecipes(cb)
