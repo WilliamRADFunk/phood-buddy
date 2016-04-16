@@ -269,30 +269,31 @@ function submitItem()
 // Adds a new ingredient for user to fill in.
 function addIngredient(elem)
 {
+	// Find all relevant tags once to avoid redundancy.
 	var ingredients = $("#ingredients").children();
 	var ingrLength = ingredients.length;
 	var btnsToHideAdd = $("#ingredients").find(".add-ingredient");
 	var btnsToHideDel = $("#ingredients").find(".delete-ingredient");
 	var btnsToShow = $("#ingredients").find(".remove-ingredient");
-
+	// Updates the add and remove buttons so only the bottom ingredient has both.
 	for(var i = 0; i < btnsToHideAdd.length; i++)
 	{
 		if(btnsToHideAdd[i]) btnsToHideAdd[i].style.display = "none";
 		if(btnsToHideDel[i]) btnsToHideDel[i].style.display = "none";
 		if(btnsToShow[i]) btnsToShow[i].style.display = "block";
 	}
-
+	// Adds the HTML inputs for a new ingredient.
 	$("#ingredients").append(
 		'<div id="ingredient-' + ingrLength + '" class="ingredient-chunk">' +
 			'<hr/>' +
 			'<h3>Ingredient #<span>' + ingrLength + '</span></h3>' +
 			'<div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12">' +
 				'<label>Ingredient: </label>' +
-				'<input class="ingredient-name" type="text" placeholder="Carrots"/>' +
+				'<input class="ingredient-name" type="text" placeholder="(ie. Carrots)"/>' +
 			'</div>' +
 			'<div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12">' +
 				'<label>Description: </label>' +
-				'<input class="ingredient-desc" type="text" placeholder="diced"/>' +
+				'<input class="ingredient-desc" type="text" placeholder="(ie. dice into fine pieces)"/>' +
 			'</div>' +
 			'<div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12">' +
 				'<label>Quantity: </label>' +
@@ -338,25 +339,75 @@ function addIngredient(elem)
 // Removes an new ingredient for user to fill in.
 function removeIngredient(elem)
 {
+	// Gets rid of the ingredient if it isn't the only one left.
 	var ingredients = $("#ingredients").children();
 	var ingrLength = ingredients.length - 1;
-	console.log(ingrLength);
 	if(ingrLength > 1) $("#" + elem).remove();
-
+	// Updated button list.
 	var btnsAdd = $("#ingredients").find(".add-ingredient");
 	var btnsDel = $("#ingredients").find(".delete-ingredient");
 	var btnsRem = $("#ingredients").find(".remove-ingredient");
-
+	// Updates the add and remove buttons so only the bottom ingredient has both.
 	if(btnsAdd[btnsAdd.length-1])btnsAdd[btnsAdd.length-1].style.display = "block";
 	if(btnsDel[btnsDel.length-1])btnsDel[btnsDel.length-1].style.display = "block";
 	if(btnsRem[btnsRem.length-1])btnsRem[btnsRem.length-1].style.display = "none";
-
+	// Updates the ingredient numbers.
 	var count = $("#ingredients").find("h3 > span");
-	var countLength = count.length;
-	for(var i = 0; i < countLength; i++)
+	for(var i = 0; i < count.length; i++) { count[i].innerHTML = (i + 1); }
+}
+// Adds a new direction for user to fill in.
+function addDirection(elem)
+{
+	// Find all relevant tags once to avoid redundancy.
+	var directions = $("#directions").children();
+	var dirLength = directions.length;
+	var btnsToHideAdd = $("#directions").find(".add-direction");
+	var btnsToHideDel = $("#directions").find(".delete-direction");
+	var btnsToShow = $("#directions").find(".remove-direction");
+	// Updates the add and remove buttons so only the bottom direction has both.
+	for(var i = 0; i < btnsToHideAdd.length; i++)
 	{
-		count[i].innerHTML = (i + 1);
+		if(btnsToHideAdd[i]) btnsToHideAdd[i].style.display = "none";
+		if(btnsToHideDel[i]) btnsToHideDel[i].style.display = "none";
+		if(btnsToShow[i]) btnsToShow[i].style.display = "block";
 	}
+	// Adds the HTML inputs for a new direction.
+	$("#directions").append(
+		'<div id="direction-' + dirLength + '" class="direction-chunk">' +
+			'<hr/>' +
+			'<div class="stand-alone col-lg-12 col-md-12 col-sm-12 col-xs-12">' +
+				'<label><span>' + dirLength + '</span>: </label>' +
+				'<input type="text" placeholder="(ie. cut the veggies)"/>' +
+			'</div>' +
+			'<div class="stand-alone col-lg-6 col-md-6 col-sm-6 col-xs-12">' +
+				'<button class="add-direction" onclick="addDirection()">Add Direction</button>' +
+			'</div>' +
+			'<div class="stand-alone col-lg-6 col-md-6 col-sm-6 col-xs-12">' +
+				'<button class="delete-direction" onclick="removeDirection(\'direction-' + dirLength + '\')">Remove Direction</button>' +
+			'</div>' +
+			'<div class="stand-alone col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-12">' +
+				'<button class="remove-direction" onclick="removeDirection(\'direction-' + dirLength + '\')" style="display:none;">Remove Direction</button>' +
+			'</div>' +
+		'</div>');
+}
+// Removes an new direction for user to fill in.
+function removeDirection(elem)
+{
+	// Gets rid of the direction if it isn't the only one left.
+	var directions = $("#directions").children();
+	var dirLength = directions.length - 1;
+	if(dirLength > 1) $("#" + elem).remove();
+	// Updated button list.
+	var btnsAdd = $("#directions").find(".add-direction");
+	var btnsDel = $("#directions").find(".delete-direction");
+	var btnsRem = $("#directions").find(".remove-direction");
+	// Updates the add and remove buttons so only the bottom direction has both.
+	if(btnsAdd[btnsAdd.length-1])btnsAdd[btnsAdd.length-1].style.display = "block";
+	if(btnsDel[btnsDel.length-1])btnsDel[btnsDel.length-1].style.display = "block";
+	if(btnsRem[btnsRem.length-1])btnsRem[btnsRem.length-1].style.display = "none";
+	// Updates the direction numbers.
+	var count = $("#directions").find("label > span");
+	for(var i = 0; i < count.length; i++) { count[i].innerHTML = (i + 1); }
 }
 // Collects, validates, and organizes data from "create a recipe" and passes it to the Firebase API
 function submitRecipe()

@@ -785,14 +785,12 @@ input:-webkit-autofill {
 	text-align-last: center;
 }
 #add-recipe #ingredients > .ingredient-chunk > .stand-alone > button,
-#add-recipe #ingredients > .ingredient-chunk > .stand-alone > button
+#add-recipe #ingredients > .ingredient-chunk > .stand-alone > button,
+#add-recipe #directions > .direction-chunk > .stand-alone > button,
+#add-recipe #directions > .direction-chunk > .stand-alone > button
 {
 	margin-top: 20px;
 	width: 100%;
-}
-#add-recipe #ingredients #btn-first-ingredient-del
-{
-	display: none;
 }
 #add-recipe ::-webkit-input-placeholder
 {
