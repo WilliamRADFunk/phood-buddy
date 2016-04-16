@@ -320,9 +320,11 @@ ul
 #register table
 {
 	background-color: #E2EEF4;
+	text-align: center;
 }
 #login input[type='email'],
 #login input[type='password'],
+#register input[type='text'],
 #register input[type='email'],
 #register input[type='password']
 {

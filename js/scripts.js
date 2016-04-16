@@ -15,8 +15,6 @@ $(document).ready(function ()
 			console.log("image uploaded");
 		};
 	});
-	// Enables certain Bootstrap styles for import file buttons
-	$(":file").filestyle({buttonText: "Browse..."});
 	// System attempts to log user in through Facebook, Twitter, or Google Plus
 	$("#btn-facebook").click(function(){
 		$(".modal-body").html("<p>Logging into Facebook failed. Is this your first time at Phood Buddy?</p>");
@@ -62,8 +60,9 @@ $(document).ready(function ()
 		$(".modal-body").html("<p>Registering with Google failed.</p>");
 		googleRegister(registerCallback);
 	});
-	// System tries to login with values provided in the two text fields.
+	// System tries to register with values provided in the four text fields.
 	$("#btn-register").click(function(){
+		console.log("Trying to register");
 		var email = $("#register-email").val() + "";
 		var pwd = $("#register-password").val() + "";
 		var fname = $("#register-fname").val() + "";
@@ -433,7 +432,7 @@ function submitRecipe()
 	// Checking to see which of the two options for image upload the user chose.
 	if(imageUpload === "") img = imagePasted;
 	else img = imageUpload;
-	
+
 	// Collect data from all fields.
 	var title = $("#recipe-title").val();
 	var dominantTaste = $("#taste").val();
