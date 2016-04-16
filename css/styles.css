@@ -841,6 +841,10 @@ input:-webkit-autofill {
 	padding-bottom: 10px;
 	text-align: center;
 }
+#week-schedule button
+{
+	width: 100px;
+}
 #week-schedule .weekday > h3
 {
 	margin-bottom: 20px;

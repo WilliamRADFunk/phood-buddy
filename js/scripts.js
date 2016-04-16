@@ -81,11 +81,7 @@ $(document).ready(function ()
 		else
 		{
 			$(".modal-body").html("<p>Manual registration failed. Try a different email?</p>");
-			customRegister( $("register-fname").val() + "",
-							$("register-lname").val() + "",
-							$("register-email").val() + "",
-							$("register-password").val() + "",
-							registerCallback);
+			customRegister( fname, lname, email, pwd, registerCallback);
 		}
 	});
 	// Turns content on and off depending on Settings/Profile tab selected.
@@ -512,6 +508,7 @@ function openRecipeOptions(day, mealTime)
 	var activeDiv = $("#" + day + " > ." + mealTime);
 	activeDiv.html(
 		"<button id='" + day + "-" + mealTime + "' class='phood-buddy-choice'>Pick For Me</button>" +
-		"<button id='" + day + "-" + mealTime + "' class='phood-buddy-choice'>Pick For Me</button>"
+		"<button id='" + day + "-" + mealTime + "' class='phood-buddy-choice'>Fav Recipe</button>" + 
+		"<button id='" + day + "-" + mealTime + "' class='phood-buddy-choice'>Cancel</button>"
 	);
 }
