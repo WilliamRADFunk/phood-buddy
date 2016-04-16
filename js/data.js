@@ -129,9 +129,9 @@ function removeAllGrocery(cb)
 	cb(true);
 }
 
-function assembleRecipe(author, description, img, name, taste, ingredients, directions, cookTime, prepTime, totalTime, mealTime, cb)
+function assembleRecipe(description, img, name, taste, ingredients, directions, cookTime, prepTime, totalTime, mealTime, cb)
 {
-	
+	var author = "wfunk";
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 	var data = ref.getAuth();
 	if(data == null)

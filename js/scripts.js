@@ -518,8 +518,17 @@ function openRecipeOptions(day, mealTime)
 {
 	var activeDiv = $("#" + day + " > ." + mealTime);
 	activeDiv.html(
-		"<button id='" + day + "-" + mealTime + "' class='phood-buddy-choice'>Pick For Me</button>" +
-		"<button id='" + day + "-" + mealTime + "' class='phood-buddy-fav'>Fav Recipe</button>" + 
-		"<button id='" + day + "-" + mealTime + "' class='phood-buddy-cancel'>Cancel</button>"
+		"<div class='recipe-options-wrapper col-lg-12 col-md-12 col-sm-12 col-xs-12'>" +
+			"<button id='" + day + "-" + mealTime + "-choice' class='phood-buddy-choice col-lg-4 col-md-4 col-sm-4 col-xs-4'>PB Pick</button>" +
+			"<button id='" + day + "-" + mealTime + "-fav' class='phood-buddy-fav col-lg-4 col-md-4 col-sm-4 col-xs-4'>Fav Pick</button>" + 
+			"<button id='" + day + "-" + mealTime + "-cancel' class='phood-buddy-cancel col-lg-4 col-md-4 col-sm-4 col-xs-4'>Cancel</button>" +
+		"</div>"
 	);
+	$("#" + day + " > ." + mealTime).removeAttr("onclick");
+
+	console.log("#" + day + " > ." + mealTime + " > .recipe-options-wrapper > " + day + "-" + mealTime + "-cancel");
+	
+	$("#" + day + " > ." + mealTime + " > .recipe-options-wrapper > " + day + "-" + mealTime + "-cancel").click(function(){
+		$("#" + day + " > ." + mealTime).html("Select Dinner Recipe");
+	});
 }

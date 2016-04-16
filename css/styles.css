@@ -841,13 +841,15 @@ input:-webkit-autofill {
 	padding-bottom: 10px;
 	text-align: center;
 }
-#week-schedule button
+#week-schedule .weekday .recipe-options-wrapper button
 {
 	background-color: #8ECDE9;
 	color: #FFFFFF;
+	display: block;
+	float: left;
 	height: 30px;
 	line-height: 24px;
-	width: 100px;
+	margin-top: 5px;
 }
 #week-schedule .weekday > h3
 {
@@ -1152,6 +1154,23 @@ footer > .row > .link-column
 	width: 80%;
 }
 /************* Create Recipe page end **********767-****/
+/************* Schedule page start *************767-****/
+#week-schedule .weekday.col-xs-12
+{
+	padding-left: 0px;
+	padding-right: 0px;
+	text-align: center;
+}
+#week-schedule .weekday .recipe-options-wrapper button
+{
+	overflow: hidden;
+}
+#week-schedule .weekday > div:hover
+{
+	background-color: #EFEFEF;
+	color: #326077;
+}
+/************* Schedule page end ***************767-****/
 /************* Extraneous pages page start *****767-****/
 	#about .table-responsive > .table > tbody > tr > td,
 	#faq .table-responsive > .table > tbody > tr > td,
