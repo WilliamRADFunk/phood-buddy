@@ -1288,6 +1288,7 @@ function getRandomRecipe(day, meal, cb)
 					if(flag)
 					{
 						flagger = false;
+						console.log(querySnapshot.name());
 						cb(querySnapshot.val(), day, meal);
 						return true;
 					}
