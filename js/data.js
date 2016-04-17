@@ -282,6 +282,7 @@ function getFavUserRecipe(count, cb)
 	var recipeContentString = '{"info":[]}';
 	var recipeContentJson = JSON.parse(recipeContentString);
 
+	var counter = count * 10;
 	var decount = 10;
 	// DEUBG: console.log(recipeContentJson);
 
@@ -324,9 +325,9 @@ function getFavUserRecipe(count, cb)
 							//Keys match! Append data to JSON array
 							if(array[superkey] == (directoryKey))
 							{
-								if(count > 0)
+								if(counter > 0)
 								{
-									count--;
+									counter--;
 								}
 								else
 								{
@@ -368,6 +369,7 @@ function getFavFatSecret(count, cb)
 	// DEUBG: console.log(recipeContentJson);
 
 	var decount = 10;
+	var counter = count * 10;
 
 	//Check reference point made of user account and check if 'favorited' child exists
 	checkRef.once('value', function(snapshot){
@@ -412,9 +414,9 @@ function getFavFatSecret(count, cb)
 							//Keys match! Append data to JSON array
 							if(array[superkey] == (directoryKey))
 							{
-								if(count > 0)
+								if(counter > 0)
 								{
-									count--;
+									counter--;
 								}
 								else
 								{
@@ -1093,7 +1095,7 @@ function getRandomRecipe(day, meal, cb)
 	if(ref.getAuth() === null)
 	{
 		return;
-		//cb(false);
+		cb(false, day, meal);
 	}
 
 	var data = ref.getAuth();
@@ -1159,7 +1161,7 @@ function getRandomRecipe(day, meal, cb)
 							}
 						}
 
-						if( (checkAllergiesWithIngredients(ingredients, cornA, eggA, fishA, gluttenA, milkA, peanutA, redA, sesameA, shellA, soyA, treeA)) === false)
+						if( (checkAllergiesWithIngredients(foodName, cornA, eggA, fishA, gluttenA, milkA, peanutA, redA, sesameA, shellA, soyA, treeA)) === false)
 						{
 							flag = false;
 							break;
@@ -1212,12 +1214,57 @@ function getRandomRecipe(day, meal, cb)
 
 					if(flag)
 					{
-						cb(day, meal, querySnapshot.val());
+						cb(querySnapshot.val(), day, meal);
 						return true;
 					}
 				});
+				cb(false, day, meal);
 			});
 			//var query = directoryRef.orderByChild("custom").equalTo(false);
+		}
+		else
+		{
+			var customQuery = recipeRef.orderByChild("custom").equalTo(true);
+
+			customQuery.once("value", function(childSnapshot){
+
+				childSnapshot.forEach(function(querySnapshot){
+
+					var flag = true;
+
+					var ingredients = querySnapshot.child("ingredients").val();
+
+					for(var i = 0; i < ingredients.length; i++)
+					{
+						var foodName = ingredients[i].food_name;
+						if(veg)
+						{
+							if( (foodName.indexOf("meat") !== -1) || (foodName.indexOf("Meat") !== -1) || (foodName.indexOf("chicken") !== -1) || (foodName.indexOf("Chicken") !== -1))
+							{
+								flag = false;
+								break;
+							}
+							else
+							{
+								continue;
+							}
+						}
+
+						if( (checkAllergiesWithIngredients(foodName, cornA, eggA, fishA, gluttenA, milkA, peanutA, redA, sesameA, shellA, soyA, treeA)) === false)
+						{
+							flag = false;
+							break;
+						}
+					}
+
+					if(flag)
+					{
+						cb(querySnapshot.val(), day, meal);
+					}
+
+				});
+				cb(false, day, meal);
+			});
 		}
 	});
 }
@@ -1227,7 +1274,7 @@ function checkAllergiesWithIngredients(ingredients, corn, egg, fish, glutten, mi
 	var passes = true;
 	for(var i = 0; i < ingredients.length; i++)
 	{
-		var foodName = ingredients[i].food_name;
+		var foodName = ingredients.food_name;
 		if(corn)
 		{
 			if( (foodName.indexOf("corn") !== -1) || (foodName.indexOf("Corn") !== -1))
