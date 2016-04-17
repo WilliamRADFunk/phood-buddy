@@ -917,3 +917,210 @@ function test()
 }
 
 //AJAX Functions (Hollow)
+
+
+function getRecipeById()
+{
+	var recipe = null;
+
+	var recipeId = "27116";
+
+	$.ajax({
+		method: "GET",
+		url: "http://williamrobertfunk.com/applications/phood-buddy/actions/fat_secret_get_recipe_by_id.php?recipe_id=" + recipeId,
+		dataType:'json',
+		async: true,
+		success:function(reponseData){
+			console.log("AJAX has retrieved recipe from PHP...");
+			console.log(responseData);
+			recipe = responseData;
+			//cb goes here
+		},
+		error:function(error){
+			console.log("AJAX call 'getRecipe' failed" + error.status);
+		}
+	});
+	//return recipe;
+}
+
+function favoriteRecipe(recipeId, cb)
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		return;
+		cb(false);
+	}
+	//Stores authData of package
+	var data = ref.getAuth();
+
+	//Creates reference to users portion in database
+	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+
+	//Updates path information to include favorited-recipe and the current recipe Id
+	userRef.child("favorited-recipe").update({recipeid: true});
+	cb(true);
+}
+
+function removeFavorited(recipeId, cb)
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		return;
+		cb(false);
+	}
+	//Stores authData of package
+	var data = ref.getAuth();
+	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+	var favoriteRecipeRef = userRev.child("favorited-recipe").child("recipeId");
+
+	favoriteRecipeRef.remove();
+
+}
+
+function rateRecipe(recipeId, rating, cb)
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		return;
+		cb(false);
+	}
+	//Stores authData of package
+	var data = ref.getAuth();
+
+	rateRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-rate/" + recipeId + "/");
+
+	rateRef.once("value", function(snapshot){
+
+		var existing = snapshot.child(raters).child(data.uid).exists();
+		if(existing)
+		{
+			cb(false)
+		}
+		else
+		{
+			var uid = data.uid;
+			var obj = {};
+			obj[uid] = true;
+			//Math to update rating system.
+			var rate = snapshot.child("rate");
+			var amountRated = snapshot.child("amountRated");
+			var top = (1.0 * rate * amountRated) + rating;
+			var bottom = amountedRated + 1;
+			var newRate = top/bottom;
+
+			var rateContentJson = {
+					"amountRated": bottom,
+					"rate": newRate
+			};
+			rateRef.update(rateContentJson);
+			rateRef.child("raters").update(obj);
+			cb(true);
+		}
+	});
+}
+
+function getRandomRecipe()
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		return;
+		//cb(false);
+	}
+
+	var data = ref.getAuth();
+
+	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/facebook:10105047931297062/");
+
+	var recipeReturn;
+
+	userRef.once("value", function(snapshot)
+	{
+		var health = snapshot.child("health").val();
+		var diab = health["diabetes"];
+		var highc = health["high-cholestorol"];
+		var hyper = health["hypertension"];
+		var hypo = health["hypotension"];
+		var veg = health["vegetarian"];
+
+		console.log(diab);
+
+		var recipeRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory/");
+
+		if(health || diab || highc || hyper)
+		{
+			var query = recipeRef.orderByChild("custom").equalTo(false);
+
+			query.once("value", function(childSnapshot){
+				var num = childSnapshot.numChildren();
+
+				var newNnum = num / 10;
+			})
+
+				if(hyper)
+				{
+					hyperQuery = query.orderByChild("cholestorol").limitToLast(newNum); //CHANGE
+					var bound = Math.floor(Math.random() * 10);
+
+					hyperQuery.once("value", function(hyperSnap){
+						hyperSnap.forEach(function(querySnapshot){
+							if(bounds > 0)
+							{
+								bounds--;
+							}
+							else if(bounds == 0)
+							{
+								recipeReturn = querySnapshot.val();
+								cb(recipeReturn);
+								return true;
+							}
+						});
+					});
+				}
+			//var query = directoryRef.orderByChild("custom").equalTo(false);
+		}
+	})
+}
+
+
+
+
+//TEST TEST TEST TEST
+
+
+function test()
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		return;
+		cb(false);
+	}
+	//Stores authData of package
+	var data = ref.getAuth();
+
+	rateRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-rate/-KFSoCpl6_Vj4LBdr-cK/");
+
+	var uid = data.uid;
+
+	console.log(uid);
+
+	var obj = {};
+	obj[uid] = true;
+
+	var rateContentJson = {
+					"amountRated": "bottom2",
+					"rate"  : "newR3"
+			};
+
+	rateRef.update(rateContentJson);
+	rateRef.child("raters").update(obj);
+}
