@@ -1151,28 +1151,36 @@ function getRandomRecipe(day, meal, cb)
 
 					var ingredients = querySnapshot.child("ingredientList").val();
 
-					for(var i = 0; i < ingredients.length; i++)
+					if(ingredients === null)
 					{
-						var foodName = ingredients[i].food_name;
-						if(veg)
+						flag = false;
+					}
+
+					if(flag)
+					{
+						for(var i = 0; i < ingredients.length; i++)
 						{
-							if( (foodName.indexOf("meat") !== -1) || (foodName.indexOf("Meat") !== -1) || (foodName.indexOf("chicken") !== -1) || (foodName.indexOf("Chicken") !== -1))
+							var foodName = ingredients[i].food_name;
+							if(veg)
+							{
+								if( (foodName.indexOf("meat") !== -1) || (foodName.indexOf("Meat") !== -1) || (foodName.indexOf("chicken") !== -1) || (foodName.indexOf("Chicken") !== -1))
+								{
+									flag = false;
+									break;
+								}
+								else
+								{
+									continue;
+								}
+							}
+
+							if( (checkAllergiesWithIngredients(foodName, cornA, eggA, fishA, gluttenA, milkA, peanutA, redA, sesameA, shellA, soyA, treeA)) === false)
 							{
 								flag = false;
 								break;
 							}
-							else
-							{
-								continue;
-							}
+							
 						}
-
-						if( (checkAllergiesWithIngredients(foodName, cornA, eggA, fishA, gluttenA, milkA, peanutA, redA, sesameA, shellA, soyA, treeA)) === false)
-						{
-							flag = false;
-							break;
-						}
-						
 					}
 
 					if(hyper && flag)
@@ -1240,26 +1248,34 @@ function getRandomRecipe(day, meal, cb)
 
 					var ingredients = querySnapshot.child("ingredientList").val();
 
-					for(var i = 0; i < ingredients.length; i++)
+					if (ingredients === null)
 					{
-						var foodName = ingredients[i].food_name;
-						if(veg)
+						flag = false;
+					}
+
+					if(flag)
+					{
+						for(var i = 0; i < ingredients.length; i++)
 						{
-							if( (foodName.indexOf("meat") !== -1) || (foodName.indexOf("Meat") !== -1) || (foodName.indexOf("chicken") !== -1) || (foodName.indexOf("Chicken") !== -1))
+							var foodName = ingredients[i].food_name;
+							if(veg)
+							{
+								if( (foodName.indexOf("meat") !== -1) || (foodName.indexOf("Meat") !== -1) || (foodName.indexOf("chicken") !== -1) || (foodName.indexOf("Chicken") !== -1))
+								{
+									flag = false;
+									break;
+								}
+								else
+								{
+									continue;
+								}
+							}
+
+							if( (checkAllergiesWithIngredients(foodName, cornA, eggA, fishA, gluttenA, milkA, peanutA, redA, sesameA, shellA, soyA, treeA)) === false)
 							{
 								flag = false;
 								break;
 							}
-							else
-							{
-								continue;
-							}
-						}
-
-						if( (checkAllergiesWithIngredients(foodName, cornA, eggA, fishA, gluttenA, milkA, peanutA, redA, sesameA, shellA, soyA, treeA)) === false)
-						{
-							flag = false;
-							break;
 						}
 					}
 
