@@ -26,7 +26,7 @@ function getGroceryList(cb)
 		{
 			cb(false);
 		}
-	});	
+	});
 }
 
 function addGrocery(contentJson, cb)
@@ -103,7 +103,7 @@ function deleteGrocery(contentKey, cb)
 	//Needs to add key to URL path and remove using 'gref.remove()'
 	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/" + contentKey);
 
-	if(gref == null)
+	if(gref === null)
 	{
 		cb(false);
 	}
@@ -134,7 +134,7 @@ function assembleRecipe(description, img, name, taste, ingredients, directions, 
 	
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 	var data = ref.getAuth();
-	if(data == null)
+	if(data === null)
 	{
 		cb(false);
 	}
@@ -152,7 +152,7 @@ function assembleRecipe(description, img, name, taste, ingredients, directions, 
 
 		for(var i = 0; i < ingredients.length; i++)
 		{
-			var miniObject = { "name": ingredients[i][0], "quantity": ingredients[i][1], "unit": ingredients[i][2], "description": ingredients[i][3]}
+			var miniObject = { "name": ingredients[i][0], "quantity": ingredients[i][1], "unit": ingredients[i][2], "description": ingredients[i][3]};
 			ingredientList[i] = miniObject;
 		}
 
@@ -169,7 +169,7 @@ function assembleRecipe(description, img, name, taste, ingredients, directions, 
 						  "prepTime" : prepTime,
 						  "taste" : taste,
 						  "totalTime" : totalTime
-						}
+						};
 
 		postRecipe(recipeJson, cb);
 	});
@@ -203,7 +203,7 @@ function postRecipe(recipeJson, cb)
 	storeJson[recipeId] = true;
 
 	ref.child("users").child(data.uid).child("created-recipe").update(storeJson);
-	ref.child("users").
+	ref.child("users").child(data.uid).child("favorited-recipe").update(storeJson);
 	cb(true);
 }
 
@@ -214,7 +214,7 @@ function getUserRecipes(cb)
 
 	if(ref.getAuth() === null)
 	{
-		return;
+	return;
 	}
 
 	var data = ref.getAuth();
@@ -441,7 +441,7 @@ function getFavFatSecret(count, cb)
 }
 
 
-function getFavAll(count, day, time, cb)
+function getFavAll(count, cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
@@ -457,6 +457,7 @@ function getFavAll(count, day, time, cb)
 	var recipeContentString = '{"info":[]}';
 	var recipeContentJson = JSON.parse(recipeContentString);
 
+	var counter = count * 10;
 	var decount = 10;
 	// DEUBG: console.log(recipeContentJson);
 
@@ -498,9 +499,9 @@ function getFavAll(count, day, time, cb)
 							//Keys match! Append data to JSON array
 							if(array[superkey] == (directoryKey))
 							{
-								if(count > 0)
+								if(counter > 0)
 								{
-									count--;
+									counter--;
 								}
 								else
 								{
@@ -797,6 +798,7 @@ function getUsersSettings(cb)
 
 	if(ref.getAuth() === null)
 	{
+		cb(false);
 		return;
 	}
 
@@ -849,8 +851,8 @@ function editTasteProfile(contentJson, cb)
 
 	if(ref.getAuth() === null)
 	{
-		return;
 		cb(false);
+		return;
 	}
 
 	//Stores authData of package
@@ -872,8 +874,8 @@ function getUserAllergies(cb)
 
 	if(ref.getAuth() === null)
 	{
-		return;
 		cb(""); //cb FIX
+			return;
 	}
 
 	//Stores authData of package
@@ -885,7 +887,7 @@ function getUserAllergies(cb)
 	{
 		if(snapshot.child("allergies").exists())
 		{
-			var contentJson = snapshot.child("allergies").val()
+			var contentJson = snapshot.child("allergies").val();
 			cb(contentJson);
 		}
 
@@ -899,8 +901,8 @@ function editUserAllergies(contentJson, cb)
 
 	if(ref.getAuth() === null)
 	{
-		return;
 		cb(false);
+		return;
 	}
 	//Stores authData of package
 	var data = ref.getAuth();
@@ -917,8 +919,8 @@ function getUserHealth(cb) //FIX
 
 	if(ref.getAuth() === null)
 	{
-		return;
 		cb(""); //cb HELP
+		return;
 	}
 
 	//Stores authData of package
@@ -930,7 +932,7 @@ function getUserHealth(cb) //FIX
 	{
 		if(snapshot.child("allergies").exists())
 		{
-			var contentJson = snapshot.child("allergies").val()
+			var contentJson = snapshot.child("allergies").val();
 			cb(contentJson);
 		}
 
@@ -944,8 +946,8 @@ function editUserHealth(contentJson, cb)
 
 	if(ref.getAuth() === null)
 	{
-		return;
 		cb(false);
+		return;
 	}
 
 	//Stores authData of package
@@ -967,8 +969,8 @@ function getPlanner(cb)
 
 	if(ref.getAuth() === null)
 	{
-		return;
 		cb(false);
+		return;
 	}
 	//Stores authData of package
 	var data = ref.getAuth();
@@ -987,8 +989,8 @@ function updatePlanner(dayOfWeek, timeOfDay, name, recipeId, cb)
 
 	if(ref.getAuth() === null)
 	{
-		return;
 		cb(false);
+		return;
 	}
 	//Stores authData of package
 	var data = ref.getAuth();
@@ -1002,38 +1004,14 @@ function updatePlanner(dayOfWeek, timeOfDay, name, recipeId, cb)
 	cb(obj, dayOfWeek, timeOfDay);
 }
 
-function getRecipeById()
-{
-	var recipe = null;
-
-	var recipeId = "27116";
-
-	$.ajax({
-		method: "GET",
-		url: "http://williamrobertfunk.com/applications/phood-buddy/actions/fat_secret_get_recipe_by_id.php?recipe_id=" + recipeId,
-		dataType:'json',
-		async: true,
-		success:function(reponseData){
-			console.log("AJAX has retrieved recipe from PHP...");
-			console.log(responseData);
-			recipe = responseData;
-			//cb goes here
-		},
-		error:function(error){
-			console.log("AJAX call 'getRecipe' failed" + error.status);
-		}
-	});
-	//return recipe;
-}
-
 function favoriteRecipe(recipeId, cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
 	if(ref.getAuth() === null)
 	{
-		return;
 		cb(false);
+		return;
 	}
 	//Stores authData of package
 	var data = ref.getAuth();
@@ -1052,8 +1030,8 @@ function removeFavorited(recipeId, cb)
 
 	if(ref.getAuth() === null)
 	{
-		return;
 		cb(false);
+		return;
 	}
 	//Stores authData of package
 	var data = ref.getAuth();
@@ -1070,8 +1048,8 @@ function rateRecipe(recipeId, rating, cb)
 
 	if(ref.getAuth() === null)
 	{
-		return;
 		cb(false);
+		return;
 	}
 	//Stores authData of package
 	var data = ref.getAuth();
@@ -1083,7 +1061,7 @@ function rateRecipe(recipeId, rating, cb)
 		var existing = snapshot.child(raters).child(data.uid).exists();
 		if(existing)
 		{
-			cb(false)
+			cb(false);
 		}
 		else
 		{
@@ -1128,24 +1106,24 @@ function getRandomRecipe(day, meal, cb)
 	{
 		//Assign Health properties
 		var health = snapshot.child("health").val();
-		var diab = health["diabetes"];
-		var highc = health["high-cholestorol"];
-		var hyper = health["hypertension"];
-		var hypo = health["hypotension"];
-		var veg = health["vegetarian"];
+		var diab = health.diabetes;
+		var highc = health.high-cholestorol;
+		var hyper = health.hypertension;
+		var hypo = health.hypotension;
+		var veg = health.vegetarian;
 		//Assign Allergy Properties
 		var allergies = snapshot.child("allergies").val();
-		var cornA = allergies["corn"];
-		var eggA = allergies["egg"];
-		var fishA = allergies["fish"];
-		var gluttenA = allergies["glutten"];
-		var MilkA = allergies["milk"];
-		var peanutA = allergies["peanut"];
-		var redA = allergies["red-meat"];
-		var sesameA = allergies["sesame"];
-		var shellA = allergies["shell-fish"];
-		var soyA = allergies["soy"];
-		var treeA = allergies["tree-nut"];
+		var cornA = allergies.corm;
+		var eggA = allergies.egg;
+		var fishA = allergies.fish;
+		var gluttenA = allergies.glutten;
+		var MilkA = allergies.milk;
+		var peanutA = allergies.peanut;
+		var redA = allergies.red-meat;
+		var sesameA = allergies.sesame;
+		var shellA = allergies.shell-fish;
+		var soyA = allergies.soy;
+		var treeA = allergies.tree-nut;
 
 		console.log(diab);
 
@@ -1225,8 +1203,8 @@ function getRandomRecipe(day, meal, cb)
 
 					if(hypo && flag)
 					{
-						var currentCarbo = querySnapshot.child("nutrition").child("carbohydrates").val();
-						if( Number(currentCarbo) > 35)
+						var currentCarbon = querySnapshot.child("nutrition").child("carbohydrates").val();
+						if( Number(currentCarbon) > 35)
 						{
 							flag = false;
 						}
@@ -1348,7 +1326,7 @@ function checkAllergiesWithIngredients(ingredients, corn, egg, fish, glutten, mi
 function test()
 {
 	var recipeRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory/");
-	//query.once("value", function(childSnapshot){
+//query.once("value", function(childSnapshot){
 
-	//});
+//});
 }
