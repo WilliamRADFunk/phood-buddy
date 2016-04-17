@@ -1,6 +1,7 @@
 package com.phoodbuddy.phoodbuddy.Controllers;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,6 +67,7 @@ public class FavRecipeController extends BaseAdapter {
             Picasso.with(mContext).load(favRecipes.get(position).getImage()).into(holder.img);
             holder.name.setText(favRecipes.get(position).getName());
         }
+        holder.name.setTextColor(Color.parseColor("#000000"));
         return convertView;
     }
 

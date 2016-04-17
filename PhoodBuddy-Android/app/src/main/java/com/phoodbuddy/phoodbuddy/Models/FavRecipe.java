@@ -12,6 +12,10 @@ public class FavRecipe {
         this.id = k;
     }
 
+    public FavRecipe() {
+
+    }
+
     public String getImage() {
         return image;
     }

@@ -104,8 +104,8 @@
     <orderEntry type="library" exported="" name="design-23.1.1" level="project" />
     <orderEntry type="library" exported="" name="temboo-android-sdk-core-2.16.1" level="project" />
     <orderEntry type="library" exported="" name="Fitbit-2.11.0" level="project" />
-    <orderEntry type="library" exported="" name="lib-manipulation-3.1.0" level="project" />
     <orderEntry type="library" exported="" name="tubesock-0.0.10" level="project" />
+    <orderEntry type="library" exported="" name="lib-manipulation-3.1.0" level="project" />
     <orderEntry type="library" exported="" name="multidex-1.0.1" level="project" />
     <orderEntry type="library" exported="" name="picasso-2.5.2" level="project" />
     <orderEntry type="library" exported="" name="materiallist-2.1.1" level="project" />

@@ -53,6 +53,7 @@ public class recipe_detail extends AppCompatActivity {
     View v;
     ImageView backButton;
     SQLiteDatabase db;
+    SQLiteDatabase db1;
     private FatSecretGet mFatSecretGet = new FatSecretGet();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,9 @@ public class recipe_detail extends AppCompatActivity {
         setContentView(R.layout.recipe_detail);
         db=openOrCreateDatabase("FavRecipe", Context.MODE_PRIVATE, null);
         db.execSQL("CREATE TABLE IF NOT EXISTS favRecipes(image VARCHAR,name VARCHAR,id TEXT);");
+
+        db1=openOrCreateDatabase("Meals", Context.MODE_PRIVATE, null);
+        db1.execSQL("CREATE TABLE IF NOT EXISTS mealList(image VARCHAR,name VARCHAR,id TEXT,type TEXT);");
 
         Bundle i = getIntent().getExtras();
         id = i.getLong("id");
@@ -105,10 +109,16 @@ public class recipe_detail extends AppCompatActivity {
                         "','"+id+"');");
                 return true;
             case R.id.breakfest_today:
+                db1.execSQL("INSERT INTO mealList VALUES('"+ image+"','"+foodName+
+                        "','"+id+"','"+"Breakfest"+"');");
                 return true;
             case R.id.lunch_today:
+                db1.execSQL("INSERT INTO mealList VALUES('"+ image+"','"+foodName+
+                        "','"+id+"','"+"Lunch"+"');");
                 return true;
             case R.id.dinner_today:
+                db1.execSQL("INSERT INTO mealList VALUES('"+ image+"','"+foodName+
+                        "','"+id+"','"+"Dinner"+"');");
                 return true;
             case R.id.meal_custom:
                 return true;

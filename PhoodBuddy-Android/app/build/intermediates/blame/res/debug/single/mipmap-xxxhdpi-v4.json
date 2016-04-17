@@ -1,9 +1,5 @@
 [
     {
-        "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi-v4\\ic_launcher.png",
-        "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
-    },
-    {
         "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi-v4\\ic_launcher.png",
         "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
     }

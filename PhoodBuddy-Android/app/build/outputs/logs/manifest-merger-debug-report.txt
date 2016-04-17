@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:2:1-152:12
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:2:1-150:12
 	xmlns:android
 		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:2:11-69
 	package
@@ -30,7 +30,7 @@ ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\And
 	android:name
 		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:8:22-85
 application
-ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:11:5-142:19
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:11:5-140:19
 MERGED from [com.facebook.android:facebook-android-sdk:4.1.0] C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.1.0\AndroidManifest.xml:28:5-20
 MERGED from [com.android.support:support-v4:23.1.1] C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:appcompat-v7:23.1.1] C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\AndroidManifest.xml:22:5-20
@@ -250,9 +250,11 @@ ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\And
 activity#com.phoodbuddy.phoodbuddy.Activities.FavRecipes
 ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:116:9-125:20
 	android:screenOrientation
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:119:13-49
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:121:13-49
 	android:configChanges
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:118:13-59
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:119:13-59
+	android:theme
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:118:13-44
 	android:parentActivityName
 		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:120:13-62
 	android:name
@@ -275,17 +277,10 @@ ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\And
 		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:135:13-44
 	android:value
 		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:136:13-69
-meta-data#com.google.android.gms.version
-ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:139:9-141:69
-MERGED from [com.google.android.gms:play-services-basement:8.1.0] C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\AndroidManifest.xml:21:9-23:69
-	android:name
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:140:13-58
-	android:value
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:141:13-66
 activity#com.facebook.FacebookActivity
-ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:144:5-62
+ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:142:5-62
 	android:name
-		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:144:15-59
+		ADDED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml:142:15-59
 uses-sdk
 INJECTED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:multidex:1.0.1] C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\build\intermediates\exploded-aar\com.android.support\multidex\1.0.1\AndroidManifest.xml:18:5-42
@@ -323,3 +318,9 @@ MERGED from [com.android.support:support-v4:23.1.1] C:\Users\Evan\Desktop\phood-
 	android:minSdkVersion
 		INJECTED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\src\main\AndroidManifest.xml
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:8.1.0] C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\AndroidManifest.xml:21:9-23:69
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:8.1.0] C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\AndroidManifest.xml:22:13-58
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:8.1.0] C:\Users\Evan\Desktop\phood-buddy\PhoodBuddy-Android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\AndroidManifest.xml:23:13-66

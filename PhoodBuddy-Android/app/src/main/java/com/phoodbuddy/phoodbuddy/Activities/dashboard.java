@@ -1,7 +1,10 @@
 package com.phoodbuddy.phoodbuddy.Activities;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,9 +15,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListView;
 
+import com.phoodbuddy.phoodbuddy.Controllers.DashboardController;
+import com.phoodbuddy.phoodbuddy.Models.Meals;
 import com.phoodbuddy.phoodbuddy.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Evan Glazer on 2/29/2016.
@@ -22,7 +32,17 @@ import com.phoodbuddy.phoodbuddy.R;
 public class dashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     ViewHolder holder;
-
+    ListView breakfest;
+    ListView lunch;
+    ListView dinner;
+    DashboardController adapter;
+    DashboardController adapter1;
+    DashboardController adapter2;
+    List<Meals> breakfestList;
+    List<Meals> lunchList;
+    List<Meals> dinnerList;
+    SQLiteDatabase db;
+    Cursor c;
     @Override
     public void onOptionsMenuClosed(Menu menu) {
         super.onOptionsMenuClosed(menu);
@@ -35,6 +55,14 @@ public class dashboard extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle("               Dashboard");
+
+        db=openOrCreateDatabase("Meals", Context.MODE_PRIVATE, null);
+        db.execSQL("CREATE TABLE IF NOT EXISTS mealList(image VARCHAR,name VARCHAR,id TEXT,type TEXT);");
+
+
+        breakfestList = new ArrayList<>();
+        lunchList = new ArrayList<>();
+        dinnerList = new ArrayList<>();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -44,6 +72,82 @@ public class dashboard extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         holder = new ViewHolder();
+
+        breakfest = (ListView) findViewById(R.id.listView4);
+        breakfest.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // send intent of id to detail activity and start activity
+                Intent i = new Intent(dashboard.this, recipe_detail.class);
+                i.putExtra("id", Long.valueOf(breakfestList.get(position).getId()));
+                i.putExtra("foodName", breakfestList.get(position).getName());
+                i.putExtra("url", breakfestList.get(position).getImage());
+                startActivity(i);
+            }
+        });
+        lunch = (ListView) findViewById(R.id.listView5);
+        lunch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // send intent of id to detail activity and start activity
+                Intent i = new Intent(dashboard.this, recipe_detail.class);
+                i.putExtra("id", Long.valueOf(breakfestList.get(position).getId()));
+                i.putExtra("foodName", breakfestList.get(position).getName());
+                i.putExtra("url", breakfestList.get(position).getImage());
+                startActivity(i);
+            }
+        });
+        dinner = (ListView) findViewById(R.id.listView6);
+        dinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // send intent of id to detail activity and start activity
+                Intent i = new Intent(dashboard.this, recipe_detail.class);
+                i.putExtra("id", Long.valueOf(breakfestList.get(position).getId()));
+                i.putExtra("foodName", breakfestList.get(position).getName());
+                i.putExtra("url", breakfestList.get(position).getImage());
+                startActivity(i);
+            }
+        });
+
+        c=db.rawQuery("SELECT * FROM mealList", null);
+        if(c.getCount()==0)
+        {
+            return;
+        }
+        else {
+            while (c.moveToNext()) {
+                Meals fav = new Meals();
+                if (c.getString(3).equals("Breakfest")) {
+                    fav.setImage(c.getString(0));
+                    fav.setName(c.getString(1));
+                    fav.setId(c.getString(2));
+                    fav.setType(c.getString(3));
+                    breakfestList.add(fav);
+                }
+                if (c.getString(3).equals("Lunch")) {
+                    fav.setImage(c.getString(0));
+                    fav.setName(c.getString(1));
+                    fav.setId(c.getString(2));
+                    fav.setType(c.getString(3));
+                    lunchList.add(fav);
+                }
+                if (c.getString(3).equals("Dinner")) {
+                    fav.setImage(c.getString(0));
+                    fav.setName(c.getString(1));
+                    fav.setId(c.getString(2));
+                    fav.setType(c.getString(3));
+                    dinnerList.add(fav);
+                }
+            }
+        }
+        adapter = new DashboardController(getApplicationContext(), breakfestList);
+        adapter1 = new DashboardController(getApplicationContext(), lunchList);
+        adapter2 = new DashboardController(getApplicationContext(), dinnerList);
+        breakfest.setAdapter(adapter);
+        lunch.setAdapter(adapter1);
+        dinner.setAdapter(adapter2);
+
 
     }
 

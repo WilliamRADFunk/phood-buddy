@@ -35,7 +35,7 @@ public class intro extends AppTour {
 
                         //Create pre-created fragments
                         Fragment firstSlide = MaterialSlide.newInstance(R.drawable.charge, "Phood Buddy will integrate with Fitbit",
-                                "Get Fitbit data to go along with your daily meals!", Color.WHITE, Color.WHITE);
+                                "Get Fitbit data to go along with your daily breakfestList!", Color.WHITE, Color.WHITE);
 
                         // image of recipe list
                         Fragment secondSlide = MaterialSlide.newInstance(R.drawable.target, "Phood Buddy will be the your food friend",
