@@ -1230,7 +1230,10 @@ function getRandomRecipe(day, meal, cb)
 					if(flag)
 					{
 						flagger = false;
-						cb(querySnapshot.val(), day, meal);
+						console.log(querySnapshot.name());
+						var jsonRecipe = querySnapshot.val();
+						jsonRecipe.id = querySnapshot.key();
+						cb(jsonRecipe, day, meal);
 						return true;
 					}
 				});
@@ -1290,7 +1293,7 @@ function getRandomRecipe(day, meal, cb)
 						flagger = false;
 						console.log(querySnapshot.name());
 						var jsonRecipe = querySnapshot.val();
-						jsonRecipe.id = querySnapshot.name();
+						jsonRecipe.id = querySnapshot.key();
 						cb(jsonRecipe, day, meal);
 						return true;
 					}
