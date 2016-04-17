@@ -75,7 +75,7 @@ $(document).ready(function ()
 			$(".modal-body").html("<p>All four fields need to be filled out correctly.</p>");
 			$("#btn-cancel").css("display", "none");
 			$("#btn-confirm").click(function(){
-				$("#btn-cancel").css("display", "block");
+				$("#btn-cancel").css("display", "inline-block");
 			});
 		}
 		else
@@ -238,7 +238,7 @@ function registerCallback(result)
 		$(".modal-header").html("Registration Failed");
 		$("#btn-cancel").css("display", "none");
 		$("#btn-confirm").click(function(){
-			$("#btn-cancel").css("display", "block");
+			$("#btn-cancel").css("display", "inline-block");
 		});
 	}
 }
@@ -504,12 +504,12 @@ function spawnModal(header, body, redirect, moreThanOneBtn, cancel)
 	$(".modal-header").html(header);
 	$(".modal-body").html(body);
 
-	if(moreThanOneBtn) $("#btn-cancel").css("display", "block");
+	if(moreThanOneBtn) $("#btn-cancel").css("display", "inline-block");
 	else  $("#btn-cancel").css("display", "none");
 
 	$("#btn-confirm").click(function() {
 		window.location = redirect;
-		$("#btn-cancel").css("display", "block");
+		$("#btn-cancel").css("display", "inline-block");
 	});
 }
 // User chose a mealtime to populate in the "weekly schedule"
@@ -549,7 +549,7 @@ function openRecipeOptions(day, mealTime)
 	});
 }
 // Callback function to populate slot when PB finds a recipe for user.
-function popPBPick(day, mealTime, recipe)
+function popPBPick(recipe, day, mealTime)
 {
 	if(recipe === false)
 	{
@@ -567,8 +567,9 @@ function popPBPick(day, mealTime, recipe)
 	}
 }
 // Callback function to populate slot when PB finds a recipe for user.
-function popFavPick(day, mealTime, recipe)
+function popFavPick(recipe, day, mealTime)
 {
+	console.log(recipe);
 	if(recipe === false)
 	{
 		spawnModal("Failure to Select Recipe", "<p>We were unable to pick a recipe to match your tastes.<br/><br/>Would you like us to refresh the page?</p>", "schedule.html", true);
@@ -581,12 +582,16 @@ function popFavPick(day, mealTime, recipe)
 	}
 	else
 	{
-		$("#" + day + " > ." + mealTime).html("<a href='recipe.html?" + Object.keys(recipe)[0] + "'>" + Object.keys(recipe)[0].name + "</a><button onclick='updatePlanner(" + day + ", " + mealTime + ", '', '', deleteScheduledRecipe'>Delete</button>");
+		$("#" + day + " > ." + mealTime).html("<a href='recipe.html?" + recipe.recipeId + "'>" + recipe.name + "</a><button onclick='updatePlanner(\"" + day + "\", \"" + mealTime + "\", \"\", \"\", deleteScheduledRecipe)'>Delete</button>");
 	}
 }
-function deleteScheduledRecipe(day, mealTime, result)
+function deleteScheduledRecipe(result, day, mealTime)
 {
-	if(result)
+	if(result === false)
+	{
+		spawnModal("Failed Deletion", "<p>We were unable to update your schedule.<br/><br/>We will refresh the page to let you try again.</p>", "schedule.html", false);
+	}
+	else
 	{
 		$("#" + day + " > ." + mealTime).html("Select " + mealTime + " Recipe");
 		$("#" + day + " > ." + mealTime).removeClass("active");
@@ -594,9 +599,5 @@ function deleteScheduledRecipe(day, mealTime, result)
 		{
 			$("#" + day + " > ." + mealTime).attr('onclick', 'openRecipeOptions(\'' + day + '\', \'' + mealTime + '\')');
 		}, 200);
-	}
-	else
-	{
-		spawnModal("Failed Deletion", "<p>We were unable to update your schedule.<br/><br/>We will refresh the page to let you try again.</p>", "schedule.html", false);
 	}
 }

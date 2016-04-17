@@ -109,7 +109,7 @@ function setAccount(userData, fnameString, lnameString, emailString)
 
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
 
-	var plannerJsonInit = {sunday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},monday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},tuesday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},wednesday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},thursday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},friday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},sunday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}}};
+	var plannerJsonInit = {sunday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},monday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},tuesday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},wednesday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},thursday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},friday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},saturday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},sunday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}}};
 
 	ref.child("users").child(userData.uid).set({
 					provider: "password",
@@ -353,7 +353,7 @@ function checkIfUserExists(userId, authData, cb) {
 		{
 			var ref = new Firebase("https://phoodbuddy.firebaseio.com");
 
-			var plannerJsonInit = {sunday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},monday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},tuesday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},wednesday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},thursday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},friday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},sunday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}}};
+			var plannerJsonInit = {sunday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},monday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},tuesday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},wednesday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},thursday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},friday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},saturday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},sunday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}}};
 
 		ref.onAuth(function(authData)
 		{
@@ -420,11 +420,11 @@ function checkIfUserExists(userId, authData, cb) {
 }
 
 
-//High Blood Pressure = hypertension
-//High Choloestorl
+//High Blood Pressure = hypertension   === 400 sodium or less
+//High Choloestorl 
 //Diabetes
-// Low Blood Pressure = hypotension
-//Vegetarian
+// Low Blood Pressure = hypotension  === Raisins, milk, almonds, carrots, lemon, salt, garlic, caffeinated, small frequent meals, limit carbohydrates (35 g of carbohydrates)
+//Vegetarian (no meats)
 
 
 

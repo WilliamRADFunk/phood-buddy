@@ -131,7 +131,7 @@ function removeAllGrocery(cb)
 
 function assembleRecipe(description, img, name, taste, ingredients, directions, cookTime, prepTime, totalTime, mealTime, cb)
 {
-	var author = "wfunk";
+	
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 	var data = ref.getAuth();
 	if(data == null)
@@ -203,6 +203,7 @@ function postRecipe(recipeJson, cb)
 	storeJson[recipeId] = true;
 
 	ref.child("users").child(data.uid).child("created-recipe").update(storeJson);
+	ref.child("users").
 	cb(true);
 }
 
@@ -439,7 +440,8 @@ function getFavFatSecret(count, cb)
 	});//END: snapshot -> 'users/uid'
 }
 
-function getFavAll(count, cb)
+
+function getFavAll(count, day, time, cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
@@ -516,10 +518,102 @@ function getFavAll(count, cb)
 
 					
 				});//End: forEach -> 'recipe-directory'
-				cb(recipeContentJson);   //CALL cb here
+				cb(day, time, recipeContentJson);   //CALL cb here
 			});//END: snapshot -> 'recipe-directory'
 			//cb(recipeContentJson); //This cb will return the JSON of all recipes
 		}//END: if user has created recipes
+	});//END: snapshot -> 'users/uid'
+}
+
+function getRandomFavRecipe(day, time, cb)
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		cb(false, day, time);
+	}
+
+	var data = ref.getAuth();
+
+	var checkRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+	var recipeList;
+	var recipeContentJson = {};
+
+	var decount = 10;
+	// DEUBG: console.log(recipeContentJson);
+
+	//Check reference point made of user account and check if 'favorited' child exists
+	checkRef.once('value', function(snapshot){
+
+		//Snapshot contains child 'created-recipe'
+		if(snapshot.child("favorited-recipe").exists())
+		{
+
+			//Set recipeList to snapshot value of all content of 'favorited-recipe' from user
+			recipeList = snapshot.child("favorited-recipe").val();
+			var num = snapshot.child("favorited-recipe").numChildren();
+
+			if(num === 0 || num === null)
+			{
+				cb(false, day, time);
+			}
+
+			var count = Math.floor(Math.random() * (num));
+
+			var array = [];
+
+			for(var key in recipeList)
+			{
+					array.push(key + "");
+			}
+
+			console.log(array);
+
+
+			
+			var directoryRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory");
+
+			//Retrieve snapshot of all recipes in directory
+			directoryRef.once("value", function(snapshot)
+			{
+				//cycle through each key of previous snapshot
+				snapshot.forEach(function(childSnapshot)
+				{
+					//console.log(childSnapshot.val());
+					//Set current key of 'recipe-directory' to temporary variable
+					//Cycle through the keys provided by snapshot of users 'created-recipe' to find link
+					var directoryKey = childSnapshot.key();
+					for(var superkey in array)
+					{
+							//Keys match! Append data to JSON array
+						if(array[superkey] == (directoryKey))
+						{
+							if(count > 0)
+							{
+								count--;
+							}
+							else
+							{
+								var name = childSnapshot.child("name").val();
+								var recipeId = directoryKey;
+								var recipeContentJson = {"name": name, "id": recipeId};
+								updatePlanner(day, time, name, recipeId, cb);  //updatePlanner(dayOfWeek, timeOfDay, name, recipeId, cb)
+								//cb(recipeContentJson, day, time);  
+								return true;
+							}
+							break;
+						}
+					}
+				});//End: forEach -> 'recipe-directory'
+				   //CALL cb here
+			});//END: snapshot -> 'recipe-directory'
+			//cb(recipeContentJson); //This cb will return the JSON of all recipes
+		}//END: if user has created recipes
+		else
+		{
+			cb(false, day, time);
+		}
 	});//END: snapshot -> 'users/uid'
 }
 
@@ -889,31 +983,317 @@ function getPlanner(cb)
 
 function updatePlanner(dayOfWeek, timeOfDay, name, recipeId, cb)
 {
-	var plannerRef = new Firebase("https://phoodbuddy.firebaseio.com/planner/" + data.uid + "/");
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
-	var dataJson = {
-		dayOfWeek:{
-			timeOfDay:{
-				"name": name,
-				"recipeId": recipeId
-			}
-		}
+	if(ref.getAuth() === null)
+	{
+		return;
+		cb(false);
 	}
+	//Stores authData of package
+	var data = ref.getAuth();
 
-	plannerRef.update(dataJson);
+	var plannerRef = new Firebase("https://phoodbuddy.firebaseio.com/planner/" + data.uid + "/" + dayOfWeek + "/" + timeOfDay +"/");
 
+	var obj = {"name": name, "recipeId": recipeId};
+
+	plannerRef.update(obj);
+
+	cb(obj, dayOfWeek, timeOfDay);
+}
+
+function getRecipeById()
+{
+	var recipe = null;
+
+	var recipeId = "27116";
+
+	$.ajax({
+		method: "GET",
+		url: "http://williamrobertfunk.com/applications/phood-buddy/actions/fat_secret_get_recipe_by_id.php?recipe_id=" + recipeId,
+		dataType:'json',
+		async: true,
+		success:function(reponseData){
+			console.log("AJAX has retrieved recipe from PHP...");
+			console.log(responseData);
+			recipe = responseData;
+			//cb goes here
+		},
+		error:function(error){
+			console.log("AJAX call 'getRecipe' failed" + error.status);
+		}
+	});
+	//return recipe;
+}
+
+function favoriteRecipe(recipeId, cb)
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		return;
+		cb(false);
+	}
+	//Stores authData of package
+	var data = ref.getAuth();
+
+	//Creates reference to users portion in database
+	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+
+	//Updates path information to include favorited-recipe and the current recipe Id
+	userRef.child("favorited-recipe").update({recipeid: true});
 	cb(true);
 }
 
-function test()
+function removeFavorited(recipeId, cb)
 {
-	var fname = "Jorge"
-	var lname = "Rodriguez"
-	var fullName = fname + " " + lname;
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
-	console.log("First name: " + fname + " with last name " + lname);
-	console.log("Full name: " + fullName);
-	console.log("END");
+	if(ref.getAuth() === null)
+	{
+		return;
+		cb(false);
+	}
+	//Stores authData of package
+	var data = ref.getAuth();
+	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+	var favoriteRecipeRef = userRev.child("favorited-recipe").child("recipeId");
+
+	favoriteRecipeRef.remove();
+
 }
 
-//AJAX Functions (Hollow)
+function rateRecipe(recipeId, rating, cb)
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		return;
+		cb(false);
+	}
+	//Stores authData of package
+	var data = ref.getAuth();
+
+	rateRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-rate/" + recipeId + "/");
+
+	rateRef.once("value", function(snapshot){
+
+		var existing = snapshot.child(raters).child(data.uid).exists();
+		if(existing)
+		{
+			cb(false)
+		}
+		else
+		{
+			var uid = data.uid;
+			var obj = {};
+			obj[uid] = true;
+			//Math to update rating system.
+			var rate = snapshot.child("rate");
+			var amountRated = snapshot.child("amountRated");
+			var top = (1.0 * rate * amountRated) + rating;
+			var bottom = amountedRated + 1;
+			var newRate = top/bottom;
+
+			var rateContentJson = {
+					"amountRated": bottom,
+					"rate": newRate
+			};
+			rateRef.update(rateContentJson);
+			rateRef.child("raters").update(obj);
+			cb(true);
+		}
+	});
+}
+
+function getRandomRecipe(day, meal, cb)
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		return;
+		//cb(false);
+	}
+
+	var data = ref.getAuth();
+
+	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/facebook:10105047931297062/");
+
+	var recipeReturn;
+
+	userRef.once("value", function(snapshot)
+	{
+		//Assign Health properties
+		var health = snapshot.child("health").val();
+		var diab = health["diabetes"];
+		var highc = health["high-cholestorol"];
+		var hyper = health["hypertension"];
+		var hypo = health["hypotension"];
+		var veg = health["vegetarian"];
+		//Assign Allergy Properties
+		var allergies = snapshot.child("allergies").val();
+		var cornA = allergies["corn"];
+		var eggA = allergies["egg"];
+		var fishA = allergies["fish"];
+		var gluttenA = allergies["glutten"];
+		var MilkA = allergies["milk"];
+		var peanutA = allergies["peanut"];
+		var redA = allergies["red-meat"];
+		var sesameA = allergies["sesame"];
+		var shellA = allergies["shell-fish"];
+		var soyA = allergies["soy"];
+		var treeA = allergies["tree-nut"];
+
+		console.log(diab);
+
+		var recipeRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory/");
+
+		if(hypo || diab || highc || hyper)
+		{
+			var query = recipeRef.orderByChild("custom").equalTo(false);
+
+			query.once("value", function(childSnapshot){
+				var num = childSnapshot.numChildren();
+				var newNnum = num / 10;
+
+				childSnapshot.forEach(function(querySnapshot)
+				{
+					var flag = true;
+
+					var ingredients = querySnapshot.child("ingredients").val();
+
+					for(var i = 0; i < ingredients.length; i++)
+					{
+						var foodName = ingredients[i].food_name;
+						if(veg)
+						{
+							if( (foodName.indexOf("meat") !== -1) || (foodName.indexOf("Meat") !== -1) || (foodName.indexOf("chicken") !== -1) || (foodName.indexOf("Chicken") !== -1))
+							{
+								flag = false;
+								break;
+							}
+							else
+							{
+								continue;
+							}
+						}
+
+						checkAllergiesWithIngredients(ingredients, cornA, eggA, fishA, gluttenA, milkA, peanutA, redA, sesameA, shellA, soyA, treeA)
+					}
+
+					if(hyper && flag)
+					{
+						var currentSodium = querySnapshot.child("nutrition").child("sodium").val();
+						if (Number(currentSodium) > 400)
+						{
+							flag = false;
+						}
+					}
+
+					if(diab && flag)
+					{
+						var currentCarbo = querySnapshot.child("nutrition").child("carbohydrates").val();
+						if( Number(currentCarbo) > 30)
+						{
+							flag = false;
+						}
+					}
+
+					if(highc && flag)
+					{
+						var transFat = querySnapshot.child("nutrition").child("trans_fat").val();
+						var totalFat = querySnapshot.child("nutrition").child("fat").val();
+
+						if(Number(transFat) > 1)
+						{
+							flag = false;
+						}
+
+						if(Number(totalFat) > 25)
+						{
+							flag = false;
+						}
+					}
+
+					if(hypo && flag)
+					{
+						var currentCarbo = querySnapshot.child("nutrition").child("carbohydrates").val();
+						if( Number(currentCarbo) > 35)
+						{
+							flag = false;
+						}
+					}
+
+					if(flag)
+					{
+						cb(day, meal, querySnapshot.val());
+						return true;
+					}
+				});
+			});
+			//var query = directoryRef.orderByChild("custom").equalTo(false);
+		}
+	});
+}
+
+function checkAllergiesWithIngredients(ingredients, corn, egg, fish, glutten, milk, peanut, redMeat, sesame, shell, soy, treeNut)
+{
+	var passes = true;
+	for(var i = 0; i < ingredients.length; i++)
+	{
+		var foodName = ingredients[i].food_name;
+		if(corn)
+		{
+			if( (foodName.indexOf("corn") !== -1) && (foodName.indexOf("Corn") !== -1))
+			{
+				return false;
+			}
+		}
+
+		if(egg)
+		{
+			if( (foodName.indexOf("egg") !== -1) && (foodName.indexOf("Egg") !== -1))
+			{
+				return false;
+			}
+		}
+
+		if(fish)
+		{
+			if( (foodName.indexOf("fish") !== -1) && (foodName.indexOf("Fish") !== -1))
+			{
+				return false;
+			}
+		}
+
+		if(glutten)
+		{
+			if( (foodName.indexOf("glutten") !== -1) && (foodName.indexOf("Glutten") !== -1))
+			{
+				return false;
+			}
+		}
+
+		if(milk)
+		{
+			if( (foodName.indexOf("corn") !== -1) && (foodName.indexOf("Corn") !== -1))
+			{
+				return false;
+			}
+		}
+	}
+}
+
+//TEST TEST TEST TEST
+
+
+function test()
+{
+	var recipeRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory/");
+	//query.once("value", function(childSnapshot){
+
+	//});
+}
