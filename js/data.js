@@ -1109,7 +1109,7 @@ function getRandomRecipe(day, meal, cb)
 		//Assign Health properties
 		var health = snapshot.child("health").val();
 		var diab = health.diabetes;
-		var highc = health.high-cholestorol;
+		var highc = health["high-cholestorol"];
 		var hyper = health.hypertension;
 		var hypo = health.hypotension;
 		var veg = health.vegetarian;
