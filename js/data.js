@@ -976,8 +976,8 @@ function getPlanner(cb)
 	var plannerRef = new Firebase("https://phoodbuddy.firebaseio.com/planner/" + data.uid + "/");
 
 	plannerRef.once("value", function(snapshot){
-
-		cb(snapshot.val());
+		var plannerJson = snapshot.val();
+		cb(plannerJson);
 	});
 }
 
@@ -1181,7 +1181,12 @@ function getRandomRecipe(day, meal, cb)
 							}
 						}
 
-						checkAllergiesWithIngredients(ingredients, cornA, eggA, fishA, gluttenA, milkA, peanutA, redA, sesameA, shellA, soyA, treeA)
+						if( (checkAllergiesWithIngredients(ingredients, cornA, eggA, fishA, gluttenA, milkA, peanutA, redA, sesameA, shellA, soyA, treeA)) === false)
+						{
+							flag = false;
+							break;
+						}
+						
 					}
 
 					if(hyper && flag)
@@ -1247,7 +1252,7 @@ function checkAllergiesWithIngredients(ingredients, corn, egg, fish, glutten, mi
 		var foodName = ingredients[i].food_name;
 		if(corn)
 		{
-			if( (foodName.indexOf("corn") !== -1) && (foodName.indexOf("Corn") !== -1))
+			if( (foodName.indexOf("corn") !== -1) || (foodName.indexOf("Corn") !== -1))
 			{
 				return false;
 			}
@@ -1255,7 +1260,7 @@ function checkAllergiesWithIngredients(ingredients, corn, egg, fish, glutten, mi
 
 		if(egg)
 		{
-			if( (foodName.indexOf("egg") !== -1) && (foodName.indexOf("Egg") !== -1))
+			if( (foodName.indexOf("egg") !== -1) || (foodName.indexOf("Egg") !== -1))
 			{
 				return false;
 			}
@@ -1263,7 +1268,7 @@ function checkAllergiesWithIngredients(ingredients, corn, egg, fish, glutten, mi
 
 		if(fish)
 		{
-			if( (foodName.indexOf("fish") !== -1) && (foodName.indexOf("Fish") !== -1))
+			if( (foodName.indexOf("fish") !== -1) || (foodName.indexOf("Fish") !== -1))
 			{
 				return false;
 			}
@@ -1271,7 +1276,7 @@ function checkAllergiesWithIngredients(ingredients, corn, egg, fish, glutten, mi
 
 		if(glutten)
 		{
-			if( (foodName.indexOf("glutten") !== -1) && (foodName.indexOf("Glutten") !== -1))
+			if( (foodName.indexOf("glutten") !== -1) || (foodName.indexOf("Glutten") !== -1) || (foodName.indexOf("wheat") !== -1) || (foodName.indexOf("Wheat") !== -1) || (foodName.indexOf("barley") !== -1) || (foodName.indexOf("Barley") !== -1) || (foodName.indexOf("barley") !== -1) || (foodName.indexOf("Barley") !== -1))
 			{
 				return false;
 			}
@@ -1279,12 +1284,62 @@ function checkAllergiesWithIngredients(ingredients, corn, egg, fish, glutten, mi
 
 		if(milk)
 		{
-			if( (foodName.indexOf("corn") !== -1) && (foodName.indexOf("Corn") !== -1))
+			if( (foodName.indexOf("milk") !== -1) || (foodName.indexOf("Milk") !== -1))
+			{
+				return false;
+			}
+		}
+
+		if(peanut)
+		{
+			if( (foodName.indexOf("peanut") !== -1) || (foodName.indexOf("Peanut") !== -1))
+			{
+				return false;
+			}
+		}
+
+		if(redMeat)
+		{
+			if( (foodName.indexOf("Steak") !== -1) || (foodName.indexOf("steak") !== -1) || (foodName.indexOf("beef") !== -1) || (foodName.indexOf("Beef") !== -1) || (foodName.indexOf("red meat") !== -1) || (foodName.indexOf("meat") !== -1) || (foodName.indexOf("Meat") !== -1))
+			{
+				return false;
+			}
+		}
+
+		if(sesame)
+		{
+			if( (foodName.indexOf("sesame") !== -1) || (foodName.indexOf("Sesame") !== -1))
+			{
+				return false;
+			}
+		}
+
+		if(shell)
+		{
+			if( (foodName.indexOf("shrimp") !== -1) || (foodName.indexOf("Shrimp") !== -1) || (foodName.indexOf("Lobster") !== -1) || (foodName.indexOf("lobster") !== -1) || (foodName.indexOf("crab") !== -1) || (foodName.indexOf("Crab") !== -1) || (foodName.indexOf("Prawn") !== -1) || (foodName.indexOf("prawn") !== -1) || (foodName.indexOf("scampi") !== -1) || (foodName.indexOf("Scampi") !== -1) || (foodName.indexOf("crawfish") !== -1) || (foodName.indexOf("Crawfish") !== -1) || (foodName.indexOf("barnacle") !== -1) || (foodName.indexOf("barnacle") !== -1))
+			{
+				return false;
+			}
+		}
+
+		if(soy)
+		{
+			if( (foodName.indexOf("soy") !== -1) || (foodName.indexOf("Spy") !== -1))
+			{
+				return false;
+			}
+		}
+
+		if(treeNut)
+		{
+			if( (foodName.indexOf("tree nut") !== -1) || (foodName.indexOf("Tree Nut") !== -1) || (foodName.indexOf("tree Nut") !== -1) || (foodName.indexOf("Tree nut") !== -1))
 			{
 				return false;
 			}
 		}
 	}
+
+	return true;
 }
 
 //TEST TEST TEST TEST
