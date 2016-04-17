@@ -521,7 +521,7 @@ function getFavAll(count, cb)
 
 					
 				});//End: forEach -> 'recipe-directory'
-				cb(day, time, recipeContentJson);   //CALL cb here
+				cb(recipeContentJson);   //CALL cb here
 			});//END: snapshot -> 'recipe-directory'
 			//cb(recipeContentJson); //This cb will return the JSON of all recipes
 		}//END: if user has created recipes
@@ -1145,6 +1145,7 @@ function getRandomRecipe(day, meal, cb)
 				var num = childSnapshot.numChildren();
 				var newNnum = num / 10;
 
+				var flagger = true;
 				childSnapshot.forEach(function(querySnapshot)
 				{
 					var flag = true;
@@ -1228,11 +1229,15 @@ function getRandomRecipe(day, meal, cb)
 
 					if(flag)
 					{
+						flagger = false;
 						cb(querySnapshot.val(), day, meal);
 						return true;
 					}
 				});
-				cb(false, day, meal);
+				if(flagger)
+				{
+					cb(false, day, meal);
+				}
 			});
 			//var query = directoryRef.orderByChild("custom").equalTo(false);
 		}
@@ -1242,6 +1247,7 @@ function getRandomRecipe(day, meal, cb)
 
 			customQuery.once("value", function(childSnapshot){
 
+				var flagger = true;
 				childSnapshot.forEach(function(querySnapshot){
 
 					var flag = true;
@@ -1281,11 +1287,17 @@ function getRandomRecipe(day, meal, cb)
 
 					if(flag)
 					{
+						flagger = false;
 						cb(querySnapshot.val(), day, meal);
+						return true;
 					}
 
 				});
-				cb(false, day, meal);
+
+				if(flagger)
+				{
+					cb(false, day, meal);
+				}
 			});
 		}
 	});
