@@ -1149,7 +1149,7 @@ function getRandomRecipe(day, meal, cb)
 				{
 					var flag = true;
 
-					var ingredients = querySnapshot.child("ingredients").val();
+					var ingredients = querySnapshot.child("ingredientList").val();
 
 					for(var i = 0; i < ingredients.length; i++)
 					{
@@ -1238,7 +1238,7 @@ function getRandomRecipe(day, meal, cb)
 
 					var flag = true;
 
-					var ingredients = querySnapshot.child("ingredients").val();
+					var ingredients = querySnapshot.child("ingredientList").val();
 
 					for(var i = 0; i < ingredients.length; i++)
 					{
