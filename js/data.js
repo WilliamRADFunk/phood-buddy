@@ -129,7 +129,7 @@ function removeAllGrocery(cb)
 	cb(true);
 }
 
-function assembleRecipe(author, description, img, name, taste, ingredients, directions, cookTime, prepTime, totalTime, mealTime, cb)
+function assembleRecipe(description, img, name, taste, ingredients, directions, cookTime, prepTime, totalTime, mealTime, cb)
 {
 	
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
@@ -203,6 +203,7 @@ function postRecipe(recipeJson, cb)
 	storeJson[recipeId] = true;
 
 	ref.child("users").child(data.uid).child("created-recipe").update(storeJson);
+	ref.child("users").
 	cb(true);
 }
 
@@ -597,7 +598,8 @@ function getRandomFavRecipe(day, time, cb)
 								var name = childSnapshot.child("name").val();
 								var recipeId = directoryKey;
 								var recipeContentJson = {"name": name, "id": recipeId};
-								cb(recipeContentJson, day, time);
+								updatePlanner(day, time, name, recipeId, cb);  //updatePlanner(dayOfWeek, timeOfDay, name, recipeId, cb)
+								//cb(recipeContentJson, day, time);  
 								return true;
 							}
 							break;
@@ -997,7 +999,7 @@ function updatePlanner(dayOfWeek, timeOfDay, name, recipeId, cb)
 
 	plannerRef.update(obj);
 
-	cb(true);
+	cb(obj, dayOfWeek, timeOfDay);
 }
 
 function getRecipeById()
