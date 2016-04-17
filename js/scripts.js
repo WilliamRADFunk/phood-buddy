@@ -498,19 +498,69 @@ function addRecipeReply(result)
 	if(result) spawnModal("Submission Success", "<p>Your recipe has found its new home at Phood Buddy</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/create-recipe.html", false);
 	else spawnModal("Submission Failed", "<p>Your recipe wasn't submitted. Double check your inputs</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/create-recipe.html", false);
 }
-function spawnModal(header, body, redirect, moreThanOneBtn, cancel)
+function initSchedule()
 {
-	$("#modal").modal({backdrop: "static", keyboard: false, show: true});
-	$(".modal-header").html(header);
-	$(".modal-body").html(body);
-
-	if(moreThanOneBtn) $("#btn-cancel").css("display", "inline-block");
-	else  $("#btn-cancel").css("display", "none");
-
-	$("#btn-confirm").click(function() {
-		window.location = redirect;
-		$("#btn-cancel").css("display", "inline-block");
-	});
+	getPlanner(popScheduleCallback);
+}
+function popScheduleCallback(result)
+{
+	if(result === false)
+	{
+		spawnModal("Not Logged In", "<p>You don't appear to be logged in. Go back to the login page.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/login.html", false);
+	}
+	else
+	{
+		console.log(result);
+		var mondayBfast = (result.monday.breakfast.name === "" ? '<div class="breakfast" onclick="openRecipeOptions(\'monday\', \'breakfast\')">Select Breakfast Recipe</div>' : '<div class="breakfast"><a href="recipe.html?' + result.monday.breakfast.recipeId + '">' + result.monday.breakfast.name + '</a><button class="btn-del-choice" onclick="updatePlanner(\'monday\', \'breakfast\', \'\', \'\', deleteScheduledRecipe)">Delete</button></div>');
+		var mondayLunch = (result.monday.lunch.name === "" ? '<div class="lunch" onclick="openRecipeOptions(\'monday\', \'lunch\')">Select Lunch Recipe</div>' : '<div class="lunch"><a href="recipe.html?' + result.monday.lunch.recipeId + '">' + result.monday.lunch.name + '</a><button class="btn-del-choice" onclick="updatePlanner(\'monday\', \'lunch\', \'\', \'\', deleteScheduledRecipe)">Delete</button></div>');
+		var mondayDinner = (result.monday.dinner.name === "" ? '<div class="dinner" onclick="openRecipeOptions(\'monday\', \'dinner\')">Select Dinner Recipe</div>' : '<div class="dinner"><a href="recipe.html?' + result.monday.dinner.recipeId + '">' + result.monday.dinner.name + '</a><button class="btn-del-choice" onclick="updatePlanner(\'monday\', \'dinner\', \'\', \'\', deleteScheduledRecipe)">Delete</button></div>');
+		var tuesdayBfast = (result.tuesday.breakfast.name === "" ? '<div class="breakfast" onclick="openRecipeOptions(\'tuesday\', \'breakfast\')">Select Breakfast Recipe</div>' : '<div class="breakfast"><a href="recipe.html?' + result.tuesday.breakfast.recipeId + '">' + result.tuesday.breakfast.name + '</a><button class="btn-del-choice" onclick="updatePlanner(\'tuesday\', \'breakfast\', \'\', \'\', deleteScheduledRecipe)">Delete</button></div>');
+		var tuesdayLunch = (result.tuesday.lunch.name === "" ? '<div class="lunch" onclick="openRecipeOptions(\'tuesday\', \'lunch\')">Select Lunch Recipe</div>' : '<div class="lunch"><a href="recipe.html?' + result.tuesday.lunch.recipeId + '">' + result.tuesday.lunch.name + '</a><button class="btn-del-choice" onclick="updatePlanner(\'tuesday\', \'lunch\', \'\', \'\', deleteScheduledRecipe)">Delete</button></div>');
+		var tuesdayDinner = (result.tuesday.dinner.name === "" ? '<div class="dinner" onclick="openRecipeOptions(\'tuesday\', \'dinner\')">Select Dinner Recipe</div>' : '<div class="dinner"><a href="recipe.html?' + result.tuesday.dinner.recipeId + '">' + result.tuesday.dinner.name + '</a><button class="btn-del-choice" onclick="updatePlanner(\'tuesday\', \'dinner\', \'\', \'\', deleteScheduledRecipe)">Delete</button></div>');
+		var wednesdayBfast = (result.wednesday.breakfast.name === "" ? '<div class="breakfast" onclick="openRecipeOptions(\'wednesday\', \'breakfast\')">Select Breakfast Recipe</div>' : '<div class="breakfast"><a href="recipe.html?' + result.wednesday.breakfast.recipeId + '">' + result.wednesday.breakfast.name + '</a><button class="btn-del-choice" onclick="updatePlanner(\'wednesday\', \'breakfast\', \'\', \'\', deleteScheduledRecipe)">Delete</button></div>');
+		var wednesdayLunch = (result.wednesday.lunch.name === "" ? '<div class="lunch" onclick="openRecipeOptions(\'wednesday\', \'lunch\')">Select Lunch Recipe</div>' : '<div class="lunch"><a href="recipe.html?' + result.wednesday.lunch.recipeId + '">' + result.wednesday.lunch.name + '</a><button class="btn-del-choice" onclick="updatePlanner(\'wednesday\', \'lunch\', \'\', \'\', deleteScheduledRecipe)">Delete</button></div>');
+		var wednesdayDinner = (result.wednesday.dinner.name === "" ? '<div class="dinner" onclick="openRecipeOptions(\'wednesday\', \'dinner\')">Select Dinner Recipe</div>' : '<div class="dinner"><a href="recipe.html?' + result.wednesday.dinner.recipeId + '">' + result.wednesday.dinner.name + '</a><button class="btn-del-choice" onclick="updatePlanner(\'wednesday\', \'dinner\', \'\', \'\', deleteScheduledRecipe)">Delete</button></div>');
+		var thursdayBfast = (result.thursday.breakfast.name === "" ? '<div class="breakfast" onclick="openRecipeOptions(\'thursday\', \'breakfast\')">Select Breakfast Recipe</div>' : '<div class="breakfast"><a href="recipe.html?' + result.thursday.breakfast.recipeId + '">' + result.thursday.breakfast.name + '</a><button class="btn-del-choice" onclick="updatePlanner(\'thursday\', \'breakfast\', \'\', \'\', deleteScheduledRecipe)">Delete</button></div>');
+		var thursdayLunch = (result.thursday.lunch.name === "" ? '<div class="lunch" onclick="openRecipeOptions(\'thursday\', \'lunch\')">Select Lunch Recipe</div>' : '<div class="lunch"><a href="recipe.html?' + result.thursday.lunch.recipeId + '">' + result.thursday.lunch.name + '</a><button class="btn-del-choice" onclick="updatePlanner(\'thursday\', \'lunch\', \'\', \'\', deleteScheduledRecipe)">Delete</button></div>');
+		var thursdayDinner = (result.thursday.dinner.name === "" ? '<div class="dinner" onclick="openRecipeOptions(\'thursday\', \'dinner\')">Select Dinner Recipe</div>' : '<div class="dinner"><a href="recipe.html?' + result.thursday.dinner.recipeId + '">' + result.thursday.dinner.name + '</a><button class="btn-del-choice" onclick="updatePlanner(\'thursday\', \'dinner\', \'\', \'\', deleteScheduledRecipe)">Delete</button></div>');
+		var fridayBfast = (result.friday.breakfast.name === "" ? '<div class="breakfast" onclick="openRecipeOptions(\'friday\', \'breakfast\')">Select Breakfast Recipe</div>' : '<div class="breakfast"><a href="recipe.html?' + result.friday.breakfast.recipeId + '">' + result.friday.breakfast.name + '</a><button class="btn-del-choice" onclick="updatePlanner(\'friday\', \'breakfast\', \'\', \'\', deleteScheduledRecipe)">Delete</button></div>');
+		var fridayLunch = (result.friday.lunch.name === "" ? '<div class="lunch" onclick="openRecipeOptions(\'friday\', \'lunch\')">Select Lunch Recipe</div>' : '<div class="lunch"><a href="recipe.html?' + result.friday.lunch.recipeId + '">' + result.friday.lunch.name + '</a><button class="btn-del-choice" onclick="updatePlanner(\'friday\', \'lunch\', \'\', \'\', deleteScheduledRecipe)">Delete</button></div>');
+		var fridayDinner = (result.friday.dinner.name === "" ? '<div class="dinner" onclick="openRecipeOptions(\'friday\', \'dinner\')">Select Dinner Recipe</div>' : '<div class="dinner"><a href="recipe.html?' + result.friday.dinner.recipeId + '">' + result.friday.dinner.name + '</a><button class="btn-del-choice" onclick="updatePlanner(\'friday\', \'dinner\', \'\', \'\', deleteScheduledRecipe)">Delete</button></div>');
+		var saturdayBfast = (result.saturday.breakfast.name === "" ? '<div class="breakfast" onclick="openRecipeOptions(\'saturday\', \'breakfast\')">Select Breakfast Recipe</div>' : '<div class="breakfast"><a href="recipe.html?' + result.saturday.breakfast.recipeId + '">' + result.saturday.breakfast.name + '</a><button class="btn-del-choice" onclick="updatePlanner(\'saturday\', \'breakfast\', \'\', \'\', deleteScheduledRecipe)">Delete</button></div>');
+		var saturdayLunch = (result.saturday.lunch.name === "" ? '<div class="lunch" onclick="openRecipeOptions(\'saturday\', \'lunch\')">Select Lunch Recipe</div>' : '<div class="lunch"><a href="recipe.html?' + result.saturday.lunch.recipeId + '">' + result.saturday.lunch.name + '</a><button class="btn-del-choice" onclick="updatePlanner(\'saturday\', \'lunch\', \'\', \'\', deleteScheduledRecipe)">Delete</button></div>');
+		var saturdayDinner = (result.saturday.dinner.name === "" ? '<div class="dinner" onclick="openRecipeOptions(\'saturday\', \'dinner\')">Select Dinner Recipe</div>' : '<div class="dinner"><a href="recipe.html?' + result.saturday.dinner.recipeId + '">' + result.saturday.dinner.name + '</a><button class="btn-del-choice" onclick="updatePlanner(\'saturday\', \'dinner\', \'\', \'\', deleteScheduledRecipe)">Delete</button></div>');
+		var sundayBfast = (result.sunday.breakfast.name === "" ? '<div class="breakfast" onclick="openRecipeOptions(\'sunday\', \'breakfast\')">Select Breakfast Recipe</div>' : '<div class="breakfast"><a href="recipe.html?' + result.sunday.breakfast.recipeId + '">' + result.sunday.breakfast.name + '</a><button class="btn-del-choice" onclick="updatePlanner(\'sunday\', \'breakfast\', \'\', \'\', deleteScheduledRecipe)">Delete</button></div>');
+		var sundayLunch = (result.sunday.lunch.name === "" ? '<div class="lunch" onclick="openRecipeOptions(\'sunday\', \'lunch\')">Select Lunch Recipe</div>' : '<div class="lunch"><a href="recipe.html?' + result.sunday.lunch.recipeId + '">' + result.sunday.lunch.name + '</a><button class="btn-del-choice" onclick="updatePlanner(\'sunday\', \'lunch\', \'\', \'\', deleteScheduledRecipe)">Delete</button></div>');
+		var sundayDinner = (result.sunday.dinner.name === "" ? '<div class="dinner" onclick="openRecipeOptions(\'sunday\', \'dinner\')">Select Dinner Recipe</div>' : '<div class="dinner"><a href="recipe.html?' + result.sunday.dinner.recipeId + '">' + result.sunday.dinner.name + '</a><button class="btn-del-choice" onclick="updatePlanner(\'sunday\', \'dinner\', \'\', \'\', deleteScheduledRecipe)">Delete</button></div>');
+		$("#wrapper").html(
+			'<div id="week-schedule">' +
+				'<h1>Week\'s Recipes</h1>' +
+				'<div class="row">' +
+					'<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">' +
+						'<div id="monday" class="weekday col-lg-6 col-md-6 col-sm-6 col-xs-12">' +
+							'<h3>Monday</h3>' + mondayBfast + mondayLunch + mondayDinner +
+						'</div>' +
+						'<div id="tuesday" class="weekday col-lg-6 col-md-6 col-sm-6 col-xs-12">' +
+							'<h3>Tuesday</h3>' + tuesdayBfast + tuesdayLunch + tuesdayDinner +
+						'</div>' +
+						'<div id="wednesday" class="weekday col-lg-6 col-md-6 col-sm-6 col-xs-12">' +
+							'<h3>Wednesday</h3>' + wednesdayBfast + wednesdayLunch + wednesdayDinner +
+						'</div>' +
+						'<div id="thursday" class="weekday col-lg-6 col-md-6 col-sm-6 col-xs-12">' +
+							'<h3>Thursday</h3>' + thursdayBfast + thursdayLunch + thursdayDinner +
+						'</div>' +
+						'<div id="friday" class="weekday col-lg-6 col-md-6 col-sm-6 col-xs-12">' +
+							'<h3>Friday</h3>' + fridayBfast + fridayLunch + fridayDinner +
+						'</div>' +
+						'<div id="saturday" class="weekday col-lg-6 col-md-6 col-sm-6 col-xs-12">' +
+							'<h3>Saturday</h3>' + saturdayBfast + saturdayLunch + saturdayDinner +
+						'</div>' +
+						'<div id="sunday" class="weekday col-lg-12 col-md-12 col-sm-12 col-xs-12">' +
+							'<h3>Sunday</h3>' + sundayBfast + sundayLunch + sundayDinner +
+						'</div>' +
+					'</div></div></div>'
+		);
+	}
 }
 // User chose a mealtime to populate in the "weekly schedule"
 // Options are loaded into the Dom.
@@ -529,12 +579,10 @@ function openRecipeOptions(day, mealTime)
 	
 	// When user clicks the PB Pick button, random recipe is selected and name of recipe is placed in slot.
 	$("#" + day + " > ." + mealTime + " > .recipe-options-wrapper > .phood-buddy-choice").click(function(event){
-		$( this ).unbind( event );
 		getRandomRecipe(day, mealTime, popPBPick);
 	});
 	// When user clicks the Fav Pick button, random favorite recipe is selected and name of recipe is placed in slot.
 	$("#" + day + " > ." + mealTime + " > .recipe-options-wrapper > .phood-buddy-fav").click(function(event){
-		$( this ).unbind( event );
 		getRandomFavRecipe(day, mealTime, popFavPick);
 	});
 	// When user clicks the cancel button, all returns to normal.
@@ -553,7 +601,8 @@ function popPBPick(recipe, day, mealTime)
 {
 	if(recipe === false)
 	{
-		spawnModal("Failure to Select Recipe", "<p>We were unable to pick a recipe from your favorite list.<br/><br/>Would you like us to refresh the page?</p>", "schedule.html", true);
+		console.log("This");
+		spawnModal("Failure to Select Recipe", "<p>We were unable to pick a recipe from your favorite list.<br/><br/>Would you like us to refresh the page?</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/schedule.html", true);
 		$("#" + day + " > ." + mealTime).html("Select " + mealTime + " Recipe");
 		$("#" + day + " > ." + mealTime).removeClass("active");
 		setTimeout( function()
@@ -563,6 +612,7 @@ function popPBPick(recipe, day, mealTime)
 	}
 	else
 	{
+		console.log("That");
 		$("#" + day + " > ." + mealTime).html("<a href='recipe.html?" + Object.keys(recipe)[0] + "'>" + Object.keys(recipe)[0].name + "</a><button onclick='updatePlanner(" + day + ", " + mealTime + ", '', '', deleteScheduledRecipe'>Delete</button>");
 	}
 }
@@ -600,4 +650,19 @@ function deleteScheduledRecipe(result, day, mealTime)
 			$("#" + day + " > ." + mealTime).attr('onclick', 'openRecipeOptions(\'' + day + '\', \'' + mealTime + '\')');
 		}, 200);
 	}
+}
+// Customizable modal to be reused through all pages.
+function spawnModal(header, body, redirect, moreThanOneBtn, cancel)
+{
+	$("#modal").modal({backdrop: "static", keyboard: false, show: true});
+	$(".modal-header").html(header);
+	$(".modal-body").html(body);
+
+	if(moreThanOneBtn) $("#btn-cancel").css("display", "inline-block");
+	else  $("#btn-cancel").css("display", "none");
+
+	$("#btn-confirm").click(function() {
+		window.location = redirect;
+		$("#btn-cancel").css("display", "inline-block");
+	});
 }
