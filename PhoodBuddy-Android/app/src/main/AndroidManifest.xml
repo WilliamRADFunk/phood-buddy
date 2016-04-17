@@ -125,6 +125,17 @@
         </activity>
 
         <activity
+            android:name=".Activities.dashboard_custom"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".Activities.recipe_detail"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.recipe_detail" />
+        </activity>
+
+        <activity
             android:name=".Activities.TasteProfile"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"></activity>

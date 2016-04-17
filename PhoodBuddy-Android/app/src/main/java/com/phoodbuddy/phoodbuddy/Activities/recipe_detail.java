@@ -28,6 +28,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -63,7 +64,7 @@ public class recipe_detail extends AppCompatActivity {
         db.execSQL("CREATE TABLE IF NOT EXISTS favRecipes(image VARCHAR,name VARCHAR,id TEXT);");
 
         db1=openOrCreateDatabase("Meals", Context.MODE_PRIVATE, null);
-        db1.execSQL("CREATE TABLE IF NOT EXISTS mealList(image VARCHAR,name VARCHAR,id TEXT,type TEXT);");
+        db1.execSQL("CREATE TABLE IF NOT EXISTS mealList(image VARCHAR,name VARCHAR,id TEXT,type TEXT,date TEXT);");
 
         Bundle i = getIntent().getExtras();
         id = i.getLong("id");
@@ -103,6 +104,11 @@ public class recipe_detail extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        String date = year+"-"+month+"-"+day;
         switch (item.getItemId()) {
             case R.id.fav_rec:
                 db.execSQL("INSERT INTO favRecipes VALUES('"+ image+"','"+foodName+
@@ -110,17 +116,23 @@ public class recipe_detail extends AppCompatActivity {
                 return true;
             case R.id.breakfest_today:
                 db1.execSQL("INSERT INTO mealList VALUES('"+ image+"','"+foodName+
-                        "','"+id+"','"+"Breakfest"+"');");
+                        "','"+id+"','"+"Breakfest"+"','"+date+"');");
                 return true;
             case R.id.lunch_today:
                 db1.execSQL("INSERT INTO mealList VALUES('"+ image+"','"+foodName+
-                        "','"+id+"','"+"Lunch"+"');");
+                        "','"+id+"','"+"Lunch"+"','"+date+"');");
                 return true;
             case R.id.dinner_today:
                 db1.execSQL("INSERT INTO mealList VALUES('"+ image+"','"+foodName+
-                        "','"+id+"','"+"Dinner"+"');");
+                        "','"+id+"','"+"Dinner"+"','"+date+"');");
                 return true;
             case R.id.meal_custom:
+                // send intent of id to detail activity and start activity
+                Intent i = new Intent(recipe_detail.this, dashboard_custom.class);
+                i.putExtra("id", id);
+                i.putExtra("foodName", foodName);
+                i.putExtra("url",image);
+                startActivity(i);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

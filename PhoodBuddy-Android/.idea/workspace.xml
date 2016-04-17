@@ -57,7 +57,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Activities/FavRecipes.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="60" column="41" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
+              <caret line="61" column="40" selection-start-line="61" selection-start-column="40" selection-end-line="61" selection-end-column="40" />
               <folding>
                 <element signature="e#1355#1945#0" expanded="true" />
                 <element signature="e#1944#1945#0" expanded="true" />
@@ -66,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="recipe_detail.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="recipe_detail.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Activities/recipe_detail.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="110" column="38" selection-start-line="110" selection-start-column="38" selection-end-line="110" selection-end-column="38" />
+            <state vertical-scroll-proportion="-1.3767258">
+              <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -79,8 +79,8 @@
       <file leaf-file-name="DashboardController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Controllers/DashboardController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-30.222221">
-              <caret line="63" column="55" selection-start-line="63" selection-start-column="55" selection-end-line="63" selection-end-column="55" />
+            <state vertical-scroll-proportion="-4.4074073">
+              <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="78" selection-end-column="0" />
               <folding>
                 <element signature="e#970#971#0" expanded="true" />
                 <element signature="e#1013#1014#0" expanded="true" />
@@ -97,43 +97,48 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Activities/dashboard.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="148" column="35" selection-start-line="148" selection-start-column="35" selection-end-line="148" selection-end-column="35" />
+              <caret line="130" column="41" selection-start-line="130" selection-start-column="41" selection-end-line="130" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dashboard_custom.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Activities/dashboard_custom.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="62" column="60" selection-start-line="62" selection-start-column="60" selection-end-line="62" selection-end-column="60" />
               <folding>
-                <element signature="e#2272#2303#0" expanded="true" />
-                <element signature="e#2305#2337#0" expanded="true" />
-                <element signature="e#2699#3303#0" expanded="true" />
-                <element signature="e#3302#3303#0" expanded="true" />
-                <element signature="e#3400#4004#0" expanded="true" />
-                <element signature="e#4003#4004#0" expanded="true" />
-                <element signature="e#4103#4707#0" expanded="true" />
-                <element signature="e#4706#4707#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#1560#1568#0" expanded="true" />
+                <element signature="e#2977#2978#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dashboard.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dashboard.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="134" column="56" selection-start-line="134" selection-start-column="56" selection-end-line="134" selection-end-column="56" />
+              <folding>
+                <element signature="e#643#661#0" expanded="true" />
+                <element signature="e#876#894#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="content_dashboard.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_dashboard.xml">
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider editor-type-id="text-editor">
+      <file leaf-file-name="planner.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Activities/planner.java">
+          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="48" column="4" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="4" />
-              <folding />
+              <caret line="62" column="50" selection-start-line="62" selection-start-column="50" selection-end-line="62" selection-end-column="50" />
+              <folding>
+                <element signature="e#2063#2971#0" expanded="true" />
+                <element signature="e#2970#2971#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -146,14 +151,16 @@
               <folding>
                 <element signature="e#875#876#0" expanded="true" />
                 <element signature="e#915#916#0" expanded="true" />
-                <element signature="e#947#948#0" expanded="true" />
+                <element signature="e#942#943#0" expanded="true" />
+                <element signature="e#991#992#0" expanded="true" />
+                <element signature="e#1018#1019#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dashboard_child.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dashboard_child.xml">
+      <file leaf-file-name="content_planner.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_planner.xml">
           <provider selected="true" editor-type-id="android-designer">
             <state />
           </provider>
@@ -165,22 +172,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FavRecipe.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Models/FavRecipe.java">
+      <file leaf-file-name="PlannerController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Controllers/PlannerController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FavRecipeController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Controllers/FavRecipeController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-              <folding />
+              <caret line="64" column="34" selection-start-line="64" selection-start-column="34" selection-end-line="64" selection-end-column="34" />
+              <folding>
+                <element signature="e#956#957#0" expanded="true" />
+                <element signature="e#995#996#0" expanded="true" />
+                <element signature="e#1051#1052#0" expanded="true" />
+                <element signature="e#1097#1098#0" expanded="true" />
+                <element signature="e#1154#1155#0" expanded="true" />
+                <element signature="e#1178#1179#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -2333,7 +2337,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/button_border_primary.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/login.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Activities/shopping_list.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Activities/planner.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_settings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_planner.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_dashboard.xml" />
@@ -2359,15 +2362,21 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fav_recipes.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Models/FavRecipe.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Controllers/FavRecipeController.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Activities/FavRecipes.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Controllers/DashboardController.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Models/Meals.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Activities/recipe_detail.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Activities/dashboard.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/dashboard_child.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Service/FatSecretSearch.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Controllers/DashboardController.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/dashboard_custom.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/planner_child.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Controllers/PlannerController.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Models/Meals.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Activities/dashboard.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Activities/recipe_detail.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Activities/planner.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Activities/dashboard_custom.java" />
       </list>
     </option>
   </component>
@@ -2493,6 +2502,28 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="phoodbuddy" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PhoodBuddy-Android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="phoodbuddy" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2868,74 +2899,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/planner.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_planner.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="58" selection-start-line="28" selection-start-column="58" selection-end-line="28" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_health_profile.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.5172415">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="231" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Controllers/DealController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="0" selection-start-line="9" selection-start-column="28" selection-end-line="30" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.074074">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/intro_custom.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="1" selection-start-line="42" selection-start-column="1" selection-end-line="42" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values-v21/styles.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-15.111111">
@@ -3134,14 +3097,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Activities/recipes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="82" column="33" selection-start-line="77" selection-start-column="13" selection-end-line="82" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/smartloginlibrary-v0.5beta/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3171,17 +3126,6 @@
         <state vertical-scroll-proportion="-16.296297">
           <caret line="79" column="3" selection-start-line="79" selection-start-column="3" selection-end-line="79" selection-end-column="3" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="138" column="0" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
-          <folding>
-            <element signature="e#643#661#0" expanded="true" />
-            <element signature="e#876#894#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3255,69 +3199,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Models/Meals.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="29" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
-          <folding>
-            <element signature="e#875#876#0" expanded="true" />
-            <element signature="e#915#916#0" expanded="true" />
-            <element signature="e#947#948#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Controllers/DashboardController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-30.222221">
-          <caret line="63" column="55" selection-start-line="63" selection-start-column="55" selection-end-line="63" selection-end-column="55" />
-          <folding>
-            <element signature="e#970#971#0" expanded="true" />
-            <element signature="e#1013#1014#0" expanded="true" />
-            <element signature="e#1061#1062#0" expanded="true" />
-            <element signature="e#1111#1112#0" expanded="true" />
-            <element signature="e#1160#1161#0" expanded="true" />
-            <element signature="e#1188#1189#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Activities/FavRecipes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="60" column="41" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
-          <folding>
-            <element signature="e#1355#1945#0" expanded="true" />
-            <element signature="e#1944#1945#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Activities/recipe_detail.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="110" column="38" selection-start-line="110" selection-start-column="38" selection-end-line="110" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Activities/dashboard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="148" column="35" selection-start-line="148" selection-start-column="35" selection-end-line="148" selection-end-column="35" />
-          <folding>
-            <element signature="e#2272#2303#0" expanded="true" />
-            <element signature="e#2305#2337#0" expanded="true" />
-            <element signature="e#2699#3303#0" expanded="true" />
-            <element signature="e#3302#3303#0" expanded="true" />
-            <element signature="e#3400#4004#0" expanded="true" />
-            <element signature="e#4003#4004#0" expanded="true" />
-            <element signature="e#4103#4707#0" expanded="true" />
-            <element signature="e#4706#4707#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dashboard_child.xml">
       <provider selected="true" editor-type-id="android-designer">
         <state />
@@ -3347,6 +3228,160 @@
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="48" column="4" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Service/FatSecretSearch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dashboard_custom.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Activities/recipes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="82" column="33" selection-start-line="77" selection-start-column="13" selection-end-line="82" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/planner_child.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Controllers/PlannerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="64" column="34" selection-start-line="64" selection-start-column="34" selection-end-line="64" selection-end-column="34" />
+          <folding>
+            <element signature="e#956#957#0" expanded="true" />
+            <element signature="e#995#996#0" expanded="true" />
+            <element signature="e#1051#1052#0" expanded="true" />
+            <element signature="e#1097#1098#0" expanded="true" />
+            <element signature="e#1154#1155#0" expanded="true" />
+            <element signature="e#1178#1179#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Models/Meals.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="45" column="29" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
+          <folding>
+            <element signature="e#875#876#0" expanded="true" />
+            <element signature="e#915#916#0" expanded="true" />
+            <element signature="e#942#943#0" expanded="true" />
+            <element signature="e#991#992#0" expanded="true" />
+            <element signature="e#1018#1019#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_planner.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Activities/FavRecipes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="61" column="40" selection-start-line="61" selection-start-column="40" selection-end-line="61" selection-end-column="40" />
+          <folding>
+            <element signature="e#1355#1945#0" expanded="true" />
+            <element signature="e#1944#1945#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="134" column="56" selection-start-line="134" selection-start-column="56" selection-end-line="134" selection-end-column="56" />
+          <folding>
+            <element signature="e#643#661#0" expanded="true" />
+            <element signature="e#876#894#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Controllers/DashboardController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.4074073">
+          <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="78" selection-end-column="0" />
+          <folding>
+            <element signature="e#970#971#0" expanded="true" />
+            <element signature="e#1013#1014#0" expanded="true" />
+            <element signature="e#1061#1062#0" expanded="true" />
+            <element signature="e#1111#1112#0" expanded="true" />
+            <element signature="e#1160#1161#0" expanded="true" />
+            <element signature="e#1188#1189#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Activities/planner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="62" column="50" selection-start-line="62" selection-start-column="50" selection-end-line="62" selection-end-column="50" />
+          <folding>
+            <element signature="e#2063#2971#0" expanded="true" />
+            <element signature="e#2970#2971#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Activities/dashboard_custom.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="62" column="60" selection-start-line="62" selection-start-column="60" selection-end-line="62" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1560#1568#0" expanded="true" />
+            <element signature="e#2977#2978#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Activities/dashboard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="130" column="41" selection-start-line="130" selection-start-column="41" selection-end-line="130" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/phoodbuddy/phoodbuddy/Activities/recipe_detail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.3767258">
+          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
           <folding />
         </state>
       </provider>

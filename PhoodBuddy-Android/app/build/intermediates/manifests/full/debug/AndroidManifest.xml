@@ -131,6 +131,16 @@
                 android:value=".Activities.settings" />
         </activity>
         <activity
+            android:name="com.phoodbuddy.phoodbuddy.Activities.dashboard_custom"
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName="com.phoodbuddy.phoodbuddy.Activities.recipe_detail"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.recipe_detail" />
+        </activity>
+        <activity
             android:name="com.phoodbuddy.phoodbuddy.Activities.TasteProfile"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait" />

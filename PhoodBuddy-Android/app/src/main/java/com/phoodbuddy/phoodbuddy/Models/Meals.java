@@ -43,6 +43,16 @@ public class Meals {
         String name;
         String id;
 
+    public String getDate() {
+        return Date;
+    }
+
+    public void setDate(String date) {
+        Date = date;
+    }
+
+    String Date;
+
     public String getType() {
         return type;
     }

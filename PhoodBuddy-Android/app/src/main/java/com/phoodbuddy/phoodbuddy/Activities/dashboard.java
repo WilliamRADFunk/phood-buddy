@@ -12,7 +12,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,6 +26,7 @@ import com.phoodbuddy.phoodbuddy.Models.Meals;
 import com.phoodbuddy.phoodbuddy.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -57,7 +60,7 @@ public class dashboard extends AppCompatActivity
         setTitle("               Dashboard");
 
         db=openOrCreateDatabase("Meals", Context.MODE_PRIVATE, null);
-        db.execSQL("CREATE TABLE IF NOT EXISTS mealList(image VARCHAR,name VARCHAR,id TEXT,type TEXT);");
+        db.execSQL("CREATE TABLE IF NOT EXISTS mealList(image VARCHAR,name VARCHAR,id TEXT,type TEXT,date TEXT);");
 
 
         breakfestList = new ArrayList<>();
@@ -91,9 +94,9 @@ public class dashboard extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // send intent of id to detail activity and start activity
                 Intent i = new Intent(dashboard.this, recipe_detail.class);
-                i.putExtra("id", Long.valueOf(breakfestList.get(position).getId()));
-                i.putExtra("foodName", breakfestList.get(position).getName());
-                i.putExtra("url", breakfestList.get(position).getImage());
+                i.putExtra("id", Long.valueOf(lunchList.get(position).getId()));
+                i.putExtra("foodName", lunchList.get(position).getName());
+                i.putExtra("url", lunchList.get(position).getImage());
                 startActivity(i);
             }
         });
@@ -103,14 +106,20 @@ public class dashboard extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // send intent of id to detail activity and start activity
                 Intent i = new Intent(dashboard.this, recipe_detail.class);
-                i.putExtra("id", Long.valueOf(breakfestList.get(position).getId()));
-                i.putExtra("foodName", breakfestList.get(position).getName());
-                i.putExtra("url", breakfestList.get(position).getImage());
+                i.putExtra("id", Long.valueOf(dinnerList.get(position).getId()));
+                i.putExtra("foodName", dinnerList.get(position).getName());
+                i.putExtra("url", dinnerList.get(position).getImage());
                 startActivity(i);
             }
         });
 
-        c=db.rawQuery("SELECT * FROM mealList", null);
+        Calendar c1 = Calendar.getInstance();
+        int year = c1.get(Calendar.YEAR);
+        int month = c1.get(Calendar.MONTH);
+        int day = c1.get(Calendar.DAY_OF_MONTH);
+
+        String date =year+"-"+ month +"-"+day;
+        c= db.rawQuery("SELECT * FROM mealList WHERE date="+date+"", null);
         if(c.getCount()==0)
         {
             return;
@@ -148,9 +157,38 @@ public class dashboard extends AppCompatActivity
         lunch.setAdapter(adapter1);
         dinner.setAdapter(adapter2);
 
+        registerForContextMenu(breakfest);
+        registerForContextMenu(lunch);
+        registerForContextMenu(dinner);
+
+    }
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
 
     }
 
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch(item.getItemId())
+        {
+            case R.id.shopping_delete:
+                // return item name then delete from based on name
+                String itemName = breakfestList.get(info.position).getName();
+                db.execSQL("DELETE FROM mealList WHERE name='" + itemName + "'");
+                breakfestList.remove(info.position);
+                adapter.notifyDataSetChanged();
+                break;
+            default:
+                super.onOptionsItemSelected(item);
+                break;
+
+        }
+        return true;
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

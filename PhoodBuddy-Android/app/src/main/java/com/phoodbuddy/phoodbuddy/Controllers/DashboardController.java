@@ -61,7 +61,7 @@ public View getView(int position, View convertView, ViewGroup parent) {
         holder = (ViewHolder) convertView.getTag();
         }
         if (mealsList.size() == 0) {
-        Toast.makeText(mContext, "You have no meals set :/", Toast.LENGTH_LONG).show();
+                 Toast.makeText(mContext, "You have no meals set :/", Toast.LENGTH_LONG).show();
         } else {
         Picasso.with(mContext).load(mealsList.get(position).getImage()).into(holder.img);
         holder.name.setText(mealsList.get(position).getName());

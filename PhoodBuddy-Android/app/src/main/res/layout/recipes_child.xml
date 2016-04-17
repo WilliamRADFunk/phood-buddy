@@ -10,13 +10,13 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Name of Recipe"
-        android:id="@+id/foodName"
+        android:id="@+id/planner_name"
         android:textColor="@android:color/black"
         android:layout_marginLeft="18dp"
         android:layout_marginStart="18dp"
         android:layout_marginTop="17dp"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/imageView4"
+        android:layout_toRightOf="@+id/planner_image"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:singleLine="true" />
@@ -24,8 +24,8 @@
     <ImageView
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:id="@+id/imageView4"
-        android:layout_alignTop="@+id/foodName"
+        android:id="@+id/planner_image"
+        android:layout_alignTop="@+id/planner_name"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:src="@drawable/placeholder" />
@@ -38,11 +38,11 @@
         android:id="@+id/description"
         android:textColor="@android:color/black"
         android:singleLine="false"
-        android:layout_alignBottom="@+id/imageView4"
-        android:layout_alignLeft="@+id/foodName"
-        android:layout_alignStart="@+id/foodName"
+        android:layout_alignBottom="@+id/planner_image"
+        android:layout_alignLeft="@+id/planner_name"
+        android:layout_alignStart="@+id/planner_name"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/foodName" />
+        android:layout_below="@+id/planner_name" />
 
 </RelativeLayout>

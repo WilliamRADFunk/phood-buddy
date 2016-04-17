@@ -54,8 +54,8 @@ public class RecipeController extends BaseAdapter {
         if(convertView == null)
         {
             convertView = inflater.inflate(R.layout.recipes_child, null);
-            holder.foodName = (TextView) convertView.findViewById(R.id.foodName);
-            holder.img = (ImageView) convertView.findViewById(R.id.imageView4);
+            holder.foodName = (TextView) convertView.findViewById(R.id.planner_name);
+            holder.img = (ImageView) convertView.findViewById(R.id.planner_image);
             holder.description = (TextView) convertView.findViewById(R.id.description);
             convertView.setTag(holder);
         } else {

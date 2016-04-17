@@ -1,6 +1,9 @@
 package com.phoodbuddy.phoodbuddy.Activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,9 +15,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.phoodbuddy.phoodbuddy.Controllers.FavRecipeController;
+import com.phoodbuddy.phoodbuddy.Controllers.PlannerController;
+import com.phoodbuddy.phoodbuddy.Models.FavRecipe;
+import com.phoodbuddy.phoodbuddy.Models.Meals;
 import com.phoodbuddy.phoodbuddy.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by  Evan Glazer on 2/29/2016.
@@ -22,12 +33,51 @@ import com.phoodbuddy.phoodbuddy.R;
 public class planner extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
+    SQLiteDatabase db1;
+    List<Meals> plannerList;
+    PlannerController adapter;
+    ListView planView;
+    CalendarView cal;
+    Cursor c;
+
+    String date;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.planner);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        plannerList = new ArrayList<>();
+        adapter = new PlannerController(getApplicationContext(), plannerList);
+        planView = (ListView) findViewById(R.id.listView2);
+        cal = (CalendarView) findViewById(R.id.calendarView);
+        db1=openOrCreateDatabase("Meals", Context.MODE_PRIVATE, null);
+        db1.execSQL("CREATE TABLE IF NOT EXISTS mealList(image VARCHAR,name VARCHAR,id TEXT,type TEXT,date TEXT);");
+        cal.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+
+            @Override
+            public void onSelectedDayChange(CalendarView view, int year, int month,
+                                            int dayOfMonth) {
+               date = year+"-"+month+"-"+dayOfMonth;
+                c=db1.rawQuery("SELECT * FROM mealList WHERE date="+ date+"", null);
+                if(c.getCount()==0)
+                {
+                    return;
+                }
+                while(c.moveToNext()) {
+                    Meals fav = new Meals();
+
+                    fav.setImage(c.getString(0));
+                    fav.setName(c.getString(1));
+                    fav.setId(c.getString(2));
+                    fav.setType(c.getString(3));
+                    fav.setDate(c.getString(4));
+                    plannerList.add(fav);
+                }
+                planView.setAdapter(adapter);
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -44,6 +94,8 @@ public class planner extends AppCompatActivity
         }
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
 
     }
     @Override

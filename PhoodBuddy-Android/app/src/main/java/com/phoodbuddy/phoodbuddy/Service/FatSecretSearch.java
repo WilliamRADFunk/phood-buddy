@@ -1,7 +1,7 @@
 package com.phoodbuddy.phoodbuddy.Service;
 
 /**
- * Created by Evan on 3/25/2016.
+ * Created by Evan Glazer on 3/25/2016.
  */
 
 
@@ -28,7 +28,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class FatSecretSearch {
     public JSONObject searchFood(String searchFood, int page) {
-        Log.e("Search", Uri.encode(searchFood) + searchFood);
+        Log.e("Search", Uri.encode(searchFood));
         List<String> params = new ArrayList<>(Arrays.asList(generateOauthParams(page)));
         String[] template = new String[1];
         params.add("method=recipes.search");
