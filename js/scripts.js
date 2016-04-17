@@ -526,9 +526,14 @@ function openRecipeOptions(day, mealTime)
 	);
 	$("#" + day + " > ." + mealTime).removeAttr("onclick");
 
-	console.log("#" + day + " > ." + mealTime + " > .recipe-options-wrapper > " + day + "-" + mealTime + "-cancel");
+	console.log("The bind");
 	
-	$("#" + day + " > ." + mealTime + " > .recipe-options-wrapper > " + day + "-" + mealTime + "-cancel").click(function(){
-		$("#" + day + " > ." + mealTime).html("Select Dinner Recipe");
+	$("#" + day + " > ." + mealTime + " > .recipe-options-wrapper > .phood-buddy-cancel").click(function(event){
+		$( this ).unbind( event );
+		$("#" + day + " > ." + mealTime).html("Select " + mealTime + " Recipe");
+		setTimeout(function(){
+			$("#" + day + " > ." + mealTime).attr('onclick', 'openRecipeOptions(\'' + day + '\', \'' + mealTime + '\')');
+		}, 1000);
+		console.log("The unbinding");
 	});
 }
