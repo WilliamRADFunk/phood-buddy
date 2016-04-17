@@ -1124,7 +1124,7 @@ function getRandomRecipe(day, meal, cb)
 		var eggA = allergies.egg;
 		var fishA = allergies.fish;
 		var gluttenA = allergies.glutten;
-		var MilkA = allergies.milk;
+		var milkA = allergies.milk;
 		var peanutA = allergies.peanut;
 		var redA = allergies["red-meat"];
 		var sesameA = allergies.sesame;
@@ -1133,7 +1133,7 @@ function getRandomRecipe(day, meal, cb)
 		console.log("This is a allergy: " + soyA);
 		var treeA = allergies["tree-nut"];
 
-		console.log(diab);
+		//console.log(diab);
 
 		var recipeRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory/");
 
