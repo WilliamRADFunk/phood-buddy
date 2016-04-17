@@ -1,24 +1,14 @@
 ﻿using FireSharp;
 using FireSharp.Config;
 using FireSharp.Interfaces;
+using Newtonsoft.Json;
 using PhoodBuddyUWP.Models;
 using System;
 using System.Collections.ObjectModel;
+using Windows.Storage;
 
 namespace PhoodBuddyUWP.ViewModels
 {
-    public class ShoppingListItem
-    {
-        public ShoppingListItem(bool marked, RecipeIngredientModel ingredient)
-        {
-            this.marked = marked;
-            this.ingredient = ingredient;
-        }
-
-        public bool marked;
-        public RecipeIngredientModel ingredient;
-    }
-
     public class ShoppingListViewModel
     {
         //CONSTRUCTOR
@@ -37,13 +27,13 @@ namespace PhoodBuddyUWP.ViewModels
             //Attempts to get the online copy
             try
             {
-                //TODO: Fetch the online copies
+                getOnlineShoppingList();
             }
 
             //If it's unable to, use the local copy
             catch (Exception)
             {
-                //TODO: Fetch the local copies
+                getLocalShoppingList();
             }
         }
 
@@ -63,12 +53,26 @@ namespace PhoodBuddyUWP.ViewModels
 
         private void getLocalShoppingList()
         {
-            throw new NotImplementedException();
+            //Open or create the local storage file
+            var fileResult = ApplicationData.Current.LocalFolder.CreateFileAsync("shoppingList.json", CreationCollisionOption.OpenIfExists);
+            while (fileResult.Status != Windows.Foundation.AsyncStatus.Completed) ;
+            StorageFile file = fileResult.GetResults();
+
+            //Reads the text from the file
+            var textResult = FileIO.ReadTextAsync(file);
+            while (textResult.Status != Windows.Foundation.AsyncStatus.Completed) ;
+            string jText = textResult.GetResults();
+
+            //Intializes Items
+            if (jText != "")
+                Items = JsonConvert.DeserializeObject<ObservableCollection<RecipeIngredientModel>>(jText);
+            else
+                Items = new ObservableCollection<RecipeIngredientModel>();
         }
         
         
         //PUBLIC PROPERITES
-        ObservableCollection<ShoppingListItem> Items { get; set; }
+        public ObservableCollection<RecipeIngredientModel> Items { get; set; }
 
         
         //PRIVATE MEMBERS

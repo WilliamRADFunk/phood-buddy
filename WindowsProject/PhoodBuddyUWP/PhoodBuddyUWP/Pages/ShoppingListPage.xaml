@@ -11,10 +11,7 @@
 
     <Page.Resources>
         <DataTemplate x:Key="ShoppingListItem">
-            <CheckBox DataContext="vm:ShoppingListViewModel"
-                      IsChecked="{Binding marked}"
-                      Content="{Binding ingredient}"
-                      FontSize="{ThemeResource ContentControlFontSize}"/>
+            <TextBlock Text="{Binding}"/>
         </DataTemplate>
     </Page.Resources>
     
@@ -22,7 +19,81 @@
         <CommandBar>
             <AppBarButton Name="addButton"
                           Icon="Add"
-                          Label="Add"/>
+                          Label="Add"
+                          Click="addItemButton_Click">
+                <AppBarButton.Flyout>
+                    <Flyout x:Name="addFlyout"
+                            Closed="addFlyout_Closed">
+                        <Grid>
+                            <Grid.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment"
+                                            Value="Center"/>
+                                    <Setter Property="VerticalAlignment"
+                                            Value="Center"/>
+                                    <Setter Property="FontWeight"
+                                            Value="Bold"/>
+                                    <Setter Property="Margin"
+                                            Value="5"/>
+                                </Style>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="HorizontalAlignment"
+                                            Value="Center"/>
+                                    <Setter Property="VerticalAlignment"
+                                            Value="Center"/>
+                                    <Setter Property="MinWidth"
+                                            Value="200"/>
+                                    <Setter Property="Margin"
+                                            Value="3"/>
+                                </Style>
+                                
+                            </Grid.Resources>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Ingredient Name -->
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="Name"/>
+                            <TextBox Name="nameBox"
+                                     Grid.Row="0"
+                                     Grid.Column="1"/>
+                            
+                            <!-- Ingredient Unit -->
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="0"
+                                       Text="Unit"/>
+                            <TextBox Name="unitBox"
+                                     Grid.Row="1"
+                                     Grid.Column="1"/>
+                            
+                            <!-- Ingredient Amount -->
+                            <TextBlock Grid.Row="2"
+                                       Grid.Column="0"
+                                       Text="Amount"/>
+                            <TextBox Name="amountBox"
+                                     Grid.Row="2"
+                                     Grid.Column="1"/>
+
+                            <!-- Action Button -->
+                            <Button Grid.Row="3"
+                                    Grid.Column="1"
+                                    Content="Add"
+                                    HorizontalAlignment="Stretch"
+                                    Margin="5"
+                                    Click="addItemButton_Click"/>
+                        </Grid>
+                    </Flyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
             <AppBarButton Name="deleteButton"
                           Icon="Delete"
                           IsEnabled="False"
@@ -33,8 +104,7 @@
     <controls:NavMenu x:Name="navMenu"
                       HeaderText="Shopping List">
         <controls:NavMenu.MainContent>
-            <ListView DataContext=""
-                      ItemsSource="{Binding db.ShoppingList.Items}"
+            <ListView ItemsSource="{Binding Items}"
                       ItemTemplate="{StaticResource ShoppingListItem}"/>
         </controls:NavMenu.MainContent>
     </controls:NavMenu>

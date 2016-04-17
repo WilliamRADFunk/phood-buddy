@@ -57,19 +57,19 @@
                     <!-- First Name -->
                     <TextBlock Text="First Name"
                                Style="{StaticResource ProfileFieldLabel}"/>
-                    <TextBox Text="{Binding UserFirstName}"
+                    <TextBox Text="{Binding Path=UserFirstName}"
                              Style="{StaticResource ProfileField}"/>
 
                     <!-- Last Name -->
                     <TextBlock Text="Last Name"
                            Style="{StaticResource ProfileFieldLabel}"/>
-                    <TextBox Text=""
+                    <TextBox Text="{Binding Path=UserLastName}"
                          Style="{StaticResource ProfileField}"/>
 
                     <!-- Age -->
                     <TextBlock Text="Age"
                            Style="{StaticResource ProfileFieldLabel}"/>
-                    <TextBox Text=""
+                    <TextBox Text="{Binding Path=UserAge}"
                          Style="{StaticResource ProfileField}"/>
                     
                     <!-- Email -->
