@@ -3661,6 +3661,7 @@ containing a value of this type.
         public static final int mGoogleLoginButton=0x7f0d00f6;
         public static final int mTwitterLoginButton=0x7f0d00f5;
         public static final int meal_custom=0x7f0d014e;
+        public static final int meal_switch=0x7f0d0151;
         public static final int media_actions=0x7f0d010f;
         public static final int menu_search=0x7f0d0150;
         public static final int messenger_send_button=0x7f0d010a;
@@ -3966,6 +3967,7 @@ containing a value of this type.
         public static final int main=0x7f0e0002;
         public static final int menu_main=0x7f0e0003;
         public static final int searchview=0x7f0e0004;
+        public static final int switch_meal_date=0x7f0e0005;
     }
     public static final class mipmap {
         public static final int ic_launcher=0x7f030000;

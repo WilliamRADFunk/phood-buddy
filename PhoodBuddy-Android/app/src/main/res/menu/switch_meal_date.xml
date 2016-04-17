@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Activities.splash_screen">
+    <item
+        android:id="@+id/meal_switch"
+        android:title="Switch Date"
+        app:showAsAction="never" />
+</menu>

@@ -133,7 +133,7 @@
     <orderEntry type="library" exported="" name="eazegraph-1.2.2" level="project" />
     <orderEntry type="library" exported="" name="facebook-android-sdk-4.1.0" level="project" />
     <orderEntry type="library" exported="" name="android-week-view-1.2.6" level="project" />
-    <orderEntry type="library" exported="" name="okhttp-2.7.2" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="multidex-instrumentation-1.0.1" level="project" />
+    <orderEntry type="library" exported="" name="okhttp-2.7.2" level="project" />
   </component>
 </module>

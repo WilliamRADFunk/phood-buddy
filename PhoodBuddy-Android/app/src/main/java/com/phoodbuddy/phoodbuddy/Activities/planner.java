@@ -1,5 +1,6 @@
 package com.phoodbuddy.phoodbuddy.Activities;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,10 +12,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
+import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -31,7 +36,7 @@ import java.util.List;
  * Created by  Evan Glazer on 2/29/2016.
  */
 public class planner extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, DatePickerDialog.OnDateSetListener {
 
 
     SQLiteDatabase db1;
@@ -59,13 +64,14 @@ public class planner extends AppCompatActivity
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month,
                                             int dayOfMonth) {
-               date = year+"-"+month+"-"+dayOfMonth;
-                c=db1.rawQuery("SELECT * FROM mealList WHERE date="+ date+"", null);
-                if(c.getCount()==0)
-                {
+                plannerList.clear();
+                date = year + "-" + month + "-" + dayOfMonth;
+                Log.d("calendar",""+date);
+                c = db1.rawQuery("SELECT * FROM mealList WHERE date='"+date+"'", null);
+                if (c.getCount() == 0) {
                     return;
                 }
-                while(c.moveToNext()) {
+                while (c.moveToNext()) {
                     Meals fav = new Meals();
 
                     fav.setImage(c.getString(0));
@@ -149,5 +155,10 @@ public class planner extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
     }
 }

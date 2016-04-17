@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -30,6 +31,7 @@ public class dashboard_custom extends AppCompatActivity {
     Long id;
     String image;
     String foodName;
+    String[] list = new String[]{"Breakfest", "Lunch", "Dinner"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +44,6 @@ public class dashboard_custom extends AppCompatActivity {
         image = i.getString("url");
         datePicker = (DatePicker) findViewById(R.id.datePicker);
         spinner = (Spinner) findViewById(R.id.spinner);
-       String[] list = new String[]{"Breakfest", "Lunch", "Dinner"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, list);
         save = (Button) findViewById(R.id.button);
@@ -67,7 +68,8 @@ public class dashboard_custom extends AppCompatActivity {
                 int month = datePicker.getDayOfMonth();
                 int day = datePicker.getMonth();
                 int year = datePicker.getYear();
-                String date = year + "-" + month + "-" + day;
+                String date = year + "-" + day + "-" + month;
+                Log.e("DashBoard_Custom:", date);
                 if (!type.equals("")) {
                     db1.execSQL("INSERT INTO mealList VALUES('" + image + "','" + foodName +
                             "','" + id + "','" + type + "','" + date + "');");

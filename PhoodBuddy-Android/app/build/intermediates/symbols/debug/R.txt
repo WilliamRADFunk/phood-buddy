@@ -997,6 +997,7 @@ int id mFacebookLoginButton 0x7f0d00f7
 int id mGoogleLoginButton 0x7f0d00f6
 int id mTwitterLoginButton 0x7f0d00f5
 int id meal_custom 0x7f0d014e
+int id meal_switch 0x7f0d0151
 int id media_actions 0x7f0d010f
 int id menu_search 0x7f0d0150
 int id messenger_send_button 0x7f0d010a
@@ -1296,6 +1297,7 @@ int menu dashboard_drawer 0x7f0e0001
 int menu main 0x7f0e0002
 int menu menu_main 0x7f0e0003
 int menu searchview 0x7f0e0004
+int menu switch_meal_date 0x7f0e0005
 int mipmap ic_launcher 0x7f030000
 int string Add 0x7f07003d
 int string abc_action_bar_home_description 0x7f070000

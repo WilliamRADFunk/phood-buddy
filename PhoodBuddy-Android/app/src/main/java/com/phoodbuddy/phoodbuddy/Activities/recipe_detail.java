@@ -109,6 +109,8 @@ public class recipe_detail extends AppCompatActivity {
         int month = cal.get(Calendar.MONTH);
         int day = cal.get(Calendar.DAY_OF_MONTH);
         String date = year+"-"+month+"-"+day;
+        Log.e("RecDetail", date);
+
         switch (item.getItemId()) {
             case R.id.fav_rec:
                 db.execSQL("INSERT INTO favRecipes VALUES('"+ image+"','"+foodName+
