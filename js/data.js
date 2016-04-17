@@ -439,7 +439,8 @@ function getFavFatSecret(count, cb)
 	});//END: snapshot -> 'users/uid'
 }
 
-function getFavAll(count, cb)
+
+function getFavAll(count, day, time, cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
@@ -516,7 +517,94 @@ function getFavAll(count, cb)
 
 					
 				});//End: forEach -> 'recipe-directory'
-				cb(recipeContentJson);   //CALL cb here
+				cb(day, time, recipeContentJson);   //CALL cb here
+			});//END: snapshot -> 'recipe-directory'
+			//cb(recipeContentJson); //This cb will return the JSON of all recipes
+		}//END: if user has created recipes
+	});//END: snapshot -> 'users/uid'
+}
+
+function getRandomFavRecipe(day, time, cb)
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		cb(false);;
+	}
+
+	var data = ref.getAuth();
+
+	var checkRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid);
+	var recipeList;
+	var recipeContentJson = {};
+
+	var decount = 10;
+	// DEUBG: console.log(recipeContentJson);
+
+	//Check reference point made of user account and check if 'favorited' child exists
+	checkRef.once('value', function(snapshot){
+
+		//Snapshot contains child 'created-recipe'
+		if(snapshot.child("favorited-recipe").exists())
+		{
+
+			//Set recipeList to snapshot value of all content of 'favorited-recipe' from user
+			recipeList = snapshot.child("favorited-recipe").val();
+			var num = snapshot.child("favorited-recipe").numChildren();
+
+			if(num === 0 || num == null)
+			{
+				cb(false)
+			}
+
+			var count = Math.floor(Math.random() * (num));
+
+			var array = [];
+
+			for(var key in recipeList)
+			{
+					array.push(key + "");
+			}
+
+			console.log(array);
+
+
+			
+			var directoryRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory");
+
+			//Retrieve snapshot of all recipes in directory
+			directoryRef.once("value", function(snapshot)
+			{
+				//cycle through each key of previous snapshot
+				snapshot.forEach(function(childSnapshot)
+				{
+					//console.log(childSnapshot.val());
+					//Set current key of 'recipe-directory' to temporary variable
+					//Cycle through the keys provided by snapshot of users 'created-recipe' to find link
+					var directoryKey = childSnapshot.key();
+					for(var superkey in array)
+					{
+							//Keys match! Append data to JSON array
+						if(array[superkey] == (directoryKey))
+						{
+							if(count > 0)
+							{
+								count--;
+							}
+							else
+							{
+								var name = childSnapshot.child("name").val();
+								var recipeId = directoryKey;
+								var recipeContentJson = {"name": name, "id": recipeId}
+								cb(day, time, recipeContentJson);
+								return true;
+							}
+							break;
+						}
+					}
+				});//End: forEach -> 'recipe-directory'
+				   //CALL cb here
 			});//END: snapshot -> 'recipe-directory'
 			//cb(recipeContentJson); //This cb will return the JSON of all recipes
 		}//END: if user has created recipes
@@ -1014,7 +1102,7 @@ function rateRecipe(recipeId, rating, cb)
 	});
 }
 
-function getRandomRecipe()
+function getRandomRecipe(day, meal, cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
@@ -1076,13 +1164,14 @@ function getRandomRecipe()
 						var foodName = ingredients[i].food_name;
 						if(veg)
 						{
-							if( (foodName.indexOf("meat") != -1) && (foodName.indexOf("Meat") != -1) && (foodName.indexOf("chicken") != -1) && (foodName.indexOf("Chicken") != -1))
+							if( (foodName.indexOf("meat") !== -1) || (foodName.indexOf("Meat") !== -1) || (foodName.indexOf("chicken") !== -1) || (foodName.indexOf("Chicken") !== -1))
 							{
 								flag = false;
-							}
-							if(flag == false)
-							{
 								break;
+							}
+							else
+							{
+								continue;
 							}
 						}
 
@@ -1134,7 +1223,7 @@ function getRandomRecipe()
 
 					if(flag)
 					{
-						cb(querySnapshot);
+						cb(day, meal, querySnapshot.val());
 						return true;
 					}
 				});
@@ -1149,9 +1238,45 @@ function checkAllergiesWithIngredients(ingredients, corn, egg, fish, glutten, mi
 	var passes = true;
 	for(var i = 0; i < ingredients.length; i++)
 	{
+		var foodName = ingredients[i].food_name;
 		if(corn)
 		{
+			if( (foodName.indexOf("corn") !== -1) && (foodName.indexOf("Corn") !== -1))
+			{
+				return false;
+			}
+		}
 
+		if(egg)
+		{
+			if( (foodName.indexOf("egg") !== -1) && (foodName.indexOf("Egg") !== -1))
+			{
+				return false;
+			}
+		}
+
+		if(fish)
+		{
+			if( (foodName.indexOf("fish") !== -1) && (foodName.indexOf("Fish") !== -1))
+			{
+				return false;
+			}
+		}
+
+		if(glutten)
+		{
+			if( (foodName.indexOf("glutten") !== -1) && (foodName.indexOf("Glutten") !== -1))
+			{
+				return false;
+			}
+		}
+
+		if(milk)
+		{
+			if( (foodName.indexOf("corn") !== -1) && (foodName.indexOf("Corn") !== -1))
+			{
+				return false;
+			}
 		}
 	}
 }
@@ -1161,5 +1286,8 @@ function checkAllergiesWithIngredients(ingredients, corn, egg, fish, glutten, mi
 
 function test()
 {
-	
+	var recipeRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory/");
+	//query.once("value", function(childSnapshot){
+
+	//});
 }
