@@ -1294,9 +1294,8 @@ function getRandomRecipe(day, meal, cb)
 function checkAllergiesWithIngredients(ingredients, corn, egg, fish, glutten, milk, peanut, redMeat, sesame, shell, soy, treeNut)
 {
 	var passes = true;
-	for(var i = 0; i < ingredients.length; i++)
-	{
-		var foodName = ingredients.food_name;
+	
+		var foodName = ingredients;
 		if(corn)
 		{
 			if( (foodName.indexOf("corn") !== -1) || (foodName.indexOf("Corn") !== -1))
@@ -1384,7 +1383,6 @@ function checkAllergiesWithIngredients(ingredients, corn, egg, fish, glutten, mi
 				return false;
 			}
 		}
-	}
 
 	return true;
 }
