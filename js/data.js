@@ -555,7 +555,7 @@ function getRandomFavRecipe(day, time, cb)
 
 			if(num === 0 || num === null)
 			{
-				cb(false);
+				cb(false, day, time);
 			}
 
 			var count = Math.floor(Math.random() * (num));
@@ -597,7 +597,7 @@ function getRandomFavRecipe(day, time, cb)
 								var name = childSnapshot.child("name").val();
 								var recipeId = directoryKey;
 								var recipeContentJson = {"name": name, "id": recipeId};
-								cb(day, time, recipeContentJson);
+								cb(recipeContentJson, day, time);
 								return true;
 							}
 							break;
@@ -610,7 +610,7 @@ function getRandomFavRecipe(day, time, cb)
 		}//END: if user has created recipes
 		else
 		{
-			cb(false);
+			cb(false, day, time);
 		}
 	});//END: snapshot -> 'users/uid'
 }
