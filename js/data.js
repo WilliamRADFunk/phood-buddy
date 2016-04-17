@@ -1109,23 +1109,29 @@ function getRandomRecipe(day, meal, cb)
 		//Assign Health properties
 		var health = snapshot.child("health").val();
 		var diab = health.diabetes;
+		console.log(diab);
 		var highc = health["high-cholestorol"];
+		console.log(highc);
 		var hyper = health.hypertension;
+		console.log(hyper);
 		var hypo = health.hypotension;
+		console.log(hypo);
 		var veg = health.vegetarian;
+		console.log(veg);
 		//Assign Allergy Properties
 		var allergies = snapshot.child("allergies").val();
-		var cornA = allergies.corm;
+		var cornA = allergies.corn;
 		var eggA = allergies.egg;
 		var fishA = allergies.fish;
 		var gluttenA = allergies.glutten;
 		var MilkA = allergies.milk;
 		var peanutA = allergies.peanut;
-		var redA = allergies.red-meat;
+		var redA = allergies["red-meat"];
 		var sesameA = allergies.sesame;
-		var shellA = allergies.shell-fish;
+		var shellA = allergies["shell-fish"];
 		var soyA = allergies.soy;
-		var treeA = allergies.tree-nut;
+		console.log("This is a allergy: " + soyA);
+		var treeA = allergies["tree-nut"];
 
 		console.log(diab);
 
