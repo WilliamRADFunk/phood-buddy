@@ -530,7 +530,7 @@ function getRandomFavRecipe(day, time, cb)
 
 	if(ref.getAuth() === null)
 	{
-		cb(false);;
+		cb(false);
 	}
 
 	var data = ref.getAuth();
@@ -553,9 +553,9 @@ function getRandomFavRecipe(day, time, cb)
 			recipeList = snapshot.child("favorited-recipe").val();
 			var num = snapshot.child("favorited-recipe").numChildren();
 
-			if(num === 0 || num == null)
+			if(num === 0 || num === null)
 			{
-				cb(false)
+				cb(false);
 			}
 
 			var count = Math.floor(Math.random() * (num));
@@ -596,7 +596,7 @@ function getRandomFavRecipe(day, time, cb)
 							{
 								var name = childSnapshot.child("name").val();
 								var recipeId = directoryKey;
-								var recipeContentJson = {"name": name, "id": recipeId}
+								var recipeContentJson = {"name": name, "id": recipeId};
 								cb(day, time, recipeContentJson);
 								return true;
 							}
@@ -608,6 +608,10 @@ function getRandomFavRecipe(day, time, cb)
 			});//END: snapshot -> 'recipe-directory'
 			//cb(recipeContentJson); //This cb will return the JSON of all recipes
 		}//END: if user has created recipes
+		else
+		{
+			cb(false);
+		}
 	});//END: snapshot -> 'users/uid'
 }
 
