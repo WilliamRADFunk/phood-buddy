@@ -535,7 +535,7 @@ function getRandomFavRecipe(day, time, cb)
 
 	var data = ref.getAuth();
 
-	var checkRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid);
+	var checkRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
 	var recipeList;
 	var recipeContentJson = {};
 
