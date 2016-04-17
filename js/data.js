@@ -717,7 +717,9 @@ function getAllRecipes(count, cb)
 			{
 				if(decount > 0)
 				{
-					recipeContentJson.info.push(childSnapshot.val());
+					var recipeJson = childSnapshot.val();
+					recipeJson.id = childSnapshot.key();
+					recipeContentJson.info.push(recipeJson);
 					decount--;
 				}
 			}
