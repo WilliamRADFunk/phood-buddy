@@ -5,9 +5,37 @@
     xmlns:local="using:PhoodBuddyUWP.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    xmlns:controls="using:PhoodBuddyUWP.Controls"
+    xmlns:vm="using:PhoodBuddyUWP.ViewModels">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    </Grid>
+    <Page.Resources>
+        <DataTemplate x:Key="ShoppingListItem">
+            <CheckBox DataContext="vm:ShoppingListViewModel"
+                      IsChecked="{Binding marked}"
+                      Content="{Binding ingredient}"
+                      FontSize="{ThemeResource ContentControlFontSize}"/>
+        </DataTemplate>
+    </Page.Resources>
+    
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Name="addButton"
+                          Icon="Add"
+                          Label="Add"/>
+            <AppBarButton Name="deleteButton"
+                          Icon="Delete"
+                          IsEnabled="False"
+                          Label="Clear Marked"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+    
+    <controls:NavMenu x:Name="navMenu"
+                      HeaderText="Shopping List">
+        <controls:NavMenu.MainContent>
+            <ListView DataContext=""
+                      ItemsSource="{Binding db.ShoppingList.Items}"
+                      ItemTemplate="{StaticResource ShoppingListItem}"/>
+        </controls:NavMenu.MainContent>
+    </controls:NavMenu>
 </Page>

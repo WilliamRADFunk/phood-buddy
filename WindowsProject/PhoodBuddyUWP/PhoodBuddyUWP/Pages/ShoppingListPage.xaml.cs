@@ -1,5 +1,8 @@
-﻿using System;
+﻿using PhoodBuddyUWP.Models;
+using PhoodBuddyUWP.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -13,18 +16,20 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace PhoodBuddyUWP.Pages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class ShoppingListPage : Page
     {
         public ShoppingListPage()
         {
             this.InitializeComponent();
+            navMenu.OnNavigateParentReady += navHandler;
+        }
+
+        private void navHandler(object sender, RoutedEventArgs e)
+        {
+            var page = sender as Type;
+            Frame.Navigate(page);
         }
     }
 }

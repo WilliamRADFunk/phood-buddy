@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhoodBuddyUWP.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,14 +18,33 @@ using Windows.UI.Xaml.Navigation;
 
 namespace PhoodBuddyUWP.Pages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class ProfilePage : Page
     {
+        //CONSTRUCTOR
         public ProfilePage()
         {
             this.InitializeComponent();
+            this.DataContext = vm.Item;
+
+            navMenu.OnNavigateParentReady += navHandler;
+            System.Diagnostics.Debug.WriteLine("Value" + vm?.Item?.UserEmail);
+        }
+
+
+        //PRIVATE MEMBERS
+        ProfileViewModel vm = new ProfileViewModel();
+
+
+        //EVENT HANDLERS
+        private void navHandler(object sender, RoutedEventArgs e)
+        {
+            var page = sender as Type;
+            Frame.Navigate(page);
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
         }
     }
 }

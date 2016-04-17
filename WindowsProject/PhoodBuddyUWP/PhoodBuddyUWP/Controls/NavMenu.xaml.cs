@@ -44,16 +44,10 @@ namespace PhoodBuddyUWP.Controls
 
         public static readonly DependencyProperty MainContentProperty =
             DependencyProperty.Register(nameof(MainContent), typeof(UIElement), typeof(NavMenu), new PropertyMetadata(new Grid()));
+                
 
-
-
-
-        //DELEGATES
-        public delegate void NavigationDelegate(object source, EventArgs e);
-
-        
         //EVENTS
-        public event NavigationDelegate OnNavigateParentReady;
+        public event RoutedEventHandler OnNavigateParentReady;
         public event PropertyChangedEventHandler PropertyChanged;
         
 
@@ -70,22 +64,17 @@ namespace PhoodBuddyUWP.Controls
 
         private void ShoppingListButton_Click(object sender, RoutedEventArgs e)
         {
-            OnNavigateParentReady(typeof(ShoppingListPage), null);
-        }
-
-        private void PantryListButton_Click(object sender, RoutedEventArgs e)
-        {
-            OnNavigateParentReady(typeof(PantryListPage), null);
+            OnNavigateParentReady?.Invoke(typeof(ShoppingListPage), new RoutedEventArgs());
         }
 
         private void ProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            OnNavigateParentReady(typeof(ProfilePage), null);
+            OnNavigateParentReady?.Invoke(typeof(ProfilePage), new RoutedEventArgs());
         }
 
-        private void FavoriteRecipesButton_Click(object sender, RoutedEventArgs e)
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
-            OnNavigateParentReady(typeof(RecipeViewerPage), null);
+            OnNavigateParentReady?.Invoke(typeof(DashboardPage), new RoutedEventArgs());
         }
     }
 }

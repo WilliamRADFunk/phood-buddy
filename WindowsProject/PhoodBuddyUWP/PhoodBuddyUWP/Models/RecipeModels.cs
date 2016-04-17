@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿ using System.Collections.Generic;
 
 namespace PhoodBuddyUWP.Models
 {
-    class RecipeIngredientModel
+    public class RecipeIngredientModel
     {
         //Properties
         public string Name { get; set; }
@@ -27,7 +27,7 @@ namespace PhoodBuddyUWP.Models
         }
     }
 
-    class RecipeInstructionModel
+    public class RecipeInstructionModel
     {
         //Properties
         public int StepNumber { get; set; }
@@ -47,7 +47,7 @@ namespace PhoodBuddyUWP.Models
         }
     }
 
-    class RecipeModel
+    public class RecipeModel
     {
         //Properties
         public string Title { get; set; }

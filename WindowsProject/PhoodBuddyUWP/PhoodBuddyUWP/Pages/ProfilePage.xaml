@@ -6,7 +6,95 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    xmlns:controls="using:PhoodBuddyUWP.Controls">
+    xmlns:controls="using:PhoodBuddyUWP.Controls"
+    xmlns:vm="using:PhoodBuddyUWP.ViewModels"
+    xmlns:model="using:PhoodBuddyUWP.Models">
+
+    <Page.Resources>
+        
+        <!-- Field Labels -->
+        <Style TargetType="TextBlock"
+               x:Key="ProfileFieldLabel"
+               BasedOn="{StaticResource BodyTextBlockStyle}">
+            <Setter Property="Margin"
+                    Value="10,5,0,5"/>
+        </Style>
+        
+        <!-- Fields -->
+        <Style TargetType="TextBox"
+               x:Key="ProfileField">
+            <Setter Property="Margin"
+                    Value="5,0,0,5"/>
+            <Setter Property="HorizontalAlignment"
+                    Value="Left"/>
+            <Setter Property="MaxWidth"
+                    Value="500"/>
+            <Setter Property="MinWidth"
+                    Value="300"/>
+        </Style>
+        
+        <!-- List Controls -->
+        <Style TargetType="ListView"
+               x:Key="ProfileList">
+            <Setter Property="Margin"
+                    Value="10"/>
+        </Style>
+    </Page.Resources>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="Edit" Label="Edit Info"/>
+            <AppBarButton Icon="Setting" Label="Settings"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+    
     <controls:NavMenu x:Name="navMenu"
-                      HeaderText="Profile"/>
+                      HeaderText="Profile">
+        <controls:NavMenu.MainContent>
+            <ScrollViewer>
+                <StackPanel>
+
+                    <!-- First Name -->
+                    <TextBlock Text="First Name"
+                               Style="{StaticResource ProfileFieldLabel}"/>
+                    <TextBox Text="{Binding UserFirstName}"
+                             Style="{StaticResource ProfileField}"/>
+
+                    <!-- Last Name -->
+                    <TextBlock Text="Last Name"
+                           Style="{StaticResource ProfileFieldLabel}"/>
+                    <TextBox Text=""
+                         Style="{StaticResource ProfileField}"/>
+
+                    <!-- Age -->
+                    <TextBlock Text="Age"
+                           Style="{StaticResource ProfileFieldLabel}"/>
+                    <TextBox Text=""
+                         Style="{StaticResource ProfileField}"/>
+                    
+                    <!-- Email -->
+                    <TextBlock Text="Email"
+                               Style="{StaticResource ProfileFieldLabel}"/>
+                    <TextBox Text="{Binding Path=UserEmail}"
+                             Style="{StaticResource ProfileField}"/>
+
+                    <!-- Allergies -->
+                    <TextBlock Text="Allergies"
+                           Style="{StaticResource ProfileFieldLabel}"/>
+                    <ListView Style="{StaticResource ProfileList}"/>
+
+                    <!-- Health Factors -->
+                    <TextBlock Text="Health Factors"
+                           Style="{StaticResource ProfileFieldLabel}"/>
+                    <ListView Style="{StaticResource ProfileList}"/>
+
+                    <!-- Taste Profile -->
+                    <TextBlock Text="Taste Profile"
+                           Style="{StaticResource ProfileFieldLabel}"/>
+                    <ListView Style="{StaticResource ProfileList}"/>
+
+                </StackPanel>
+            </ScrollViewer>
+        </controls:NavMenu.MainContent>
+    </controls:NavMenu>
 </Page>

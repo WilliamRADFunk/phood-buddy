@@ -8,6 +8,12 @@
     mc:Ignorable="d"
     xmlns:controls="using:PhoodBuddyUWP.Controls">
 
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="Favorite" Label="Favorite"/>
+            <AppBarButton Icon="ReShare" Label="Share"/>
+        </CommandBar>
+    </Page.BottomAppBar>
     <controls:NavMenu Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                       HeaderText="{x:Bind recipe.Title}">
 
@@ -24,7 +30,7 @@
                     <!-- Recipe Picture -->
                     <Image Name="recipeImg"
                            Grid.Row="0"
-                           Width="200"/>
+                           Width="400"/>
 
                     <!-- Ingredients List -->
                     <ListView Grid.Row="1"

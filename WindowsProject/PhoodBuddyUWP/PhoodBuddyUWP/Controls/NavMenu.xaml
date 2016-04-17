@@ -44,6 +44,16 @@
                     </StackPanel>
                 </Button>
 
+                <!-- Home/Dashboard -->
+                <Button Click="HomeButton_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource NavIcon}"
+                                   Text="&#xE80F;"/>
+                        <TextBlock Style="{StaticResource NavLabel}"
+                                   Text="Dashboard"/>
+                    </StackPanel>
+                </Button>
+                
                 <!-- Shopping List -->
                 <Button Click="ShoppingListButton_Click">
                     <StackPanel Orientation="Horizontal">
@@ -54,16 +64,6 @@
                     </StackPanel>
                 </Button>
 
-                <!-- Pantry -->
-                <Button Click="PantryListButton_Click">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource NavIcon}"
-                                   Text="&#xE292;"/>
-                        <TextBlock Style="{StaticResource NavLabel}"
-                                   Text="Pantry List"/>
-                    </StackPanel>
-                </Button>
-
                 <!-- Profile -->
                 <Button Click="ProfileButton_Click">
                     <StackPanel Orientation="Horizontal">
@@ -71,16 +71,6 @@
                                    Text="&#xE13D;"/>
                         <TextBlock Style="{StaticResource NavLabel}"
                                    Text="User Profile"/>
-                    </StackPanel>
-                </Button>
-
-                <!--  -->
-                <Button Click="FavoriteRecipesButton_Click">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource NavIcon}"
-                                   Text="&#xE0B4;"/>
-                        <TextBlock Style="{StaticResource NavLabel}"
-                                   Text="Favorite Recipes"/>
                     </StackPanel>
                 </Button>
 
@@ -101,7 +91,7 @@
                            Text="{x:Bind HeaderText}"/>
                 
                 <!-- Remainder of the content -->
-                <ContentPresenter Grid.Row="1" Content="{x:Bind MainContent}"/>
+                <ContentPresenter Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="{x:Bind MainContent}"/>
 
             </Grid>
         </SplitView.Content>
