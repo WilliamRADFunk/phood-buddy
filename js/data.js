@@ -889,35 +889,24 @@ function getPlanner(cb)
 
 function updatePlanner(dayOfWeek, timeOfDay, name, recipeId, cb)
 {
-	var plannerRef = new Firebase("https://phoodbuddy.firebaseio.com/planner/" + data.uid + "/");
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
-	var dataJson = {
-		dayOfWeek:{
-			timeOfDay:{
-				"name": name,
-				"recipeId": recipeId
-			}
-		}
+	if(ref.getAuth() === null)
+	{
+		return;
+		cb(false);
 	}
+	//Stores authData of package
+	var data = ref.getAuth();
 
-	plannerRef.update(dataJson);
+	var plannerRef = new Firebase("https://phoodbuddy.firebaseio.com/planner/" + data.uid + "/" + dayOfWeek + "/" + timeOfDay +"/");
+
+	var obj = {"name": name, "recipeId": recipeId};
+
+	plannerRef.update(obj);
 
 	cb(true);
 }
-
-function test()
-{
-	var fname = "Jorge"
-	var lname = "Rodriguez"
-	var fullName = fname + " " + lname;
-
-	console.log("First name: " + fname + " with last name " + lname);
-	console.log("Full name: " + fullName);
-	console.log("END");
-}
-
-//AJAX Functions (Hollow)
-
 
 function getRecipeById()
 {
@@ -1043,84 +1032,134 @@ function getRandomRecipe()
 
 	userRef.once("value", function(snapshot)
 	{
+		//Assign Health properties
 		var health = snapshot.child("health").val();
 		var diab = health["diabetes"];
 		var highc = health["high-cholestorol"];
 		var hyper = health["hypertension"];
 		var hypo = health["hypotension"];
 		var veg = health["vegetarian"];
+		//Assign Allergy Properties
+		var allergies = snapshot.child("allergies").val();
+		var cornA = allergies["corn"];
+		var eggA = allergies["egg"];
+		var fishA = allergies["fish"];
+		var gluttenA = allergies["glutten"];
+		var MilkA = allergies["milk"];
+		var peanutA = allergies["peanut"];
+		var redA = allergies["red-meat"];
+		var sesameA = allergies["sesame"];
+		var shellA = allergies["shell-fish"];
+		var soyA = allergies["soy"];
+		var treeA = allergies["tree-nut"];
 
 		console.log(diab);
 
 		var recipeRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory/");
 
-		if(health || diab || highc || hyper)
+		if(hypo || diab || highc || hyper)
 		{
 			var query = recipeRef.orderByChild("custom").equalTo(false);
 
 			query.once("value", function(childSnapshot){
 				var num = childSnapshot.numChildren();
-
 				var newNnum = num / 10;
-			})
 
-				if(hyper)
+				childSnapshot.forEach(function(querySnapshot)
 				{
-					hyperQuery = query.orderByChild("cholestorol").limitToLast(newNum); //CHANGE
-					var bound = Math.floor(Math.random() * 10);
+					var flag = true;
 
-					hyperQuery.once("value", function(hyperSnap){
-						hyperSnap.forEach(function(querySnapshot){
-							if(bounds > 0)
+					var ingredients = querySnapshot.child("ingredients").val();
+
+					for(var i = 0; i < ingredients.length; i++)
+					{
+						var foodName = ingredients[i].food_name;
+						if(veg)
+						{
+							if( (foodName.indexOf("meat") != -1) && (foodName.indexOf("Meat") != -1) && (foodName.indexOf("chicken") != -1) && (foodName.indexOf("Chicken") != -1))
 							{
-								bounds--;
+								flag = false;
 							}
-							else if(bounds == 0)
+							if(flag == false)
 							{
-								recipeReturn = querySnapshot.val();
-								cb(recipeReturn);
-								return true;
+								break;
 							}
-						});
-					});
-				}
+						}
+
+						checkAllergiesWithIngredients(ingredients, cornA, eggA, fishA, gluttenA, milkA, peanutA, redA, sesameA, shellA, soyA, treeA)
+					}
+
+					if(hyper && flag)
+					{
+						var currentSodium = querySnapshot.child("nutrition").child("sodium").val();
+						if (Number(currentSodium) > 400)
+						{
+							flag = false;
+						}
+					}
+
+					if(diab && flag)
+					{
+						var currentCarbo = querySnapshot.child("nutrition").child("carbohydrates").val();
+						if( Number(currentCarbo) > 30)
+						{
+							flag = false;
+						}
+					}
+
+					if(highc && flag)
+					{
+						var transFat = querySnapshot.child("nutrition").child("trans_fat").val();
+						var totalFat = querySnapshot.child("nutrition").child("fat").val();
+
+						if(Number(transFat) > 1)
+						{
+							flag = false;
+						}
+
+						if(Number(totalFat) > 25)
+						{
+							flag = false;
+						}
+					}
+
+					if(hypo && flag)
+					{
+						var currentCarbo = querySnapshot.child("nutrition").child("carbohydrates").val();
+						if( Number(currentCarbo) > 35)
+						{
+							flag = false;
+						}
+					}
+
+					if(flag)
+					{
+						cb(querySnapshot);
+						return true;
+					}
+				});
+			});
 			//var query = directoryRef.orderByChild("custom").equalTo(false);
 		}
-	})
+	});
 }
 
+function checkAllergiesWithIngredients(ingredients, corn, egg, fish, glutten, milk, peanut, redMeat, sesame, shell, soy, treeNut)
+{
+	var passes = true;
+	for(var i = 0; i < ingredients.length; i++)
+	{
+		if(corn)
+		{
 
-
+		}
+	}
+}
 
 //TEST TEST TEST TEST
 
 
 function test()
 {
-	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
-
-	if(ref.getAuth() === null)
-	{
-		return;
-		cb(false);
-	}
-	//Stores authData of package
-	var data = ref.getAuth();
-
-	rateRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-rate/-KFSoCpl6_Vj4LBdr-cK/");
-
-	var uid = data.uid;
-
-	console.log(uid);
-
-	var obj = {};
-	obj[uid] = true;
-
-	var rateContentJson = {
-					"amountRated": "bottom2",
-					"rate"  : "newR3"
-			};
-
-	rateRef.update(rateContentJson);
-	rateRef.child("raters").update(obj);
+	
 }
