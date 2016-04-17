@@ -524,16 +524,79 @@ function openRecipeOptions(day, mealTime)
 			"<button id='" + day + "-" + mealTime + "-cancel' class='phood-buddy-cancel col-lg-4 col-md-4 col-sm-4 col-xs-4'>Cancel</button>" +
 		"</div>"
 	);
+	$("#" + day + " > ." + mealTime).addClass("active");
 	$("#" + day + " > ." + mealTime).removeAttr("onclick");
-
-	console.log("The bind");
 	
+	// When user clicks the PB Pick button, random recipe is selected and name of recipe is placed in slot.
+	$("#" + day + " > ." + mealTime + " > .recipe-options-wrapper > .phood-buddy-choice").click(function(event){
+		$( this ).unbind( event );
+		getRandomRecipe(day, mealTime, popPBPick);
+	});
+	// When user clicks the Fav Pick button, random favorite recipe is selected and name of recipe is placed in slot.
+	$("#" + day + " > ." + mealTime + " > .recipe-options-wrapper > .phood-buddy-fav").click(function(event){
+		$( this ).unbind( event );
+		getRandomFavRecipe(day, mealTime, popFavPick);
+	});
+	// When user clicks the cancel button, all returns to normal.
 	$("#" + day + " > ." + mealTime + " > .recipe-options-wrapper > .phood-buddy-cancel").click(function(event){
 		$( this ).unbind( event );
 		$("#" + day + " > ." + mealTime).html("Select " + mealTime + " Recipe");
-		setTimeout(function(){
+		$("#" + day + " > ." + mealTime).removeClass("active");
+		setTimeout( function()
+		{
 			$("#" + day + " > ." + mealTime).attr('onclick', 'openRecipeOptions(\'' + day + '\', \'' + mealTime + '\')');
-		}, 1000);
-		console.log("The unbinding");
+		}, 200);
 	});
+}
+// Callback function to populate slot when PB finds a recipe for user.
+function popPBPick(day, mealTime, recipe)
+{
+	if(recipe === false)
+	{
+		spawnModal("Failure to Select Recipe", "<p>We were unable to pick a recipe from your favorite list.<br/><br/>Would you like us to refresh the page?</p>", "schedule.html", true);
+		$("#" + day + " > ." + mealTime).html("Select " + mealTime + " Recipe");
+		$("#" + day + " > ." + mealTime).removeClass("active");
+		setTimeout( function()
+		{
+			$("#" + day + " > ." + mealTime).attr('onclick', 'openRecipeOptions(\'' + day + '\', \'' + mealTime + '\')');
+		}, 200);
+	}
+	else
+	{
+		$("#" + day + " > ." + mealTime).html("<a href='recipe.html?" + Object.keys(recipe)[0] + "'>" + Object.keys(recipe)[0].name + "</a><button onclick='updatePlanner(" + day + ", " + mealTime + ", '', '', deleteScheduledRecipe'>Delete</button>");
+	}
+}
+// Callback function to populate slot when PB finds a recipe for user.
+function popFavPick(day, mealTime, recipe)
+{
+	if(recipe === false)
+	{
+		spawnModal("Failure to Select Recipe", "<p>We were unable to pick a recipe to match your tastes.<br/><br/>Would you like us to refresh the page?</p>", "schedule.html", true);
+		$("#" + day + " > ." + mealTime).html("Select " + mealTime + " Recipe");
+		$("#" + day + " > ." + mealTime).removeClass("active");
+		setTimeout( function()
+		{
+			$("#" + day + " > ." + mealTime).attr('onclick', 'openRecipeOptions(\'' + day + '\', \'' + mealTime + '\')');
+		}, 200);
+	}
+	else
+	{
+		$("#" + day + " > ." + mealTime).html("<a href='recipe.html?" + Object.keys(recipe)[0] + "'>" + Object.keys(recipe)[0].name + "</a><button onclick='updatePlanner(" + day + ", " + mealTime + ", '', '', deleteScheduledRecipe'>Delete</button>");
+	}
+}
+function deleteScheduledRecipe(day, mealTime, result)
+{
+	if(result)
+	{
+		$("#" + day + " > ." + mealTime).html("Select " + mealTime + " Recipe");
+		$("#" + day + " > ." + mealTime).removeClass("active");
+		setTimeout( function()
+		{
+			$("#" + day + " > ." + mealTime).attr('onclick', 'openRecipeOptions(\'' + day + '\', \'' + mealTime + '\')');
+		}, 200);
+	}
+	else
+	{
+		spawnModal("Failed Deletion", "<p>We were unable to update your schedule.<br/><br/>We will refresh the page to let you try again.</p>", "schedule.html", false);
+	}
 }

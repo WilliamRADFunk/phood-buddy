@@ -866,6 +866,11 @@ input:-webkit-autofill {
 	background-color: #326077;
 	color: #FFFFFF;
 }
+#week-schedule .weekday > div.active
+{
+	background-color: #EFEFEF;
+	color: #FFFFFF;
+}
 /************* Schedule page end *************All*******/
 /************* Extraneous pages page start ******All****/
 #about table,
