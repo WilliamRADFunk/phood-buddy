@@ -530,7 +530,7 @@ function getRandomFavRecipe(day, time, cb)
 
 	if(ref.getAuth() === null)
 	{
-		cb(false);
+		cb(false, day, time);
 	}
 
 	var data = ref.getAuth();
