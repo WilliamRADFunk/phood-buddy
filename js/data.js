@@ -1144,7 +1144,7 @@ function getRandomRecipe(day, meal, cb)
 		var bitter = tastes.bitter;
 		var salty = tastes.salty;
 		var sour = tastes.sour;
-		var spicy = tastes.salty;
+		var spicy = tastes.spicy;
 		var sweet = tastes.sweet;
 
 		var dominantTaste = "";
@@ -1198,16 +1198,25 @@ function getRandomRecipe(day, meal, cb)
 				query = query.orderByChild("taste").equalTo(dominantTaste);
 			}
 
-
-			
 			query.once("value", function(childSnapshot){
 				var num = childSnapshot.numChildren();
 				var newNnum = num / 10;
 
+				var childCount = childSnapshot.numChildren();
+				var counter = Math.floor(Math.random() * (childCount));
+				counter = Math.floor(counter * 0.75);
+
 				var flagger = true;
 				childSnapshot.forEach(function(querySnapshot)
 				{
+					
 					var flag = true;
+
+					if(counter > 0)
+					{
+						counter--;
+						flag = false;
+					}
 
 					var ingredients = querySnapshot.child("ingredientList").val();
 
@@ -1316,10 +1325,20 @@ function getRandomRecipe(day, meal, cb)
 
 			customQuery.once("value", function(childSnapshot){
 
+				var childCount = childSnapshot.numChildren();
+				var counter = Math.floor(Math.random() * (childCount));
+				counter = Math.floor(counter * 0.75);
+
 				var flagger = true;
 				childSnapshot.forEach(function(querySnapshot){
 
 					var flag = true;
+
+					if(counter > 0)
+					{
+						counter--;
+						flag = false;
+					}
 
 					var ingredients = querySnapshot.child("ingredientList").val();
 
