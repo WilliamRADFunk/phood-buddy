@@ -57,10 +57,10 @@
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Icon="Edit" Label="Edit Info"/>
-            <AppBarButton Icon="Setting" Label="Settings"/>
-            <AppBarButton Icon="Save" Label="Save Changes" Visibility="Collapsed"/>
-            <AppBarButton Icon="Cancel" Label="Cancel Changes" Visibility="Collapsed"/>
+            <AppBarButton Name="editButton" Icon="Edit" Label="Edit Info" Click="editButton_Click"/>
+            <AppBarButton Name="settingsButton" Icon="Setting" Label="Settings" Click="settingsButton_Click"/>
+            <AppBarButton Name="saveButton" Icon="Save" Label="Save Changes" Visibility="Collapsed" Click="saveButton_Click"/>
+            <AppBarButton Name="cancelButton" Icon="Cancel" Label="Cancel Changes" Visibility="Collapsed" Click="cancelButton_Click"/>
         </CommandBar>
     </Page.BottomAppBar>
     
