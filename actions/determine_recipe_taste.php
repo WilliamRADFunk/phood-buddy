@@ -74,7 +74,7 @@ function determine_taste($formatted_recipe)
 
     $sweet_arr = array("sugar", "maple syrup", "honey", "jam", "raisin", "apricot", "date", "molasses", "balsamic vinegar", "cider", "ketchup", "BBQ sauce", "carrots", "banana", "sweet  potatoes", "corn", "beets", "butternut", "squash", "peas", "fennel", "parsnips", "caramel", "sucralose", "aspartame", "milk chocolate", "apple", "pears");
 
-    $sour_arr = array ("lemon", "lime", "orange", "vinegar", "tomato paste", "pickled", "yogurt", "sour cream", "kiwi", "pineapple");
+    $sour_arr = array ("lemon", "lime", "orange", "vinegar", "tomato paste", "pickled", "yogurt", "sour cream", "kiwi", "pineapple", "kefir");
 
     $bitter_arr = array ("dandelion", "endives", "kale", "okra", "bitter melon", "radicchio", "grapefruit", "beer", "cocoa", "coffee");
 
@@ -168,7 +168,8 @@ function determine_taste($formatted_recipe)
 
 
     if ((stripos($formatted_recipe['name'], "spicy")!== false)
-        || (stripos($formatted_recipe['name'], "hot")!== false))
+        || (stripos($formatted_recipe['name'], "hot")!== false)
+        || (stripos($formatted_recipe['name'], "curry")!== false))
     {
         $taste_counter['spicy']= $taste_counter['spicy']+3;
         echo "<br/>spicy: counter" . $taste_counter['spicy']. "<br/>";
@@ -177,7 +178,7 @@ function determine_taste($formatted_recipe)
     if ($formatted_recipe['nutrition']['sodium']>=400)
     {
         $taste_counter['salty'] = $taste_counter['salty'] + $formatted_recipe['nutrition']['sodium']%400; 
-        echo "<br/>salty %400 " . $formatted_recipe['nutrition']['sodium']/400;
+        echo "<br/>salty /400 " . $formatted_recipe['nutrition']['sodium']/400;
     }
     $taste_number = max ($taste_counter);   
     echo "<br/>taste_number: $taste_number";
