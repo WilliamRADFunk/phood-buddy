@@ -15,12 +15,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.webkit.HttpAuthHandler;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.phoodbuddy.phoodbuddy.Interface.fitbitAPI;
+import com.phoodbuddy.phoodbuddy.Models.Fitbit;
 import com.phoodbuddy.phoodbuddy.R;
 import com.phoodbuddy.phoodbuddy.Utilities.Globals;
 import com.temboo.Library.Fitbit.OAuth.FinalizeOAuth;
@@ -30,6 +33,12 @@ import com.temboo.core.TembooSession;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.UUID;
+
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+import twitter4j.User;
 
 /**
  * Created by Evan Glazer on 3/26/2016.
@@ -100,20 +109,32 @@ public class fitbit extends AppCompatActivity {
                         // This test service takes the username "httpwatch" and a random
                         // password. Repeating a password can lead to failure, so we create
                         // a decently random one using UUID.
-                        String secret = Globals.CUSTOMER_SECRET;
+                        final String secret = Globals.CUSTOMER_SECRET;
                         String authorization = null;
 
+                        webView.destroy();
+                        RestAdapter adapter = new RestAdapter.Builder()
+                                .setEndpoint("https://api.fitbit.com")
+                                .build();
+                        fitbitAPI api = adapter.create(fitbitAPI.class);
+                        api.getToken(Globals.CUSTOMER_KEY,"authorization_code", authCode, "http://localhost/", "", new Callback<Fitbit>() {
+                            @Override
+                            public void success(Fitbit tokens, Response response) {
+                                StringBuffer buffer = new StringBuffer();
+                                buffer.append(tokens);
+                                Log.e("tokens", buffer.toString());
 
-                        map = new HashMap<String, String>();
 
-                        map.put("Accepts", "application");
-                        map.put("User-Authentication", secret);
 
-                        webView.setWebViewClient(new WebViewClient());
-                        String url1 = "https://api.fitbit.com/oauth2/token?code="+authCode+"&grant_type=authorization_code"
-                                +"&client_id=227PST&redirect_url=http://localhost/";
-                        webView.getSettings().setJavaScriptEnabled(true);
-                        webView.loadUrl(url1,map);
+                            }
+
+                            @Override
+                            public void failure(RetrofitError error) {
+                                Toast.makeText(getApplicationContext(), "FAILURE" + error, Toast.LENGTH_LONG).show();
+                                Log.d("post issue", "" + error);
+                                //progressDialog.dismiss();
+                            }
+                        });
 
                         //Toast.makeText(getApplicationContext(), "Authorization Code is: " + authCode, Toast.LENGTH_SHORT).show();
                     } else if (url.contains("error=access_denied")) {
@@ -124,8 +145,8 @@ public class fitbit extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Error occured while trying to log you in", Toast.LENGTH_SHORT).show();
 
                     }
-                }
 
+                }
             });
 
         } catch (Exception e) {
