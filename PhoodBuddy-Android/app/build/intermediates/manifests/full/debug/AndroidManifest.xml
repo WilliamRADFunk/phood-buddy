@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ndroid="http://schemas.android.com/apk/res-auto"
     package="com.phoodbuddy.phoodbuddy"
     android:versionCode="1"
     android:versionName="1.0" >
@@ -50,17 +51,9 @@
         <!-- Get Fit Bit User Data -->
         <activity
             android:name="com.phoodbuddy.phoodbuddy.Service.fitbit"
-            android:label="Fitbit" >
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="fitbit"
-                    android:scheme="temboo" />
-            </intent-filter>
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait" >
+>
         </activity>
         <activity
             android:name="com.phoodbuddy.phoodbuddy.Activities.setup"

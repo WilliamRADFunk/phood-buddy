@@ -1,20 +1,24 @@
 package com.phoodbuddy.phoodbuddy.Service;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.phoodbuddy.phoodbuddy.R;
@@ -22,6 +26,10 @@ import com.phoodbuddy.phoodbuddy.Utilities.Globals;
 import com.temboo.Library.Fitbit.OAuth.FinalizeOAuth;
 import com.temboo.Library.Fitbit.OAuth.InitializeOAuth;
 import com.temboo.core.TembooSession;
+
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.UUID;
 
 /**
  * Created by Evan Glazer on 3/26/2016.
@@ -41,132 +49,98 @@ public class fitbit extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fit_bit);
-        if (Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
+
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        circularProgressbar = (ProgressBar) findViewById(R.id.circularProgressbar);
 
         webView = (WebView) findViewById(R.id.webview1);
-        webView.setInitialScale(1);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setUserAgentString("Android");
+       // webView.getSettings().setUserAgentString("Android");
         webView.getSettings().setSupportZoom(true);
-        new GetOauthKey().execute();
-
-
-     /*   Toolbar toolbar_fitbit = (Toolbar) findViewById(R.id.toolbar_fitbit);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            toolbar_fitbit.setTitle("Connect Fitbit");
-            toolbar_fitbit.setNavigationIcon(R.drawable.ic_menu_send);
-            toolbar_fitbit.setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                }
-            });
-        }
-*/
+        webView.getSettings().setDomStorageEnabled(true);
+        webViewHolder();
     }
 
-    private void loadWebView() {
+
+
+
+    public void webViewHolder()
+    {
         try {
-            webView.setWebViewClient(new WebViewClient() {
+            webView.getSettings().setJavaScriptEnabled(true);
+
+            webView.loadUrl("https://www.fitbit.com/oauth2/authorize?client_id=227PST&redirect_uri=http%3A%2F%2Flocalhost%2F&response_type=code&scope=activity+nutrition+heartrate+location+nutrition+profile+settings+sleep+social+weight&state");
+            webView.setWebViewClient(new WebViewClient()
+
+            {
+
+                boolean authComplete = false;
+                Intent resultIntent = new Intent();
+
                 @Override
                 public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                    Log.e("Denied", url);
-                    if (url.startsWith("https://eugeneh.temboolive")) {
-                        new Finialize().execute();
-                    }
-                    if (url.contains("deny=Deny")) {
-                        savePreferences("FITBIT_CONNECTION_STATUS", "NOT_CONNECTED");
-                        Intent data = new Intent();
-                        setResult(RESULT_OK, data);
-                        finish();
-                    }
+                    super.onPageStarted(view, url, favicon);
+
                 }
+
+                String authCode;
 
                 @Override
                 public void onPageFinished(WebView view, String url) {
-                    //hide loading image
-                    circularProgressbar.setVisibility(View.GONE);
-                    //show webview
-                    webView.setVisibility(View.VISIBLE);
+                    super.onPageFinished(view, url);
+
+                    if (url.contains("?code=") && authComplete != true) {
+                        Uri uri = Uri.parse(url);
+                        authCode = uri.getQueryParameter("code");
+                        Log.i("", "CODE : " + authCode);
+                        authComplete = true;
+                        resultIntent.putExtra("code", authCode);
+                        fitbit.this.setResult(Activity.RESULT_OK, resultIntent);
+                        setResult(Activity.RESULT_CANCELED, resultIntent);
+                        HashMap<String, String> map = new HashMap<String, String>();
+                        // This test service takes the username "httpwatch" and a random
+                        // password. Repeating a password can lead to failure, so we create
+                        // a decently random one using UUID.
+                        String secret = Globals.CUSTOMER_SECRET;
+                        String authorization = null;
+
+
+                        map = new HashMap<String, String>();
+
+                        map.put("Accepts", "application");
+                        map.put("User-Authentication", secret);
+
+                        webView.setWebViewClient(new WebViewClient());
+                        String url1 = "https://api.fitbit.com/oauth2/token?code="+authCode+"&grant_type=authorization_code"
+                                +"&client_id=227PST&redirect_url=http://localhost/";
+                        webView.getSettings().setJavaScriptEnabled(true);
+                        webView.loadUrl(url1,map);
+
+                        //Toast.makeText(getApplicationContext(), "Authorization Code is: " + authCode, Toast.LENGTH_SHORT).show();
+                    } else if (url.contains("error=access_denied")) {
+                        Log.i("", "ACCESS_DENIED_HERE");
+                        resultIntent.putExtra("code", authCode);
+                        authComplete = true;
+                        setResult(Activity.RESULT_CANCELED, resultIntent);
+                        Toast.makeText(getApplicationContext(), "Error occured while trying to log you in", Toast.LENGTH_SHORT).show();
+
+                    }
                 }
+
             });
-            webView.loadUrl(oauth);
+
         } catch (Exception e) {
-            Log.e("ERROR", e.toString());
+
+        }
+    }
+    private class MyWebViewClient extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
         }
     }
 
 
-    public class Finialize extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-                TembooSession session = new TembooSession("evanglazer", "FitBit", "LUvtbKHff1UmrmtVlzgSmahbnCim279w");
-                FinalizeOAuth finalizeOAuthChoreo = new FinalizeOAuth(session);
-                FinalizeOAuth.FinalizeOAuthInputSet finalizeOAuthInputs = finalizeOAuthChoreo.newInputSet();
-                finalizeOAuthInputs.set_CallbackID(callbacks);
-                finalizeOAuthInputs.set_OAuthTokenSecret(secret);
-                finalizeOAuthInputs.set_ConsumerSecret(Globals.CUSTOMER_SECRET);
-                FinalizeOAuth.FinalizeOAuthResultSet finalizeOAuthResults = finalizeOAuthChoreo.execute(finalizeOAuthInputs);
-                Log.e("token", finalizeOAuthResults.get_AccessToken());
-                Log.e("secret", finalizeOAuthResults.get_AccessTokenSecret());
-
-                savePreferences("FITBIT_ACCESS_TOKEN", finalizeOAuthResults.get_AccessToken());
-                savePreferences("FITBIT_ACCESS_TOKEN_SECRET", finalizeOAuthResults.get_AccessTokenSecret());
-                savePreferences("FITBIT_ACCESS_TOKEN_ID", finalizeOAuthResults.get_UserID());
-
-            } catch (Exception e) {
-                Log.e("Test", e.toString());
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            savePreferences("FITBIT_CONNECTION_STATUS", "CONNECTED");
-            Intent data = new Intent();
-            setResult(RESULT_OK, data); // passing the RESULT_OK parameter
-            finish();
-        }
-    }
-
-    public class GetOauthKey extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-
-                TembooSession session = new TembooSession("evanglazer", "FitBit", "LUvtbKHff1UmrmtVlzgSmahbnCim279w");
-                InitializeOAuth initializeOAuthChoreo = new InitializeOAuth(session);
-                InitializeOAuth.InitializeOAuthInputSet initializeOAuthInputs = initializeOAuthChoreo.newInputSet();
-                initializeOAuthInputs.set_ConsumerSecret(Globals.CUSTOMER_SECRET);
-                initializeOAuthInputs.set_ConsumerKey(Globals.CUSTOMER_KEY);
-                InitializeOAuth.InitializeOAuthResultSet initializeOAuthResults = initializeOAuthChoreo.execute(initializeOAuthInputs);
-                secret = initializeOAuthResults.get_OAuthTokenSecret();
-                callbacks = initializeOAuthResults.get_CallbackID();
-                oauth = initializeOAuthResults.get_AuthorizationURL();
-                initializeOAuthResults.getCompletionStatus();
-
-                Log.e("secret", secret);
-                Log.e("callbacks", callbacks);
-                Log.e("oauth", oauth);
-                Log.e("completition", initializeOAuthResults.getCompletionStatus().toString());
-            } catch (Exception e) {
-                Log.e("Test", e.toString());
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            loadWebView();
-        }
-    }
 
     private void savePreferences(String key, String value) {
         SharedPreferences.Editor editor = sharedPreferences.edit();

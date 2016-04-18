@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ndroid="http://schemas.android.com/apk/res-auto"
     package="com.phoodbuddy.phoodbuddy">
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
@@ -39,17 +40,9 @@
         <!-- Get Fit Bit User Data -->
         <activity
             android:name=".Service.fitbit"
-            android:label="Fitbit">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait">>
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="fitbit"
-                    android:scheme="temboo" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Activities.setup"
