@@ -903,6 +903,54 @@ input:-webkit-autofill {
 	color: #FFFFFF;
 }
 /************* Schedule page end *************All*******/
+/************* Recipe page start *************All*******/
+#recipe .divider.row div
+{
+	border-bottom: 2px solid #E5E5E5;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+#recipe .row img
+{
+	height: 170px;
+}
+#recipe .col-lg-6 p
+{
+	display: inline-block;
+	height: 40px;
+	line-height: 80px;
+}
+#recipe .col-lg-6 p span
+{
+	cursor: pointer;
+}
+#recipe h3
+{
+	display: inline-block;
+	height: 40px;
+}
+#recipe h4
+{
+	color: #4585A1;
+	font-size: 22px;
+	font-weight: bolder;
+	margin-bottom: 15px;
+	text-align: center;
+}
+#recipe .col-lg-3 p
+{
+	color: #4585A1;
+	font-size: 18px;
+	text-align: center;
+}
+#recipe .col-lg-3 p span
+{
+	color: #4889a9;
+	font-size: 56px;
+	font-weight: bolder;
+	margin-bottom: 20px;
+}
+/************* Recipe page end ***************All*******/
 /************* Extraneous pages page start ******All****/
 #about table,
 #faq table,
@@ -1012,6 +1060,13 @@ footer > .row > .link-column
 		width: 98%;
 	}
 /************* Landing page end *************768-991****/
+/************* Recipe page start ************768-991****/
+	#recipe .row img
+	{
+		height: auto;
+		width: 100%;
+	}
+/************* Recipe page end **************768-991****/
 /************* Extraneous pages page start **768-991****/
 	
 
@@ -1221,6 +1276,13 @@ footer > .row > .link-column
 	color: #326077;
 }
 /************* Schedule page end ***************767-****/
+/************* Recipe page start ***************767-****/
+#recipe .row img
+{
+	height: auto;
+	width: 100%;
+}
+/************* Recipe page end *****************767-****/
 /************* Extraneous pages page start *****767-****/
 	#about .table-responsive > .table > tbody > tr > td,
 	#faq .table-responsive > .table > tbody > tr > td,
