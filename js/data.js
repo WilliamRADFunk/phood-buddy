@@ -1143,7 +1143,7 @@ function getRandomRecipe(day, meal, cb)
 		var tastes = snapshot.child("taste").val();
 		var bitter = tastes.bitter;
 		var salty = tastes.salty;
-		var sour = tastes.salty;
+		var sour = tastes.sour;
 		var spicy = tastes.salty;
 		var sweet = tastes.sweet;
 
