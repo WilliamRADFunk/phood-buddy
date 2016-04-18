@@ -23,7 +23,7 @@ namespace PhoodBuddyUWP.Models
             if (Amount == 1)
                 return Amount + " " + Unit + " of " + Name;
             else
-                return Amount + " " + Unit + "s of" + Name;
+                return Amount + " " + Unit + "s of " + Name;
         }
     }
 

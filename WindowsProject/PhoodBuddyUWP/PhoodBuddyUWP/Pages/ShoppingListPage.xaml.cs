@@ -1,20 +1,11 @@
-﻿using PhoodBuddyUWP.Models;
+﻿using Newtonsoft.Json;
+using PhoodBuddyUWP.Models;
 using PhoodBuddyUWP.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Popups;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace PhoodBuddyUWP.Pages
@@ -41,6 +32,16 @@ namespace PhoodBuddyUWP.Pages
         {
             var page = sender as Type;
             Frame.Navigate(page);
+        }
+
+        async protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+
+            //Saves the object to the file for later use
+            StorageFile file = await ApplicationData.Current.LocalFolder.GetFileAsync("shoppingList.json");
+            string jText = JsonConvert.SerializeObject(vm.Items);
+            await FileIO.WriteTextAsync(file, jText);
         }
 
         private void addItemButton_Click(object sender, RoutedEventArgs e)
