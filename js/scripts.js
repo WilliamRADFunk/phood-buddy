@@ -724,7 +724,7 @@ function decreaseCount()
 // Initiates the content for the recipe page.
 function initRecipe()
 {
-	//getFavAll(0, popRecipeCallback);
+	getRandomRecipe("", "", popRecipeCallback);
 }
 // Populates the recipe data either from random pick, or from the id in the URL.
 function popRecipeCallback(result)

@@ -487,7 +487,7 @@ function getFavAll(count, cb)
 					array.push(key + "");
 			}
 
-			console.log(array);
+			//console.log(array);
 
 			var amount = array.length;
 
@@ -1139,25 +1139,100 @@ function getRandomRecipe(day, meal, cb)
 		var shellA = allergies["shell-fish"];
 		var soyA = allergies.soy;
 		var treeA = allergies["tree-nut"];
+		//Assign Taste Properties
+		var tastes = snapshot.child("taste").val();
+		var bitter = tastes.bitter;
+		var salty = tastes.salty;
+		var sour = tastes.sour;
+		var spicy = tastes.spicy;
+		var sweet = tastes.sweet;
 
-		//console.log(diab);
+		var dominantTaste = "";
+		var currentTasteVal = 0.1;
+
+		if(bitter >= currentTasteVal)
+		{
+			dominantTaste = "bitter";
+			currentTasteVal = bitter;
+		}
+		if(sour >= currentTasteVal)
+		{
+			dominantTaste = "sour";
+			currentTasteVal = sour;
+		}
+		if(sweet >= currentTasteVal)
+		{
+			dominantTaste = "sweet";
+			currentTasteVal = sweet;
+		}
+		if(spicy >= currentTasteVal)
+		{
+			dominantTaste = "spicy";
+			currentTasteVal = spicy;
+		}
+		if(salty >= currentTasteVal)
+		{
+			dominantTaste = "salty";
+			currentTasteVal = salty;
+		}
+
+		if(dominantTaste === "")
+		{
+			dominantTaste = "salty";
+		}
+
+		console.log("Your dominant taste is" + dominantTaste);
 
 		var recipeRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory/");
 
+		var randomDecide = Math.random();
+
+		console.log(randomDecide);
 		if(hypo || diab || highc || hyper)
 		{
-			var query = recipeRef.orderByChild("custom").equalTo(false);
+			console.log("We are tailoring to your needs...");
+
+			//var query = recipeRef.orderByChild("custom").equalTo(false);
+
+			var query = recipeRef;
+
+			if(randomDecide > 0.25)
+			{
+				console.log("Firebase will choose a taste oriented choice of your liking");
+				query = query.orderByChild("taste").equalTo(dominantTaste);
+			}
 
 			query.once("value", function(childSnapshot){
 				var num = childSnapshot.numChildren();
 				var newNnum = num / 10;
 
+				var childCount = childSnapshot.numChildren();
+				var counter = Math.floor(Math.random() * (childCount));
+				counter = Math.floor(counter * 0.75);
+
+				if(childSnapshot.key().length == 20)
+				{
+					flag = false;
+				}
+
 				var flagger = true;
 				childSnapshot.forEach(function(querySnapshot)
 				{
+					
 					var flag = true;
 
-					var ingredients = querySnapshot.child("ingredientList").val();
+					if(counter > 0)
+					{
+						counter--;
+						flag = false;
+					}
+
+					var ingredients = null;
+
+					if(flag)
+					{
+						ingredients = querySnapshot.child("ingredientList").val();
+					}
 
 					if(ingredients === null)
 					{
@@ -1252,14 +1327,32 @@ function getRandomRecipe(day, meal, cb)
 		}
 		else
 		{
-			var customQuery = recipeRef.orderByChild("custom").equalTo(true);
+			//var customQuery = recipeRef.orderByChild("custom").equalTo(true);
+
+			var customQuery = recipeRef;
+
+			if(randomDecide > 0.25)
+			{
+				console.log("Firebase will choose a taste oriented choice of your liking");
+				customQuery = recipeRef.orderByChild("taste").equalTo(dominantTaste);
+			}
 
 			customQuery.once("value", function(childSnapshot){
+
+				var childCount = childSnapshot.numChildren();
+				var counter = Math.floor(Math.random() * (childCount));
+				counter = Math.floor(counter * 0.75);
 
 				var flagger = true;
 				childSnapshot.forEach(function(querySnapshot){
 
 					var flag = true;
+
+					if(counter > 0)
+					{
+						counter--;
+						flag = false;
+					}
 
 					var ingredients = querySnapshot.child("ingredientList").val();
 
