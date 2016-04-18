@@ -1,10 +1,12 @@
-﻿using PhoodBuddyUWP.Models;
+﻿using Newtonsoft.Json;
+using PhoodBuddyUWP.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
 
 namespace PhoodBuddyUWP.ViewModels
 {
@@ -13,9 +15,25 @@ namespace PhoodBuddyUWP.ViewModels
         //CONSTRUCTOR
         public MyRecipesViewModel()
         {
+            //Loads in the Favorites from JSON
+            try
+            {
+                getOnlineFavorites();
+            }
+            catch(Exception)
+            {
+                getLocalFavorites();
+            }
 
-            Favorites = new ObservableCollection<RecipeModel>();
-            Recipes = new ObservableCollection<RecipeModel>();
+            //Loads in the Recipes from JSON
+            try
+            {
+                getOnlineRecipes();
+            }
+            catch(Exception)
+            {
+                getLocalRecipes();
+            }
         }
 
 
@@ -27,7 +45,21 @@ namespace PhoodBuddyUWP.ViewModels
 
         private void getLocalFavorites()
         {
-            Favorites = new ObservableCollection<RecipeModel>();
+            //Opens the file
+            var fileResult = ApplicationData.Current.LocalFolder.CreateFileAsync("favorites.json", CreationCollisionOption.OpenIfExists);
+            while (fileResult.Status != Windows.Foundation.AsyncStatus.Completed) ;
+            StorageFile file = fileResult.GetResults();
+
+            //Read the text
+            var textResult = FileIO.ReadTextAsync(file);
+            while (textResult.Status != Windows.Foundation.AsyncStatus.Completed) ;
+            string jText = textResult.GetResults();
+
+            //Creates the object
+            if(jText != "")
+                Favorites = JsonConvert.DeserializeObject<ObservableCollection<RecipeModel>>(jText);
+            else
+                Favorites = new ObservableCollection<RecipeModel>();
         }
 
         private void getOnlineRecipes()
@@ -37,7 +69,21 @@ namespace PhoodBuddyUWP.ViewModels
 
         private void getLocalRecipes()
         {
-            Recipes = new ObservableCollection<RecipeModel>();
+            //Opens the file
+            var fileResult = ApplicationData.Current.LocalFolder.CreateFileAsync("recipes.json", CreationCollisionOption.OpenIfExists);
+            while (fileResult.Status != Windows.Foundation.AsyncStatus.Completed) ;
+            StorageFile file = fileResult.GetResults();
+
+            //Read the text
+            var textResult = FileIO.ReadTextAsync(file);
+            while (textResult.Status != Windows.Foundation.AsyncStatus.Completed) ;
+            string jText = textResult.GetResults();
+
+            //Creates the object
+            if (jText != "")
+                Recipes = JsonConvert.DeserializeObject<ObservableCollection<RecipeModel>>(jText);
+            else
+                Recipes = new ObservableCollection<RecipeModel>();
         }
         
         //PUBLIC MEMBERS
