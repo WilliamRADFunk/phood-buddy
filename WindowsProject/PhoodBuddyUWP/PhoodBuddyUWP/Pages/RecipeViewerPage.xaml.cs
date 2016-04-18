@@ -17,9 +17,6 @@ using PhoodBuddyUWP.Models;
 
 namespace PhoodBuddyUWP.Pages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class RecipeViewerPage : Page
     {
         private RecipeModel recipe;
@@ -36,6 +33,7 @@ namespace PhoodBuddyUWP.Pages
 
             //Casts the parameters to the recipe type
             recipe = e.Parameter as RecipeModel;
+            this.DataContext = recipe;
 
             //Sets the image on the page
             recipeImg.Source = new Windows.UI.Xaml.Media.Imaging.BitmapImage(recipe.Picture);
