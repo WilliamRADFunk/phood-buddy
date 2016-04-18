@@ -3957,9 +3957,10 @@ containing a value of this type.
         public static final int shopping_list=0x7f040066;
         public static final int shopping_list_child=0x7f040067;
         public static final int shopping_list_details=0x7f040068;
-        public static final int splash=0x7f040069;
-        public static final int support_simple_spinner_dropdown_item=0x7f04006a;
-        public static final int taste_profile=0x7f04006b;
+        public static final int spinner_item=0x7f040069;
+        public static final int splash=0x7f04006a;
+        public static final int support_simple_spinner_dropdown_item=0x7f04006b;
+        public static final int taste_profile=0x7f04006c;
     }
     public static final class menu {
         public static final int dashboard=0x7f0e0000;

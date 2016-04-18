@@ -387,7 +387,7 @@
     <string name="auth_google_play_services_client_google_display_name">Google</string>
     <string name="breakfest_today">Mark as Breakfest Today</string>
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
-    <string name="com.crashlytics.android.build_id" ns1:ignore="UnusedResources,TypographyDashes" translatable="false">142f67c7-1a49-41da-b57b-e8b5ef58618f</string>
+    <string name="com.crashlytics.android.build_id" ns1:ignore="UnusedResources,TypographyDashes" translatable="false">c9cb7058-d616-4507-99f9-1ffd1f9add37</string>
     <string name="com_facebook_image_download_unknown_error">Unexpected error while downloading an image.</string>
     <string name="com_facebook_internet_permission_error_message">WebView login requires INTERNET permission</string>
     <string name="com_facebook_internet_permission_error_title">AndroidManifest Error</string>

@@ -30,7 +30,8 @@
         android:id="@+id/next"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:clickable="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -66,22 +67,17 @@
         android:clickable="true"
         android:inputType="date" />
 
-    <EditText
+    <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:textColor="@color/white"
-        android:onClick="onClick"
         android:id="@+id/gender"
-        android:text="Gender"
-        android:layout_above="@+id/weight"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/next"
         android:layout_alignEnd="@+id/next"
+        android:spinnerMode="dialog"
         android:backgroundTint="#ffffff"
-        android:clickable="true"
-        android:inputType="number" />
+        android:layout_above="@+id/weight" />
 
     <EditText
         android:layout_width="wrap_content"

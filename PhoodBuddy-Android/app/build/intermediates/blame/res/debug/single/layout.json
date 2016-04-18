@@ -236,6 +236,10 @@
         "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\src\\main\\res\\layout\\app_bar_shoppinglist.xml"
     },
     {
+        "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\spinner_item.xml",
+        "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\src\\main\\res\\layout\\spinner_item.xml"
+    },
+    {
         "merged": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_menu_item_action_area.xml",
         "source": "C:\\Users\\Evan\\Desktop\\phood-buddy\\PhoodBuddy-Android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.1.1\\res\\layout\\design_menu_item_action_area.xml"
     },
