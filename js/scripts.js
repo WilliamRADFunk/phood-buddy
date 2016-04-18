@@ -67,7 +67,7 @@ $(document).ready(function ()
 		var pwd = $("#register-password").val() + "";
 		var fname = $("#register-fname").val() + "";
 		var lname = $("#register-lname").val() + "";
-		console.log(fname, lname, email, pwd);
+		
 		if( (fname === "") || (lname === "") ||	(email === "") || (pwd === "") )
 		{
 			$("#modal").modal({backdrop: "static", keyboard: false, show: true});
@@ -493,15 +493,18 @@ function submitRecipe()
 	// Sends collected, and validated data, to the data layer for proper assembly
 	assembleRecipe(synopsis, img, title, dominantTaste, ingreds, directs, cookTime, prepTime, totalTime, mealTime, addRecipeReply);
 }
+// Callback to inform user whether submitted recipe made it to the db or not.
 function addRecipeReply(result)
 {
 	if(result) spawnModal("Submission Success", "<p>Your recipe has found its new home at Phood Buddy</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/create-recipe.html", false);
 	else spawnModal("Submission Failed", "<p>Your recipe wasn't submitted. Double check your inputs</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/create-recipe.html", false);
 }
+// Initiates the content for the weekly schedule page.
 function initSchedule()
 {
 	getPlanner(popScheduleCallback);
 }
+// Populates the weekly schedule with user's stored choices.
 function popScheduleCallback(result)
 {
 	if(result === false)
@@ -510,7 +513,6 @@ function popScheduleCallback(result)
 	}
 	else
 	{
-		console.log(result);
 		var mondayBfast = (result.monday.breakfast.name === "" ? '<div class="breakfast" onclick="openRecipeOptions(\'monday\', \'breakfast\')">Select Breakfast Recipe</div>' : '<div class="breakfast"><a href="recipe.html?' + result.monday.breakfast.recipeId + '">' + result.monday.breakfast.name + '</a><button class="btn-del-choice" onclick="updatePlanner(\'monday\', \'breakfast\', \'\', \'\', deleteScheduledRecipe)">Delete</button></div>');
 		var mondayLunch = (result.monday.lunch.name === "" ? '<div class="lunch" onclick="openRecipeOptions(\'monday\', \'lunch\')">Select Lunch Recipe</div>' : '<div class="lunch"><a href="recipe.html?' + result.monday.lunch.recipeId + '">' + result.monday.lunch.name + '</a><button class="btn-del-choice" onclick="updatePlanner(\'monday\', \'lunch\', \'\', \'\', deleteScheduledRecipe)">Delete</button></div>');
 		var mondayDinner = (result.monday.dinner.name === "" ? '<div class="dinner" onclick="openRecipeOptions(\'monday\', \'dinner\')">Select Dinner Recipe</div>' : '<div class="dinner"><a href="recipe.html?' + result.monday.dinner.recipeId + '">' + result.monday.dinner.name + '</a><button class="btn-del-choice" onclick="updatePlanner(\'monday\', \'dinner\', \'\', \'\', deleteScheduledRecipe)">Delete</button></div>');
@@ -601,7 +603,6 @@ function popPBPick(recipe, day, mealTime)
 {
 	if(recipe === false)
 	{
-		console.log("This");
 		spawnModal("Failure to Select Recipe", "<p>We were unable to pick a recipe from your favorite list.<br/><br/>Would you like us to refresh the page?</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/schedule.html", true);
 		$("#" + day + " > ." + mealTime).html("Select " + mealTime + " Recipe");
 		$("#" + day + " > ." + mealTime).removeClass("active");
@@ -612,17 +613,15 @@ function popPBPick(recipe, day, mealTime)
 	}
 	else
 	{
-		console.log("That");
-		$("#" + day + " > ." + mealTime).html("<a href='recipe.html?" + Object.keys(recipe)[0] + "'>" + Object.keys(recipe)[0].name + "</a><button onclick='updatePlanner(" + day + ", " + mealTime + ", '', '', deleteScheduledRecipe'>Delete</button>");
+		$("#" + day + " > ." + mealTime).html("<a href='recipe.html?" + recipe.id + "'>" + recipe.name + "</a><button class='btn-del-choice' onclick='updatePlanner(\"" + day + "\", \"" + mealTime + "\", \"\", \"\", deleteScheduledRecipe)'>Delete</button>");
 	}
 }
 // Callback function to populate slot when PB finds a recipe for user.
 function popFavPick(recipe, day, mealTime)
 {
-	console.log(recipe);
 	if(recipe === false)
 	{
-		spawnModal("Failure to Select Recipe", "<p>We were unable to pick a recipe to match your tastes.<br/><br/>Would you like us to refresh the page?</p>", "schedule.html", true);
+		spawnModal("Failure to Select Recipe", "<p>We were unable to pick a recipe to match your tastes (maybe you don't have any recipes favorited).<br/><br/>Would you like us to refresh the page?</p>", "schedule.html", true);
 		$("#" + day + " > ." + mealTime).html("Select " + mealTime + " Recipe");
 		$("#" + day + " > ." + mealTime).removeClass("active");
 		setTimeout( function()
@@ -635,6 +634,7 @@ function popFavPick(recipe, day, mealTime)
 		$("#" + day + " > ." + mealTime).html("<a href='recipe.html?" + recipe.recipeId + "'>" + recipe.name + "</a><button class='btn-del-choice' onclick='updatePlanner(\"" + day + "\", \"" + mealTime + "\", \"\", \"\", deleteScheduledRecipe)'>Delete</button>");
 	}
 }
+// Callback function to delete an already chosen recipe on the recipe list.
 function deleteScheduledRecipe(result, day, mealTime)
 {
 	if(result === false)
@@ -650,6 +650,83 @@ function deleteScheduledRecipe(result, day, mealTime)
 			$("#" + day + " > ." + mealTime).attr('onclick', 'openRecipeOptions(\'' + day + '\', \'' + mealTime + '\')');
 		}, 200);
 	}
+}
+// Initiates the content for the favorite recipes page.
+function initFavList(cat)
+{
+	$("img").error(function(e){
+		console.log("ERRRRROOOOOOR: ", e);
+		$(this).attr("src", "images/placeholder-recipe.jpg");
+	});
+	switch(cat)
+	{
+		case 0:
+		{
+			getFavAll(counter, popFavListCallback);
+			break;
+		}
+		case 1:
+		{
+			getFavUserRecipe(counter, popFavListCallback);
+			break;
+		}
+		case 2:
+		{
+			getFavOther(counter, popFavListCallback);
+			break;
+		}
+	}
+}
+// Populates the weekly schedule with all user's stored favorites.
+function popFavListCallback(result, amount)
+{
+	if(amount) listCount = amount;
+	$("#fav-recipes-container").html("");
+	for(var i = 0; i < result.info.length; i++)
+	{
+		var img = (result.info[i].img === "") ? ("images/placeholder-recipe.jpg") : (result.info[i].img + "");
+		$("#fav-recipes-container").append(
+			'<div class="fav-recipe row">' +
+				'<div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-12">' +
+					'<img src=' + img + ' alt="' + result.info[i].name + '">' +
+				'</div>' +
+				'<div class="col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-12">' +
+					'<h3>' + result.info[i].name + '</h3>' +
+					'<h4>Taste: <span>' + result.info[i].taste + '</span></h4>' +
+					'<p>' + result.info[i].description + '</p>' +
+				'</div>' +
+				'<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12"></div>' +
+			'</div>' +
+			'<div class="divider row">' +
+				'<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12"></div>' +
+			'</div>'
+		);
+	}
+	$("#page-count").html( "Page "+ (counter + 1) + " of " + Math.floor(listCount / 10 + 1) );
+}
+// Moves right through fav list pagination
+function increaseCount()
+{
+	counter++;
+	if((listCount % (counter * 10)) === listCount) counter = 0;
+	initFavList(cat);
+}
+// Moves left through fav list pagination
+function decreaseCount()
+{
+	counter--;
+	if(counter < 0) counter = 0;
+	initFavList(cat);
+}
+// Initiates the content for the recipe page.
+function initRecipe()
+{
+	//getFavAll(0, popRecipeCallback);
+}
+// Populates the recipe data either from random pick, or from the id in the URL.
+function popRecipeCallback(result)
+{
+	console.log(result);
 }
 // Customizable modal to be reused through all pages.
 function spawnModal(header, body, redirect, moreThanOneBtn, cancel)

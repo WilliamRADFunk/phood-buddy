@@ -26,7 +26,8 @@
     <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/respond.min.js"></script>    
+    <script type="text/javascript" src="js/respond.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-filestyle.min.js"></script>   
     <!-- Firebase Library for database communication -->
     <script type="text/javascript" src="js/firebase.js"></script>
     <script type="text/javascript" src="js/auth.js"></script>
@@ -68,40 +69,11 @@
 <!-- Main Navigation ends here -->
 <!-- Main Content Wrapper starts here -->
     <div id="wrapper" class="container">
-        <div id="favorite-recipes">
-            <h1>Favorite Recipes</h1>
-<!-- Filter Bar Start -->
-                <div id="filter-bar" class="row">
-                    <div class="text-right col-lg-1 col-lg-offset-2 col-md-1 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-6">
-                        All Recipes: 
-                    </div>
-                    <div class="col-lg-1 col-lg-offset-0 col-md-1 col-md-offset-0 col-sm-1 col-sm-offset-0 col-xs-6">
-                        <input type="radio" onclick="cat = 0; counter = 0; initFavList(cat)" name="fav-filter" value="fav-all" checked="checked" />
-                    </div>
-                    <div class="text-right col-lg-2 col-lg-offset-0 col-md-2 col-md-offset-0 col-sm-2 col-sm-offset-0 col-xs-6">
-                        User Created Recipes: 
-                    </div>
-                    <div class="text-left col-lg-1 col-lg-offset-0 col-md-1 col-md-offset-0 col-sm-1 col-sm-offset-0 col-xs-6">
-                        <input type="radio" onclick="cat = 1; counter = 0; initFavList(cat)" name="fav-filter" value="fav-user"/>
-                    </div>
-                    <div class="text-right col-lg-2 col-lg-offset-0 col-md-2 col-md-offset-0 col-sm-2 col-sm-offset-0 col-xs-6">
-                        External Recipes: 
-                    </div>
-                    <div class="text-left col-lg-1 col-lg-offset-0 col-md-1 col-md-offset-0 col-sm-1 col-sm-offset-0 col-xs-6">
-                        <input type="radio" onclick="cat = 2; counter = 0; initFavList(cat)" name="fav-filter" value="fav-other"/>
-                    </div>
+        <div id="recipe">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">
+                    <h2>Awesomest Recipe Ever</h2>
                 </div>
-<!-- Filter Bar End -->
-<!-- List of Fav Recipes Start -->
-                <div id="fav-recipes-container"></div>
-<!-- List of Fav Recipes End -->
-<!-- Pagination Start -->
-                <div class="row">
-                    <a href="javascript:decreaseCount()" class="text-right col-lg-3 col-lg-offset-2 col-md-3 col-md-offset-2 col-sm-3 col-sm-offset-2 col-xs-3">Previous</a>
-                    <div id="page-count" class="text-center col-lg-2 col-md-2 col-sm-2 col-xs-6"></div>
-                    <a href="javascript:increaseCount()" class="text-left col-lg-1 col-md-1 col-sm-1 col-xs-3">Next</a>
-                </div>
-<!-- Pagination End -->
             </div>
         </div>
     </div>
@@ -165,7 +137,7 @@
         </div>
       </div>
     </div>
-    <script>var counter = 0;var listCount = 0;var cat = 0;window.onload = initFavList(0);</script>
 <!-- Modal ends here -->
+<script>window.onload = initRecipe();</script>
 </body>
 </html>

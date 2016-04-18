@@ -654,11 +654,15 @@ input:-webkit-autofill {
 {
 	white-space: normal;
 }
-#favorite-recipes .text-left
+.text-center
+{
+	text-align: center;
+}
+.text-left
 {
 	text-align: left;
 }
-#favorite-recipes .text-right
+.text-right
 {
 	text-align: right;
 }
