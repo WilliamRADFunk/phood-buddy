@@ -333,8 +333,10 @@ function getFavUserRecipe(count, cb)
 								{
 									if(decount > 0)
 									{
-									recipeContentJson.info.push(childSnapshot.val());
-									decount --;
+										var recipeJson = childSnapshot.val();
+										recipeJson.id = childSnapshot.key();
+										recipeContentJson.info.push(recipeJson);
+										decount--;
 									}
 								}
 
@@ -422,8 +424,10 @@ function getFavFatSecret(count, cb)
 								{
 									if(decount > 0)
 									{
-										recipeContentJson.info.push(childSnapshot.val());
-										decount --;
+										var recipeJson = childSnapshot.val();
+										recipeJson.id = childSnapshot.key();
+										recipeContentJson.info.push(recipeJson);
+										decount--;
 									}
 
 								}
@@ -509,7 +513,9 @@ function getFavAll(count, cb)
 								{
 									if(decount > 0)
 									{
-										recipeContentJson.info.push(childSnapshot.val());
+										var recipeJson = childSnapshot.val();
+										recipeJson.id = childSnapshot.key();
+										recipeContentJson.info.push(recipeJson);
 										decount--;
 									}
 								}
