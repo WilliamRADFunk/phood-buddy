@@ -305,6 +305,9 @@ function getFavUserRecipe(count, cb)
 					array.push(key + "");
 				}
 			}
+
+			var amount = array.length;
+
 			// DEBUG console.log(array);
 			var directoryRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory");
 
@@ -346,7 +349,7 @@ function getFavUserRecipe(count, cb)
 
 					
 				});//End: forEach -> 'recipe-directory'
-				cb(recipeContentJson);   //CALL cb here
+				cb(recipeContentJson, amount);   //CALL cb here
 			});//END: snapshot -> 'recipe-directory'
 			//cb(recipeContentJson); //This cb will return the JSON of all recipes
 		}//END: if user has created recipes
@@ -394,7 +397,7 @@ function getFavOther(count, cb)
 			}
 
 			// DEBUG console.log(array);
-
+			var amount = array.length;
 
 			
 			var directoryRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory");
@@ -439,7 +442,7 @@ function getFavOther(count, cb)
 
 					
 				});//End: forEach -> 'recipe-directory'
-				cb(recipeContentJson);   //CALL cb here
+				cb(recipeContentJson, amount);   //CALL cb here
 			});//END: snapshot -> 'recipe-directory'
 			//cb(recipeContentJson); //This cb will return the JSON of all recipes
 		}//END: if user has created recipes
@@ -486,8 +489,8 @@ function getFavAll(count, cb)
 
 			console.log(array);
 
+			var amount = array.length;
 
-			
 			var directoryRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory");
 
 			//Retrieve snapshot of all recipes in directory
@@ -527,7 +530,7 @@ function getFavAll(count, cb)
 
 					
 				});//End: forEach -> 'recipe-directory'
-				cb(recipeContentJson);   //CALL cb here
+				cb(recipeContentJson, amount);   //CALL cb here
 			});//END: snapshot -> 'recipe-directory'
 			//cb(recipeContentJson); //This cb will return the JSON of all recipes
 		}//END: if user has created recipes
@@ -578,6 +581,8 @@ function getRandomFavRecipe(day, time, cb)
 			}
 
 			console.log(array);
+
+			var amount = array.length;
 
 
 			
@@ -1163,7 +1168,7 @@ function getRandomRecipe(day, meal, cb)
 					{
 						for(var i = 0; i < ingredients.length; i++)
 						{
-							var foodName = ingredients[i].food_name;
+							var foodName = ingredients[i].name;
 							if(veg)
 							{
 								if( (foodName.indexOf("meat") !== -1) || (foodName.indexOf("Meat") !== -1) || (foodName.indexOf("chicken") !== -1) || (foodName.indexOf("Chicken") !== -1))
@@ -1267,7 +1272,7 @@ function getRandomRecipe(day, meal, cb)
 					{
 						for(var i = 0; i < ingredients.length; i++)
 						{
-							var foodName = ingredients[i].food_name;
+							var foodName = ingredients[i].name;
 							if(veg)
 							{
 								if( (foodName.indexOf("meat") !== -1) || (foodName.indexOf("Meat") !== -1) || (foodName.indexOf("chicken") !== -1) || (foodName.indexOf("Chicken") !== -1))
