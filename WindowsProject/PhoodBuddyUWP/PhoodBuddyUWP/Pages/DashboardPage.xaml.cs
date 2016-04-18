@@ -33,7 +33,7 @@ namespace PhoodBuddyUWP.Pages
 
         private void MyRecipesButton_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Navigate to MyRecipes Page
+            Frame.Navigate(typeof(MyRecipesPage));
         }
     }
 }

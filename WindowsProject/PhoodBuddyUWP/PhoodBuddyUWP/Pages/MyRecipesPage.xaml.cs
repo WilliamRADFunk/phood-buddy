@@ -17,14 +17,20 @@ using Windows.UI.Xaml.Navigation;
 
 namespace PhoodBuddyUWP.Pages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MyRecipesPage : Page
     {
+        //Constructor
         public MyRecipesPage()
         {
             this.InitializeComponent();
+            navMenu.OnNavigateParentReady += navHandler;
+        }
+
+        //EVENT HANDLERS
+        private void navHandler(object sender, RoutedEventArgs e)
+        {
+            var page = sender as Type;
+            Frame.Navigate(page);
         }
     }
 }

@@ -5,9 +5,47 @@
     xmlns:local="using:PhoodBuddyUWP.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    xmlns:controls="using:PhoodBuddyUWP.Controls">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <DataTemplate x:Key="RecipeListItem">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Width="100"/>
+                <TextBlock Grid.Column="1"
+                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           Text="{Binding Path=Name}"/>
+            </Grid>
+        </DataTemplate>
 
-    </Grid>
+        <Style TargetType="ListView">
+            <Setter Property="ItemTemplate"
+                    Value="{StaticResource RecipeListItem}"/>
+        </Style>
+    </Page.Resources>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="Add" Label="Add Recipe"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+    
+    <controls:NavMenu x:Name="navMenu"
+                      HeaderText="My Recipes"
+                      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <controls:NavMenu.MainContent>
+            <ScrollViewer>
+                <StackPanel>
+                    <ListView Name="favoriteList"
+                              Header="Favorites"/>
+                    <ListView Name="recipeList"
+                              Header="Recipes"/>
+                </StackPanel>
+            </ScrollViewer>
+        </controls:NavMenu.MainContent>
+    </controls:NavMenu>
 </Page>
