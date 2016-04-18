@@ -1185,11 +1185,12 @@ function getRandomRecipe(day, meal, cb)
 
 		var recipeRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory/");
 
+		var randomDecide = Math.Random();
+
+		console.log(randomDecide);
 		if(hypo || diab || highc || hyper)
 		{
 			var query = recipeRef.orderByChild("custom").equalTo(false);
-
-			var randomDecide = Math.Random();
 
 			if(randomDecide > 0.25)
 			{
@@ -1303,12 +1304,14 @@ function getRandomRecipe(day, meal, cb)
 		}
 		else
 		{
-			var customQuery = recipeRef.orderByChild("custom").equalTo(true);
+			//var customQuery = recipeRef.orderByChild("custom").equalTo(true);
+
+			var customQuery = recipeRef;
 
 			if(randomDecide > 0.25)
 			{
 				console.log("Firebase will choose a taste oriented choice of your liking");
-				customQuery = customQuery.orderByChild("taste").equalTo(dominantTaste);
+				customQuery = recipeRef.orderByChild("taste").equalTo(dominantTaste);
 			}
 
 			customQuery.once("value", function(childSnapshot){
