@@ -4,12 +4,13 @@ using FireSharp.Interfaces;
 using Newtonsoft.Json;
 using PhoodBuddyUWP.Models;
 using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using Windows.Storage;
 
 namespace PhoodBuddyUWP.ViewModels
 {
-    class ProfileViewModel
+    class ProfileViewModel : INotifyPropertyChanged
     {
         //CONSTRUCTOR
         public ProfileViewModel()
@@ -76,5 +77,8 @@ namespace PhoodBuddyUWP.ViewModels
         private IFirebaseConfig config;
         private const string BasePath = "https://phoodbuddy.firebaseIO.com/";
         private const string FirebaseSecret = "Bu23qo0TN9kGK0yl6UjsvNK9Ao3YzduX8M480ucR";
+
+        //EVENTS
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

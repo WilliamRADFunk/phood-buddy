@@ -18,6 +18,18 @@
                BasedOn="{StaticResource BodyTextBlockStyle}">
             <Setter Property="Margin"
                     Value="10,5,0,5"/>
+            <Setter Property="FontWeight"
+                    Value="Bold"/>
+        </Style>
+        
+        <!-- Field Values -->
+        <Style TargetType="TextBlock"
+               x:Key="ProfileFieldValue"
+               BasedOn="{StaticResource BodyTextBlockStyle}">
+            <Setter Property="Margin"
+                    Value="10,0,0,10"/>
+            <Setter Property="FontSize"
+                    Value="24"/>
         </Style>
         
         <!-- Fields -->
@@ -31,6 +43,8 @@
                     Value="500"/>
             <Setter Property="MinWidth"
                     Value="300"/>
+            <Setter Property="Visibility"
+                    Value="Collapsed"/>
         </Style>
         
         <!-- List Controls -->
@@ -45,6 +59,8 @@
         <CommandBar>
             <AppBarButton Icon="Edit" Label="Edit Info"/>
             <AppBarButton Icon="Setting" Label="Settings"/>
+            <AppBarButton Icon="Save" Label="Save Changes" Visibility="Collapsed"/>
+            <AppBarButton Icon="Cancel" Label="Cancel Changes" Visibility="Collapsed"/>
         </CommandBar>
     </Page.BottomAppBar>
     
@@ -57,30 +73,42 @@
                     <!-- First Name -->
                     <TextBlock Text="First Name"
                                Style="{StaticResource ProfileFieldLabel}"/>
-                    <TextBox Text="{Binding Path=UserFirstName}"
+                    <TextBlock  Name="fNameBlock"
+                                Text="{Binding Path=UserFirstName}"
+                                Style="{StaticResource ProfileFieldValue}"/>
+                    <TextBox Name="fNameBox"
                              Style="{StaticResource ProfileField}"/>
 
                     <!-- Last Name -->
                     <TextBlock Text="Last Name"
-                           Style="{StaticResource ProfileFieldLabel}"/>
-                    <TextBox Text="{Binding Path=UserLastName}"
-                         Style="{StaticResource ProfileField}"/>
+                               Style="{StaticResource ProfileFieldLabel}"/>
+                    <TextBlock Name="lNameBlock"
+                               Text="{Binding Path=UserLastName}"
+                               Style="{StaticResource ProfileFieldValue}"/>
+                    <TextBox Name="lNameBox"
+                             Style="{StaticResource ProfileField}"/>
 
                     <!-- Age -->
                     <TextBlock Text="Age"
-                           Style="{StaticResource ProfileFieldLabel}"/>
-                    <TextBox Text="{Binding Path=UserAge}"
-                         Style="{StaticResource ProfileField}"/>
+                               Style="{StaticResource ProfileFieldLabel}"/>
+                    <TextBlock Name="ageBlock"
+                               Text="{Binding Path=UserAge}"
+                               Style="{StaticResource ProfileFieldValue}"/>
+                    <TextBox Name="ageBox"
+                             Style="{StaticResource ProfileField}"/>
                     
                     <!-- Email -->
                     <TextBlock Text="Email"
                                Style="{StaticResource ProfileFieldLabel}"/>
-                    <TextBox Text="{Binding Path=UserEmail}"
+                    <TextBlock Name="emailBlock"
+                               Text="{Binding Path=UserEmail}"
+                               Style="{StaticResource ProfileFieldValue}"/>
+                    <TextBox Name="emailBox"
                              Style="{StaticResource ProfileField}"/>
 
                     <!-- Allergies -->
                     <TextBlock Text="Allergies"
-                           Style="{StaticResource ProfileFieldLabel}"/>
+                               Style="{StaticResource ProfileFieldLabel}"/>
                     <ListView Style="{StaticResource ProfileList}"/>
 
                     <!-- Health Factors -->
