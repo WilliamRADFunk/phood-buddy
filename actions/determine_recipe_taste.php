@@ -72,7 +72,7 @@ function determine_taste($formatted_recipe)
 {
     $salty_arr = array ("salt","stock", "cheese", "garlic powder", "feta cheese", "gorgonzola", "anchovy", "parmesan", "soy sauce", "seaweed", "miso", "pickles", "bacon", "Prosciutto");
 
-    $sweet_arr = array("sugar", "maple syrup", "honey", "jam", "raisin", "apricot", "date", "molasses", "balsamic vinegar", "cider", "ketchup", "BBQ sauce", "carrots",  "sweet  potatoes", "corn", "beets", "butternut", "squash", "peas", "fennel", "parsnips", "caramel", "milk chocolate", "apple", "pears");
+    $sweet_arr = array("sugar", "maple syrup", "honey", "jam", "raisin", "apricot", "date", "molasses", "balsamic vinegar", "cider", "ketchup", "BBQ sauce", "carrots", "banana", "sweet  potatoes", "corn", "beets", "butternut", "squash", "peas", "fennel", "parsnips", "caramel", "sucralose", "aspartame", "milk chocolate", "apple", "pears");
 
     $sour_arr = array ("lemon", "lime", "orange", "vinegar", "tomato paste", "pickled", "yogurt", "sour cream", "kiwi", "pineapple");
 
