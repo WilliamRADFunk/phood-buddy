@@ -924,6 +924,10 @@ input:-webkit-autofill {
 {
 	cursor: pointer;
 }
+#recipe h2
+{
+	border-right: 2px solid #E5E5E5;
+}
 #recipe h3
 {
 	display: inline-block;
@@ -937,6 +941,14 @@ input:-webkit-autofill {
 	margin-bottom: 15px;
 	text-align: center;
 }
+#recipe ul
+{
+	list-style-type: decimal;
+}
+#recipe ul li
+{
+	margin-bottom: 10px;
+}
 #recipe .col-lg-3 p
 {
 	color: #4585A1;
@@ -949,6 +961,23 @@ input:-webkit-autofill {
 	font-size: 56px;
 	font-weight: bolder;
 	margin-bottom: 20px;
+}
+#recipe #left-column
+{
+	border-right: 2px solid #E5E5E5;
+}
+#recipe #print-recipe
+{
+	background-image: url('../images/btn-print.jpg');
+	background-repeat: no-repeat;
+	padding-left: 30px;
+}
+#recipe #grocery-redirect,
+#recipe #fav-list-redirect
+{
+	background-image: url('../images/btn-plus.jpg');
+	background-repeat: no-repeat;
+	padding-left: 30px;
 }
 /************* Recipe page end ***************All*******/
 /************* Extraneous pages page start ******All****/

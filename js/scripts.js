@@ -725,12 +725,13 @@ function decreaseCount()
 // Initiates the content for the recipe page.
 function initRecipe()
 {
+	console.log("Test");
 	getRandomRecipe("", "", popRecipeCallback);
 }
 // Populates the recipe data either from random pick, or from the id in the URL.
 function popRecipeCallback(result)
 {
-	console.log(result);
+	console.log("Result: ", result);
 }
 // Customizable modal to be reused through all pages.
 function spawnModal(header, body, redirect, moreThanOneBtn, cancel)
