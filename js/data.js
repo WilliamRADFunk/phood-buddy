@@ -1191,8 +1191,10 @@ function getRandomRecipe(day, meal, cb)
 		if(hypo || diab || highc || hyper)
 		{
 			console.log("We are tailoring to your needs...");
-			
-			var query = recipeRef.orderByChild("custom").equalTo(false);
+
+			//var query = recipeRef.orderByChild("custom").equalTo(false);
+
+			var query = recipeRef;
 
 			if(randomDecide > 0.25)
 			{
@@ -1208,6 +1210,11 @@ function getRandomRecipe(day, meal, cb)
 				var counter = Math.floor(Math.random() * (childCount));
 				counter = Math.floor(counter * 0.75);
 
+				if(childSnapshot.key().length == 20)
+				{
+					flag = false;
+				}
+
 				var flagger = true;
 				childSnapshot.forEach(function(querySnapshot)
 				{
@@ -1220,7 +1227,12 @@ function getRandomRecipe(day, meal, cb)
 						flag = false;
 					}
 
-					var ingredients = querySnapshot.child("ingredientList").val();
+					var ingredients = null;
+
+					if(flag)
+					{
+						ingredients = querySnapshot.child("ingredientList").val();
+					}
 
 					if(ingredients === null)
 					{
