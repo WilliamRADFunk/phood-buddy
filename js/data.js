@@ -1210,16 +1210,16 @@ function getRandomRecipe(day, meal, cb)
 				var counter = Math.floor(Math.random() * (childCount));
 				counter = Math.floor(counter * 0.75);
 
-				if(childSnapshot.key().length == 20)
-				{
-					flag = false;
-				}
-
 				var flagger = true;
 				childSnapshot.forEach(function(querySnapshot)
 				{
 					
 					var flag = true;
+
+					if(childSnapshot.key().length == 20)
+					{
+						flag = false;
+					}
 
 					if(counter > 0)
 					{
@@ -1277,7 +1277,7 @@ function getRandomRecipe(day, meal, cb)
 
 					if(diab && flag)
 					{
-						var currentCarbo = querySnapshot.child("nutrition").child("carbohydrates").val();
+						var currentCarbo = querySnapshot.child("nutrition").child("carbohydrate").val();
 						if( Number(currentCarbo) > 30)
 						{
 							flag = false;
@@ -1302,7 +1302,7 @@ function getRandomRecipe(day, meal, cb)
 
 					if(hypo && flag)
 					{
-						var currentCarbon = querySnapshot.child("nutrition").child("carbohydrates").val();
+						var currentCarbon = querySnapshot.child("nutrition").child("carbohydrate").val();
 						if( Number(currentCarbon) > 35)
 						{
 							flag = false;
