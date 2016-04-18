@@ -97,15 +97,18 @@
             <AppBarButton Name="deleteButton"
                           Icon="Delete"
                           IsEnabled="False"
-                          Label="Clear Marked"/>
+                          Label="Clear Marked"
+                          Click="deleteItemButton_Click"/>
         </CommandBar>
     </Page.BottomAppBar>
     
     <controls:NavMenu x:Name="navMenu"
                       HeaderText="Shopping List">
         <controls:NavMenu.MainContent>
-            <ListView ItemsSource="{Binding Items}"
-                      ItemTemplate="{StaticResource ShoppingListItem}"/>
+            <ListView Name="shoppingListView"
+                      ItemsSource="{Binding Items}"
+                      ItemTemplate="{StaticResource ShoppingListItem}"
+                      SelectionMode="Multiple"/>
         </controls:NavMenu.MainContent>
     </controls:NavMenu>
 </Page>

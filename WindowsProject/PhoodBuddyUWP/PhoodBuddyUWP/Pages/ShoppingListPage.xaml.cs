@@ -2,6 +2,8 @@
 using PhoodBuddyUWP.Models;
 using PhoodBuddyUWP.ViewModels;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Windows.Foundation;
 using Windows.Storage;
 using Windows.UI.Xaml;
@@ -18,6 +20,9 @@ namespace PhoodBuddyUWP.Pages
 
             vm = new ShoppingListViewModel();
             this.DataContext = vm;
+
+            if (vm.Items.Count > 0)
+                deleteButton.IsEnabled = true;
 
             navMenu.OnNavigateParentReady += navHandler;
         }
@@ -61,9 +66,27 @@ namespace PhoodBuddyUWP.Pages
                 
             }
 
+            //Clears the fields so a new item can easily be added to the shopping list
             nameBox.Text = "";
             amountBox.Text = "";
             unitBox.Text = "";
+
+            //Enables the delete button since now something has to be able to be deleted
+            deleteButton.IsEnabled = true;
+        }
+
+        private void deleteItemButton_Click(object sender, RoutedEventArgs e)
+        {
+            //Gets all the selected items
+            var items = shoppingListView.SelectedItems;
+
+            //Deletes each of the selected items
+            foreach (var i in items)
+                vm.Items.Remove(i as RecipeIngredientModel);
+
+            //Checks to see if the button should still be enabled
+            if (vm.Items.Count == 0)
+                deleteButton.IsEnabled = false;
         }
 
         private void addFlyout_Closed(object sender, object e)
