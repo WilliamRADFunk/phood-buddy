@@ -15,22 +15,33 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Image Width="100"/>
+                <Image Width="100"
+                       />
                 <TextBlock Grid.Column="1"
                            Style="{StaticResource SubheaderTextBlockStyle}"
-                           Text="{Binding Path=Name}"/>
+                           Text="{Binding Path=Title}"/>
             </Grid>
         </DataTemplate>
 
         <Style TargetType="ListView">
             <Setter Property="ItemTemplate"
                     Value="{StaticResource RecipeListItem}"/>
+            <Setter Property="Margin"
+                    Value="5"/>
+        </Style>
+
+        <Style TargetType="TextBlock"
+               BasedOn="{StaticResource BodyTextBlockStyle}">
+            <Setter Property="FontWeight"
+                    Value="Bold"/>
+            <Setter Property="Margin"
+                    Value="10,0,0,5"/>
         </Style>
     </Page.Resources>
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Icon="Add" Label="Add Recipe"/>
+            <AppBarButton Icon="Add" Label="Add Recipe" Click="addButton_Click"/>
         </CommandBar>
     </Page.BottomAppBar>
     
@@ -40,10 +51,14 @@
         <controls:NavMenu.MainContent>
             <ScrollViewer>
                 <StackPanel>
+                    <TextBlock Text="Favorites"/>
                     <ListView Name="favoriteList"
-                              Header="Favorites"/>
+                              ItemClick="Recipe_Click"
+                              ItemsSource="{Binding Path=Favorites}"/>
+                    <TextBlock Text="Recipes"/>
                     <ListView Name="recipeList"
-                              Header="Recipes"/>
+                              ItemClick="Recipe_Click"
+                              ItemsSource="{Binding Path=Recipes}"/>
                 </StackPanel>
             </ScrollViewer>
         </controls:NavMenu.MainContent>

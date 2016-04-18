@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PhoodBuddyUWP.Models;
+using PhoodBuddyUWP.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -24,13 +26,34 @@ namespace PhoodBuddyUWP.Pages
         {
             this.InitializeComponent();
             navMenu.OnNavigateParentReady += navHandler;
+
+            vm = new MyRecipesViewModel();
+            this.DataContext = vm;
         }
+
+
+        //PRIVATE MEMBERS
+        MyRecipesViewModel vm;
+
 
         //EVENT HANDLERS
         private void navHandler(object sender, RoutedEventArgs e)
         {
             var page = sender as Type;
             Frame.Navigate(page);
+        }
+
+        private void Recipe_Click(object sender, ItemClickEventArgs e)
+        {
+            var list = sender as ListView;
+            var item = list.SelectedItem as RecipeModel;
+
+            Frame.Navigate(typeof(RecipeViewerPage), item);
+        }
+
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: Navigate to add recipe page
         }
     }
 }
