@@ -637,6 +637,10 @@ input:-webkit-autofill {
 {
 	margin-left: 25px;
 }
+#favorite-recipes h3
+{
+	margin-top: 0px;
+}
 #favorite-recipes img
 {
 	float: left;

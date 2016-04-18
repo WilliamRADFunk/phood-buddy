@@ -688,12 +688,13 @@ function popFavListCallback(result, amount)
 		$("#fav-recipes-container").append(
 			'<div class="fav-recipe row">' +
 				'<div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-12">' +
-					'<img src=' + img + ' alt="' + result.info[i].name + '">' +
+					'<a href="recipe.html?' + result.info[i].id + '"><img src=' + img + ' alt="' + result.info[i].name + '"></a>' +
 				'</div>' +
 				'<div class="col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-12">' +
 					'<h3>' + result.info[i].name + '</h3>' +
 					'<h4>Taste: <span>' + result.info[i].taste + '</span></h4>' +
 					'<p>' + result.info[i].description + '</p>' +
+					'<a href="recipe.html?' + result.info[i].id + '">Go to recipe</a>' +
 				'</div>' +
 				'<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12"></div>' +
 			'</div>' +
