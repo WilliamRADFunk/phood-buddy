@@ -11,7 +11,8 @@
 
     <Page.Resources>
         <DataTemplate x:Key="ShoppingListItem">
-            <TextBlock Text="{Binding}"/>
+            <TextBlock Text="{Binding}"
+                       FontSize="24"/>
         </DataTemplate>
     </Page.Resources>
     

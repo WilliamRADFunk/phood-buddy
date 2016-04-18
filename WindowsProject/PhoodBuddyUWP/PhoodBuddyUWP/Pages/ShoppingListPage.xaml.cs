@@ -79,7 +79,7 @@ namespace PhoodBuddyUWP.Pages
         {
             //Gets all the selected items
             var items = shoppingListView.SelectedItems;
-
+            
             //Deletes each of the selected items
             foreach (var i in items)
                 vm.Items.Remove(i as RecipeIngredientModel);
