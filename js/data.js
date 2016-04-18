@@ -1190,6 +1190,8 @@ function getRandomRecipe(day, meal, cb)
 		console.log(randomDecide);
 		if(hypo || diab || highc || hyper)
 		{
+			console.log("We are tailoring to your needs...");
+			
 			var query = recipeRef.orderByChild("custom").equalTo(false);
 
 			if(randomDecide > 0.25)
