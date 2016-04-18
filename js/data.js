@@ -49,7 +49,7 @@ function addGrocery(contentJson, cb)
 	newGroceryRef.update(contentJson);
 	console.log(contentJson);
 
-	cb(newGroceryRef.name()); //This cb contains the name of the created key for new object.
+	cb(newGroceryRef.key()); //This cb contains the name of the created key for new object.
 
 }
 
@@ -353,7 +353,7 @@ function getFavUserRecipe(count, cb)
 	});//END: snapshot -> 'users/uid'
 }
 
-function getFavFatSecret(count, cb)
+function getFavOther(count, cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
@@ -1232,7 +1232,6 @@ function getRandomRecipe(day, meal, cb)
 					if(flag)
 					{
 						flagger = false;
-						console.log(querySnapshot.name());
 						var jsonRecipe = querySnapshot.val();
 						jsonRecipe.id = querySnapshot.key();
 						cb(jsonRecipe, day, meal);
@@ -1293,7 +1292,6 @@ function getRandomRecipe(day, meal, cb)
 					if(flag)
 					{
 						flagger = false;
-						console.log(querySnapshot.name());
 						var jsonRecipe = querySnapshot.val();
 						jsonRecipe.id = querySnapshot.key();
 						cb(jsonRecipe, day, meal);
