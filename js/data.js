@@ -1185,7 +1185,7 @@ function getRandomRecipe(day, meal, cb)
 
 		var recipeRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory/");
 
-		var randomDecide = Math.Random();
+		var randomDecide = Math.random();
 
 		console.log(randomDecide);
 		if(hypo || diab || highc || hyper)
