@@ -487,7 +487,7 @@ function getFavAll(count, cb)
 					array.push(key + "");
 			}
 
-			console.log(array);
+			//console.log(array);
 
 			var amount = array.length;
 
@@ -1139,8 +1139,49 @@ function getRandomRecipe(day, meal, cb)
 		var shellA = allergies["shell-fish"];
 		var soyA = allergies.soy;
 		var treeA = allergies["tree-nut"];
+		//Assign Taste Properties
+		var tastes = snapshot.child("taste").val();
+		var bitter = tastes.bitter;
+		var salty = tastes.salty;
+		var sour = tastes.salty;
+		var spicy = tastes.salty;
+		var sweet = tastes.sweet;
 
-		//console.log(diab);
+		var dominantTaste = "";
+		var currentTasteVal = 0.1;
+
+		if(bitter >= currentTasteVal)
+		{
+			dominantTaste = "bitter";
+			currentTasteVal = bitter;
+		}
+		if(sour >= currentTasteVal)
+		{
+			dominantTaste = "sour";
+			currentTasteVal = sour;
+		}
+		if(sweet >= currentTasteVal)
+		{
+			dominantTaste = "sweet";
+			currentTasteVal = sweet;
+		}
+		if(spicy >= currentTasteVal)
+		{
+			dominantTaste = "spicy";
+			currentTasteVal = spicy;
+		}
+		if(salty >= currentTasteVal)
+		{
+			dominantTaste = "salty";
+			currentTasteVal = salty;
+		}
+
+		if(dominantTaste === "")
+		{
+			dominantTaste = "salty";
+		}
+
+		console.log("Your dominant taste is" + dominantTaste);
 
 		var recipeRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory/");
 
@@ -1148,6 +1189,16 @@ function getRandomRecipe(day, meal, cb)
 		{
 			var query = recipeRef.orderByChild("custom").equalTo(false);
 
+			var randomDecide = Math.Random();
+
+			if(randomDecide > 0.25)
+			{
+				console.log("Firebase will choose a taste oriented choice of your liking");
+				query = query.orderByChild("taste").equalTo(dominantTaste);
+			}
+
+
+			
 			query.once("value", function(childSnapshot){
 				var num = childSnapshot.numChildren();
 				var newNnum = num / 10;
@@ -1253,6 +1304,12 @@ function getRandomRecipe(day, meal, cb)
 		else
 		{
 			var customQuery = recipeRef.orderByChild("custom").equalTo(true);
+
+			if(randomDecide > 0.25)
+			{
+				console.log("Firebase will choose a taste oriented choice of your liking");
+				customQuery = customQuery.orderByChild("taste").equalTo(dominantTaste);
+			}
 
 			customQuery.once("value", function(childSnapshot){
 
