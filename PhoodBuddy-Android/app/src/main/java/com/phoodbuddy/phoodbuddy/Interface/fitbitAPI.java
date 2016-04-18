@@ -13,11 +13,11 @@ import retrofit.http.Query;
  * Created by Evan Glazer on 4/18/2016.
  */
 public interface fitbitAPI {
-    @Headers({
-            "Authorization: Basic 0808955b42f81e0d5092a299fe543b77"
-    })
-    @POST("/oauth2/token")
-    void getToken(@Query("client_id") String client_id,
+    @Headers("Authorization: 0808955b42f81e0d5092a299fe543b77")
+
+   @POST("/oauth2/token")
+    void getToken(
+            @Query("client_id") String client_id,
                   @Query("grant_type") String type,
                   @Query("code") String code,
                   @Query(value = "redirect_uri", encodeValue = true) String redirect,

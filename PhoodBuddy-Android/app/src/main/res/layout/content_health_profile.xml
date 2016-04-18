@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Today, April 15"
+        android:text="Today, April 18"
         android:id="@+id/textView2"
         android:layout_alignBottom="@+id/imageView3"
         android:layout_alignParentLeft="true"

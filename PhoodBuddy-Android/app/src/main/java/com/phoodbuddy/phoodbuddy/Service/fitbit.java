@@ -117,7 +117,7 @@ public class fitbit extends AppCompatActivity {
                                 .setEndpoint("https://api.fitbit.com")
                                 .build();
                         fitbitAPI api = adapter.create(fitbitAPI.class);
-                        api.getToken(Globals.CUSTOMER_KEY,"authorization_code", authCode, "http://localhost/", "", new Callback<Fitbit>() {
+                        api.getToken("227PST","authorization_code", authCode, "http://localhost/", "", new Callback<Fitbit>() {
                             @Override
                             public void success(Fitbit tokens, Response response) {
                                 StringBuffer buffer = new StringBuffer();
@@ -130,7 +130,7 @@ public class fitbit extends AppCompatActivity {
 
                             @Override
                             public void failure(RetrofitError error) {
-                                Toast.makeText(getApplicationContext(), "FAILURE" + error, Toast.LENGTH_LONG).show();
+                                //Toast.makeText(getApplicationContext(), "FAILURE" + error, Toast.LENGTH_LONG).show();
                                 Log.d("post issue", "" + error);
                                 //progressDialog.dismiss();
                             }
@@ -153,15 +153,6 @@ public class fitbit extends AppCompatActivity {
 
         }
     }
-    private class MyWebViewClient extends WebViewClient {
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            view.loadUrl(url);
-            return true;
-        }
-    }
-
-
 
     private void savePreferences(String key, String value) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
