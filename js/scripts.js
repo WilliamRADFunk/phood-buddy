@@ -654,10 +654,6 @@ function deleteScheduledRecipe(result, day, mealTime)
 // Initiates the content for the favorite recipes page.
 function initFavList(cat)
 {
-	$("img").error(function(e){
-		console.log("ERRRRROOOOOOR: ", e);
-		$(this).attr("src", "images/placeholder-recipe.jpg");
-	});
 	switch(cat)
 	{
 		case 0:
@@ -680,6 +676,10 @@ function initFavList(cat)
 // Populates the weekly schedule with all user's stored favorites.
 function popFavListCallback(result, amount)
 {
+	/*$("img").on( "error", function(e){
+		console.log("ERRRRROOOOOOR: ", e);
+		$(this).attr("src", "images/placeholder-recipe.jpg");
+	});*/
 	if(amount) listCount = amount;
 	$("#fav-recipes-container").html("");
 	for(var i = 0; i < result.info.length; i++)
@@ -702,6 +702,9 @@ function popFavListCallback(result, amount)
 			'</div>'
 		);
 	}
+	$('img').bind('error', function (e) {
+		$(this).attr("src", "images/placeholder-recipe.jpg");
+	});
 	$("#page-count").html( "Page "+ (counter + 1) + " of " + Math.floor(listCount / 10 + 1) );
 }
 // Moves right through fav list pagination
