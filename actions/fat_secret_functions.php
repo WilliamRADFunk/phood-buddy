@@ -28,6 +28,18 @@ function pick_vegetable()
                             
 }
 
+function pick_dessert()
+{
+    $ingredient_array = array("chocolate", "Banana", "vanilla",
+                            "hazelnut", "caramel", "icecream",
+                            "honey", "apricot", "cheesecake",
+                            "cake", "cookie");
+        
+    $index = rand (0, count($ingredient_array)-1);
+    return $ingredient_array[$index];
+                            
+}
+
 function pick_recipe($recipe_array)
 {
     $arr_size = count($recipe_array['recipes']['recipe']);
