@@ -15,8 +15,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace PhoodBuddyUWP.Pages
 {
     public sealed partial class MyRecipesPage : Page
@@ -47,6 +45,14 @@ namespace PhoodBuddyUWP.Pages
         {
             var item = e.ClickedItem as RecipeModel;
 
+            if((bool)delButton.IsChecked)
+            {
+                vm.Favorites.Remove(item);
+                vm.Recipes.Remove(item);
+
+                return;
+            }
+
             Frame.Navigate(typeof(RecipeViewerPage), item);
         }
 
@@ -66,7 +72,42 @@ namespace PhoodBuddyUWP.Pages
             if (newRecipe == null)
                 return;
 
-            //Adds the new recipe to the my recipe list
+            //Checks to see if its a favorite update
+            for(int i = 0; i < vm.Favorites.Count; i++)
+            {
+                var item = vm.Favorites[i];
+
+                //Checks if they match
+                if(item.Title == newRecipe.Title)
+                {
+                    if (!newRecipe.isFavorite)
+                    {
+                        vm.Favorites.Remove(item);
+                        vm.Recipes.Add(item);
+                    }
+
+                    return;
+                }
+            }
+
+            for(int i = 0; i < vm.Recipes.Count; i++)
+            {
+                var item = vm.Recipes[i];
+
+                //Checks if they match
+                if(item.Title == newRecipe.Title)
+                {
+                    if (newRecipe.isFavorite)
+                    {
+                        vm.Recipes.Remove(item);
+                        vm.Favorites.Add(item);
+                    }
+
+                    return;
+                }
+            }
+
+            //Adds the new recipe to the apropriate recipe list
             vm.Recipes.Add(newRecipe);
         }
 

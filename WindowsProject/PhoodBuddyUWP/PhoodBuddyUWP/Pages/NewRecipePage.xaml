@@ -124,9 +124,8 @@
                           Header="Instructions"
                           Width="400"
                           ItemsSource="{Binding}"
-                          ItemTemplate="{StaticResource InstructionListItem}">
-                    
-                </ListView>
+                          ItemTemplate="{StaticResource InstructionListItem}"/>
+                
             </StackPanel>
         </ScrollViewer>
     </Grid>

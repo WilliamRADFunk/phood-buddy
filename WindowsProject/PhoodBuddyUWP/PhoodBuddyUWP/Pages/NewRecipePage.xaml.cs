@@ -48,7 +48,9 @@ namespace PhoodBuddyUWP.Pages
 
         private void acceptButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(MyRecipesPage), new RecipeModel(titleBox.Text, ingredients, instructions));
+            var recipe = new RecipeModel(titleBox.Text, ingredients, instructions);
+
+            Frame.Navigate(typeof(MyRecipesPage), recipe);
         }
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)

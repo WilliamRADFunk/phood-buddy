@@ -54,6 +54,7 @@ namespace PhoodBuddyUWP.Models
         public string Title { get; set; }
         public ObservableCollection<RecipeIngredientModel> Ingredients { get; set; }
         public ObservableCollection<RecipeInstructionModel> Instructions { get; set; }
+        public bool isFavorite { get; set; }
         public System.Uri Picture { get; set; }
 
         //CONSTRUCTOR
@@ -71,6 +72,9 @@ namespace PhoodBuddyUWP.Models
             if (instructions == null)
                 instructions = new ObservableCollection<RecipeInstructionModel>();
             Instructions = instructions;
+
+            //Initializes the favorite state
+            isFavorite = false;
 
             //Initializes the picture
             Picture = new System.Uri("https://culinaryadventuresinthekitchen.files.wordpress.com/2012/03/frozen-yog-cake.jpg");
