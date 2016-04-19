@@ -1,4 +1,5 @@
-﻿ using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace PhoodBuddyUWP.Models
 {
@@ -51,24 +52,24 @@ namespace PhoodBuddyUWP.Models
     {
         //Properties
         public string Title { get; set; }
-        public List<RecipeIngredientModel> Ingredients { get; set; }
-        public List<RecipeInstructionModel> Instructions { get; set; }
+        public ObservableCollection<RecipeIngredientModel> Ingredients { get; set; }
+        public ObservableCollection<RecipeInstructionModel> Instructions { get; set; }
         public System.Uri Picture { get; set; }
 
-        //Constructor
-        public RecipeModel(string t, List<RecipeIngredientModel> ingredients = null, List<RecipeInstructionModel> instructions = null)
+        //CONSTRUCTOR
+        public RecipeModel(string title, ObservableCollection<RecipeIngredientModel> ingredients = null, ObservableCollection<RecipeInstructionModel> instructions = null)
         {
             //Initializes the title
-            Title = t;
+            Title = title;
 
             //Initializes the ingredients
             if (ingredients == null)
-                ingredients = new List<RecipeIngredientModel>();
+                ingredients = new ObservableCollection<RecipeIngredientModel>();
             Ingredients = ingredients;
 
             //Initializes the instructions
             if (instructions == null)
-                instructions = new List<RecipeInstructionModel>();
+                instructions = new ObservableCollection<RecipeInstructionModel>();
             Instructions = instructions;
 
             //Initializes the picture

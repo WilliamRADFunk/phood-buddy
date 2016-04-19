@@ -16,18 +16,26 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Image Width="100"
-                       />
+                       Source="{Binding Path=Picture}"/>
                 <TextBlock Grid.Column="1"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            Text="{Binding Path=Title}"/>
             </Grid>
         </DataTemplate>
 
+        <DataTemplate x:Key="ListViewHeader">
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+                       FontWeight="Bold"
+                       Text="{Binding}"/>
+        </DataTemplate>
+        
         <Style TargetType="ListView">
             <Setter Property="ItemTemplate"
                     Value="{StaticResource RecipeListItem}"/>
             <Setter Property="Margin"
                     Value="5"/>
+            <Setter Property="HeaderTemplate"
+                    Value="{StaticResource ListViewHeader}"/>
         </Style>
 
         <Style TargetType="TextBlock"
@@ -51,14 +59,14 @@
         <controls:NavMenu.MainContent>
             <ScrollViewer>
                 <StackPanel>
-                    <TextBlock Text="Favorites"/>
                     <ListView Name="favoriteList"
                               ItemClick="Recipe_Click"
-                              ItemsSource="{Binding Path=Favorites}"/>
-                    <TextBlock Text="Recipes"/>
+                              ItemsSource="{Binding Path=Favorites}"
+                              Header="Favorites"/>
                     <ListView Name="recipeList"
                               ItemClick="Recipe_Click"
-                              ItemsSource="{Binding Path=Recipes}"/>
+                              ItemsSource="{Binding Path=Recipes}"
+                              Header="Recipes"/>
                 </StackPanel>
             </ScrollViewer>
         </controls:NavMenu.MainContent>

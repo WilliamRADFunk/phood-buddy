@@ -21,7 +21,7 @@ namespace PhoodBuddyUWP.Pages
 {
     public sealed partial class MyRecipesPage : Page
     {
-        //Constructor
+        //CONSTRUCTOR
         public MyRecipesPage()
         {
             this.InitializeComponent();
@@ -53,7 +53,23 @@ namespace PhoodBuddyUWP.Pages
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Navigate to add recipe page
+            Frame.Navigate(typeof(NewRecipePage));
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            //Gets the possible recipe from the args
+            var newRecipe = e.Parameter as RecipeModel;
+
+            //Skip if there is no parameter
+            if (newRecipe == null)
+                return;
+
+            //Adds the new recipe to the my recipe list
+            System.Diagnostics.Debug.WriteLine("Title: " + newRecipe.Title);
+            vm.Recipes.Add(newRecipe);
         }
     }
 }
