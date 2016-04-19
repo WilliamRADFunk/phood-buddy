@@ -19,7 +19,9 @@
                        Source="{Binding Path=Picture}"/>
                 <TextBlock Grid.Column="1"
                            Style="{StaticResource SubheaderTextBlockStyle}"
-                           Text="{Binding Path=Title}"/>
+                           Text="{Binding Path=Title}"
+                           VerticalAlignment="Center"
+                           Margin="8"/>
             </Grid>
         </DataTemplate>
 
@@ -65,6 +67,7 @@
                               Header="Favorites"/>
                     <ListView Name="recipeList"
                               ItemClick="Recipe_Click"
+                              IsItemClickEnabled="True"
                               ItemsSource="{Binding Path=Recipes}"
                               Header="Recipes"/>
                 </StackPanel>

@@ -37,6 +37,19 @@ namespace PhoodBuddyUWP.ViewModels
         }
 
 
+        //PUBLIC METHODS
+        async public void UpdateChanges()
+        {
+            StorageFile file = await ApplicationData.Current.LocalFolder.GetFileAsync("favorites.json");
+            string jText = JsonConvert.SerializeObject(Favorites);
+            await FileIO.WriteTextAsync(file, jText);
+
+            file = await ApplicationData.Current.LocalFolder.GetFileAsync("recipes.json");
+            jText = JsonConvert.SerializeObject(Recipes);
+            await FileIO.WriteTextAsync(file, jText);
+        }
+
+
         //PRIVATE METHODS
         private void getOnlineFavorites()
         {

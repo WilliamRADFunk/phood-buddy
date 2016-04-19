@@ -45,8 +45,7 @@ namespace PhoodBuddyUWP.Pages
 
         private void Recipe_Click(object sender, ItemClickEventArgs e)
         {
-            var list = sender as ListView;
-            var item = list.SelectedItem as RecipeModel;
+            var item = e.ClickedItem as RecipeModel;
 
             Frame.Navigate(typeof(RecipeViewerPage), item);
         }
@@ -68,8 +67,15 @@ namespace PhoodBuddyUWP.Pages
                 return;
 
             //Adds the new recipe to the my recipe list
-            System.Diagnostics.Debug.WriteLine("Title: " + newRecipe.Title);
             vm.Recipes.Add(newRecipe);
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+
+            //Saves the state of the view model
+            vm.UpdateChanges();
         }
     }
 }
