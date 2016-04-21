@@ -1,0 +1,74 @@
+html
+{
+	height: 100%;
+}
+body
+{
+    background-color: #FFFFFF;
+    color: #777777;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: lighter;
+    height: auto;
+    position: relative;
+}
+h1
+{
+	display: none;
+}
+ul
+{
+	list-style: none;
+}
+#main-nav
+{
+	display: none;
+}
+#wrapper
+{
+	margin-top: 40px;
+	min-height: 65%;
+	width: 100%
+}
+#schedule h2
+{
+	display: inline-block;
+	margin-right: 40px;
+}
+#schedule .row
+{
+	margin-bottom: 0px;
+}
+#schedule .divider.row div,
+#schedule .col-1,
+#schedule .col-2
+{
+	display: none;
+}
+#schedule .col-5,
+#schedule .col-6
+{
+	width: 20%;
+}
+#schedule .col-3
+{
+	width: 20%;
+}
+#schedule .col-4
+{
+	width: 40%;
+}
+#schedule .grocery-options,
+#schedule #add-item,
+#schedule #add-item-link,
+#schedule #print-list,
+#schedule #add-item input[type="text"],
+#schedule #add-item input[type="number"],
+#schedule #add-item select,
+#schedule #add-item button,
+#schedule #add-item button,
+#modal,
+#social,
+footer
+{
+	display: none;
+}

@@ -35,6 +35,15 @@ hr
 {
     margin-top: 30px;
 }
+img
+{
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    text-align: center;
+    width: auto;
+}
 li
 {
     line-height: 16px;

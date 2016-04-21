@@ -949,6 +949,10 @@ input:-webkit-autofill {
 {
 	margin-bottom: 10px;
 }
+#recipe ul li span
+{
+	margin-right: 10px;
+}
 #recipe .col-lg-3 p
 {
 	color: #4585A1;
