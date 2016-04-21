@@ -841,6 +841,13 @@ input:-webkit-autofill {
 {
 	margin-bottom: 25px;
 }
+#week-schedule #print-recipe
+{
+	background-image: url('../images/btn-print.jpg');
+	background-repeat: no-repeat;
+	margin-bottom: 10px;
+	padding-left: 30px;
+}
 #week-schedule .weekday
 {
 	background-color: #EFEFEF;

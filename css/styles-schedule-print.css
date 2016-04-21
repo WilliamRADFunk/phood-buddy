@@ -29,43 +29,43 @@ ul
 	min-height: 65%;
 	width: 100%
 }
-#schedule h2
+#week-schedule h2
 {
 	display: inline-block;
 	margin-right: 40px;
 }
-#schedule .row
+#week-schedule .row
 {
 	margin-bottom: 0px;
 }
-#schedule .divider.row div,
-#schedule .col-1,
-#schedule .col-2
+#week-schedule .divider.row div,
+#week-schedule .col-1,
+#week-schedule .col-2
 {
 	display: none;
 }
-#schedule .col-5,
-#schedule .col-6
+#week-schedule .col-5,
+#week-schedule .col-6
 {
 	width: 20%;
 }
-#schedule .col-3
+#week-schedule .col-3
 {
 	width: 20%;
 }
-#schedule .col-4
+#week-schedule .col-4
 {
 	width: 40%;
 }
-#schedule .grocery-options,
-#schedule #add-item,
-#schedule #add-item-link,
-#schedule #print-list,
-#schedule #add-item input[type="text"],
-#schedule #add-item input[type="number"],
-#schedule #add-item select,
-#schedule #add-item button,
-#schedule #add-item button,
+#week-schedule .grocery-options,
+#week-schedule #add-item,
+#week-schedule #add-item-link,
+#week-schedule #print-list,
+#week-schedule #add-item input[type="text"],
+#week-schedule #add-item input[type="number"],
+#week-schedule #add-item select,
+#week-schedule #add-item button,
+#week-schedule #add-item button,
 #modal,
 #social,
 footer
