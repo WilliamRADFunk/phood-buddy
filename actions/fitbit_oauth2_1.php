@@ -20,7 +20,7 @@
 		// urlAuthorize option and generates and applies any necessary parameters
 		// (e.g. state).
 		$authorizationUrl = $provider->getAuthorizationUrl();
-		//echo('Hello');
+		
 		//echo ($authorizationUrl);
 		// Get the state generated for you and store it to the session.
 		$_SESSION['oauth2state'] = $provider->getState();
@@ -77,8 +77,6 @@
 			$array = json_decode($response , true);
 			echo '<pre>'; 
 			print_r($array);
-			//echo ($response);
-			//var_dump($response);
 
 		} catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
 
