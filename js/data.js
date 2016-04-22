@@ -1210,16 +1210,16 @@ function getRandomRecipe(day, meal, cb)
 				var counter = Math.floor(Math.random() * (childCount));
 				counter = Math.floor(counter * 0.75);
 
-				if(childSnapshot.key().length == 20)
-				{
-					flag = false;
-				}
-
 				var flagger = true;
 				childSnapshot.forEach(function(querySnapshot)
 				{
 					
 					var flag = true;
+
+					if(childSnapshot.key().length == 20)
+					{
+						flag = false;
+					}
 
 					if(counter > 0)
 					{
@@ -1277,7 +1277,7 @@ function getRandomRecipe(day, meal, cb)
 
 					if(diab && flag)
 					{
-						var currentCarbo = querySnapshot.child("nutrition").child("carbohydrates").val();
+						var currentCarbo = querySnapshot.child("nutrition").child("carbohydrate").val();
 						if( Number(currentCarbo) > 30)
 						{
 							flag = false;
@@ -1302,7 +1302,7 @@ function getRandomRecipe(day, meal, cb)
 
 					if(hypo && flag)
 					{
-						var currentCarbon = querySnapshot.child("nutrition").child("carbohydrates").val();
+						var currentCarbon = querySnapshot.child("nutrition").child("carbohydrate").val();
 						if( Number(currentCarbon) > 35)
 						{
 							flag = false;
@@ -1501,6 +1501,36 @@ function checkAllergiesWithIngredients(ingredients, corn, egg, fish, glutten, mi
 		}
 
 	return true;
+}
+
+function getRecipe(id, cb)
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		cb(false, id);
+		return;
+	}
+	//Stores authData of package
+	var data = ref.getAuth();
+
+	ref.child("recipe-directory").child(id).exists();
+
+	var recipeRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory/" + id + "/");
+
+	recipeRef.once("value", function(snapshot){
+
+		if(snapshot.exists() === false)
+		{
+			cb(false, id);
+		}
+		else
+		{
+			var recipeJson = snapshot.val();
+			cb(recipeJson, id);
+		}
+	});
 }
 
 //TEST TEST TEST TEST
