@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.1.1">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>120</x>
+      <y>200</y>
+      <w>120</w>
+      <h>248</h>
+    </coordinates>
+    <panel_attributes>ExternalAuth
+--
+-email
+-password
+-gcode
+-secret-g
+-fbcode
+-secret-f
+-tcode
+-secret-t
+--
++UoauthProcess()
++Validate()
++getAuth()
++getAuthToken()
++encryptToken()
++storeToken()
++getToken
++loginUser()
++registerUser()
+
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>96</x>
+      <y>160</y>
+      <w>320</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes>UserAuthentication
+--
+bg=blue
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>440</x>
+      <y>168</y>
+      <w>352</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes>UserData
+--
+bg=green
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>464</x>
+      <y>208</y>
+      <w>136</w>
+      <h>264</h>
+    </coordinates>
+    <panel_attributes>UserInteraction
+--
+-Recipe_Id
+-User_Id
+-WeeklyPlan
+-RecipeInfo
+-PantryInfo
+-
+--
++loaduserData()
++loadUserRecipes()
++StoreRecipe()
++SearchRecipe()
++RandomRecipe()
++StoreWeeklyPlan()
++DeletePlan()
++GetPantry()
++DeleteItemPantry()
++AddGrocery()
++DeleteGrocery()
++GetHealthProfile()
++GetDeals()
+
+
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>264</x>
+      <y>280</y>
+      <w>128</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>InternalAuth
+--
+-username
+-password
+-email
+--
++CheckUser()
++CreateUser()
++EncryptUser()
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>632</x>
+      <y>208</y>
+      <w>136</w>
+      <h>248</h>
+    </coordinates>
+    <panel_attributes>FirebaseConnect
+--
+-Firebase_ID
+-Token_ID
+-child
+-parent
+-path
+--
++setValue()
++updateChildren()
++push()
++runTransaction()
++getValue()
++onChildAdded()
++addChildEventListener()
++onChildChanged()
++onChildRemoved()
++orderByChild()
++orderByKey()
++orderByValue()
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>72</x>
+      <y>136</y>
+      <w>760</w>
+      <h>376</h>
+    </coordinates>
+    <panel_attributes>Data-Logic
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>40</x>
+      <y>104</y>
+      <w>176</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Android / Windows Logic
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

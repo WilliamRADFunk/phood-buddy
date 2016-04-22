@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.1.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>240</x>
+      <y>190</y>
+      <w>160</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>ExternalAuth
+--
+-email
+-password
+--
++Uoauth()
++Validate()
+layer=6</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>180</x>
+      <y>150</y>
+      <w>280</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes>UserAuthentication.js
+--
+bg=orange
+layer=6</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>480</x>
+      <y>100</y>
+      <w>270</w>
+      <h>430</h>
+    </coordinates>
+    <panel_attributes>UserData.js
+--
+bg=green
+layer=7</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>530</x>
+      <y>140</y>
+      <w>170</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>UserInteraction
+--
+-Recipe_Id
+-User_Id
+-WeeklyPlan
+-RecipeInfo
+-PantryInfo
+-
+--
++loaduserData()
++loadUserRecipes()
++StoreRecipe()
++SearchRecipe()
++RandomRecipe()
++StoreWeeklyPlan()
++DeletePlan()
++GetPantry()
++DeleteItemPantry()
++AddGrocery()
++DeleteGrocery()
++GetHealthProfile()
++GetDeals()
+
+
+layer=8</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>240</x>
+      <y>320</y>
+      <w>160</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>InternalAuth
+--
+-username
+-password
+-email
+--
++CheckUser()
++CreateUser()
+layer=7</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>120</x>
+      <y>50</y>
+      <w>740</w>
+      <h>510</h>
+    </coordinates>
+    <panel_attributes>Data-Logic
+--
+bg=cyan</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>290</x>
+      <y>570</y>
+      <w>350</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>/***Most authentication logic takes place in php layer/
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>70</x>
+      <y>10</y>
+      <w>220</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Web Logic
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
