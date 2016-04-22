@@ -1,5 +1,5 @@
 <?php
-
+    require_once('/php_config.php');
 
     //Signature Base String
     //<HTTP Method>&<Request URL>&<Normalized Parameters>
@@ -12,7 +12,7 @@
     $params = "format=json&";
     $params .= "method=recipe.get&";
 
-    $params .= "oauth_consumer_key=4d7aafe8c2bb44e39c716cbead1f8c3d&"; // ur consumer key
+    $params .= "oauth_consumer_key=".FS_CONSUMER_KEY; // ur consumer key
     $params .= "oauth_nonce=123&";
     $params .= "oauth_signature_method=HMAC-SHA1&";
     $params .= "oauth_timestamp=".time()."&";
@@ -24,7 +24,7 @@
     $base .= $params2;
 
     //encrypt it!
-    $sig= base64_encode(hash_hmac('sha1', $base, "33cc603c4e33407da31c0d9ce1cc057e&", true)); 
+    $sig= base64_encode(hash_hmac('sha1', $base, FS_CONSUMER_SECRET, true)); 
     echo("sig:");
     echo($sig);
 

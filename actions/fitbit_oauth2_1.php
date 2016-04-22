@@ -1,9 +1,9 @@
 <?php
-	// 'https://phoodbuddy.firebaseapp.com/'
+	require_once('/php_config.php');
 	require_once('oauth2-fitbit-master/vendor/autoload.php');
 	$client_id = '227PST';
-	$secret = "0808955b42f81e0d5092a299fe543b77";
-	$key = "5985e8c8fb09163af879202fcdd7cd79";
+	$secret = FBIT_SECRET;
+	$key = FBIT_KEY;
 	$provider = new djchen\OAuth2\Client\Provider\Fitbit([
 		'clientId'		 => $client_id,
 		'clientSecret'	 => $secret,

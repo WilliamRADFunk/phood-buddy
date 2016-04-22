@@ -1,6 +1,8 @@
 <?php
+    require_once('/php_config.php');
 	require '/libs/firebase-php-master/src/firebaseLib.php';
-	$token = 'Bu23qo0TN9kGK0yl6UjsvNK9Ao3YzduX8M480ucR';
+
+	$token = FB_TOKEN;
 	$url = 'https://phoodbuddy.firebaseio.com';
 	
 	$firebase = new  \Firebase\FirebaseLib($url, $token);
