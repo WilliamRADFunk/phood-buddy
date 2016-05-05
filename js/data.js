@@ -6,7 +6,7 @@ function getGroceryList(cb)
 
 	if(ref.getAuth === null)
 		{
-			return;
+			cb(false);
 		}
 
 	var data = ref.getAuth();
@@ -20,6 +20,7 @@ function getGroceryList(cb)
 			console.log("User has groceryList, proceed normally");
 			groceryListSnapshot = snapshot.child(data.uid);
 			groceryList = groceryListSnapshot.val();
+			groceryList["id"] = data.uid;
 			cb(groceryList);
 		}
 		else
