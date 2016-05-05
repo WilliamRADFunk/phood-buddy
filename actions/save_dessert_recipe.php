@@ -1,6 +1,7 @@
 <?php
+require_once('/php_config.php');
 require '/libs/firebase-php-master/src/firebaseLib.php';
-//require_once('/firebase_functions.php');
+
 //get random recipe
 require_once('/fat_secret_functions.php');
 require_once('/determine_recipe_taste.php');
@@ -27,9 +28,7 @@ for ($j=0; $j<100; $j++)
     $recipe_url = get_recipe_by_id_url($selected_recipe_id);
     $food_feed = file_get_contents($recipe_url);
     $recipe = json_decode($food_feed, true);
-    //echo '<pre>';
-    //print_r($recipe);
-
+   
     $formatted_recipe['author']="";
     if (isset($recipe['recipe']['cooking_time_min']))
         $formatted_recipe['cookTime']=$recipe['recipe']['cooking_time_min'];
@@ -128,23 +127,14 @@ for ($j=0; $j<100; $j++)
     $formatted_recipe['taste'] = $taste;
     echo $taste;
 
-    //unset($array['key1']);
-    //http://localhost:8081/phoodBuddy/save_recipe.php
-    //http://localhost:8081/phoodBuddy/fat_secret_get_recipe_by_id.php?recipe_id=62779
-    //http://localhost:8081/phoodBuddy/fat_secret_get_random_recipe.php
-    //http://localhost:8081/phoodBuddy/fat_secret_test2.php?pasVar=rice
-
     //save recipe to firebase
     if(!isset($recipe['error']))
     {
-        $token = 'Bu23qo0TN9kGK0yl6UjsvNK9Ao3YzduX8M480ucR';
+        $token = FB_TOKEN;
         $url = 'https://phoodbuddy.firebaseio.com';
         $firebase = new  \Firebase\FirebaseLib($url, $token);
         $firebase->update("/recipe-directory/{$selected_recipe_id}", $formatted_recipe);
     }
 }
-
-//phood_buddy/phood-buddy/actions
-
 
 ?>

@@ -127,16 +127,10 @@ for ($j=0; $j<1000; $j++)
     $formatted_recipe['taste'] = $taste;
     echo $taste;
 
-    //unset($array['key1']);
-    //http://localhost:8081/phoodBuddy/save_recipe.php
-    //http://localhost:8081/phoodBuddy/fat_secret_get_recipe_by_id.php?recipe_id=62779
-    //http://localhost:8081/phoodBuddy/fat_secret_get_random_recipe.php
-    //http://localhost:8081/phoodBuddy/fat_secret_test2.php?pasVar=rice
-
     //save recipe to firebase
     if(!isset($recipe['error']))
     {
-        $token = 'Bu23qo0TN9kGK0yl6UjsvNK9Ao3YzduX8M480ucR';
+        $token = FB_TOKEN;
         $url = 'https://phoodbuddy.firebaseio.com';
         $firebase = new  \Firebase\FirebaseLib($url, $token);
         $firebase->update("/recipe-directory/{$selected_recipe_id}", $formatted_recipe);
