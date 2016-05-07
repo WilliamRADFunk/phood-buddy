@@ -218,6 +218,100 @@ $(document).ready(function ()
 		});
 	});
 });
+function initMainPageRecipes()
+{
+	if(checkAuth())
+	{
+		loggedIn();
+		getFavAll(0, popMainPageRecipesCallback);
+	}
+	else
+	{
+		window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html";
+	}
+}
+function popMainPageRecipesCallback(result)
+{
+	if(result === false)
+	{
+		var favRecipes = "";
+		favRecipes +=	'<div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-12">' +
+							'<a href="favorite-recipes.html" target="_self"><img class="img-responsive" src="images/img-category-favrecipes.jpg"></a>' +
+						'</div>' +
+						'<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">' +
+							'<div id="carousel-recipes" class="carousel slide" data-ride="carousel">' +
+								'<!-- Wrapper for slides -->' +
+								'<div class="carousel-inner" role="listbox">' +
+								'<div class="item active row">' +
+									'<div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-12">' +
+										'<img src="images/placeholder-recipe.jpg" alt="Your Favorite Recipes Here">' +
+									'</div>' +
+									'<div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-12">' +
+										'<h3>Your Favorite Recipes Here</h3>' +
+										'<h4><span> </span> </h4>' +
+										'<p>No favorite recipes found.</p>' +
+									'</div>' +
+								'</div>' +
+								'</div>' +
+								'<!-- Left and right controls -->' +
+								'<a class="left carousel-control" href="#carousel-recipes" role="button" data-slide="prev">' +
+									'<span class="glyphicon glyphicon-chevron-left turquois" aria-hidden="true"></span>' +
+									'<span class="sr-only">Previous</span>' +
+								'</a>' +
+								'<a class="right carousel-control" href="#carousel-recipes" role="button" data-slide="next">' +
+									'<span class="glyphicon glyphicon-chevron-right turquois" aria-hidden="true"></span>' +
+									'<span class="sr-only">Next</span>' +
+								'</a>' +
+							'</div>' +
+						'</div>';
+		$("#main-recipes").html("");
+		$("#main-recipes").html(favRecipes);
+	}
+	else
+	{
+		var favRecipes = "";
+		favRecipes +=	'<div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-12">' +
+							'<a href="favorite-recipes.html" target="_self"><img class="img-responsive" src="images/img-category-favrecipes.jpg"></a>' +
+						'</div>' +
+						'<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">' +
+							'<div id="carousel-recipes" class="carousel slide" data-ride="carousel">' +
+								'<!-- Wrapper for slides -->' +
+								'<div class="carousel-inner" role="listbox">';
+						for(var i = 0; i < result['info'].length; i++)
+						{
+							console.log(result.info[i].img);
+							var img = (result.info[i].img === "") ? ("images/placeholder-recipe.jpg") : ((Array.isArray(result.info[i].img)) ? result.info[i].img[0] + "" : result.info[i].img + "");
+							var calories = (result.info[i].nutrition && result.info[i].nutrition['calories'] === "") ? "?" : (result.info[i].nutrition['calories'] + "");
+							var description = (result.info[i].description.length >= 50) ? (result.info[i].description.substr(0, 50) + " ...") : (result.info[i].description + "");
+							var firstItem = (i === 0) ? " active" : "";
+							favRecipes +=	'<div class="item' + firstItem + ' row">' +
+												'<div class="img-container col-lg-3 col-lg-offset-1 col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-1 col-xs-12">' +
+													'<img src="' + img + '" alt="' + result.info[i].name + '">' +
+												'</div>' +
+												'<div class="details-container col-lg-5 col-md-5 col-sm-5 col-xs-12">' +
+													'<h3>' + result.info[i].name + '</h3>' +
+													'<h4><span>' + result.info[i].nutrition['calories'] + '</span> calories</h4>' +
+													'<p>' + description + '</p>' +
+												'</div>' +
+											'</div>';
+						}
+				favRecipes +=	'</div>' +
+								'<!-- Left and right controls -->' +
+								'<a class="left carousel-control" href="#carousel-recipes" role="button" data-slide="prev">' +
+									'<span class="glyphicon glyphicon-chevron-left turquois" aria-hidden="true"></span>' +
+									'<span class="sr-only">Previous</span>' +
+								'</a>' +
+								'<a class="right carousel-control" href="#carousel-recipes" role="button" data-slide="next">' +
+									'<span class="glyphicon glyphicon-chevron-right turquois" aria-hidden="true"></span>' +
+									'<span class="sr-only">Next</span>' +
+								'</a>' +
+							'</div>' +
+						'</div>';
+		$("#main-recipes").html("");
+		$("#main-recipes").html(favRecipes);
+		$('#carousel-recipes').carousel();
+	}
+}
 function registerCallback(result)
 {
 	if(result === true)

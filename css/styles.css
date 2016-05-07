@@ -196,15 +196,38 @@ ul
 	height: 124px;
 	text-align: left;
 }
-#carousel-recipes p,
+#carousel-recipes .img-container
+{
+	width: 40%;
+}
+#carousel-recipes img
+{
+	width: auto;
+}
+#carousel-recipes .details-container
+{
+	width: 40%;
+}
+#carousel-recipes p
+{
+	display: block;
+	font-size: 18px;
+	padding-left: 0%;
+	text-align: justify-all;
+}
 #carousel-recipes h3
 {
-	text-align: left;
+	display: block;
+	font-size: 18px;
+	padding-left: 0%;
+	text-align: center;
 }
 #carousel-recipes h4
 {
+	display: block;
 	font-size: 13px;
-	text-align: left;
+	text-align: center;
+	display: block;
 }
 #carousel-groceries .item
 {
@@ -1087,17 +1110,89 @@ footer > .row > .link-column
 	padding-right: 0px;
 }
 /**************** Footer page end ***************All****//****************************/
+@media screen and (max-width: 1199px) {
+	/************* Landing page start **********992-1199****/
+	#carousel-groceries .item
+	{
+		width: 98%;
+	}
+	#carousel-recipes h3
+	{
+		display: block;
+		font-size: 18px;
+		padding-left: 0%;
+		text-align: center;
+	}
+	#carousel-recipes h4
+	{
+		display: block;
+		font-size: 11px;
+		text-align: center;
+	}
+	#carousel-recipes .img-container
+	{
+		width: 40%;
+	}
+	#carousel-recipes img
+	{
+		width: 100%;
+	}
+	#carousel-recipes .details-container
+	{
+		width: 40%;
+	}
+	#carousel-recipes p
+	{
+		display: block;
+		font-size: 14px;
+		padding-left: 0%;
+		text-align: justify-all;
+	}
+/************* Landing page end ************992-1199****/
+}
 @media screen and (max-width: 991px) {
-/************* Main navbar page start **********767-****/
+/************* Main navbar page start *******768-991****/
 	#main-nav > a > img
 	{
 		left: 20%;
 	}
-/************* Main navbar page end ************767-****/
+/************* Main navbar page end *********768-991****/
 /************* Landing page start ***********768-991****/
 	#carousel-groceries .item
 	{
 		width: 98%;
+	}
+	#carousel-recipes h3
+	{
+		display: block;
+		font-size: 14px;
+		padding-left: 0%;
+		text-align: center;
+	}
+	#carousel-recipes h4
+	{
+		display: block;
+		font-size: 9px;
+		text-align: center;
+	}
+	#carousel-recipes .img-container
+	{
+		width: 40%;
+	}
+	#carousel-recipes img
+	{
+		width: 100%;
+	}
+	#carousel-recipes .details-container
+	{
+		width: 40%;
+	}
+	#carousel-recipes p
+	{
+		display: block;
+		font-size: 12px;
+		padding-left: 0%;
+		text-align: justify-all;
 	}
 /************* Landing page end *************768-991****/
 /************* Recipe page start ************768-991****/
@@ -1149,6 +1244,7 @@ footer > .row > .link-column
 	{
 		font-size: 18px;
 		padding-left: 0%;
+		text-align: justify-all;
 	}
 	#carousel-recipes h3
 	{
