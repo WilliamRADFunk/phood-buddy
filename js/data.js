@@ -30,6 +30,17 @@ function getGroceryList(cb)
 	});
 }
 
+function assembleGrocery(name, desc, amt, unit)
+{
+	var groceryObj = {
+		"name": name,
+		"description": desc,
+		"quantity": amt,
+		"unit": unit
+	};
+	return groceryObj;
+}
+
 function addGrocery(category, item, description, quantity, unit, cb)
 {
 
@@ -44,11 +55,13 @@ function addGrocery(category, item, description, quantity, unit, cb)
 	}
 
 	var data = ref.getAuth();
-	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/");
-	newGroceryRef.update(contentJson);
-	console.log(contentJson);
+	var groceryItem = assembleGrocery(item, description, quantity, unit);
+	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/" + category + "/");
 
-	cb(newGroceryRef.key()); //This cb contains the name of the created key for new object.
+	var newGref = gref.child("items").push();
+	newGref.update(groceryItem);
+
+	cb(newGref.key()); //This cb contains the new id of the created item.
 
 }
 
@@ -67,16 +80,16 @@ function editGrocery(id, category, item, description, quantity, unit, cb)
 	}
 
 	var data = ref.getAuth();
-	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/");
+	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/" + category + "/");
+	var grefItems = gref.child("items");
 
-	console.log(keys[0]);
+	var groceryObj = assembleGrocery(item, description, quantity, unit);
 
-	gref.once('value', function(snapshot){
+	grefItems.once('value', function(snapshot){
 
-		if(snapshot.hasChild(keys[0]))
+		if(snapshot.hasChild(id))
 		{
-			var newGrocery = contentJson[keys[0]];
-			gref.child(keys[0]).set(newGrocery);
+			grefItems.child(id).update(groceryObj);
 			cb(true);
 		}
 		else
@@ -86,7 +99,7 @@ function editGrocery(id, category, item, description, quantity, unit, cb)
 	});
 }
 
-function deleteGrocery(contentKey, cb)
+function deleteGrocery(category, contentKey, cb)
 {
 	//WARNING ::: Convert impending input into Javascript object, set equal to 'contentJson'
 
@@ -100,15 +113,17 @@ function deleteGrocery(contentKey, cb)
 	var data = ref.getAuth();
 
 	//Needs to add key to URL path and remove using 'gref.remove()'
-	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/" + contentKey);
+	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/" + category + "/items");
 
 	if(gref === null)
 	{
 		cb(false);
 	}
-
-	gref.remove();
-	cb(true);
+	else
+	{
+		gref.child(contentKey).remove();
+		cb(true);
+	}
 }
 
 function removeAllGrocery(cb)
