@@ -990,12 +990,11 @@ function popRecipeCallback(result)
 	{
 		if(!window.location['search'])
 		{
-			console.log("Here");
 			//window.location.href += "?" + result.id;
 			if (history.pushState)
 			{
 				var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + "?" + result.id;
-				window.history.pushState({path:newurl},'',newurl);
+				window.history.pushState({ path: newurl }, '', newurl);
 			}
 		}
 		var img = (result.img === "") ? ("images/placeholder-recipe.jpg") : (result.img + "");
