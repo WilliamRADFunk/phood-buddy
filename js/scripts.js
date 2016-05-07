@@ -279,10 +279,11 @@ function popMainPageRecipesCallback(result)
 								'<div class="carousel-inner" role="listbox">';
 						for(var i = 0; i < result['info'].length; i++)
 						{
-							console.log(result.info[i].img);
+							console.log(result.info[i]);
 							var img = (result.info[i].img === "") ? ("images/placeholder-recipe.jpg") : ((Array.isArray(result.info[i].img)) ? result.info[i].img[0] + "" : result.info[i].img + "");
 							var calories = (result.info[i].nutrition && result.info[i].nutrition['calories'] === "") ? "?" : (result.info[i].nutrition['calories'] + "");
 							var description = (result.info[i].description.length >= 50) ? (result.info[i].description.substr(0, 50) + " ...") : (result.info[i].description + "");
+							var taste = (result.info[i].taste === "") ? "(dominant taste: unknown)" : ("(dominant taste: " + result.info[i].taste + ")");
 							var firstItem = (i === 0) ? " active" : "";
 							favRecipes +=	'<div class="item' + firstItem + ' row">' +
 												'<div class="img-container col-lg-3 col-lg-offset-1 col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-1 col-xs-12">' +
@@ -290,7 +291,7 @@ function popMainPageRecipesCallback(result)
 												'</div>' +
 												'<div class="details-container col-lg-5 col-md-5 col-sm-5 col-xs-12">' +
 													'<h3>' + result.info[i].name + '</h3>' +
-													'<h4><span>' + result.info[i].nutrition['calories'] + '</span> calories</h4>' +
+													'<h4><span>' + result.info[i].nutrition['calories'] + '</span> calories <br/>' + taste + '</h4>' +
 													'<p>' + description + '</p>' +
 												'</div>' +
 											'</div>';
