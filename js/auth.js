@@ -109,7 +109,7 @@ function setAccount(userData, fnameString, lnameString, emailString)
 
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
 
-	var plannerJsonInit = {sunday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},monday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},tuesday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},wednesday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},thursday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},friday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},saturday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},sunday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}}};
+	var plannerJsonInit = {sunday:{"breakfast":{name:"",recipeId:""},"lunch":{name:"",recipeId:""},"dinner":{name:"",recipeId:""}},monday:{"breakfast":{name:"",recipeId:""},"lunch":{name:"",recipeId:""},"dinner":{name:"",recipeId:""}},tuesday:{"breakfast":{name:"",recipeId:""},"lunch":{name:"",recipeId:""},"dinner":{name:"",recipeId:""}},wednesday:{"breakfast":{name:"",recipeId:""},"lunch":{name:"",recipeId:""},"dinner":{name:"",recipeId:""}},thursday:{"breakfast":{name:"",recipeId:""},"lunch":{name:"",recipeId:""},"dinner":{name:"",recipeId:""}},friday:{"breakfast":{name:"",recipeId:""},"lunch":{name:"",recipeId:""},"dinner":{name:"",recipeId:""}},saturday:{"breakfast":{name:"",recipeId:""},"lunch":{name:"",recipeId:""},"dinner":{name:"",recipeId:""}},sunday:{"breakfast":{name:"",recipeId:""},"lunch":{name:"",recipeId:""},"dinner":{name:"",recipeId:""}}};
 
 	ref.child("users").child(userData.uid).set({
 					provider: "password",
@@ -353,7 +353,7 @@ function checkIfUserExists(userId, authData, cb) {
 		{
 			var ref = new Firebase("https://phoodbuddy.firebaseio.com");
 
-			var plannerJsonInit = {sunday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},monday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},tuesday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},wednesday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},thursday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},friday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},saturday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}},sunday:{0:{name:"",recipeId:""},1:{name:"",recipeId:""},2:{name:"",recipeId:""}}};
+			var plannerJsonInit = {sunday:{"breakfast":{name:"",recipeId:""},"lunch":{name:"",recipeId:""},"dinner":{name:"",recipeId:""}},monday:{"breakfast":{name:"",recipeId:""},"lunch":{name:"",recipeId:""},"dinner":{name:"",recipeId:""}},tuesday:{"breakfast":{name:"",recipeId:""},"lunch":{name:"",recipeId:""},"dinner":{name:"",recipeId:""}},wednesday:{"breakfast":{name:"",recipeId:""},"lunch":{name:"",recipeId:""},"dinner":{name:"",recipeId:""}},thursday:{"breakfast":{name:"",recipeId:""},"lunch":{name:"",recipeId:""},"dinner":{name:"",recipeId:""}},friday:{"breakfast":{name:"",recipeId:""},"lunch":{name:"",recipeId:""},"dinner":{name:"",recipeId:""}},saturday:{"breakfast":{name:"",recipeId:""},"lunch":{name:"",recipeId:""},"dinner":{name:"",recipeId:""}},sunday:{"breakfast":{name:"",recipeId:""},"lunch":{name:"",recipeId:""},"dinner":{name:"",recipeId:""}}};
 
 		ref.onAuth(function(authData)
 		{
