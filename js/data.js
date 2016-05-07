@@ -20,6 +20,7 @@ function getGroceryList(cb)
 			console.log("User has groceryList, proceed normally");
 			groceryListSnapshot = snapshot.child(data.uid);
 			groceryList = groceryListSnapshot.val();
+			groceryList["id"] = data.uid;
 			cb(groceryList);
 		}
 		else
