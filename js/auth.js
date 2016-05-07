@@ -157,6 +157,39 @@ function setAccount(userData, fnameString, lnameString, emailString)
 					}
 	});
 
+	ref.child("grocery").child(userdata.uid).set({
+		"bakery":{
+			name:"Bakery"
+		},
+		"bakingSpices":{
+			name: "Baking and Spices"
+		},
+		"cannedGoods":{
+			"name": "Beverages"
+		},
+		"cereals":{
+			"name": "Cereals"
+		},
+		"condiments":{
+			name:"Condiments"
+		},
+		"dairy":{
+			name: "Dairy"
+		},
+		"frozen":{
+			"name": "Frozen"
+		},
+		"meats":{
+			"name": "Meats"
+		},
+		"miscellaneous":{
+			"name": "Miscellaneous"
+		},
+		"produce":{
+			"name": "Produce"
+		}
+	});
+
 	ref.child("planner").child(userData.uid).set(plannerJsonInit);
 
 }
@@ -404,6 +437,39 @@ function checkIfUserExists(userId, authData, cb) {
 						"high-cholestorol": false,
 						diabetes          : false,
 						vegetarian: false
+					}
+				});
+
+				ref.child("grocery").child(authData.uid).set({
+					"bakery":{
+						name:"Bakery"
+					},
+					"bakingSpices":{
+						name: "Baking and Spices"
+					},
+					"cannedGoods":{
+						"name": "Beverages"
+					},
+					"cereals":{
+						"name": "Cereals"
+					},
+					"condiments":{
+						name:"Condiments"
+					},
+					"dairy":{
+						name: "Dairy"
+					},
+					"frozen":{
+						"name": "Frozen"
+					},
+					"meats":{
+						"name": "Meats"
+					},
+					"miscellaneous":{
+						"name": "Miscellaneous"
+					},
+					"produce":{
+						"name": "Produce"
 					}
 				});
 				ref.child("planner").child(authData.uid).set(plannerJsonInit);

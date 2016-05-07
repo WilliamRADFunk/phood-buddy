@@ -30,7 +30,7 @@ function getGroceryList(cb)
 	});
 }
 
-function addGrocery(contentJson, cb)
+function addGrocery(category, item, description, quantity, unit, cb)
 {
 
 	//DEBUG : WARNING ::: Convert impending input into Javascript object, set equal to 'contentJson
@@ -44,9 +44,7 @@ function addGrocery(contentJson, cb)
 	}
 
 	var data = ref.getAuth();
-	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/");
-
-	var newGroceryRef = gref.child(data.uid).push();
+	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/");
 	newGroceryRef.update(contentJson);
 	console.log(contentJson);
 
@@ -54,7 +52,7 @@ function addGrocery(contentJson, cb)
 
 }
 
-function editGrocery(contentJson, cb)
+function editGrocery(id, category, item, description, quantity, unit, cb)
 {
 	//WARNING ::: Convert impending input into Javascript object (if not already), and set equal to 'contentJson'
 	// DEBUG :  DUMMY VALUE var contentJson = {"-KEnu2ENxPZIixIbbXG4":{"name": "banana", "description": "That other thing", "quantity": "2", "unit": "loafes", "category": "meat"}};
@@ -1516,7 +1514,7 @@ function getRecipe(id, cb)
 	//Stores authData of package
 	var data = ref.getAuth();
 
-	ref.child("recipe-directory").child(id).exists();
+	//ref.child("recipe-directory").child(id).exists();  ~~DEBUG: TAKEN OUT. WHY WAS THIS HERE?
 
 	var recipeRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory/" + id + "/");
 
