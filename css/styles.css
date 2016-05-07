@@ -190,6 +190,7 @@ ul
 	background-color: #E2EEF4;
 	padding-bottom: 23px;
 	padding-top: 23px;
+	cursor: pointer;
 }
 #carousel-recipes .item img
 {

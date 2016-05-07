@@ -279,13 +279,13 @@ function popMainPageRecipesCallback(result)
 								'<div class="carousel-inner" role="listbox">';
 						for(var i = 0; i < result['info'].length; i++)
 						{
-							console.log(result.info[i]);
 							var img = (result.info[i].img === "") ? ("images/placeholder-recipe.jpg") : ((Array.isArray(result.info[i].img)) ? result.info[i].img[0] + "" : result.info[i].img + "");
 							var calories = (result.info[i].nutrition && result.info[i].nutrition['calories'] === "") ? "?" : (result.info[i].nutrition['calories'] + "");
 							var description = (result.info[i].description.length >= 50) ? (result.info[i].description.substr(0, 50) + " ...") : (result.info[i].description + "");
 							var taste = (result.info[i].taste === "") ? "(dominant taste: unknown)" : ("(dominant taste: " + result.info[i].taste + ")");
+							var id = result.info[i].id.trim();
 							var firstItem = (i === 0) ? " active" : "";
-							favRecipes +=	'<div class="item' + firstItem + ' row">' +
+							favRecipes +=	'<div class="item' + firstItem + ' row" onclick="goToRecipe(' + id + ')">' +
 												'<div class="img-container col-lg-3 col-lg-offset-1 col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-1 col-xs-12">' +
 													'<img src="' + img + '" alt="' + result.info[i].name + '">' +
 												'</div>' +
@@ -311,6 +311,17 @@ function popMainPageRecipesCallback(result)
 		$("#main-recipes").html("");
 		$("#main-recipes").html(favRecipes);
 		$('#carousel-recipes').carousel();
+	}
+}
+function goToRecipe(recipeId)
+{
+	if(recipeId)
+	{
+		window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/recipe.html?" + recipeId;
+	}
+	else
+	{
+		return false;
 	}
 }
 function registerCallback(result)
