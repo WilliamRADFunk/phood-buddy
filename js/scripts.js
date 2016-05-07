@@ -961,111 +961,108 @@ function decreaseCount()
 // Initiates the content for the recipe page.
 function initRecipe()
 {
-	console.log("Test");
-	loggedIn();
-	getRandomRecipe("", "", popRecipeCallback);
-	/*
 	if(checkAuth())
 	{
-		switch(cat)
+		loggedIn();
+		if(window.location['search'])
 		{
-			case 0:
-			{
-				getFavAll(counter, popFavListCallback);
-				break;
-			}
-			case 1:
-			{
-				getFavUserRecipe(counter, popFavListCallback);
-				break;
-			}
-			case 2:
-			{
-				getFavOther(counter, popFavListCallback);
-				break;
-			}
+			var id = window.location['search'].substr(1);
+			getRecipe(id, popRecipeCallback);
+		}
+		else
+		{
+			getRandomRecipe("", "", popRecipeCallback);
 		}
 	}
 	else
 	{
 		window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html";
 	}
-	*/
 }
 // Populates the recipe data either from random pick, or from the id in the URL.
 function popRecipeCallback(result)
 {
-	console.log("Result: ", result);
 	if(result === false)
 	{
 		spawnModal("Couldn't find that recipe", "<p>That recipe didn't <i>pan</i> out. Shall we refresh the page?</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/schedule.html", true);
 	}
-	else {
-	var img = (result.img === "") ? ("images/placeholder-recipe.jpg") : (result.img + "");
-	var pTime = (result.prepTime === "") ? ("?") : (result.prepTime + "");
-	var cTime = (result.cookTime === "") ? ("?") : (result.cookTime + "");
-	var tTime = (result.totalTime === "") ? ("?") : (result.totalTime + "");
-	var str='<div id="recipe">' +
-	            '<div class="row">' +
-	                '<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">' +
-	                    '<div class="row">' +
-	                        '<div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">' +
-	                            '<h2>' + result.name + '</h2>' +
-	                        '</div>' +
-	                        '<div class="text-center col-lg-6 col-md-6 col-sm-4 col-xs-12">' +
-	                            '<p id="rating">Rate this recipe: <span>1</span> <span>2</span> <span>3</span> <span>4</span> <span>5</span></p>' +
-	                        '</div>' +
-	                    '</div>' +
-	                '</div>' +
-	            '</div>' +
-	            '<div class="divider row">' +
-	                '<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12"></div>' +
-	            '</div>' +
-	            '<div class="row">' +
-	                '<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">' +
-	                    '<div class="row">' +
-	                        '<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">' +
-	                            '<img src="' + img + '"/>' +
-	                        '</div>' +
-	                        '<div class="timing col-lg-3 col-md-3 col-sm-4 col-xs-12">' +
-	                            '<h4>Prep Time</h4>' +
-	                            '<p><span>' + pTime + '</span></p>' +
-	                            '<p>min</p>' +
-	                        '</div>' +
-	                        '<div class="timing col-lg-3 col-md-3 col-sm-4 col-xs-12">' +
-	                            '<h4>Cook Time</h4>' +
-	                            '<p><span>' + cTime + '</span></p>' +
-	                            '<p>min</p>' +
-	                        '</div>' +
-	                        '<div class="timing col-lg-3 col-md-3 col-sm-4 col-xs-12">' +
-	                            '<h4>Total Time</h4>' +
-	                            '<p><span>' + tTime + '</span></p>' +
-	                            '<p>min</p>' +
-	                        '</div>' +
-	                    '</div>' +
-	                '</div>' +
-	            '</div>' +
-	            '<div class="divider row">' +
-	                '<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12"></div>' +
-	            '</div>' +
-	            '<div class="row">' +
-	                '<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">' +
-	                    '<div class="row">' +
-	                        '<a id="print-recipe" class="col-lg-4 col-md-4 col-sm-4 col-xs-12" href="javascript:window.print()">Print Recipe</a>' +
-	                        '<a id="grocery-redirect" class="col-lg-4 col-md-4 col-sm-4 col-xs-12" href="groceries.html">Add Groceries</a>' +
-	                        '<a id="fav-list-redirect" class="col-lg-4 col-md-4 col-sm-4 col-xs-12" href="favorite-recipes.html">Favorite Recipe</a>' +
-	                    '</div>' +
-	                '</div>' +
-	            '</div>' +
-	            '<div class="divider row">' +
-	                '<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12"></div>' +
-	            '</div>' +
-	            '<div class="row">' +
-	                '<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">' +
-	                    '<div class="row">' +
-	                        '<div id="left-column" class="col-lg-5 col-md-5 col-sm-5 col-xs-12">' +
-	                            '<h3>Ingredients</h3>' + 
-	                            	'<ul>';
+	else
+	{
+		if(!window.location['search'])
+		{
+			console.log("Here");
+			//window.location.href += "?" + result.id;
+			if (history.pushState)
+			{
+				var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + "?" + result.id;
+				window.history.pushState({path:newurl},'',newurl);
+			}
+		}
+		var img = (result.img === "") ? ("images/placeholder-recipe.jpg") : (result.img + "");
+		var pTime = (result.prepTime === "") ? ("?") : (result.prepTime + "");
+		var cTime = (result.cookTime === "") ? ("?") : (result.cookTime + "");
+		var tTime = (result.totalTime === "") ? ("?") : (result.totalTime + "");
+		var str='<div id="recipe">' +
+		            '<div class="row">' +
+		                '<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">' +
+		                    '<div class="row">' +
+		                        '<div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">' +
+		                            '<h2>' + result.name + '</h2>' +
+		                        '</div>' +
+		                        '<div class="text-center col-lg-6 col-md-6 col-sm-4 col-xs-12">' +
+		                            '<p id="rating">Rate this recipe: <span>1</span> <span>2</span> <span>3</span> <span>4</span> <span>5</span></p>' +
+		                        '</div>' +
+		                    '</div>' +
+		                '</div>' +
+		            '</div>' +
+		            '<div class="divider row">' +
+		                '<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12"></div>' +
+		            '</div>' +
+		            '<div class="row">' +
+		                '<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">' +
+		                    '<div class="row">' +
+		                        '<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">' +
+		                            '<img src="' + img + '"/>' +
+		                        '</div>' +
+		                        '<div class="timing col-lg-3 col-md-3 col-sm-4 col-xs-12">' +
+		                            '<h4>Prep Time</h4>' +
+		                            '<p><span>' + pTime + '</span></p>' +
+		                            '<p>min</p>' +
+		                        '</div>' +
+		                        '<div class="timing col-lg-3 col-md-3 col-sm-4 col-xs-12">' +
+		                            '<h4>Cook Time</h4>' +
+		                            '<p><span>' + cTime + '</span></p>' +
+		                            '<p>min</p>' +
+		                        '</div>' +
+		                        '<div class="timing col-lg-3 col-md-3 col-sm-4 col-xs-12">' +
+		                            '<h4>Total Time</h4>' +
+		                            '<p><span>' + tTime + '</span></p>' +
+		                            '<p>min</p>' +
+		                        '</div>' +
+		                    '</div>' +
+		                '</div>' +
+		            '</div>' +
+		            '<div class="divider row">' +
+		                '<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12"></div>' +
+		            '</div>' +
+		            '<div class="row">' +
+		                '<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">' +
+		                    '<div class="row">' +
+		                        '<a id="print-recipe" class="col-lg-4 col-md-4 col-sm-4 col-xs-12" href="javascript:window.print()">Print Recipe</a>' +
+		                        '<a id="grocery-redirect" class="col-lg-4 col-md-4 col-sm-4 col-xs-12" href="groceries.html">Add Groceries</a>' +
+		                        '<a id="fav-list-redirect" class="col-lg-4 col-md-4 col-sm-4 col-xs-12" href="favorite-recipes.html">Favorite Recipe</a>' +
+		                    '</div>' +
+		                '</div>' +
+		            '</div>' +
+		            '<div class="divider row">' +
+		                '<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12"></div>' +
+		            '</div>' +
+		            '<div class="row">' +
+		                '<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">' +
+		                    '<div class="row">' +
+		                        '<div id="left-column" class="col-lg-5 col-md-5 col-sm-5 col-xs-12">' +
+		                            '<h3>Ingredients</h3>' + 
+		                            	'<ul>';
 		var ingredients = result.ingredientList;
 		for(var i = 0; i < ingredients.length; i++)
 		{
@@ -1095,7 +1092,8 @@ function popRecipeCallback(result)
 	                '<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12"></div>' +
 	            '</div>' +
 	        '</div>';
-		$("#wrapper").html(str); }
+		$("#wrapper").html(str);
+	}
 }
 // Customizable modal to be reused through all pages.
 function spawnModal(header, body, redirect, moreThanOneBtn, cancel)
