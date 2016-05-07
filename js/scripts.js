@@ -660,6 +660,126 @@ function deleteScheduledRecipe(result, day, mealTime)
 		}, 200);
 	}
 }
+// Initiates the content for the groceries page.
+function initGroceries()
+{
+	if(checkAuth())
+	{
+		loggedIn();
+		getGroceryList(popGroceryCallback);
+	}
+	else { window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html"; }
+}
+// Populates the grocery list with user's stored grocery items.
+function popGroceryCallback(result)
+{
+	if(result === false)
+	{
+		spawnModal("Not Logged In", "<p>You don't appear to be logged in. Go back to the login page.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/login.html", false);
+	}
+	else
+	{
+		$("#wrapper").html('');
+		var categories = Object.keys(result);
+		var page= '' +
+			'<div id="groceries">' +
+				'<div class="row">' +
+					'<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">' +
+						'<h2>Grocery List</h2>' +
+						'<a id="print-list" href="javascript:window.print()">Print Grocery List</a>' +
+					'</div>' +
+				'</div>' +
+				'<div class="divider row">' +
+					'<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12"></div>' +
+				'</div>' +
+				'<div class="row">' +
+					'<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">' +
+						'<div class="row">' +
+							'<a id="add-item-link" href="javascript:addItem()">Add Item</a>' +
+							'<div id="add-item">' +
+							'<select class="col-lg-2 col-md-12 col-sm-12 col-xs-12">' +
+								'<option value="" disabled selected>Category</option>';
+					for(var i = 0; i < categories.length; i++)
+					{
+						page += '<option value="' + categories[i] + '">' + result[categories[i]].name + '</option>';
+					}
+					page += '</select>' +
+								'<input type="text" name="name" placeholder="Name" class="col-lg-2 col-md-12 col-sm-12 col-xs-12"/>' +
+								'<input type="text" name="description" placeholder="Description" class="col-lg-2 col-md-12 col-sm-12 col-xs-12"/>' +
+								'<input type="number" name="quantity" placeholder="Quantity" class="col-lg-2 col-md-12 col-sm-12 col-xs-12"/>' +
+								'<select class="col-lg-2 col-md-12 col-sm-12 col-xs-12">' +
+									'<option value="" disabled selected>Unit</option>' +
+									'<option value="" disabled>----- Volume -----</option>' +
+									'<option value="teaspoons">teaspoons</option>' +
+									'<option value="tablespoons">tablespoons</option>' +
+									'<option value="fluid ounces">fluid ounces</option>' +
+									'<option value="gills">gills</option>' +
+									'<option value="cups">cups</option>' +
+									'<option value="pints">pints</option>' +
+									'<option value="quarts">quarts</option>' +
+									'<option value="gallons">gallons</option>' +
+									'<option value="milliliters">milliliters</option>' +
+									'<option value="liters">liters</option>' +
+									'<option value="deciliters">deciliters</option>' +
+									'<option value="" disabled>----- Weight -----</option>' +
+									'<option value="pounds">pounds</option>' +
+									'<option value="ounces">ounces</option>' +
+									'<option value="milligrams">milligrams</option>' +
+									'<option value="grams">grams</option>' +
+									'<option value="kilograms">kilograms</option>' +
+									'<option value="" disabled>----- Length -----</option>' +
+									'<option value="millimeters">millimeters</option>' +
+									'<option value="centimeters">centimeters</option>' +
+									'<option value="meters">meters</option>' +
+									'<option value="inches">inches</option>' +
+								'</select>' +
+								'<button id="submit-item" onclick="submitItem()" class="col-lg-1 col-md-6 col-sm-6 col-xs-6">Add</button>' +
+								'<button id="cancel-item" onclick="cancelItem()" class="col-lg-1 col-md-6 col-sm-6 col-xs-6">Cancel</button>' +
+							'</div>' +
+						'</div>' +
+					'</div>' +
+				'</div>' +
+				'<div class="divider row">' +
+					'<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12"></div>' +
+				'</div>';
+	for(var j = 0; j < categories.length; j++)
+	{
+		page += '<div class="row">' +
+					'<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 table-responsive">' +
+						'<h3>' + result[categories[j]].name + '</h3>' +
+						'<table class="table">' +
+							'<tr>' +
+								'<th class="col-1">Delete</th>' +
+								'<th class="col-2">Edit</th>' +
+								'<th class="col-3">Item</th>' +
+								'<th class="col-4">Description</th>' +
+								'<th class="col-5">Quantity</th>' +
+								'<th class="col-6">Unit</th>' +
+							'</tr>';
+				var items = Object.keys(result[categories[j]].items);
+				console.log(result[categories[j]].items);
+				for(var k = 0; k < items.length; k++)
+				{
+					page += '<tr>' +
+								'<td class="grocery-options"><a id="delete-item-1" class="delete-item" href="javascript:void(0)">Delete</a></td>' +
+								'<td class="grocery-options"><a id="edit-item-1" class="edit-item" href="javascript:void(0)">Edit</a></td>' +
+								'<td>' + result[categories[j]].items[items[k]].name + '</td>' +
+								'<td>' + result[categories[j]].items[items[k]].description + '</td>' +
+								'<td>' + result[categories[j]].items[items[k]].quantity + '</td>' +
+								'<td>' + result[categories[j]].items[items[k]].unit + '</td>' +
+							'</tr>';
+				}
+				page += '</table>' +
+					'</div>' +
+				'</div>';
+	}
+		page +=	'<div class="divider row">' +
+					'<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12"></div>' +
+				'</div>' +
+			'</div>';
+		$("#wrapper").html(page);
+	}
+}
 // Initiates the content for the favorite recipes page.
 function initFavList(cat)
 {
@@ -685,10 +805,7 @@ function initFavList(cat)
 			}
 		}
 	}
-	else
-	{
-		window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html";
-	}
+	else { window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html"; }
 }
 // Populates the weekly schedule with all user's stored favorites.
 function popFavListCallback(result, amount)
@@ -848,23 +965,22 @@ function popRecipeCallback(result)
 		{
 			str += '<li>' +
 						'<span class="ingredient-name">' + ingredients[i].name + '</span>' +
-                        '<span class="ingredient-desc">' + ingredients[i].description + '</span>' +
-                        '<span class="ingredient-quant">' + ingredients[i].quantity + '</span>' +
-                        '<span class="ingredient-unit">' + ingredients[i].unit + '</span>' +
-                    '</li>';
+						'<span class="ingredient-desc">' + ingredients[i].description + '</span>' +
+						'<span class="ingredient-quant">' + ingredients[i].quantity + '</span>' +
+						'<span class="ingredient-unit">' + ingredients[i].unit + '</span>' +
+					'</li>';
 		}
 		str += '</ul>' +
-            '</div>' +
-            '<div id="right-column" class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-12">' +
-                '<h3>Directions</h3>' +
-                '<ul>';
-	    var directions = result.directions;
+			'</div>' +
+			'<div id="right-column" class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-12">' +
+			'<h3>Directions</h3>' +
+			'<ul>';
+		var directions = result.directions;
 		for(var j = 0; j < directions.length; j++)
 		{
 			str += '<li>' + directions[j] + '</li>';
 		}
 		str += '</ul>' +
-	                            
 	                        '</div>' +
 	                    '</div>' +
 	                '</div>' +

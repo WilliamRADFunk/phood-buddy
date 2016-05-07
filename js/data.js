@@ -6,7 +6,7 @@ function getGroceryList(cb)
 
 	if(ref.getAuth === null)
 		{
-			return;
+			cb(false);
 		}
 
 	var data = ref.getAuth();
@@ -1501,6 +1501,36 @@ function checkAllergiesWithIngredients(ingredients, corn, egg, fish, glutten, mi
 		}
 
 	return true;
+}
+
+function getRecipe(id, cb)
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		cb(false, id);
+		return;
+	}
+	//Stores authData of package
+	var data = ref.getAuth();
+
+	ref.child("recipe-directory").child(id).exists();
+
+	var recipeRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory/" + id + "/");
+
+	recipeRef.once("value", function(snapshot){
+
+		if(snapshot.exists() === false)
+		{
+			cb(false, id);
+		}
+		else
+		{
+			var recipeJson = snapshot.val();
+			cb(recipeJson, id);
+		}
+	});
 }
 
 //TEST TEST TEST TEST
