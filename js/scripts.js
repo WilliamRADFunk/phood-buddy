@@ -218,6 +218,7 @@ $(document).ready(function ()
 		});
 	});
 });
+// Launches the call for favorited recipes to populate landing page.
 function initMainPageRecipes()
 {
 	if(checkAuth())
@@ -230,6 +231,8 @@ function initMainPageRecipes()
 		window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html";
 	}
 }
+// Once backend responds with favorited recipes, it uses it to
+// populate the landing page's carousel.
 function popMainPageRecipesCallback(result)
 {
 	if(result === false)
@@ -313,6 +316,7 @@ function popMainPageRecipesCallback(result)
 		$('#carousel-recipes').carousel();
 	}
 }
+// If user clicks on recipe in landing page, this takes them to the recipe.
 function goToRecipe(recipeId)
 {
 	if(recipeId)
@@ -324,6 +328,7 @@ function goToRecipe(recipeId)
 		return false;
 	}
 }
+// Modal response for whether registration was, or wasn't, successful.
 function registerCallback(result)
 {
 	if(result === true)
@@ -348,6 +353,7 @@ function registerCallback(result)
 		});
 	}
 }
+// Modal response for whether login was, or wasn't, successful.
 function loginCallback(result)
 {
 	if(result === true)
@@ -363,17 +369,20 @@ function loginCallback(result)
 		});
 	}
 }
+// Toggle add grocery item buttons/links.
 function addItem()
 {
 	$("#add-item").show();
 	$("#add-item-link").hide();
 }
+// Toggle cancel grocery item buttons/links.
 function cancelItem()
 {
 	$("#add-item").hide();
 	$("#add-item-link").show();
 	/* TODO: Clear all fields */
 }
+// Toggle submit grocery item buttons/links.
 function submitItem()
 {
 	$("#add-item").hide();
