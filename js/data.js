@@ -1,4 +1,3 @@
-
 //Data Construction Functions
 function getGroceryList(cb)
 {
@@ -12,15 +11,16 @@ function getGroceryList(cb)
 	var data = ref.getAuth();
 	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/");
 
-	var groceryList = "";
+	var groceryList;
 
 	gref.once('value', function(snapshot){
 		if(snapshot.hasChild(data.uid))
 		{
+			var userId = data.uid;
 			console.log("User has groceryList, proceed normally");
-			groceryListSnapshot = snapshot.child(data.uid);
+			groceryListSnapshot = snapshot.child(userId);
 			groceryList = groceryListSnapshot.val();
-			groceryList["id"] = data.uid;
+			groceryList.id = userId;
 			cb(groceryList);
 		}
 		else
