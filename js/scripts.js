@@ -774,12 +774,14 @@ function popGroceryCallback(result)
 	{
 		$("#wrapper").html('');
 		var categories = Object.keys(result);
+		var deleteList = (categories.length > 0) ? '<a id="delete-list" href="javascript:deleteList()">Delete Grocery List</a>' : '';
 		var page= '' +
 			'<div id="groceries">' +
 				'<div class="row">' +
 					'<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">' +
 						'<h2>Grocery List</h2>' +
 						'<a id="print-list" href="javascript:window.print()">Print Grocery List</a>' +
+						deleteList +
 					'</div>' +
 				'</div>' +
 				'<div class="divider row">' +
@@ -916,6 +918,23 @@ function popGroceryCallback(result)
 				'</div>' +
 			'</div>';
 		$("#wrapper").html(page);
+	}
+}
+// Deletes the entire grocery list
+function deleteList()
+{
+	removeAllGrocery(deleteListCallback);
+}
+// Informs the user as the outcome of their delete list attempt.
+function deleteListCallback(result)
+{
+	if(result === false)
+	{
+		spawnModal("Delete List Failed", "<p>We had trouble deleting your list.<br/><br/>Want to refresh the page<br/>and try again?</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/groceries.html", true);
+	}
+	else
+	{
+		spawnModal("Delete List Success", "<p>Your list has been deleted.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/groceries.html", false);
 	}
 }
 // Toggle add grocery item buttons/links.

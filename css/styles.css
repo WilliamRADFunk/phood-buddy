@@ -622,6 +622,13 @@ input:-webkit-autofill {
 	background-repeat: no-repeat;
 	padding-left: 30px;
 }
+#groceries #delete-list
+{
+	background-image: url('../images/btn-trash.jpg');
+	background-repeat: no-repeat;
+	margin-left: 50px;
+	padding-left: 30px;
+}
 #groceries input[type='text'],
 #groceries input[type='number'],
 #groceries select,
