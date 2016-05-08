@@ -87,6 +87,8 @@ function editGrocery(id, category, item, description, quantity, unit, cb)
 		if(snapshot.hasChild(id))
 		{
 			var updateRef = grefItems.child(id);
+			console.log(id);
+			console.log(groceryObj);
 			updateRef.update(groceryObj);
 			cb(true);
 		}
@@ -168,7 +170,7 @@ function removeAllGrocery(cb)
 		"produce":{
 			"name": "Produce"
 		}
-	})
+	});
 	cb(true);
 }
 
@@ -1071,18 +1073,23 @@ function favoriteRecipe(recipeId, cb)
 		cb(false);
 		return;
 	}
-	//Stores authData of package
-	var data = ref.getAuth();
+	else
+	{
+		var data = ref.getAuth();
 
-	//Creates reference to users portion in database
-	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+		//Creates reference to users portion in database
+		var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+		//Creates object to save
+		var recipeSave;
+		recipeSave[recipeId] = true;
 
-	//Updates path information to include favorited-recipe and the current recipe Id
-	userRef.child("favorited-recipe").update({recipeid: true});
-	cb(true);
+		//Updates favorited recipes to contain favorited recipe.
+		userRef.child("favorited-recipe").update(recipeSave);
+		cb(true);
+	}
 }
 
-function removeFavorited(recipeId, cb)
+function removeFavorite(recipeId, cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
@@ -1091,13 +1098,15 @@ function removeFavorited(recipeId, cb)
 		cb(false);
 		return;
 	}
-	//Stores authData of package
-	var data = ref.getAuth();
-	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
-	var favoriteRecipeRef = userRev.child("favorited-recipe").child("recipeId");
+	else
+	{
+		var data = ref.getAuth();
+		var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+		var favoriteRecipeRef = userRef.child("favorited-recipe").child(recipeId);
 
-	favoriteRecipeRef.remove();
-
+		favoriteRecipeRef.remove();
+		cb(true);
+	}
 }
 
 function rateRecipe(recipeId, rating, cb)
