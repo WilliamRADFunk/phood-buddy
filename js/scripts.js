@@ -369,28 +369,6 @@ function loginCallback(result)
 		});
 	}
 }
-// Toggle add grocery item buttons/links.
-function addItem()
-{
-	$("#add-item").show();
-	$("#add-item-link").hide();
-}
-// Toggle cancel grocery item buttons/links.
-function cancelItem()
-{
-	$("#add-item").hide();
-	$("#add-item-link").show();
-	/* TODO: Clear all fields */
-}
-// Toggle submit grocery item buttons/links.
-function submitItem()
-{
-	$("#add-item").hide();
-	$("#add-item-link").show();
-	/* TODO: Send item to database */
-	/* TODO: Have modal show success or failure */
-	/* TODO: Reload page with new grocery list */
-}
 // Adds a new ingredient for user to fill in.
 function addIngredient(elem)
 {
@@ -859,9 +837,16 @@ function popGroceryCallback(result)
 				'</div>';
 	for(var j = 0; j < categories.length-1; j++)
 	{
+		var obj = result[categories[j]];
+		if( !('items' in obj) )
+		{
+			continue;
+		}
+		var itemList = Object.keys(obj['items']);
+
 		page += '<div class="row">' +
 					'<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 table-responsive">' +
-						'<h3>' + result[categories[j]].name + '</h3>' +
+						'<h3>' + obj.name + '</h3>' +
 						'<table class="table">' +
 							'<tr>' +
 								'<th class="col-1">Delete</th>' +
@@ -871,17 +856,16 @@ function popGroceryCallback(result)
 								'<th class="col-5">Quantity</th>' +
 								'<th class="col-6">Unit</th>' +
 							'</tr>';
-				var obj = result[categories[j]];
-				var itemList = (obj['items'] != null || obj['items'] != undefined || obj['items'] != "") ? Object.keys(obj['items']) : [];
+					
 				for(var k = 0; k < itemList.length; k++)
 				{
 					page += '<tr>' +
-								'<td class="grocery-options"><a id="delete-item-1" class="delete-item" href="javascript:void(0)">Delete</a></td>' +
-								'<td class="grocery-options"><a id="edit-item-1" class="edit-item" href="javascript:void(0)">Edit</a></td>' +
-								'<td>' + obj.items[itemList[0]].name + '</td>' +
-								'<td>' + obj.items[itemList[0]].description + '</td>' +
-								'<td>' + obj.items[itemList[0]].quantity + '</td>' +
-								'<td>' + obj.items[itemList[0]].unit + '</td>' +
+								'<td class="grocery-options"><a id="delete-item-1" class="delete-item" href="" onclick="deleteItem(' + obj.items[itemList[k]].name + ')">Delete</a></td>' +
+																'<td class="grocery-options"><a id="edit-item-1" class="edit-item" href="javascript:void(0)">Edit</a></td>' +
+								'<td>' + obj.items[itemList[k]].name + '</td>' +
+								'<td>' + obj.items[itemList[k]].description + '</td>' +
+								'<td>' + obj.items[itemList[k]].quantity + '</td>' +
+								'<td>' + obj.items[itemList[k]].unit + '</td>' +
 							'</tr>';
 				}
 				page += '</table>' +
@@ -894,6 +878,28 @@ function popGroceryCallback(result)
 			'</div>';
 		$("#wrapper").html(page);
 	}
+}
+// Toggle add grocery item buttons/links.
+function addItem()
+{
+	$("#add-item").show();
+	$("#add-item-link").hide();
+}
+// Toggle cancel grocery item buttons/links.
+function cancelItem()
+{
+	$("#add-item").hide();
+	$("#add-item-link").show();
+	/* TODO: Clear all fields */
+}
+// Toggle submit grocery item buttons/links.
+function submitItem(id)
+{
+	$("#add-item").hide();
+	$("#add-item-link").show();
+	/* TODO: Send item to database */
+	/* TODO: Have modal show success or failure */
+	/* TODO: Reload page with new grocery list */
 }
 // Initiates the content for the favorite recipes page.
 function initFavList(cat)
