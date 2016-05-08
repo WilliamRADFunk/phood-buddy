@@ -11,6 +11,10 @@ body
     height: auto;
     position: relative;
 }
+a[href]:after
+{
+	content: none !important;
+}
 h1
 {
 	display: none;
@@ -64,8 +68,7 @@ ul
 #week-schedule #add-item input[type="text"],
 #week-schedule #add-item input[type="number"],
 #week-schedule #add-item select,
-#week-schedule #add-item button,
-#week-schedule #add-item button,
+#week-schedule button,
 #modal,
 #social,
 footer
