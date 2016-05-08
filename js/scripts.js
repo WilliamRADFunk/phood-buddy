@@ -774,7 +774,14 @@ function popGroceryCallback(result)
 	{
 		$("#wrapper").html('');
 		var categories = Object.keys(result);
-		var deleteList = (categories.length > 0) ? '<a id="delete-list" href="javascript:deleteList()">Delete Grocery List</a>' : '';
+		var itemCount = 0;
+		for(var it = 0; it < categories.length-1; it++)
+		{
+			var obj = result[categories[it]];
+			if( !('items' in obj) ) { continue; }
+			else { itemCount++; }
+		}
+		var deleteList = (itemCount > 0) ? '<a id="delete-list" href="javascript:deleteList()">Delete Grocery List</a>' : '';
 		var page= '' +
 			'<div id="groceries">' +
 				'<div class="row">' +
