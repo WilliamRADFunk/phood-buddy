@@ -790,7 +790,7 @@ function popGroceryCallback(result)
 						'<div class="row">' +
 							'<a id="add-item-link" href="javascript:addItem()">Add Item</a>' +
 							'<div id="add-item">' +
-							'<select class="col-lg-2 col-md-12 col-sm-12 col-xs-12">' +
+							'<select class="col-lg-2 col-md-12 col-sm-12 col-xs-12" name="addCat">' +
 								'<option value="" disabled selected>Category</option>';
 					for(var i = 0; i < categories.length-1; i++)
 					{
@@ -800,7 +800,7 @@ function popGroceryCallback(result)
 								'<input type="text" name="name" placeholder="Name" class="col-lg-2 col-md-12 col-sm-12 col-xs-12"/>' +
 								'<input type="text" name="description" placeholder="Description" class="col-lg-2 col-md-12 col-sm-12 col-xs-12"/>' +
 								'<input type="number" name="quantity" placeholder="Quantity" class="col-lg-2 col-md-12 col-sm-12 col-xs-12"/>' +
-								'<select class="col-lg-2 col-md-12 col-sm-12 col-xs-12">' +
+								'<select class="col-lg-2 col-md-12 col-sm-12 col-xs-12" name="addUnit">' +
 									'<option value="" disabled selected>Unit</option>' +
 									'<option value="" disabled>----- Volume -----</option>' +
 									'<option value="teaspoons">teaspoons</option>' +
@@ -859,9 +859,9 @@ function popGroceryCallback(result)
 					
 				for(var k = 0; k < itemList.length; k++)
 				{
-					page += '<tr>' +
-								'<td class="grocery-options"><a id="delete-item-1" class="delete-item" href="" onclick="deleteItem(' + obj.items[itemList[k]].name + ')">Delete</a></td>' +
-																'<td class="grocery-options"><a id="edit-item-1" class="edit-item" href="javascript:void(0)">Edit</a></td>' +
+					page += '<tr id="' + itemList[k] + '">' +
+								'<td class="grocery-options"><a id="delete-item-1" class="delete-item" href="" onclick="deleteItem(' + itemList[k] + ')">Delete</a></td>' +
+																'<td class="grocery-options"><a id="edit-item-1" class="edit-item" href="" editItem(' + itemList[k] + ')>Edit</a></td>' +
 								'<td>' + obj.items[itemList[k]].name + '</td>' +
 								'<td>' + obj.items[itemList[k]].description + '</td>' +
 								'<td>' + obj.items[itemList[k]].quantity + '</td>' +
@@ -897,9 +897,31 @@ function submitItem(id)
 {
 	$("#add-item").hide();
 	$("#add-item-link").show();
-	/* TODO: Send item to database */
-	/* TODO: Have modal show success or failure */
-	/* TODO: Reload page with new grocery list */
+	var category = $("select[name='addCat'] :selected").val();
+	var item = $("input[name='name']").val();
+	var description = $("input[name='description']").val();
+	var quantity = $("input[name='quantity']").val();
+	var unit = $("select[name='addUnit'] option:selected").val();
+	if(category == "" || item == "" || description == "" || quantity == "" || unit == "")
+	{
+		submitItemCallback(false);
+	}
+	else
+	{
+		addGrocery(category, item, description, quantity, unit, submitItemCallback);
+	}
+}
+// Messages user with result of the new item, and refreshes page when successful or if user wants.
+function submitItemCallback(result)
+{
+	if(result === false)
+	{
+		spawnModal("Add Item Failed", "<p>We had trouble adding your item.<br/><br/>Make sure you filled out all fields.<br/><br/>Want to refresh the page<br/>and try again?</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/groceries.html", true);
+	}
+	else
+	{
+		spawnModal("Add Item Success", "<p>Your item has been added.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/groceries.html", false);
+	}
 }
 // Initiates the content for the favorite recipes page.
 function initFavList(cat)
