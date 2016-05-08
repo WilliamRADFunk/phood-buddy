@@ -237,7 +237,7 @@ function popMainPageRecipesCallback(result)
 {
 	if(result === false)
 	{
-		var favRecipes = "";
+		var favRecipes = '';
 		favRecipes +=	'<div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-12">' +
 							'<a href="favorite-recipes.html" target="_self"><img class="img-responsive" src="images/img-category-favrecipes.jpg"></a>' +
 						'</div>' +
@@ -267,12 +267,12 @@ function popMainPageRecipesCallback(result)
 								'</a>' +
 							'</div>' +
 						'</div>';
-		$("#main-recipes").html("");
+		$("#main-recipes").html('');
 		$("#main-recipes").html(favRecipes);
 	}
 	else
 	{
-		var favRecipes = "";
+		var favRecipes = '';
 		favRecipes +=	'<div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-12">' +
 							'<a href="favorite-recipes.html" target="_self"><img class="img-responsive" src="images/img-category-favrecipes.jpg"></a>' +
 						'</div>' +
@@ -311,9 +311,142 @@ function popMainPageRecipesCallback(result)
 								'</a>' +
 							'</div>' +
 						'</div>';
-		$("#main-recipes").html("");
+		$("#main-recipes").html('');
 		$("#main-recipes").html(favRecipes);
 		$('#carousel-recipes').carousel();
+	}
+	initMainPageGroceries();
+}
+// Launches the call for favorited recipes to populate landing page.
+function initMainPageGroceries()
+{
+	if(checkAuth())
+	{
+		loggedIn();
+		getGroceryList(popMainPageGroceriesCallback);
+	}
+	else
+	{
+		window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html";
+	}
+}
+// Once backend responds with favorited recipes, it uses it to
+// populate the landing page's carousel.
+function popMainPageGroceriesCallback(result)
+{
+	if(result !== false)
+	{
+		var cats = Object.keys(result);
+		var itemCounter = 0;
+		for(var it = 0; it < cats.length-1; it++)
+		{
+			var tempObj = result[cats[it]];
+			if( !('items' in tempObj) ) { continue; }
+			else { itemCounter++; }
+		}
+		if(itemCounter <= 0) { result = false; }
+	}
+	if(result === false)
+	{
+		var groceryList = '';
+		groceryList += '<div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-12">' +
+							'<a href="groceries.html" target="_self"><img class="img-responsive" src="images/img-category-groceries.jpg"></a>' +
+						'</div>' +
+						'<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">' +
+							'<div id="carousel-groceries" class="carousel slide" data-ride="carousel">' +
+								'<!-- Wrapper for slides -->' +
+								'<div class="carousel-inner" role="listbox">' +
+									'<div class="item active row food-cat" onclick="window.location = \'http://www.williamrobertfunk.com/applications/phood-buddy/groceries.html\';">' +
+										'<h3>NO ITEMS IN GROCERY LIST</h3>' +
+										'<div class="col-lg-10 col-lg-offset-2 col-md-10 col-md-offset-2 col-sm-10 col-sm-offset-2 col-xs-10 col-xs-offset-2">' +
+											'<ul>' +
+												'<li>Empty Item</li>' +
+												'<li>Empty Item</li>' +
+												'<li>Empty Item</li>' +
+												'<li>Empty Item</li>' +
+											'</ul>' +
+											'<ul>' +
+												'<li>Empty Item</li>' +
+												'<li>Empty Item</li>' +
+												'<li>Empty Item</li>' +
+												'<li>Empty Item</li>' +
+											'</ul>' +
+											'<ul>' +
+												'<li>Empty Item</li>' +
+												'<li>Empty Item</li>' +
+												'<li>Empty Item</li>' +
+												'<li>Empty Item</li>' +
+											'</ul>' +
+										'</div>' +
+									'</div>' +
+								'</div>' +
+								'<!-- Left and right controls -->' +
+								'<a class="left carousel-control" href="#carousel-groceries" role="button" data-slide="prev">' +
+									'<span class="glyphicon glyphicon-chevron-left turquois" aria-hidden="true"></span>' +
+									'<span class="sr-only">Previous</span>' +
+								'</a>' +
+								'<a class="right carousel-control" href="#carousel-groceries" role="button" data-slide="next">' +
+									'<span class="glyphicon glyphicon-chevron-right turquois" aria-hidden="true"></span>' +
+									'<span class="sr-only">Next</span>' +
+								'</a>' +
+							'</div>' +
+						'</div>';
+		$("#main-groceries").html("");
+		$("#main-groceries").html(groceryList);
+		$('#carousel-groceries').carousel();
+	}
+	else
+	{
+		var categories = Object.keys(result);
+		var groceryList = "";
+		groceryList += '<div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-12">' +
+							'<a href="groceries.html" target="_self"><img class="img-responsive" src="images/img-category-groceries.jpg"></a>' +
+						'</div>' +
+						'<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">' +
+							'<div id="carousel-groceries" class="carousel slide" data-ride="carousel">' +
+								'<!-- Wrapper for slides -->' +
+								'<div class="carousel-inner" role="listbox">';
+				for(var i = 0; i < categories.length-1; i++)
+				{
+					var obj = result[categories[i]];
+					var items = 0;
+					if( !('items' in obj) ) { items = []; }
+					else { items = Object.keys(obj.items); }
+					var firstCat = (i === 0) ? ' active' : '';
+					groceryList += 	'<div class="item' + firstCat + ' row food-cat" onclick="window.location = \'http://www.williamrobertfunk.com/applications/phood-buddy/groceries.html\';">' +
+										'<h3>' + obj.name + '</h3>' +
+										'<div class="col-lg-10 col-lg-offset-2 col-md-10 col-md-offset-2 col-sm-10 col-sm-offset-2 col-xs-10 col-xs-offset-2">';
+					for(var j = 0; j < 12; j++)
+					{				
+						if( (j !== 0) && (j % 4 === 0) ) { groceryList +=  '</ul>'; }	
+						if(j % 4 === 0) { groceryList += '<ul>'; }
+						if(j < items.length) { groceryList += '<li>' + obj.items[items[j]].name + '</li>'; }
+						else { groceryList += '<li>Empty Item</li>'; }
+						/*	<ul>
+								<li>Item #1</li>
+								<li>Item #2</li>
+								<li>Item #3</li>
+								<li>Item #4</li>
+							</ul>	*/
+					}
+					groceryList += 		'</div>' +
+									'</div>';
+				}
+				groceryList +=	'</div>' +
+								'<!-- Left and right controls -->' +
+								'<a class="left carousel-control" href="#carousel-groceries" role="button" data-slide="prev">' +
+									'<span class="glyphicon glyphicon-chevron-left turquois" aria-hidden="true"></span>' +
+									'<span class="sr-only">Previous</span>' +
+								'</a>' +
+								'<a class="right carousel-control" href="#carousel-groceries" role="button" data-slide="next">' +
+									'<span class="glyphicon glyphicon-chevron-right turquois" aria-hidden="true"></span>' +
+									'<span class="sr-only">Next</span>' +
+								'</a>' +
+							'</div>' +
+						'</div>';
+		$("#main-groceries").html("");
+		$("#main-groceries").html(groceryList);
+		$('#carousel-groceries').carousel();
 	}
 }
 // If user clicks on recipe in landing page, this takes them to the recipe.

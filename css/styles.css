@@ -230,6 +230,10 @@ ul
 	text-align: center;
 	display: block;
 }
+#carousel-groceries .food-cat
+{
+	cursor: pointer !important;
+}
 #carousel-groceries .item
 {
 	margin-left: auto;
