@@ -80,8 +80,7 @@ function editGrocery(id, category, item, description, quantity, unit, cb)
 	}
 
 	var data = ref.getAuth();
-	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/" + category + "/");
-	var grefItems = gref.child("items");
+	var grefItems new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/" + category + "/items/");
 
 	var groceryObj = assembleGrocery(item, description, quantity, unit);
 
