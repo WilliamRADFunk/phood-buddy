@@ -814,7 +814,7 @@ function popGroceryCallback(result)
 							'<div id="add-item">' +
 							'<select class="col-lg-2 col-md-12 col-sm-12 col-xs-12">' +
 								'<option value="" disabled selected>Category</option>';
-					for(var i = 0; i < categories.length; i++)
+					for(var i = 0; i < categories.length-1; i++)
 					{
 						page += '<option value="' + categories[i] + '">' + result[categories[i]].name + '</option>';
 					}
@@ -857,7 +857,7 @@ function popGroceryCallback(result)
 				'<div class="divider row">' +
 					'<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12"></div>' +
 				'</div>';
-	for(var j = 0; j < categories.length; j++)
+	for(var j = 0; j < categories.length-1; j++)
 	{
 		page += '<div class="row">' +
 					'<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 table-responsive">' +
@@ -871,17 +871,17 @@ function popGroceryCallback(result)
 								'<th class="col-5">Quantity</th>' +
 								'<th class="col-6">Unit</th>' +
 							'</tr>';
-				var items = Object.keys(result[categories[j]].items);
-				console.log(result[categories[j]].items);
-				for(var k = 0; k < items.length; k++)
+				var obj = result[categories[j]];
+				var itemList = (obj['items'] != null || obj['items'] != undefined || obj['items'] != "") ? Object.keys(obj['items']) : [];
+				for(var k = 0; k < itemList.length; k++)
 				{
 					page += '<tr>' +
 								'<td class="grocery-options"><a id="delete-item-1" class="delete-item" href="javascript:void(0)">Delete</a></td>' +
 								'<td class="grocery-options"><a id="edit-item-1" class="edit-item" href="javascript:void(0)">Edit</a></td>' +
-								'<td>' + result[categories[j]].items[items[k]].name + '</td>' +
-								'<td>' + result[categories[j]].items[items[k]].description + '</td>' +
-								'<td>' + result[categories[j]].items[items[k]].quantity + '</td>' +
-								'<td>' + result[categories[j]].items[items[k]].unit + '</td>' +
+								'<td>' + obj.items[itemList[0]].name + '</td>' +
+								'<td>' + obj.items[itemList[0]].description + '</td>' +
+								'<td>' + obj.items[itemList[0]].quantity + '</td>' +
+								'<td>' + obj.items[itemList[0]].unit + '</td>' +
 							'</tr>';
 				}
 				page += '</table>' +
