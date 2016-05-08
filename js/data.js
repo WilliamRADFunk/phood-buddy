@@ -249,7 +249,7 @@ function postRecipe(recipeJson, cb)
 
 	ref.child("users").child(data.uid).child("created-recipe").update(storeJson);
 	ref.child("users").child(data.uid).child("favorited-recipe").update(storeJson);
-	cb(true);
+	cb(recipeId);
 }
 
 
