@@ -868,7 +868,7 @@ function popGroceryCallback(result)
 								'<td>' + obj.items[itemList[k]].name + '</td>' +
 								'<td>' + obj.items[itemList[k]].description + '</td>' +
 								'<td>' + obj.items[itemList[k]].quantity + '</td>' +
-								'<td>' + obj.items[itemList[k]].unit + '</td>' +
+								'<td class="grocery-unit">' + obj.items[itemList[k]].unit + '</td>' +
 							'</tr>' +
 							'<tr id="' + obj.name + '_' + itemList[k] + '_2" class="editable">' +
 								'<td class="grocery-options"><a id="delete-item-1" class="delete-item" href="javascript:cancelEdit(\'' + obj.name + '_' + itemList[k] + '\')">Cancel</a></td>' +
@@ -906,7 +906,6 @@ function popGroceryCallback(result)
 									'<option value="inches">inches</option>' +
 								'</select></td>' +
 							'</tr>';
-					$(obj.name + "_" + itemList[k] + "_2 select[name='editUnit']").val(obj.items[itemList[k]].unit);
 				}
 				page += '</table>' +
 					'</div>' +
@@ -928,6 +927,8 @@ function addItem()
 // Toggle add grocery item buttons/links.
 function editItem(id)
 {
+	var unitValue = $("#" + id + "_1 .grocery-unit").html();
+	$("#" + id + "_2 select[name='editUnit']").val(unitValue).change();
 	$("#" + id + "_2").show();
 	$("#" + id + "_1").hide();
 }
