@@ -584,12 +584,6 @@ input:-webkit-autofill {
 	display: inline-block;
 	margin-right: 40px;
 }
-#groceries .divider.row div
-{
-	border-bottom: 2px solid #E5E5E5;
-	margin-bottom: 10px;
-	margin-top: 10px;
-}
 #groceries .col-1,
 #groceries .col-2,
 #groceries .col-5,
@@ -605,7 +599,14 @@ input:-webkit-autofill {
 {
 	width: 40%;
 }
-#groceries #add-item
+#groceries .divider.row div
+{
+	border-bottom: 2px solid #E5E5E5;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+#groceries #add-item,
+#groceries .editable
 {
 	display: none;
 }
@@ -621,10 +622,10 @@ input:-webkit-autofill {
 	background-repeat: no-repeat;
 	padding-left: 30px;
 }
-#groceries #add-item input[type='text'],
-#groceries #add-item input[type='number'],
-#groceries #add-item select,
-#groceries #add-item button,
+#groceries input[type='text'],
+#groceries input[type='number'],
+#groceries select,
+#groceries button,
 #modal #editing-item input[type='text'],
 #modal #editing-item input[type='number'],
 #modal #editing-item select

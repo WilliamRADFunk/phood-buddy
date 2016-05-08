@@ -804,6 +804,7 @@ function popGroceryCallback(result)
 									'<option value="" disabled selected>Unit</option>' +
 									'<option value="pieces">pieces</option>' +
 									'<option value="cans">cans</option>' +
+									'<option value="cans">boxes</option>' +
 									'<option value="" disabled>----- Volume -----</option>' +
 									'<option value="teaspoons">teaspoons</option>' +
 									'<option value="tablespoons">tablespoons</option>' +
@@ -861,14 +862,51 @@ function popGroceryCallback(result)
 					
 				for(var k = 0; k < itemList.length; k++)
 				{
-					page += '<tr id="' + obj.name + '_' + itemList[k] + '">' +
-								'<td class="grocery-options"><a id="delete-item-1" class="delete-item" href="" onclick="deleteItem(\'' + obj.name + '_' + itemList[k] + '\')">Delete</a></td>' +
-																'<td class="grocery-options"><a id="edit-item-1" class="edit-item" href="" editItem(\'' + obj.name + '_' + itemList[k] + '\')>Edit</a></td>' +
+					page += '<tr id="' + obj.name + '_' + itemList[k] + '_1">' +
+								'<td class="grocery-options"><a id="delete-item-1" class="delete-item" href="javascript:deleteItem(\'' + obj.name + '_' + itemList[k] + '\')">Delete</a></td>' +
+								'<td class="grocery-options"><a id="edit-item-1" class="edit-item" href="javascript:editItem(\'' + obj.name + '_' + itemList[k] + '\')">Edit</a></td>' +
 								'<td>' + obj.items[itemList[k]].name + '</td>' +
 								'<td>' + obj.items[itemList[k]].description + '</td>' +
 								'<td>' + obj.items[itemList[k]].quantity + '</td>' +
 								'<td>' + obj.items[itemList[k]].unit + '</td>' +
+							'</tr>' +
+							'<tr id="' + obj.name + '_' + itemList[k] + '_2" class="editable">' +
+								'<td class="grocery-options"><a id="delete-item-1" class="delete-item" href="javascript:cancelEdit(\'' + obj.name + '_' + itemList[k] + '\')">Cancel</a></td>' +
+								'<td class="grocery-options"><a id="edit-item-1" class="edit-item" href="javascript:submitEdit(\'' + obj.name + '_' + itemList[k] + '\')">Submit</a></td>' +
+								'<td><input type="text" name="editName" value="' + obj.items[itemList[k]].name + '"/></td>' +
+								'<td><input type="text" name="editDesc" value="' + obj.items[itemList[k]].description + '"/></td>' +
+								'<td><input type="number" name="editQuant" value="' + obj.items[itemList[k]].quantity + '"/></td>' +
+								'<td><select name="editUnit">' +
+									'<option value="" disabled selected>Unit</option>' +
+									'<option value="pieces">pieces</option>' +
+									'<option value="cans">cans</option>' +
+									'<option value="cans">boxes</option>' +
+									'<option value="" disabled>----- Volume -----</option>' +
+									'<option value="teaspoons">teaspoons</option>' +
+									'<option value="tablespoons">tablespoons</option>' +
+									'<option value="fluid ounces">fluid ounces</option>' +
+									'<option value="gills">gills</option>' +
+									'<option value="cups">cups</option>' +
+									'<option value="pints">pints</option>' +
+									'<option value="quarts">quarts</option>' +
+									'<option value="gallons">gallons</option>' +
+									'<option value="milliliters">milliliters</option>' +
+									'<option value="liters">liters</option>' +
+									'<option value="deciliters">deciliters</option>' +
+									'<option value="" disabled>----- Weight -----</option>' +
+									'<option value="pounds">pounds</option>' +
+									'<option value="ounces">ounces</option>' +
+									'<option value="milligrams">milligrams</option>' +
+									'<option value="grams">grams</option>' +
+									'<option value="kilograms">kilograms</option>' +
+									'<option value="" disabled>----- Length -----</option>' +
+									'<option value="millimeters">millimeters</option>' +
+									'<option value="centimeters">centimeters</option>' +
+									'<option value="meters">meters</option>' +
+									'<option value="inches">inches</option>' +
+								'</select></td>' +
 							'</tr>';
+					$(obj.name + "_" + itemList[k] + "_2 select[name='editUnit']").val(obj.items[itemList[k]].unit);
 				}
 				page += '</table>' +
 					'</div>' +
@@ -887,19 +925,35 @@ function addItem()
 	$("#add-item").show();
 	$("#add-item-link").hide();
 }
+// Toggle add grocery item buttons/links.
+function editItem(id)
+{
+	$("#" + id + "_2").show();
+	$("#" + id + "_1").hide();
+}
 // Toggle cancel grocery item buttons/links.
 function cancelItem()
 {
 	$("#add-item").hide();
 	$("#add-item-link").show();
-	/* TODO: Clear all fields */
+	$("select[name='addCat']").prop("selectedIndex", 0);
+	$("input[name='name']").val("");
+	$("input[name='description']").val("");
+	$("input[name='quantity']").val("");
+	$("select[name='addUnit']").prop("selectedIndex", 0);
+}
+// Toggle cancel grocery item edit buttons/links.
+function cancelEdit(id)
+{
+	$("#" + id + "_2").hide();
+	$("#" + id + "_1").show();
 }
 // Submit grocery item to database.
 function submitItem(id)
 {
 	$("#add-item").hide();
 	$("#add-item-link").show();
-	var category = $("select[name='addCat'] :selected").val();
+	var category = $("select[name='addCat'] option:selected").val();
 	var item = $("input[name='name']").val();
 	var description = $("input[name='description']").val();
 	var quantity = $("input[name='quantity']").val();
@@ -923,6 +977,38 @@ function submitItemCallback(result)
 	else
 	{
 		spawnModal("Add Item Success", "<p>Your item has been added.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/groceries.html", false);
+	}
+}
+// Submit grocery item to database.
+function submitEdit(id)
+{
+	$("#" + id + "_2").hide();
+	$("#" + id + "_1").show();
+	var category = id.substr(0, id.indexOf('_'));
+	var itemId = id.substr( id.indexOf('_') + 1 );
+	var item = $(id + "_2 input[name='editName']").val();
+	var description = $(id + "_2 input[name='editDesc']").val();
+	var quantity = $(id + "_2 input[name='editQuant']").val();
+	var unit = $(id + "_2 select[name='editUnit'] option:selected").val();
+	if(category == "" || item == "" || description == "" || quantity == "" || unit == "")
+	{
+		submitEditCallback(false);
+	}
+	else
+	{
+		editGrocery(itemId, category, item, description, quantity, unit, submitEditCallback)
+	}
+}
+// Messages user with result of the new item, and refreshes page when successful or if user wants.
+function submitEditCallback(result)
+{
+	if(result === false)
+	{
+		spawnModal("Edit Item Failed", "<p>We had trouble editing your item.<br/><br/>Make sure you filled out all fields.<br/><br/>Want to refresh the page<br/>and try again?</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/groceries.html", true);
+	}
+	else
+	{
+		spawnModal("Edit Item Success", "<p>Your item has been edited.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/groceries.html", false);
 	}
 }
 // Delete grocery item from database.

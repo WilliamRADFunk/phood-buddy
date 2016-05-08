@@ -70,7 +70,7 @@ function editGrocery(id, category, item, description, quantity, unit, cb)
 	//WARNING ::: Convert impending input into Javascript object (if not already), and set equal to 'contentJson'
 	// DEBUG :  DUMMY VALUE var contentJson = {"-KEnu2ENxPZIixIbbXG4":{"name": "banana", "description": "That other thing", "quantity": "2", "unit": "loafes", "category": "meat"}};
 
-	var keys = Object.keys(contentJson);
+	//var keys = Object.keys(contentJson);
 
 	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
 	if(ref.getAuth() === null)
