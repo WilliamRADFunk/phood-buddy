@@ -802,6 +802,8 @@ function popGroceryCallback(result)
 								'<input type="number" name="quantity" placeholder="Quantity" class="col-lg-2 col-md-12 col-sm-12 col-xs-12"/>' +
 								'<select class="col-lg-2 col-md-12 col-sm-12 col-xs-12" name="addUnit">' +
 									'<option value="" disabled selected>Unit</option>' +
+									'<option value="pieces">pieces</option>' +
+									'<option value="cans">cans</option>' +
 									'<option value="" disabled>----- Volume -----</option>' +
 									'<option value="teaspoons">teaspoons</option>' +
 									'<option value="tablespoons">tablespoons</option>' +
@@ -859,9 +861,9 @@ function popGroceryCallback(result)
 					
 				for(var k = 0; k < itemList.length; k++)
 				{
-					page += '<tr id="' + itemList[k] + '">' +
-								'<td class="grocery-options"><a id="delete-item-1" class="delete-item" href="" onclick="deleteItem(' + itemList[k] + ')">Delete</a></td>' +
-																'<td class="grocery-options"><a id="edit-item-1" class="edit-item" href="" editItem(' + itemList[k] + ')>Edit</a></td>' +
+					page += '<tr id="' + obj.name + '_' + itemList[k] + '">' +
+								'<td class="grocery-options"><a id="delete-item-1" class="delete-item" href="" onclick="deleteItem(\'' + obj.name + '_' + itemList[k] + '\')">Delete</a></td>' +
+																'<td class="grocery-options"><a id="edit-item-1" class="edit-item" href="" editItem(\'' + obj.name + '_' + itemList[k] + '\')>Edit</a></td>' +
 								'<td>' + obj.items[itemList[k]].name + '</td>' +
 								'<td>' + obj.items[itemList[k]].description + '</td>' +
 								'<td>' + obj.items[itemList[k]].quantity + '</td>' +
@@ -892,7 +894,7 @@ function cancelItem()
 	$("#add-item-link").show();
 	/* TODO: Clear all fields */
 }
-// Toggle submit grocery item buttons/links.
+// Submit grocery item to database.
 function submitItem(id)
 {
 	$("#add-item").hide();
@@ -921,6 +923,25 @@ function submitItemCallback(result)
 	else
 	{
 		spawnModal("Add Item Success", "<p>Your item has been added.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/groceries.html", false);
+	}
+}
+// Delete grocery item from database.
+function deleteItem(id)
+{
+	var category = id.substr(0, id.indexOf('_'));
+	var itemId = id.substr( id.indexOf('_') + 1 );
+	deleteGrocery(category, itemId, deleteItemCallback);
+}
+// Messages user with result of the deleted item, and refreshes page when successful or if user wants.
+function deleteItemCallback(result)
+{
+	if(result === false)
+	{
+		spawnModal("Delete Item Failed", "<p>We had trouble deleting your item.<br/><br/>Make sure you filled out all fields.<br/><br/>Want to refresh the page<br/>and try again?</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/groceries.html", true);
+	}
+	else
+	{
+		spawnModal("Delete Item Success", "<p>Your item has been deleted.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/groceries.html", false);
 	}
 }
 // Initiates the content for the favorite recipes page.
