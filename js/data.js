@@ -70,9 +70,7 @@ function editGrocery(id, category, item, description, quantity, unit, cb)
 	//WARNING ::: Convert impending input into Javascript object (if not already), and set equal to 'contentJson'
 	// DEBUG :  DUMMY VALUE var contentJson = {"-KEnu2ENxPZIixIbbXG4":{"name": "banana", "description": "That other thing", "quantity": "2", "unit": "loafes", "category": "meat"}};
 
-	//var keys = Object.keys(contentJson);
-
-	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 	if(ref.getAuth() === null)
 	{
 		cb(false);
@@ -80,16 +78,15 @@ function editGrocery(id, category, item, description, quantity, unit, cb)
 	}
 
 	var data = ref.getAuth();
-	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/" + category + "/");
-	var grefItems = gref.child("items");
+	var grefItems = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/" + category + "/items/");
 
 	var groceryObj = assembleGrocery(item, description, quantity, unit);
-
 	grefItems.once('value', function(snapshot){
 
 		if(snapshot.hasChild(id))
 		{
-			grefItems.child(id).update(groceryObj);
+			var updateRef = grefItems.child(id);
+			updateRef.update(groceryObj);
 			cb(true);
 		}
 		else
@@ -113,7 +110,7 @@ function deleteGrocery(category, contentKey, cb)
 	var data = ref.getAuth();
 
 	//Needs to add key to URL path and remove using 'gref.remove()'
-	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/" + category + "/items");
+	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/" + category + "/items/");
 
 	if(gref === null)
 	{
@@ -139,7 +136,38 @@ function removeAllGrocery(cb)
 
 	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/");
 
-	gref.remove();
+	gref.set({
+		"bakery":{
+			name:"Bakery"
+		},
+		"bakingSpices":{
+			name: "Baking and Spices"
+		},
+		"cannedGoods":{
+			"name": "Beverages"
+		},
+		"cereals":{
+			"name": "Cereals"
+		},
+		"condiments":{
+			name:"Condiments"
+		},
+		"dairy":{
+			name: "Dairy"
+		},
+		"frozen":{
+			"name": "Frozen"
+		},
+		"meats":{
+			"name": "Meats"
+		},
+		"miscellaneous":{
+			"name": "Miscellaneous"
+		},
+		"produce":{
+			"name": "Produce"
+		}
+	})
 	cb(true);
 }
 

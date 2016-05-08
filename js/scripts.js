@@ -864,17 +864,17 @@ function popGroceryCallback(result)
 					
 				for(var k = 0; k < itemList.length; k++)
 				{
-					page += '<tr id="' + obj.name + '_' + itemList[k] + '_1">' +
-								'<td class="grocery-options"><a id="delete-item-1" class="delete-item" href="javascript:deleteItem(\'' + obj.name + '_' + itemList[k] + '\')">Delete</a></td>' +
-								'<td class="grocery-options"><a id="edit-item-1" class="edit-item" href="javascript:editItem(\'' + obj.name + '_' + itemList[k] + '\')">Edit</a></td>' +
+					page += '<tr id="' + categories[j] + '_' + itemList[k] + '_1">' +
+								'<td class="grocery-options"><a id="delete-item-1" class="delete-item" href="javascript:deleteItem(\'' + categories[j] + '_' + itemList[k] + '\')">Delete</a></td>' +
+								'<td class="grocery-options"><a id="edit-item-1" class="edit-item" href="javascript:editItem(\'' + categories[j] + '_' + itemList[k] + '\')">Edit</a></td>' +
 								'<td>' + obj.items[itemList[k]].name + '</td>' +
 								'<td>' + obj.items[itemList[k]].description + '</td>' +
 								'<td>' + obj.items[itemList[k]].quantity + '</td>' +
 								'<td class="grocery-unit">' + obj.items[itemList[k]].unit + '</td>' +
 							'</tr>' +
-							'<tr id="' + obj.name + '_' + itemList[k] + '_2" class="editable">' +
-								'<td class="grocery-options"><a id="delete-item-1" class="delete-item" href="javascript:cancelEdit(\'' + obj.name + '_' + itemList[k] + '\')">Cancel</a></td>' +
-								'<td class="grocery-options"><a id="edit-item-1" class="edit-item" href="javascript:submitEdit(\'' + obj.name + '_' + itemList[k] + '\')">Submit</a></td>' +
+							'<tr id="' + categories[j] + '_' + itemList[k] + '_2" class="editable">' +
+								'<td class="grocery-options"><a id="delete-item-1" class="delete-item" href="javascript:cancelEdit(\'' + categories[j] + '_' + itemList[k] + '\')">Cancel</a></td>' +
+								'<td class="grocery-options"><a id="edit-item-1" class="edit-item" href="javascript:submitEdit(\'' + categories[j] + '_' + itemList[k] + '\')">Submit</a></td>' +
 								'<td><input type="text" name="editName" value="' + obj.items[itemList[k]].name + '"/></td>' +
 								'<td><input type="text" name="editDesc" value="' + obj.items[itemList[k]].description + '"/></td>' +
 								'<td><input type="number" name="editQuant" value="' + obj.items[itemList[k]].quantity + '"/></td>' +
@@ -1006,17 +1006,18 @@ function submitEdit(id)
 	$("#" + id + "_1").show();
 	var category = id.substr(0, id.indexOf('_'));
 	var itemId = id.substr( id.indexOf('_') + 1 );
-	var item = $(id + "_2 input[name='editName']").val();
-	var description = $(id + "_2 input[name='editDesc']").val();
-	var quantity = $(id + "_2 input[name='editQuant']").val();
-	var unit = $(id + "_2 select[name='editUnit'] option:selected").val();
-	if(category == "" || item == "" || description == "" || quantity == "" || unit == "")
+	var item = $("#" + id + "_2 :input[name='editName']").val();
+	var description = $("#" + id + "_2 input[name='editDesc']").val();
+	var quantity = $("#" + id + "_2 input[name='editQuant']").val();
+	var unit = $("#" + id + "_2 select[name='editUnit']").val();
+	if( (category == "" || item == "" || description == "" || quantity == "" || unit == "") ||
+		(category == undefined || item == undefined || description == undefined || quantity == undefined || unit == undefined) )
 	{
 		submitEditCallback(false);
 	}
 	else
 	{
-		editGrocery(itemId, category, item, description, quantity, unit, submitEditCallback)
+		editGrocery(itemId, category, item, description, quantity, unit, submitEditCallback);
 	}
 }
 // Messages user with result of the new item, and refreshes page when successful or if user wants.
