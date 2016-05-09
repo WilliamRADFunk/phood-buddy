@@ -1420,7 +1420,6 @@ function popRecipeCallback(result)
 // Adds currently displayed recipe to user's list of favorites.
 function favThisRecipe(id)
 {
-	console.log("id in favThisRecipe(id): ", id);
 	favoriteRecipe(id, favThisRecipeCallback);
 }
 function favThisRecipeCallback(result)

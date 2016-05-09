@@ -1066,7 +1066,6 @@ function updatePlanner(dayOfWeek, timeOfDay, name, recipeId, cb)
 
 function favoriteRecipe(recipeId, cb)
 {
-	console.log("recipeId in data.js: ", recipeId);
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
 	if(ref.getAuth() === null)
@@ -1081,7 +1080,8 @@ function favoriteRecipe(recipeId, cb)
 		//Creates reference to users portion in database
 		var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
 		//Creates object to save
-		var recipeSave;
+		var recipeSave = {};
+		recipeSave[recipeId] = {};
 		recipeSave[recipeId] = true;
 
 		//Updates favorited recipes to contain favorited recipe.
