@@ -793,7 +793,7 @@ function editUserProfile(fname, lname, email, city, country, state, street, age,
 
 	if(ref.getAuth() === null)
 	{
-		//cb(false);
+		cb(false);
 		return;
 	}
 
@@ -830,6 +830,43 @@ function editUserProfile(fname, lname, email, city, country, state, street, age,
 
 }
 
+function getUserProfile(cb)
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		cb(false);
+		return;
+	}
+
+	var data = ref.getAuth();
+
+	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+
+	userRef.once("value", function(snapshot){
+		//Assign the snapshots of each segment of user profile data for profile/settings page
+		var tasteSnapshot = snapshot.child("taste");
+		var allergiesSnapshot = snapshot.child("allergies");
+		var profileSnapshot = snapshot.child("profile");
+		var healthSnapshot = snapshot.child("health");
+		// Extract JSON from snapshots
+		var tasteObj = tasteSnapshot.val();
+		var allergiesObj = allergiesSnapshot.val();
+		var profileObj = profileSnapshot.val();
+		var healthObj = healthSnapshot.val();
+		//Build JSON
+		var contentJson = {};
+		contentJson.taste = tasteObj;
+		contentJson.allergies = allergiesObj;
+		contentJson.profile = profileObj;
+		contentJson.health = healthObj;
+
+		cb(contentJson);
+	});
+}
+
+/*
 function getUserProfileSettings()
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
@@ -866,7 +903,7 @@ function getUsersSettings(cb)
 	var data = ref.getAuth();
 
 	//Create new reference to users information
-	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/profile");
 
 	//Snapshot current userRef to obtain users info JSON
 	userRef.once("value", function(snapshot){
@@ -903,7 +940,7 @@ function getTasteProfile(cb)
 	});
 
 }
-
+*/
 function editTasteProfile(contentJson, cb)
 {
 
@@ -934,7 +971,7 @@ function getUserAllergies(cb)
 
 	if(ref.getAuth() === null)
 	{
-		cb(""); //cb FIX
+		cb(false);
 			return;
 	}
 
@@ -990,10 +1027,15 @@ function getUserHealth(cb) //FIX
 
 	allergyRef.once("value", function(snapshot)
 	{
-		if(snapshot.child("allergies").exists())
+		if(snapshot.child("health").exists())
 		{
-			var contentJson = snapshot.child("allergies").val();
+			var contentJson = snapshot.child("health").val();
 			cb(contentJson);
+		}
+		else
+		{
+			var contentJson1 = {"empty": true};
+			cb(contentJson1);
 		}
 
 	});
