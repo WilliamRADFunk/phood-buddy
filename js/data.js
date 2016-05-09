@@ -979,7 +979,7 @@ function getTasteProfile(cb)
 
 }
 */
-function editTasteProfile(contentJson, cb)
+function editTasteProfile(bitter, salty, sour, spicy, sweet, cb)
 {
 
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
@@ -993,11 +993,18 @@ function editTasteProfile(contentJson, cb)
 	//Stores authData of package
 	var data = ref.getAuth();
 
-	console.log(contentJson);
+	tasteRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/taste");
 
-	tasteRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+	//Create taste object to update into taste directory of database of user
+	tasteObj = {
+		"bitter": bitter,
+		"salty": salty,
+		"sour": sour,
+		"spicy": spicy,
+		"sweet": sweet
+	};
 
-	tasteRef.child("taste").update(contentJson);
+	tasteRef.update(tasteObj);
 	cb(true);
 
 
