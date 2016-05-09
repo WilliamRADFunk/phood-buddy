@@ -218,10 +218,6 @@ function assembleRecipe(description, img, name, taste, ingredients, directions, 
 
 		postRecipe(recipeJson, cb);
 	});
-
-
-
-
 	
 }
 
@@ -786,6 +782,48 @@ function getAllRecipes(count, cb)
 	});
 }
 
+function resetPassword(cb)
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		cb(false);
+		return;
+	}
+
+	var data = ref.getAuth();
+
+		var user = new firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+		user.once("value", function(snapshot){
+			var obj = snapshot.val();
+			if(obj.provider == "password")
+			{
+				var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/profile/");
+				userRef.once("value", function(snapshot2){
+				var profile = snapshot2.val();
+				emailString = profile.email;
+
+				ref.resetPassword({
+					email: emailString
+				},function(error){
+					if(error)
+					{
+						cb(false);
+					}
+					else
+					{
+						cb(true);
+					}
+				});
+
+				});
+			}
+		});
+		
+	
+}
+
 function editUserProfile(fname, lname, email, city, country, state, street, age, favdish, favdrink, gender, about, cb) //
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
@@ -824,9 +862,9 @@ function editUserProfile(fname, lname, email, city, country, state, street, age,
 
 	var fullName = fname + " " + lname;
 
-	userRef.child("name").update(fullName);
+	userRef.update({"name": fullName});
 	userRef.child("profile").update(profileData);
-	//cb(true);
+	cb(true);
 
 }
 
