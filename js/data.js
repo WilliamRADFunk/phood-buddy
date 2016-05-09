@@ -1080,7 +1080,8 @@ function favoriteRecipe(recipeId, cb)
 		//Creates reference to users portion in database
 		var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
 		//Creates object to save
-		var recipeSave;
+		var recipeSave = {};
+		recipeSave[recipeId] = {};
 		recipeSave[recipeId] = true;
 
 		//Updates favorited recipes to contain favorited recipe.
