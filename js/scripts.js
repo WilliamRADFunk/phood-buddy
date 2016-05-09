@@ -1264,7 +1264,7 @@ function unfavoriteRecipeCallback(result)
 	}
 	else
 	{
-		spawnModal("Recipe Removal Success", "<p>Your item has been deleted.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/favorite-recipes.html", false);
+		spawnModal("Recipe Removal Success", "<p>The recipe has been removed from your favorites.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/favorite-recipes.html", false);
 	}
 }
 // Moves right through fav list pagination
@@ -1372,7 +1372,7 @@ function popRecipeCallback(result)
 		                    '<div class="row">' +
 		                        '<a id="print-recipe" class="col-lg-4 col-md-4 col-sm-4 col-xs-12" href="javascript:window.print()">Print Recipe</a>' +
 		                        '<a id="grocery-redirect" class="col-lg-4 col-md-4 col-sm-4 col-xs-12" href="groceries.html">Add Groceries</a>' +
-		                        '<a id="fav-list-redirect" class="col-lg-4 col-md-4 col-sm-4 col-xs-12" href="favorite-recipes.html">Favorite Recipe</a>' +
+		                        '<a id="fav-list-redirect" class="col-lg-4 col-md-4 col-sm-4 col-xs-12" href="javascript:favThisRecipe(' + window.location['search'].substr(1) + ');">Favorite Recipe</a>' +
 		                    '</div>' +
 		                '</div>' +
 		            '</div>' +
@@ -1415,6 +1415,23 @@ function popRecipeCallback(result)
 	            '</div>' +
 	        '</div>';
 		$("#wrapper").html(str);
+	}
+}
+// Adds currently displayed recipe to user's list of favorites.
+function favThisRecipe(id)
+{
+	console.log("id in favThisRecipe(id): ", id);
+	favoriteRecipe(id, favThisRecipeCallback);
+}
+function favThisRecipeCallback(result)
+{
+	if(result === false)
+	{
+		spawnModal("Failed to Favorite", "<p>We had trouble adding the recipe to your favorites.<br/><br/>Want to refresh the page<br/>and try again?</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/favorite-recipes.html", true);
+	}
+	else
+	{
+		spawnModal("Recipe Favorite Success", "<p>The recipe has been added to your favorites.<br/><br/>Would you like to go to your favorites list?</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/favorite-recipes.html", true);
 	}
 }
 // Customizable modal to be reused through all pages.
