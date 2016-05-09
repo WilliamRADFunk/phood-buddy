@@ -694,6 +694,21 @@ input:-webkit-autofill {
 {
 	white-space: normal;
 }
+#favorite-recipes .fav-recipe a.gotoLink
+{
+	background-image: url('../images/btn-print.jpg');
+	background-repeat: no-repeat;
+	margin-bottom: 20px;
+	margin-right: 75px;
+	padding-left: 30px;
+}
+#favorite-recipes .fav-recipe a.removeFavLink
+{
+	background-image: url('../images/btn-trash.jpg');
+	background-repeat: no-repeat;
+	margin-bottom: 20px;
+	padding-left: 30px;
+}
 .text-center
 {
 	text-align: center;

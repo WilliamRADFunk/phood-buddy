@@ -1235,7 +1235,8 @@ function popFavListCallback(result, amount)
 					'<h3>' + result.info[i].name + '</h3>' +
 					'<h4>Taste: <span>' + result.info[i].taste + '</span></h4>' +
 					'<p>' + result.info[i].description + '</p>' +
-					'<a href="recipe.html?' + result.info[i].id + '">Go to recipe</a>' +
+					'<a class="gotoLink" href="recipe.html?' + result.info[i].id + '">Go to recipe</a>' +
+					'<a class="removeFavLink" href="javascript:unfavoriteRecipe(' + result.info[i].id + ')">Remove from favorites</a>' +
 				'</div>' +
 				'<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12"></div>' +
 			'</div>' +
@@ -1248,6 +1249,23 @@ function popFavListCallback(result, amount)
 		$(this).attr("src", "images/placeholder-recipe.jpg");
 	});
 	$("#page-count").html( "Page "+ (counter + 1) + " of " + Math.floor(listCount / 10 + 1) );
+}
+// Removes the recipe from user's list of favorites.
+function unfavoriteRecipe(id)
+{
+	removeFavorite(id, unfavoriteRecipeCallback)
+}
+// Informs the user if unfavoriting was successful and refreshes.
+function unfavoriteRecipeCallback(result)
+{
+	if(result === false)
+	{
+		spawnModal("Failed to Unfavorite", "<p>We had trouble removing the recipe from your favorites.<br/><br/>Want to refresh the page<br/>and try again?</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/favorite-recipes.html", true);
+	}
+	else
+	{
+		spawnModal("Recipe Removal Success", "<p>Your item has been deleted.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/favorite-recipes.html", false);
+	}
 }
 // Moves right through fav list pagination
 function increaseCount()
