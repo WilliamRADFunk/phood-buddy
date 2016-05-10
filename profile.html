@@ -59,8 +59,8 @@
 			</ul>
 			<ul id="login-register" class="nav navbar-nav">
 				<li id="login-link"><a href="login.html" target="_self">LOGIN</a></li>
-				<li id="logout-link"><a href="login.html" target="_self">LOGOUT</a></li>
-				<li><a href="register.html" target="_self">REGISTER</a></li>
+				<li id="logout-link" onclick="authLogout();"><a href="login.html" target="_self">LOGOUT</a></li>
+				<li id="register-link"><a href="register.html" target="_self">REGISTER</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -74,7 +74,7 @@
 					<img src="images/avatar-funk.jpg"/>
 					<h1>WFunk</h1>
 					<button id="btn-edit-profile" onclick="editProfile();">EDIT PROFILE</button>
-					<button id="btn-edit-risks">EDIT RISKS</button>
+					<button id="btn-edit-risks" onclick="editRisks();">EDIT RISKS</button>
 					<button id="btn-edit-exercise" onclick="editFitbit();">EDIT EXERCISE</button>
 					<button id="btn-edit-tastes" onclick="editTastes();">EDIT TASTES</button>
 				</div>

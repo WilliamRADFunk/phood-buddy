@@ -419,7 +419,7 @@ function popSettingsCallback(result)
 {
 	if(result === false)
 	{
-		spawnModal("Not Logged In", "<p>You don't appear to be logged in. Go back to the login page.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/login.html", false);
+		notLoggedinCallback();
 	}
 	else
 	{
@@ -556,74 +556,127 @@ function popSettingsCallback(result)
 							'<tbody>' +
 								 '<tr>' +
 									'<td>Your Conditions: </td>' +
-									'<td>' +
-										'<ul id="user-health">' +
-											'<li value="diabetes-2">Diabetes 2</li>' +
-										'</ul>' +
+									'<td>';
+				var healthList = Object.keys(health);
+				var userHealth = [];
+				var notUserHealth = [];
+				for(var i = 0; i < healthList.length; i++)
+				{
+					if(health[healthList[i]] == true)
+					{
+						userHealth.push(healthList[i]);
+					}
+					else if(health[healthList[i]] == false)
+					{
+						notUserHealth.push(healthList[i]);
+					}
+					else
+					{
+						console.log("Invalid Health category value");
+					}
+				}
+								page +=	'<ul id="user-health" data="' + userHealth.toString() + '">';
+							if(userHealth.length > 0)
+							{
+								for(var j = 0; j < userHealth.length; j++)
+								{
+									page +=	'<li value="' + userHealth[j] + '">' + titleCase((userHealth[j].replace("-", " ")).trim()) + '</li>';
+								}
+							}
+							else
+							{
+									page +=	'<li value="">None</li>';
+							}
+								page +=	'</ul>' +
 									'</td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td>Add: </td>' +
 									'<td>' +
-										'<select id="add-health">' +
-											'<option value="" disable selected>Add a condition</option>' +
-											'<option value="diabetes-1">Diabetes 1</option>' +
-											'<option value="high-cholesterol">High Cholesterol</option>' +
-											'<option value="hypertension">Hypertension</option>' +
-											'<option value="hypotension">Hypotension</option>' +
-										'</select>' +
+										'<select id="add-health" data="' + notUserHealth.toString() + '">' +
+											'<option value="" disable selected>Add a condition</option>';
+								for(var k = 0; k < notUserHealth.length; k++)
+								{
+									page +=	'<option value="' + notUserHealth[k] + '">' + titleCase((notUserHealth[k].replace("-", " ")).trim()) + '</option>';
+								}
+								page +=	'</select>' +
 									'</td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td>Remove: </td>' +
 									'<td>' +
-										'<select id="remove-health">' +
-											'<option value="" disable selected>Remove an allergy</option>' +
-											'<option value="diabetes-2">Diabetes 2</option>' +
-										'</select>' +
+										'<select id="remove-health" data="' + userHealth.toString() + '">' +
+											'<option value="" disable selected>Remove a health condition</option>';
+								for(var m = 0; m < userHealth.length; m++)
+								{
+									page +=	'<option value="' + userHealth[m] + '">' + titleCase((userHealth[m].replace("-", " ")).trim()) + '</option>';
+								}
+								page +=	'</select>' +
 									'</td>' +
 								'</tr>' +
 							'</tbody>' +
-						'</table>' +
-						'<h2>Allergies</h2>' +
+						'</table>';
+						var allergyList = Object.keys(allergies);
+						var userAllergy = [];
+						var notUserAllergy = [];
+						for(var i = 0; i < allergyList.length; i++)
+						{
+							if(allergies[allergyList[i]] == true)
+							{
+								userAllergy.push(allergyList[i]);
+							}
+							else if(allergies[allergyList[i]] == false)
+							{
+								notUserAllergy.push(allergyList[i]);
+							}
+							else
+							{
+								console.log("Invalid Allergy category value");
+							}
+						}
+				page +=	'<h2>Allergies</h2>' +
 						'<table>' +
 							'<tbody>' +
 								'<tr>' +
 									'<td>Your Allergies: </td>' +
 									'<td>' +
-										'<ul id="user-allergy">' +
-											'<li value="peanut">Peanut</li>' +
-											'<li value="tree-nut">Tree Nut</li>' +
-											'<li value="shell-fish">Shell Fish</li>' +
-											'<li value="sesame">Sesame Seeds</li>' +
-										'</ul>' +
+										'<ul id="user-allergy" data="' + userAllergy.toString() + '">';
+							if(userAllergy.length > 0)
+							{
+								for(var n = 0; n < userAllergy.length; n++)
+								{
+									page +=	'<li value="' + userAllergy[n] + '">' + titleCase((userAllergy[n].replace("-", " ")).trim()) + '</li>';
+								}
+							}
+							else
+							{
+									page +=	'<li value="">None</li>';
+							}
+								page +=	'</ul>' +
 									'</td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td>Add: </td>' +
 									'<td>' +
-										'<select id="add-allergy">' +
-											'<option value="" disable selected>Add an allergy</option>' +
-											'<option value="corn">Corn</option>' +
-											'<option value="red-meat">Red Meat</option>' +
-											'<option value="milk">Milk</option>' +
-											'<option value="egg">Egg</option>' +
-											'<option value="soy">Soy</option>' +
-											'<option value="fish">Fish</option>' +
-											'<option value="gluten">gluten</option>' +
-										'</select>' +
+										'<select id="add-allergy" data="' + notUserAllergy.toString() + '">' +
+											'<option value="" disable selected>Add an allergy</option>';
+								for(var p = 0; p < notUserAllergy.length; p++)
+								{
+									page +=	'<option value="' + notUserAllergy[p] + '">' + titleCase((notUserAllergy[p].replace("-", " ")).trim()) + '</option>';
+								}
+								page +=	'</select>' +
 									'</td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td>Remove: </td>' +
 									'<td>' +
-										'<select id="remove-allergy">' +
-											'<option value="" disable selected>Remove an allergy</option>' +
-											'<option value="peanut">Peanut</option>' +
-											'<option value="tree-nut">Tree Nut</option>' +
-											'<option value="shell-fish">Shell Fish</option>' +
-											'<option value="sesame">Sesame Seeds</option>' +
-										'</select>' +
+										'<select id="remove-allergy" data="' + userAllergy.toString() + '">' +
+											'<option value="" disable selected>Remove an allergy</option>';
+								for(var q = 0; q < userAllergy.length; q++)
+								{
+									page +=	'<option value="' + userAllergy[q] + '">' + titleCase((userAllergy[q].replace("-", " ")).trim()) + '</option>';
+								}
+								page +=	'</select>' +
 									'</td>' +
 								'</tr>' +
 							'</tbody>' +
@@ -742,9 +795,17 @@ function popSettingsCallback(result)
 			$("#btn-taste-profile").addClass("active");
 		});
 		$("#btn-logout").click(function(){
+			authLogout();
 			window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html";
 		});
 	}
+}
+// Turns the first letter of every word uppercase
+function titleCase(sentence)
+{
+	var splitStr = sentence.toLowerCase().split(" ");
+	for (var i = 0; i < splitStr.length; i++) { splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1); }
+	return splitStr.join(" "); 
 }
 // User pressed reset password inside Settings.
 function resetMyPassword()
@@ -792,16 +853,15 @@ function editProfileCallback(result)
 		spawnModal("Profile Edit Success", "<p>Your profile has been edited.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/profile.html", false);
 	}
 }
-// User wants to edit their taste info.
-function editTastes()
+// User wants to edit their Health/Allergies info.
+function editRisks()
 {
-	var bitter = $("input[name='bitter']").val();
-	var salty = $("input[name='salty']").val();
-	var sour = $("input[name='sour']").val();
-	var spicy = $("input[name='spicy']").val();
-	var sweet = $("input[name='sweet']").val();
-	console.log("bitter: ", bitter, " salty: ", salty, " sour: ", sour, " spicy: ", spicy, " sweet: ", sweet);
-	editTasteProfile(bitter, salty, sour, spicy, sweet, editProfileCallback);
+	var usrname = $("input[name='fitbit-username']").val();
+	var pswd = $("input[name='fitbit-password']").val();
+	console.log("usrname: ", usrname, " pswd: ", pswd);
+	//editUserFitbit(usrname, pswd, editProfileCallback);
+	spawnModal("Fitbit Integration Not Ready", "<p>We're working hard to get your Fitbit integrated.'<br/><br/>Please be patient with us.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/profile.html", false);
+	
 }
 // User wants to edit their Fitbit info.
 function editFitbit()
@@ -812,6 +872,17 @@ function editFitbit()
 	//editUserFitbit(usrname, pswd, editProfileCallback);
 	spawnModal("Fitbit Integration Not Ready", "<p>We're working hard to get your Fitbit integrated.'<br/><br/>Please be patient with us.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/profile.html", false);
 	
+}
+// User wants to edit their taste info.
+function editTastes()
+{
+	var bitter = $("input[name='bitter']").val();
+	var salty = $("input[name='salty']").val();
+	var sour = $("input[name='sour']").val();
+	var spicy = $("input[name='spicy']").val();
+	var sweet = $("input[name='sweet']").val();
+	console.log("bitter: ", bitter, " salty: ", salty, " sour: ", sour, " spicy: ", spicy, " sweet: ", sweet);
+	editTasteProfile(bitter, salty, sour, spicy, sweet, editProfileCallback);
 }
 // Modal response for whether registration was, or wasn't, successful.
 function registerCallback(result)
@@ -1095,7 +1166,7 @@ function popScheduleCallback(result)
 {
 	if(result === false)
 	{
-		spawnModal("Not Logged In", "<p>You don't appear to be logged in. Go back to the login page.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/login.html", false);
+		notLoggedinCallback();
 	}
 	else
 	{
@@ -1253,7 +1324,7 @@ function popGroceryCallback(result)
 {
 	if(result === false)
 	{
-		spawnModal("Not Logged In", "<p>You don't appear to be logged in. Go back to the login page.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/login.html", false);
+		notLoggedinCallback();
 	}
 	else
 	{
@@ -1805,4 +1876,29 @@ function loggedIn()
 {
 	$("#login-link").css("display", "none");
 	$("#logout-link").css("display", "block");
+	$("#register-link").css("display", "none");
+}
+// Called when user is verified as logged out. Makes the logout option, login.
+function loggedOut()
+{
+	$("#login-link").css("display", "block");
+	$("#logout-link").css("display", "none");
+	$("#register-link").css("display", "block");
+}
+// Modal for when user isn't logged in.
+function notLoggedinCallback()
+{
+	spawnModal("Not Logged In", "<p>You don't appear to be logged in. Go back to the login page.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/login.html", false);
+}
+// Initiates the standard login check.
+function initLoginCheck()
+{
+	if(checkAuth()) { loggedIn(); }
+	else { window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html"; }
+}
+// If at login page, and user is logged in, redirect to index page.
+function initIndexRedirect()
+{
+	if(checkAuth()) { window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/index.html"; }
+	else { loggedOut(); }
 }
