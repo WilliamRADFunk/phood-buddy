@@ -1755,7 +1755,7 @@ function popRecipeCallback(result)
 {
 	if(result === false)
 	{
-		spawnModal("Couldn't find that recipe", "<p>That recipe didn't <i>pan</i> out. Shall we refresh the page?</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/schedule.html", true);
+		spawnModal("Couldn't find that recipe", "<p>That recipe didn't <i>pan</i> out. Shall we refresh the page?</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/recipe.html", true);
 	}
 	else
 	{
