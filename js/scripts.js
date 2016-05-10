@@ -84,66 +84,6 @@ $(document).ready(function ()
 			customRegister( fname, lname, email, pwd, registerCallback);
 		}
 	});
-	// Turns content on and off depending on Settings/Profile tab selected.
-	$("#btn-personal-profile").click(function(){
-		$("#my-profile").css("display", "block");
-		$("#btn-edit-profile").css("display", "block");
-		$("#btn-personal-profile").addClass("active");
-		$("#my-risks").css("display", "none");
-		$("#btn-edit-risks").css("display", "none");
-		$("#btn-risk-profile").removeClass("active");
-		$("#my-exercise").css("display", "none");
-		$("#btn-edit-exercise").css("display", "none");
-		$("#btn-exercise-profile").removeClass("active");
-		$("#my-tastes").css("display", "none");
-		$("#btn-edit-tastes").css("display", "none");
-		$("#btn-taste-profile").removeClass("active");
-	});
-	$("#btn-risk-profile").click(function(){
-		$("#my-profile").css("display", "none");
-		$("#btn-edit-profile").css("display", "none");
-		$("#btn-personal-profile").removeClass("active");
-		$("#my-risks").css("display", "block");
-		$("#btn-edit-risks").css("display", "block");
-		$("#btn-risk-profile").addClass("active");
-		$("#my-exercise").css("display", "none");
-		$("#btn-edit-exercise").css("display", "none");
-		$("#btn-exercise-profile").removeClass("active");
-		$("#my-tastes").css("display", "none");
-		$("#btn-edit-tastes").css("display", "none");
-		$("#btn-taste-profile").removeClass("active");
-	});
-	$("#btn-exercise-profile").click(function(){
-		$("#my-profile").css("display", "none");
-		$("#btn-edit-profile").css("display", "none");
-		$("#btn-personal-profile").removeClass("active");
-		$("#my-risks").css("display", "none");
-		$("#btn-edit-risks").css("display", "none");
-		$("#btn-risk-profile").removeClass("active");
-		$("#my-exercise").css("display", "block");
-		$("#btn-edit-exercise").css("display", "block");
-		$("#btn-exercise-profile").addClass("active");
-		$("#my-tastes").css("display", "none");
-		$("#btn-edit-tastes").css("display", "none");
-		$("#btn-taste-profile").removeClass("active");
-	});
-	$("#btn-taste-profile").click(function(){
-		$("#my-profile").css("display", "none");
-		$("#btn-edit-profile").css("display", "none");
-		$("#btn-personal-profile").removeClass("active");
-		$("#my-risks").css("display", "none");
-		$("#btn-edit-risks").css("display", "none");
-		$("#btn-risk-profile").removeClass("active");
-		$("#my-exercise").css("display", "none");
-		$("#btn-edit-exercise").css("display", "none");
-		$("#btn-exercise-profile").removeClass("active");
-		$("#my-tastes").css("display", "block");
-		$("#btn-edit-tastes").css("display", "block");
-		$("#btn-taste-profile").addClass("active");
-	});
-	$("#btn-logout").click(function(){
-		window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html";
-	});
 	// Controls how long between carousel transitions.
 	$('.carousel').carousel({
 		interval: 4000
@@ -460,6 +400,418 @@ function goToRecipe(recipeId)
 	{
 		return false;
 	}
+}
+// Launches the call for settings to populate.
+function initSettings()
+{
+	if(checkAuth())
+	{
+		loggedIn();
+		getUserProfile(popSettingsCallback);
+	}
+	else
+	{
+		window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html";
+	}
+}
+// Populated the settings page with content returned from backend.
+function popSettingsCallback(result)
+{
+	if(result === false)
+	{
+		spawnModal("Not Logged In", "<p>You don't appear to be logged in. Go back to the login page.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/login.html", false);
+	}
+	else
+	{
+		var profile = result.profile;
+		profile["about"] = (profile["about"] === "") ? "Your bio should go here." : profile["about"];
+		var health = result.health;
+		var allergies = result.allergies;
+		var tastes = result.taste;
+		//console.log(health, allergies);
+		$("#profile-body").html('');
+		var page = '';
+			page += '<!-- My Profile starts here -->' +
+					'<div id="buttons" class="col-lg-3 col-lg-offset-2 col-md-3 col-md-offset-2 col-sm-3 col-sm-offset-2 col-xs-12">' +
+						'<button id="btn-personal-profile" class="btn-profile active">MY PROFILE</button>' +
+						'<button id="btn-risk-profile" class="btn-profile">MY RISKS</button>' +
+						'<button id="btn-exercise-profile" class="btn-profile">MY EXERCISE</button>' +
+						'<button id="btn-taste-profile" class="btn-profile">MY TASTES</button>' +
+						'<button id="btn-logout" class="btn-profile">LOGOUT</button>' +
+					'</div>' +
+					'<div id="my-profile" class="profile-content col-lg-5 col-md-5 col-sm-5 col-xs-12">' +
+						'<form>' +
+						'<h2>Personal Information</h2>' +
+						'<table>' +
+							'<tbody>' +
+								'<tr>' +
+									'<td><input type="text" name="fname" value="' + profile["fname"] + '" placeholder="First name"/></td>' +
+									'<td><input type="text" name="lname" value="' + profile["lname"] + '" placeholder="Last name"/></td>' +
+								'</tr>' +
+								'<tr>' +
+									'<td><input type="email" name="email" value="' + profile["email"] + '" placeholder="Email"/></td>' +
+									'<td><button id="btn-reset-password" onclick="resetMyPassword();">Password Reset</button></td>' +
+								'</tr>' +
+							'</tbody>' +
+						'</table>' +
+						'<h2>Address</h2>' +
+						'<table>' +
+							'<tbody>' +
+								'<tr>' +
+									'<td><input type="text" name="city" value="' + profile["city"] + '" placeholder="City"/></td>' +
+									'<td>' +
+										'<select id="state" name="state">' +
+											'<option value=""  disabled selected>State</option>' +
+											'<option value="AK">Alaska</option>' +
+											'<option value="AL">Alabama</option>' +
+											'<option value="AR">Arkansas</option>' +
+											'<option value="AZ">Arizona</option>' +
+											'<option value="CA">California</option>' +
+											'<option value="CO">Colorado</option>' +
+											'<option value="CT">Connecticut</option>' +
+											'<option value="DC">District of Columbia</option>' +
+											'<option value="DE">Delaware</option>' +
+											'<option value="FL">Florida</option>' +
+											'<option value="GA">Georgia</option>' +
+											'<option value="HI">Hawaii</option>' +
+											'<option value="IA">Iowa</option>' +
+											'<option value="ID">Idaho</option>' +
+											'<option value="IL">Illinois</option>' +
+											'<option value="IN">Indiana</option>' +
+											'<option value="KS">Kansas</option>' +
+											'<option value="KY">Kentucky</option>' +
+											'<option value="LA">Louisiana</option>' +
+											'<option value="MA">Massachusetts</option>' +
+											'<option value="MD">Maryland</option>' +
+											'<option value="ME">Maine</option>' +
+											'<option value="MI">Michigan</option>' +
+											'<option value="MN">Minnesota</option>' +
+											'<option value="MO">Missouri</option>' +
+											'<option value="MS">Mississippi</option>' +
+											'<option value="MT">Montana</option>' +
+											'<option value="NC">North Carolina</option>' +
+											'<option value="ND">North Dakota</option>' +
+											'<option value="NE">Nebraska</option>' +
+											'<option value="NH">New Hampshire</option>' +
+											'<option value="NJ">New Jersey</option>' +
+											'<option value="NM">New Mexico</option>' +
+											'<option value="NV">Nevada</option>' +
+											'<option value="NY">New York</option>' +
+											'<option value="OH">Ohio</option>' +
+											'<option value="OK">Oklahoma</option>' +
+											'<option value="OR">Oregon</option>' +
+											'<option value="PA">Pennsylvania</option>' +
+											'<option value="PR">Puerto Rico</option>' +
+											'<option value="RI">Rhode Island</option>' +
+											'<option value="SC">South Carolina</option>' +
+											'<option value="SD">South Dakota</option>' +
+											'<option value="TN">Tennessee</option>' +
+											'<option value="TX">Texas</option>' +
+											'<option value="UT">Utah</option>' +
+											'<option value="VA">Virginia</option>' +
+											'<option value="VT">Vermont</option>' +
+											'<option value="WA">Washington</option>' +
+											'<option value="WI">Wisconsin</option>' +
+											'<option value="WV">West Virginia</option>' +
+											'<option value="WY">Wyoming</option>' +
+										'</select>' +
+									'</td>' +
+								'</tr>' +
+								'<tr>' +
+									'<td><input type="text" name="country" value="' + profile["country"] + '" placeholder="Country"/></td>' +
+									'<td><input type="text" name="street" value="' + profile["street"] + '" placeholder="Street Address"/></td>' +
+								'</tr>' +
+							'</tbody>' +
+						'</table>' +
+						'<h2>Extra Info</h2>' +
+						'<table>' +
+							'<tbody>' +
+								'<tr>' +
+									'<td><input type="number" name="age" value="' + profile["age"] + '" placeholder="Age"/></td>' +
+									'<td>' +
+										'<select name="gender">' +
+											'<option value=""  disabled selected>Gender</option>' +
+											'<option value="Female">Female</option>' +
+											'<option value="Male">Male</option>' +
+											'<option value="Other">Other</option>' +
+										'</select>' +
+									'</td>' +
+								'</tr>' +
+								'<tr>' +
+									'<td><input type="text" name="favdish" value="' + profile["favdish"] + '" placeholder="favdish"/></td>' +
+									'<td><input type="text" name="favdrink" value="' + profile["favdrink"] + '" placeholder="favdrink"/></td>' +
+								'</tr>' +
+							'</tbody>' +
+						'</table>' +
+						'<h2>About Me</h2>' +
+						'<div id="bio-box"><textarea id="bio" class="form-control">' + profile["about"] + '</textarea></div>' +
+					'</form>' +
+				'</div>' +
+				'<!-- My Profile ends here -->' +
+				'<!-- My Risks starts here -->' +
+				'<div id="my-risks" class="profile-content col-lg-5 col-md-5 col-sm-5 col-xs-12">' +
+					'<form>' +
+						'<h2>Health Conditions</h2>' +
+						'<table>' +
+							'<tbody>' +
+								 '<tr>' +
+									'<td>Your Conditions: </td>' +
+									'<td>' +
+										'<ul id="user-health">' +
+											'<li value="diabetes-2">Diabetes 2</li>' +
+										'</ul>' +
+									'</td>' +
+								'</tr>' +
+								'<tr>' +
+									'<td>Add: </td>' +
+									'<td>' +
+										'<select id="add-health">' +
+											'<option value="" disable selected>Add a condition</option>' +
+											'<option value="diabetes-1">Diabetes 1</option>' +
+											'<option value="high-cholesterol">High Cholesterol</option>' +
+											'<option value="hypertension">Hypertension</option>' +
+											'<option value="hypotension">Hypotension</option>' +
+										'</select>' +
+									'</td>' +
+								'</tr>' +
+								'<tr>' +
+									'<td>Remove: </td>' +
+									'<td>' +
+										'<select id="remove-health">' +
+											'<option value="" disable selected>Remove an allergy</option>' +
+											'<option value="diabetes-2">Diabetes 2</option>' +
+										'</select>' +
+									'</td>' +
+								'</tr>' +
+							'</tbody>' +
+						'</table>' +
+						'<h2>Allergies</h2>' +
+						'<table>' +
+							'<tbody>' +
+								'<tr>' +
+									'<td>Your Allergies: </td>' +
+									'<td>' +
+										'<ul id="user-allergy">' +
+											'<li value="peanut">Peanut</li>' +
+											'<li value="tree-nut">Tree Nut</li>' +
+											'<li value="shell-fish">Shell Fish</li>' +
+											'<li value="sesame">Sesame Seeds</li>' +
+										'</ul>' +
+									'</td>' +
+								'</tr>' +
+								'<tr>' +
+									'<td>Add: </td>' +
+									'<td>' +
+										'<select id="add-allergy">' +
+											'<option value="" disable selected>Add an allergy</option>' +
+											'<option value="corn">Corn</option>' +
+											'<option value="red-meat">Red Meat</option>' +
+											'<option value="milk">Milk</option>' +
+											'<option value="egg">Egg</option>' +
+											'<option value="soy">Soy</option>' +
+											'<option value="fish">Fish</option>' +
+											'<option value="gluten">gluten</option>' +
+										'</select>' +
+									'</td>' +
+								'</tr>' +
+								'<tr>' +
+									'<td>Remove: </td>' +
+									'<td>' +
+										'<select id="remove-allergy">' +
+											'<option value="" disable selected>Remove an allergy</option>' +
+											'<option value="peanut">Peanut</option>' +
+											'<option value="tree-nut">Tree Nut</option>' +
+											'<option value="shell-fish">Shell Fish</option>' +
+											'<option value="sesame">Sesame Seeds</option>' +
+										'</select>' +
+									'</td>' +
+								'</tr>' +
+							'</tbody>' +
+						'</table>' +
+					'</form>' +
+				'</div>' +
+				'<!-- My Risks ends here -->' +
+				'<!-- My Exercise starts here -->' +
+				'<div id="my-exercise" class="profile-content col-lg-5 col-md-5 col-sm-5 col-xs-12">' +
+					'<form autocomplete="off">' +
+						'<h2>FitBit Integration</h2>' +
+						'<table>' +
+							'<tbody>' +
+								'<tr>' +
+									'<td>Username: </td>' +
+									'<td><input type="text" name="fitbit-username" placeholder="FitBit Username" autocomplete="new-password" value=""/></td>' +
+								'</tr>' +
+								'<tr>' +
+									'<td>Password: </td>' +
+									'<td><input type="password" name="fitbit-password" autocomplete="new-password" placeholder="password"/></td>' +
+								'</tr>' +
+							'</tbody>' +
+						'</table>' +
+					'</form>' +
+				'</div>' +
+				'<!-- My Exercise ends here -->' +
+				'<!-- My Tastes starts here -->' +
+				'<div id="my-tastes" class="profile-content col-lg-5 col-md-5 col-sm-5 col-xs-12">' +
+					'<form>' +
+					'<h2>Taste Preferences</h2>' +
+						'<table>' +
+							'<tbody>' +
+								'<tr>' +
+									'<td>Bitter: </td>' +
+									'<td><input type="number" name="bitter" value="' + tastes["bitter"] + '" placeholder="2.5"/></td>' +
+								'</tr>' +
+								'<tr>' +
+									'<td>Salty: </td>' +
+									'<td><input type="number" name="salty" value="' + tastes["salty"] + '" placeholder="2.5"/></td>' +
+								'</tr>' +
+								'<tr>' +
+									'<td>Sour: </td>' +
+									'<td><input type="number" name="sour" value="' + tastes["sour"] + '" placeholder="2.5"/></td>' +
+								'</tr>' +
+								'<tr>' +
+									'<td>Spicy: </td>' +
+									'<td><input type="number" name="spicy" value="' + tastes["spicy"] + '" placeholder="2.5"/></td>' +
+								'</tr>' +
+								'<tr>' +
+									'<td>Sweet: </td>' +
+									'<td><input type="number" name="sweet" value="' + tastes["sweet"] + '" placeholder="2.5"/></td>' +
+								'</tr>' +
+							'</tbody>' +
+						'</table>' +
+					'</form>' +
+				'</div>' +
+				'<!-- My Tastes ends here -->';
+		$("#profile-body").html(page);
+		$("select[name='state']").val(profile["state"]).change();
+		$("select[name='gender']").val(profile["gender"]).change();
+		// Turns content on and off depending on Settings/Profile tab selected.
+		$("#btn-personal-profile").click(function(){
+			$("#my-profile").css("display", "block");
+			$("#btn-edit-profile").css("display", "block");
+			$("#btn-personal-profile").addClass("active");
+			$("#my-risks").css("display", "none");
+			$("#btn-edit-risks").css("display", "none");
+			$("#btn-risk-profile").removeClass("active");
+			$("#my-exercise").css("display", "none");
+			$("#btn-edit-exercise").css("display", "none");
+			$("#btn-exercise-profile").removeClass("active");
+			$("#my-tastes").css("display", "none");
+			$("#btn-edit-tastes").css("display", "none");
+			$("#btn-taste-profile").removeClass("active");
+		});
+		$("#btn-risk-profile").click(function(){
+			$("#my-profile").css("display", "none");
+			$("#btn-edit-profile").css("display", "none");
+			$("#btn-personal-profile").removeClass("active");
+			$("#my-risks").css("display", "block");
+			$("#btn-edit-risks").css("display", "block");
+			$("#btn-risk-profile").addClass("active");
+			$("#my-exercise").css("display", "none");
+			$("#btn-edit-exercise").css("display", "none");
+			$("#btn-exercise-profile").removeClass("active");
+			$("#my-tastes").css("display", "none");
+			$("#btn-edit-tastes").css("display", "none");
+			$("#btn-taste-profile").removeClass("active");
+		});
+		$("#btn-exercise-profile").click(function(){
+			$("#my-profile").css("display", "none");
+			$("#btn-edit-profile").css("display", "none");
+			$("#btn-personal-profile").removeClass("active");
+			$("#my-risks").css("display", "none");
+			$("#btn-edit-risks").css("display", "none");
+			$("#btn-risk-profile").removeClass("active");
+			$("#my-exercise").css("display", "block");
+			$("#btn-edit-exercise").css("display", "block");
+			$("#btn-exercise-profile").addClass("active");
+			$("#my-tastes").css("display", "none");
+			$("#btn-edit-tastes").css("display", "none");
+			$("#btn-taste-profile").removeClass("active");
+		});
+		$("#btn-taste-profile").click(function(){
+			$("#my-profile").css("display", "none");
+			$("#btn-edit-profile").css("display", "none");
+			$("#btn-personal-profile").removeClass("active");
+			$("#my-risks").css("display", "none");
+			$("#btn-edit-risks").css("display", "none");
+			$("#btn-risk-profile").removeClass("active");
+			$("#my-exercise").css("display", "none");
+			$("#btn-edit-exercise").css("display", "none");
+			$("#btn-exercise-profile").removeClass("active");
+			$("#my-tastes").css("display", "block");
+			$("#btn-edit-tastes").css("display", "block");
+			$("#btn-taste-profile").addClass("active");
+		});
+		$("#btn-logout").click(function(){
+			window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html";
+		});
+	}
+}
+// User pressed reset password inside Settings.
+function resetMyPassword()
+{
+	passwordReset(resetPasswordCallback);
+}
+// Result of password reset attempt is shown to user.
+function resetPasswordCallback(result)
+{
+	if(result === false)
+	{
+		spawnModal("Password Reset Failed", "<p>We had trouble resetting your password.<br/><br/>Want to refresh the page<br/>and try again?</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/profile.html", true);
+	}
+	else
+	{
+		spawnModal("Password Reset Success", "<p>Your reset password email has been sent.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/profile.html", false);
+	}
+}
+// User wants to edit their profile info.
+function editProfile()
+{
+	var fname = $("input[name='fname']").val();
+	var lname = $("input[name='lname']").val();
+	var email = $("input[name='email']").val();
+	var city = $("input[name='city']").val();
+	var country = $("input[name='country']").val();
+	var state = $("select[name='state'] option:selected").val();
+	var street = $("input[name='street']").val();
+	var age = $("input[name='age']").val();
+	var favdish = $("input[name='favdish']").val();
+	var favdrink = $("input[name='favdrink']").val();
+	var gender = $("select[name='gender'] option:selected").val();
+	var about = $("#bio").val();
+	editUserProfile(fname, lname, email, city, country, state, street, age, favdish, favdrink, gender, about, editProfileCallback);
+}
+// Result of edit profile attempt is shown to user.
+function editProfileCallback(result)
+{
+	if(result === false)
+	{
+		spawnModal("Profile Edit Failed", "<p>We had trouble editing your profile.<br/><br/>Want to refresh the page<br/>and try again?</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/profile.html", true);
+	}
+	else
+	{
+		spawnModal("Profile Edit Success", "<p>Your profile has been edited.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/profile.html", false);
+	}
+}
+// User wants to edit their taste info.
+function editTastes()
+{
+	var bitter = $("input[name='bitter']").val();
+	var salty = $("input[name='salty']").val();
+	var sour = $("input[name='sour']").val();
+	var spicy = $("input[name='spicy']").val();
+	var sweet = $("input[name='sweet']").val();
+	console.log("bitter: ", bitter, " salty: ", salty, " sour: ", sour, " spicy: ", spicy, " sweet: ", sweet);
+	editTasteProfile(bitter, salty, sour, spicy, sweet, editProfileCallback);
+}
+// User wants to edit their Fitbit info.
+function editFitbit()
+{
+	var usrname = $("input[name='fitbit-username']").val();
+	var pswd = $("input[name='fitbit-password']").val();
+	console.log("usrname: ", usrname, " pswd: ", pswd);
+	//editUserFitbit(usrname, pswd, editProfileCallback);
+	spawnModal("Fitbit Integration Not Ready", "<p>We're working hard to get your Fitbit integrated.'<br/><br/>Please be patient with us.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/profile.html", false);
+	
 }
 // Modal response for whether registration was, or wasn't, successful.
 function registerCallback(result)

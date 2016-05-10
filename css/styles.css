@@ -531,11 +531,12 @@ input:-webkit-autofill {
 {
 	width: 50%;
 }
-#profile #bio
+#profile #bio-box
 {
 	border-bottom: 1px solid #DDDDDD;
 	margin: 0px 0px 10px 0px;
 	padding-bottom: 10px;
+	width: 100%;
 }
 #profile .btn-profile
 {

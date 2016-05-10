@@ -218,10 +218,6 @@ function assembleRecipe(description, img, name, taste, ingredients, directions, 
 
 		postRecipe(recipeJson, cb);
 	});
-
-
-
-
 	
 }
 
@@ -786,6 +782,48 @@ function getAllRecipes(count, cb)
 	});
 }
 
+function resetPassword(cb)
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		cb(false);
+		return;
+	}
+
+	var data = ref.getAuth();
+
+		var user = new firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+		user.once("value", function(snapshot){
+			var obj = snapshot.val();
+			if(obj.provider == "password")
+			{
+				var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/profile/");
+				userRef.once("value", function(snapshot2){
+				var profile = snapshot2.val();
+				emailString = profile.email;
+
+				ref.resetPassword({
+					email: emailString
+				},function(error){
+					if(error)
+					{
+						cb(false);
+					}
+					else
+					{
+						cb(true);
+					}
+				});
+
+				});
+			}
+		});
+		
+	
+}
+
 function editUserProfile(fname, lname, email, city, country, state, street, age, favdish, favdrink, gender, about, cb) //
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
@@ -793,7 +831,7 @@ function editUserProfile(fname, lname, email, city, country, state, street, age,
 
 	if(ref.getAuth() === null)
 	{
-		//cb(false);
+		cb(false);
 		return;
 	}
 
@@ -824,12 +862,49 @@ function editUserProfile(fname, lname, email, city, country, state, street, age,
 
 	var fullName = fname + " " + lname;
 
-	userRef.child("name").update(fullName);
+	userRef.update({"name": fullName});
 	userRef.child("profile").update(profileData);
-	//cb(true);
+	cb(true);
 
 }
 
+function getUserProfile(cb)
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		cb(false);
+		return;
+	}
+
+	var data = ref.getAuth();
+
+	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+
+	userRef.once("value", function(snapshot){
+		//Assign the snapshots of each segment of user profile data for profile/settings page
+		var tasteSnapshot = snapshot.child("taste");
+		var allergiesSnapshot = snapshot.child("allergies");
+		var profileSnapshot = snapshot.child("profile");
+		var healthSnapshot = snapshot.child("health");
+		// Extract JSON from snapshots
+		var tasteObj = tasteSnapshot.val();
+		var allergiesObj = allergiesSnapshot.val();
+		var profileObj = profileSnapshot.val();
+		var healthObj = healthSnapshot.val();
+		//Build JSON
+		var contentJson = {};
+		contentJson.taste = tasteObj;
+		contentJson.allergies = allergiesObj;
+		contentJson.profile = profileObj;
+		contentJson.health = healthObj;
+
+		cb(contentJson);
+	});
+}
+
+/*
 function getUserProfileSettings()
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
@@ -866,7 +941,7 @@ function getUsersSettings(cb)
 	var data = ref.getAuth();
 
 	//Create new reference to users information
-	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/profile");
 
 	//Snapshot current userRef to obtain users info JSON
 	userRef.once("value", function(snapshot){
@@ -903,8 +978,8 @@ function getTasteProfile(cb)
 	});
 
 }
-
-function editTasteProfile(contentJson, cb)
+*/
+function editTasteProfile(bitter, salty, sour, spicy, sweet, cb)
 {
 
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
@@ -918,11 +993,18 @@ function editTasteProfile(contentJson, cb)
 	//Stores authData of package
 	var data = ref.getAuth();
 
-	console.log(contentJson);
+	tasteRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/taste");
 
-	tasteRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+	//Create taste object to update into taste directory of database of user
+	tasteObj = {
+		"bitter": bitter,
+		"salty": salty,
+		"sour": sour,
+		"spicy": spicy,
+		"sweet": sweet
+	};
 
-	tasteRef.child("taste").update(contentJson);
+	tasteRef.update(tasteObj);
 	cb(true);
 
 
@@ -934,7 +1016,7 @@ function getUserAllergies(cb)
 
 	if(ref.getAuth() === null)
 	{
-		cb(""); //cb FIX
+		cb(false);
 			return;
 	}
 
@@ -990,36 +1072,38 @@ function getUserHealth(cb) //FIX
 
 	allergyRef.once("value", function(snapshot)
 	{
-		if(snapshot.child("allergies").exists())
+		if(snapshot.child("health").exists())
 		{
-			var contentJson = snapshot.child("allergies").val();
+			var contentJson = snapshot.child("health").val();
 			cb(contentJson);
+		}
+		else
+		{
+			var contentJson1 = {"empty": true};
+			cb(contentJson1);
 		}
 
 	});
 
 }
 
-function editUserHealth(contentJson, cb)
+function editUserHealth(healthObj, allergyObj, cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
 	if(ref.getAuth() === null)
 	{
-		cb(false);
+		cb(false); //cb HELP
 		return;
 	}
 
 	//Stores authData of package
 	var data = ref.getAuth();
+	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
 
-	
-
-	console.log(contentJson);
-
-	tasteRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
-
-	tasteRef.child("health").update(contentJson);
+	//Store objects provided to correct paths.
+	userRef.child("allergies").update(allergyObj);
+	userRef.child("health").update(healthObj);
 	cb(true);
 }
 
