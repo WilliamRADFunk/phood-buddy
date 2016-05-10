@@ -1087,26 +1087,23 @@ function getUserHealth(cb) //FIX
 
 }
 
-function editUserHealth(contentJson, cb)
+function editUserHealth(healthObj, allergyObj, cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
 	if(ref.getAuth() === null)
 	{
-		cb(false);
+		cb(false); //cb HELP
 		return;
 	}
 
 	//Stores authData of package
 	var data = ref.getAuth();
+	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
 
-	
-
-	console.log(contentJson);
-
-	tasteRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
-
-	tasteRef.child("health").update(contentJson);
+	//Store objects provided to correct paths.
+	userRef.child("allergies").update(allergyObj);
+	userRef.child("health").update(healthObj);
 	cb(true);
 }
 
