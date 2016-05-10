@@ -575,7 +575,7 @@ function popSettingsCallback(result)
 						console.log("Invalid Health category value");
 					}
 				}
-								page +=	'<ul id="user-health" data="' + userHealth.toString() + '">';
+								page +=	'<ul id="user-health">';
 							if(userHealth.length > 0)
 							{
 								for(var j = 0; j < userHealth.length; j++)
@@ -593,25 +593,25 @@ function popSettingsCallback(result)
 								'<tr>' +
 									'<td>Add: </td>' +
 									'<td>' +
-										'<select id="add-health" data="' + notUserHealth.toString() + '">' +
+										'<div id="new-health" data-list="' + notUserHealth.toString() + '"><select id="add-health">' +
 											'<option value="" disable selected>Add a condition</option>';
 								for(var k = 0; k < notUserHealth.length; k++)
 								{
 									page +=	'<option value="' + notUserHealth[k] + '">' + titleCase((notUserHealth[k].replace("-", " ")).trim()) + '</option>';
 								}
-								page +=	'</select>' +
+								page +=	'</select></div>' +
 									'</td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td>Remove: </td>' +
 									'<td>' +
-										'<select id="remove-health" data="' + userHealth.toString() + '">' +
+										'<div id="del-health" data-list="' + userHealth.toString() + '"><select id="remove-health">' +
 											'<option value="" disable selected>Remove a health condition</option>';
 								for(var m = 0; m < userHealth.length; m++)
 								{
 									page +=	'<option value="' + userHealth[m] + '">' + titleCase((userHealth[m].replace("-", " ")).trim()) + '</option>';
 								}
-								page +=	'</select>' +
+								page +=	'</select></div>' +
 									'</td>' +
 								'</tr>' +
 							'</tbody>' +
@@ -640,7 +640,7 @@ function popSettingsCallback(result)
 								'<tr>' +
 									'<td>Your Allergies: </td>' +
 									'<td>' +
-										'<ul id="user-allergy" data="' + userAllergy.toString() + '">';
+										'<ul id="user-allergy">';
 							if(userAllergy.length > 0)
 							{
 								for(var n = 0; n < userAllergy.length; n++)
@@ -658,25 +658,25 @@ function popSettingsCallback(result)
 								'<tr>' +
 									'<td>Add: </td>' +
 									'<td>' +
-										'<select id="add-allergy" data="' + notUserAllergy.toString() + '">' +
+										'<div id="new-allergy" data-list="' + notUserAllergy.toString() + '"><select id="add-allergy">' +
 											'<option value="" disable selected>Add an allergy</option>';
 								for(var p = 0; p < notUserAllergy.length; p++)
 								{
 									page +=	'<option value="' + notUserAllergy[p] + '">' + titleCase((notUserAllergy[p].replace("-", " ")).trim()) + '</option>';
 								}
-								page +=	'</select>' +
+								page +=	'</select></div>' +
 									'</td>' +
 								'</tr>' +
 								'<tr>' +
 									'<td>Remove: </td>' +
 									'<td>' +
-										'<select id="remove-allergy" data="' + userAllergy.toString() + '">' +
+										'<div id="del-allergy" data-list="' + userAllergy.toString() + '"><select id="remove-allergy">' +
 											'<option value="" disable selected>Remove an allergy</option>';
 								for(var q = 0; q < userAllergy.length; q++)
 								{
 									page +=	'<option value="' + userAllergy[q] + '">' + titleCase((userAllergy[q].replace("-", " ")).trim()) + '</option>';
 								}
-								page +=	'</select>' +
+								page +=	'</select></div>' +
 									'</td>' +
 								'</tr>' +
 							'</tbody>' +
@@ -856,12 +856,37 @@ function editProfileCallback(result)
 // User wants to edit their Health/Allergies info.
 function editRisks()
 {
-	var usrname = $("input[name='fitbit-username']").val();
-	var pswd = $("input[name='fitbit-password']").val();
-	console.log("usrname: ", usrname, " pswd: ", pswd);
-	//editUserFitbit(usrname, pswd, editProfileCallback);
-	spawnModal("Fitbit Integration Not Ready", "<p>We're working hard to get your Fitbit integrated.'<br/><br/>Please be patient with us.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/profile.html", false);
-	
+	var hasHealthList = ($("#del-health").data()["list"]).split(",");
+	var notHealthList = ($("#new-health").data()["list"]).split(",");
+	var HealthObj = {};
+	for(var i = 0; i < hasHealthList.length; i++)
+	{
+		if(hasHealthList[i]) { HealthObj[hasHealthList[i]] = true; }
+	}
+	for(var j = 0; j < notHealthList.length; j++)
+	{
+		if(notHealthList[j]) { HealthObj[notHealthList[j]] = false; }
+	}
+	var addHealth = $("#add-health option:selected").val();
+	if(addHealth) { HealthObj[addHealth] = true; }
+	var removeHealth = $("#remove-health option:selected").val();
+	if(removeHealth) { HealthObj[removeHealth] = false; }
+	var hasAllergyList = ($("#del-allergy").data()["list"]).split(",");
+	var notAllergyList = ($("#new-allergy").data()["list"]).split(",");
+	var AllergyObj = {};
+	for(var k = 0; k < hasAllergyList.length; k++)
+	{
+		if(hasAllergyList[k]) { AllergyObj[hasAllergyList[k]] = true; }
+	}
+	for(var n = 0; n < notAllergyList.length; n++)
+	{
+		if(notAllergyList[n]) { AllergyObj[notAllergyList[n]] = false; }
+	}
+	var addAllergy = $("#add-allergy option:selected").val();
+	if(addAllergy) { AllergyObj[addAllergy] = true; }
+	var removeAllergy = $("#remove-allergy option:selected").val();
+	if(removeAllergy) { AllergyObj[removeAllergy] = false; }
+	editUserHealth(HealthObj, AllergyObj, editProfileCallback);	
 }
 // User wants to edit their Fitbit info.
 function editFitbit()
