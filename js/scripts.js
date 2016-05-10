@@ -1170,7 +1170,7 @@ function submitRecipe()
 // Callback to inform user whether submitted recipe made it to the db or not.
 function addRecipeReply(result)
 {
-	if(result) spawnModal("Submission Success", "<p>Your recipe has found its new home at Phood Buddy</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/create-recipe.html", false);
+	if(result) spawnModal("Submission Success", "<p>Your recipe has found its new home at Phood Buddy</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/recipe.html?" + result, false);
 	else spawnModal("Submission Failed", "<p>Your recipe wasn't submitted. Double check your inputs</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/create-recipe.html", false);
 }
 // Initiates the content for the weekly schedule page.
