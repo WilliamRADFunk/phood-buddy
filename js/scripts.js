@@ -32,7 +32,7 @@ $(document).ready(function ()
 	$("#btn-login").click(function(){
 		var email = $("#login-email").val() + "";
 		var pwd = $("#login-password").val() + "";
-		if( (email === "") || (pwd === "") )
+		if( (email === "") || (email === undefined) || (pwd === "") || (pwd === undefined) )
 		{
 			$("#modal").modal({backdrop: "static", keyboard: false, show: true});
 			$(".modal-header").html("Login Failed");
@@ -44,7 +44,7 @@ $(document).ready(function ()
 		else
 		{
 			$(".modal-body").html("<p>Logging in failed. Is this your first time at Phood Buddy?</p>");
-			customLogin($("login-email").val() + "", $("login-password").val() + "", loginCallback);
+			customLogin(email, pwd, loginCallback);
 		}
 	});
 	// System attempts to register user in through Facebook, Twitter, or Google Plus
@@ -62,7 +62,6 @@ $(document).ready(function ()
 	});
 	// System tries to register with values provided in the four text fields.
 	$("#btn-register").click(function(){
-		console.log("Trying to register");
 		var email = $("#register-email").val() + "";
 		var pwd = $("#register-password").val() + "";
 		var fname = $("#register-fname").val() + "";
@@ -87,75 +86,6 @@ $(document).ready(function ()
 	// Controls how long between carousel transitions.
 	$('.carousel').carousel({
 		interval: 4000
-	});
-	// Specifies content and functionality of modal when
-	// user clicks specific links/buttons.
-	$("#lost-password").click(function(){
-		$("#modal").modal({backdrop: "static", keyboard: false, show: true});
-		$(".modal-header").html("Reset Password");
-		$(".modal-body").html("<form><label>Registered Email:&nbsp;&nbsp;</label><input type='text' /></form>");
-		$("#btn-confirm").click(function(){
-			/* TODO: Send reset password email */
-		});
-	});
-	$(".delete-item").click(function(e){
-		$("#modal").modal({backdrop: "static", keyboard: false, show: true});
-		$(".modal-header").html("Delete Item");
-		$(".modal-body").html("<p>Are you sure you want to delete this item from your list?</p>");
-		$("#btn-confirm").click(function(){
-			/* TODO: Delete item from the list */
-			/* TODO: Reload Groceries page */
-		});
-	});
-	$(".edit-item").click(function(e){
-		$("#modal").modal({backdrop: "static", keyboard: false, show: true});
-		$(".modal-header").html("Edit Item");
-		$(".modal-body").html('<div class="row">' +
-			'<div id="editing-item">' +
-			'<select class="col-lg-12 col-md-12 col-sm-12 col-xs-12">' +
-				'<option value="" disabled selected>Category</option>' +
-				'<option value="baked goods">Baked Goods</option>' +
-				'<option value="beverages">Beverages</option>' +
-				'<option value="canned goods">Canned Goods</option>' +
-				'<option value="cereals">Cereals</option>' +
-				'<option value="condiments">Condiments</option>' +
-				'<option value="dairy">Dairy</option>' +
-				'<option value="frozen">Frozen Foods</option>' +
-				'<option value="meats">Meats, Fish, &amp; Poultry</option>' +
-				'<option value="produce">Produce</option>' +
-				'<option value="baking and spices">Baking &amp; Spices</option>' +
-				'<option value="miscellaneous">Miscellaneous</option>' +
-			'</select>' +
-			'<input type="text" name="name" placeholder="Name" class="col-lg-12 col-md-12 col-sm-12 col-xs-12"/>' +
-			'<input type="text" name="description" placeholder="Description" class="col-lg-12 col-md-12 col-sm-12 col-xs-12"/>' +
-			'<input type="number" name="quantity" placeholder="Quantity" class="col-lg-12 col-md-12 col-sm-12 col-xs-12"/>' +
-			'<select class="col-lg-12 col-md-12 col-sm-12 col-xs-12">' +
-				'<option value="" disabled selected>Unit</option>' +
-				'<option value="teaspoons">teaspoons</option>' +
-				'<option value="tablespoons">tablespoons</option>' +
-				'<option value="fluid ounces">fluid ounces</option>' +
-				'<option value="gills">gills</option>' +
-				'<option value="cups">cups</option>' +
-				'<option value="pints">pints</option>' +
-				'<option value="quarts">quarts</option>' +
-				'<option value="gallons">gallons</option>' +
-				'<option value="milliliters">milliliters</option>' +
-				'<option value="liters">liters</option>' +
-				'<option value="deciliters">deciliters</option>' +
-				'<option value="pounds">pounds</option>' +
-				'<option value="ounces">ounces</option>' +
-				'<option value="milligrams">milligrams</option>' +
-				'<option value="grams">grams</option>' +
-				'<option value="kilograms">kilograms</option>' +
-				'<option value="millimeters">millimeters</option>' +
-				'<option value="centimeters">centimeters</option>' +
-				'<option value="meters">meters</option>' +
-				'<option value="inches">inches</option>' +
-			'</select>');
-		$("#btn-confirm").click(function(){
-			/* TODO: Send edited data */
-			/* TODO: Reload Groceries page */
-		});
 	});
 });
 // Launches the call for favorited recipes to populate landing page.
@@ -428,7 +358,6 @@ function popSettingsCallback(result)
 		var health = result.health;
 		var allergies = result.allergies;
 		var tastes = result.taste;
-		//console.log(health, allergies);
 		$("#profile-body").html('');
 		var page = '';
 			page += '<!-- My Profile starts here -->' +
@@ -450,7 +379,7 @@ function popSettingsCallback(result)
 								'</tr>' +
 								'<tr>' +
 									'<td><input type="email" name="email" value="' + profile["email"] + '" placeholder="Email"/></td>' +
-									'<td><button id="btn-reset-password" onclick="resetMyPassword();">Password Reset</button></td>' +
+									'<td><button id="btn-reset-password" onclick="changeMyPassword(); return false;">Password Reset</button></td>' +
 								'</tr>' +
 							'</tbody>' +
 						'</table>' +
@@ -807,21 +736,40 @@ function titleCase(sentence)
 	for (var i = 0; i < splitStr.length; i++) { splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1); }
 	return splitStr.join(" "); 
 }
-// User pressed reset password inside Settings.
-function resetMyPassword()
+// User pressed change password inside Settings.
+function changeMyPassword()
 {
-	passwordReset(resetPasswordCallback);
+	$("#modal").modal({backdrop: "static", keyboard: false, show: true});
+	$(".modal-header").html("Change Password");
+	$(".modal-body").html("<form><label>Old Password:&nbsp;&nbsp;</label><input id='oldPass' type='password' /><br/><br/><label>New Password:&nbsp;&nbsp;</label><input id='newPass' type='password' /></form>");
+	$("#btn-confirm").click(function(){
+		var oldPswd = $("#oldPass").val();
+		var newPswd = $("#newPass").val();
+		changePassword(oldPswd, newPswd, changePasswordCallback);
+	});
 }
-// Result of password reset attempt is shown to user.
-function resetPasswordCallback(result)
+// Result of password change attempt is shown to user.
+function changePasswordCallback(result)
 {
 	if(result === false)
 	{
-		spawnModal("Password Reset Failed", "<p>We had trouble resetting your password.<br/><br/>Want to refresh the page<br/>and try again?</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/profile.html", true);
+		$("#modal").modal({backdrop: "static", keyboard: false, show: true});
+		$(".modal-header").html("Password Change Failed");
+		$(".modal-body").html("<p>We had trouble changing your password.<br/><br/>Make sure both fields are filled out with the password you used to login and the password you want use from now on.</p>");
+		$("#btn-confirm").css("display", "none");
+		$("#btn-cancel").click(function(){
+			$("#btn-confirm").css("display", "block");
+		});
 	}
 	else
 	{
-		spawnModal("Password Reset Success", "<p>Your reset password email has been sent.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/profile.html", false);
+		$("#modal").modal({backdrop: "static", keyboard: false, show: true});
+		$(".modal-header").html("Password Change Success");
+		$(".modal-body").html("<p>Your password has been changed.</p>");
+		$("#btn-confirm").css("display", "none");
+		$("#btn-cancel").click(function(){
+			$("#btn-confirm").css("display", "block");
+		});
 	}
 }
 // User wants to edit their profile info.
@@ -906,7 +854,6 @@ function editTastes()
 	var sour = $("input[name='sour']").val();
 	var spicy = $("input[name='spicy']").val();
 	var sweet = $("input[name='sweet']").val();
-	console.log("bitter: ", bitter, " salty: ", salty, " sour: ", sour, " spicy: ", spicy, " sweet: ", sweet);
 	editTasteProfile(bitter, salty, sour, spicy, sweet, editProfileCallback);
 }
 // Modal response for whether registration was, or wasn't, successful.
@@ -915,22 +862,58 @@ function registerCallback(result)
 	if(result === true)
 	{
 		$("#modal").modal({backdrop: "static", keyboard: false, show: true});
-		$(".modal-body").html("<p>You're account has been created, using some default value.<br/><br/>For Phood Buddy to give you recipes and information that helps <i>you</i> the most,<br/>it needs to know you better.<br/><br/> Would you like to fill out your profile now?</p>");
+		$(".modal-body").html("<p>You're account has been created, using some default values.<br/><br/>For Phood Buddy to give you recipes and information that helps <i>you</i> the most,<br/>it needs to know you better.<br/><br/> Go to the settings page after logging in to complete that information.</p>");
 		$(".modal-header").html("Registration Successful");
 		$("#btn-confirm").click(function(){
-			window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/profile.html";
+			window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html";
 		});
-		$("#btn-cancel").click(function(){
-			window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/index.html";
-		});
+		$("#btn-cancel").css("display", "none");
 	}
 	else
 	{
 		$("#modal").modal({backdrop: "static", keyboard: false, show: true});
 		$(".modal-header").html("Registration Failed");
+		$(".modal-body").html("<p>We had trouble registering your account. Perhaps that email has already been used to create an account at Phood Buddy.</p>");
 		$("#btn-cancel").css("display", "none");
 		$("#btn-confirm").click(function(){
 			$("#btn-cancel").css("display", "inline-block");
+		});
+	}
+}
+// User pressed forgot password inside Settings.
+function resetMyPassword()
+{
+	$("#modal").modal({backdrop: "static", keyboard: false, show: true});
+	$(".modal-header").html("Reset Password");
+	$(".modal-body").html("<form><label>Registered Email:&nbsp;&nbsp;</label><input id='resetEmail' type='email' /></form>");
+	$("#btn-confirm").click(function(){
+		var email = $("#resetEmail").val();
+		resetPassword(email, resetPasswordCallback);
+	});
+}
+// Result of password reset attempt is shown to user.
+function resetPasswordCallback(result)
+{
+	if(result === false)
+	{
+		$("#modal").modal({backdrop: "static", keyboard: false, show: true});
+		$(".modal-header").html("Password Reset Failed");
+		$(".modal-body").html("<p>We had trouble resetting your password.<br/><br/>Want to refresh the page<br/>and try again?</p>");
+		$("#btn-confirm").css("display", "none");
+		$("#btn-cancel").click(function(){
+			$("#btn-confirm").css("display", "block");
+			window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html";
+		});
+	}
+	else
+	{
+		$("#modal").modal({backdrop: "static", keyboard: false, show: true});
+		$(".modal-header").html("Password Reset Success");
+		$(".modal-body").html("<p>Your reset password email has been sent.</p>");
+		$("#btn-confirm").css("display", "none");
+		$("#btn-cancel").click(function(){
+			$("#btn-confirm").css("display", "block");
+			window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html";
 		});
 	}
 }
@@ -1394,7 +1377,9 @@ function popGroceryCallback(result)
 									'<option value="" disabled selected>Unit</option>' +
 									'<option value="pieces">pieces</option>' +
 									'<option value="cans">cans</option>' +
-									'<option value="cans">boxes</option>' +
+									'<option value="boxes">boxes</option>' +
+									'<option value="loaves">loaves</option>' +
+									'<option value="bottles">bottles</option>' +
 									'<option value="" disabled>----- Volume -----</option>' +
 									'<option value="teaspoons">teaspoons</option>' +
 									'<option value="tablespoons">tablespoons</option>' +
@@ -1470,7 +1455,9 @@ function popGroceryCallback(result)
 									'<option value="" disabled selected>Unit</option>' +
 									'<option value="pieces">pieces</option>' +
 									'<option value="cans">cans</option>' +
-									'<option value="cans">boxes</option>' +
+									'<option value="boxes">boxes</option>' +
+									'<option value="loaves">loaves</option>' +
+									'<option value="bottles">bottles</option>' +
 									'<option value="" disabled>----- Volume -----</option>' +
 									'<option value="teaspoons">teaspoons</option>' +
 									'<option value="tablespoons">tablespoons</option>' +

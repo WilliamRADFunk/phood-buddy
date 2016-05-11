@@ -85,6 +85,8 @@ function customRegister(fnameString, lnameString, emailString, passwordString, c
 
 function customLogin(emailString, passwordString, cb)
 {
+	console.log("The email provided is" + emailString);
+
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
 	ref.authWithPassword({
 		email    : emailString,
@@ -157,7 +159,7 @@ function setAccount(userData, fnameString, lnameString, emailString)
 					}
 	});
 
-	ref.child("grocery").child(userdata.uid).set({
+	ref.child("grocery").child(userData.uid).set({
 		"bakery":{
 			name:"Bakery"
 		},
