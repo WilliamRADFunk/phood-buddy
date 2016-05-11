@@ -157,7 +157,7 @@ function setAccount(userData, fnameString, lnameString, emailString)
 					}
 	});
 
-	ref.child("grocery").child(userdata.uid).set({
+	ref.child("grocery").child(userData.uid).set({
 		"bakery":{
 			name:"Bakery"
 		},
