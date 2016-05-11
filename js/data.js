@@ -574,6 +574,10 @@ function getFavAll(count, cb)
 			});//END: snapshot -> 'recipe-directory'
 			//cb(recipeContentJson); //This cb will return the JSON of all recipes
 		}//END: if user has created recipes
+		else
+		{
+			cb(false);
+		}
 	});//END: snapshot -> 'users/uid'
 }
 
