@@ -781,7 +781,7 @@ function getAllRecipes(count, cb)
 	});
 }
 
-function resetPassword(cb)
+function resetPasswordLoggedIn(cb) //DONT WORRY ABOUT THIS ONE
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
@@ -828,6 +828,83 @@ function resetPassword(cb)
 		});
 		
 	
+}
+
+function resetPassword(emailString, cb)
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	ref.resetPassword({
+					email: emailString
+				},function(error){
+						if(error)
+						{
+							console.log(error); //ERROR-D
+							console.log("password reset function from firebase failed. Returning false...");//ERROR-D
+							cb(false);
+						}
+						else
+						{
+							console.log("message has been sent!");//ERROR-D
+							cb(true);
+						}
+					});
+}
+
+function changePassword(oldPassword, newPassword, cb)
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		cb(false);
+		return;
+	}
+
+	var data = ref.getAuth();
+
+		var user = new firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+		user.once("value", function(snapshot){
+			var obj = snapshot.val();
+			if(obj.provider == "password")
+			{
+				console.log("Custom user recognized, proceeding to password reset...");
+				var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/profile/");
+				userRef.once("value", function(snapshot2){
+				var profile = snapshot2.val();
+				emailString = profile.email;
+					
+					ref.changePassword({
+					  email: emailString,
+					  oldPassword: oldPassword,
+					  newPassword: newPassword
+					}, function(error) {
+						if (error) {
+							switch (error.code) {
+								case "INVALID_PASSWORD":
+								console.log("The specified user account password is incorrect.");
+							break;
+							case "INVALID_USER":
+								console.log("The specified user account does not exist.");
+							break;
+							default:
+								console.log("Error changing password:", error);
+							}
+						}
+						else
+						{
+							console.log("User password changed successfully!");
+						}
+					});
+
+				});
+			}
+			else
+			{
+				console.log("User is using 3rd party provider. Inform user of 3rd party password reset.");//ERROR-D
+				cb(false);
+			}
+		});
 }
 
 function editUserProfile(fname, lname, email, city, country, state, street, age, favdish, favdrink, gender, about, cb) //
