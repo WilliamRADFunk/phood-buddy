@@ -1673,7 +1673,7 @@ function popFavListCallback(result, amount)
 	$("#fav-recipes-container").html("");
 	for(var i = 0; i < result.info.length; i++)
 	{
-		var img = (result.info[i].img === "") ? ("images/placeholder-recipe.jpg") : (result.info[i].img + "");
+		var img = (result.info[i].img === "") ? ("images/placeholder-recipe.jpg") : ((Array.isArray(result.info[i].img)) ? result.info[i].img[0] + "" : result.info[i].img + "");
 		$("#fav-recipes-container").append(
 			'<div class="fav-recipe row">' +
 				'<div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-12">' +
@@ -1768,7 +1768,7 @@ function popRecipeCallback(result)
 				window.history.pushState({ path: newurl }, '', newurl);
 			}
 		}
-		var img = (result.img === "") ? ("images/placeholder-recipe.jpg") : (result.img + "");
+		var img = (result.img === "") ? ("images/placeholder-recipe.jpg") : ((Array.isArray(result.img)) ? result.img[0] + "" : result.img + "");
 		var pTime = (result.prepTime === "") ? ("?") : (result.prepTime + "");
 		var cTime = (result.cookTime === "") ? ("?") : (result.cookTime + "");
 		var tTime = (result.totalTime === "") ? ("?") : (result.totalTime + "");

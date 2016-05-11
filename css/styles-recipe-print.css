@@ -1,6 +1,12 @@
+@page 
+{
+	size: auto;
+	margin: 0mm;
+}
 html
 {
 	height: 100%;
+	margin: 0px;
 }
 body
 {
@@ -9,6 +15,7 @@ body
 	font-family: 'Open Sans', sans-serif;
 	font-weight: lighter;
 	height: auto;
+	margin: 10mm 15mm 10mm 15mm;
 	position: relative;
 }
 h1

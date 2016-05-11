@@ -540,7 +540,6 @@ function getFavAll(count, cb)
 				//cycle through each key of previous snapshot
 				snapshot.forEach(function(childSnapshot)
 				{
-					//console.log(childSnapshot.val());
 					//Set current key of 'recipe-directory' to temporary variable
 					//Cycle through the keys provided by snapshot of users 'created-recipe' to find link
 					var directoryKey = childSnapshot.key();
@@ -799,6 +798,7 @@ function resetPassword(cb)
 			var obj = snapshot.val();
 			if(obj.provider == "password")
 			{
+				console.log("Custom user recognized, proceeding to password reset...");
 				var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/profile/");
 				userRef.once("value", function(snapshot2){
 				var profile = snapshot2.val();
@@ -807,17 +807,23 @@ function resetPassword(cb)
 				ref.resetPassword({
 					email: emailString
 				},function(error){
-					if(error)
-					{
-						cb(false);
-					}
-					else
-					{
-						cb(true);
-					}
+						if(error)
+						{
+							console.log(error); //ERROR-D
+							console.log("password reset function from firebase failed. Returning false...");//ERROR-D
+							cb(false);
+						}
+						else
+						{
+							cb(true);
+						}
+					});
 				});
-
-				});
+			}
+			else
+			{
+				console.log("User is using 3rd party provider. Inform user of 3rd party password reset.");//ERROR-D
+				cb(false);
 			}
 		});
 		
@@ -827,6 +833,13 @@ function resetPassword(cb)
 function editUserProfile(fname, lname, email, city, country, state, street, age, favdish, favdrink, gender, about, cb) //
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(state.length > 2)
+	{
+		console.log("State length is longer than expected length of 2. Returning false...");//ERROR-D
+		cb(false);
+	}
+
 
 
 	if(ref.getAuth() === null)
@@ -904,57 +917,6 @@ function getUserProfile(cb)
 	});
 }
 
-/*
-function getUserProfileSettings()
-{
-	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
-
-
-	if(ref.getAuth() === null)
-	{
-		//cb(false);
-		return;
-	}
-	//Stores authData of package
-	var data = ref.getAuth();
-
-	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/profile/");
-
-	userRef.once("value", function(snapshot){
-		console.log(snapshot.val());
-	});
-}
-
-
-function getUsersSettings(cb)
-{
-	//Creates reference to firebase to test authentication
-	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
-
-	if(ref.getAuth() === null)
-	{
-		cb(false);
-		return;
-	}
-
-	//Stores authData of package
-	var data = ref.getAuth();
-
-	//Create new reference to users information
-	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/profile");
-
-	//Snapshot current userRef to obtain users info JSON
-	userRef.once("value", function(snapshot){
-
-		var dataPackage = snapshot.val();
-		console.log(dataPackage);
-
-		//Return to callback the data of user (JSON)
-		cb(dataPackage);
-	});
-
-}
-
 function getTasteProfile(cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
@@ -978,9 +940,17 @@ function getTasteProfile(cb)
 	});
 
 }
-*/
+
 function editTasteProfile(bitter, salty, sour, spicy, sweet, cb)
 {
+
+	if( ((parseInt(bitter) < 0) || (parseInt(bitter) > 5)) || ((parseInt(salty) < 0) || (parseInt(salty) > 5)) || ((parseInt(sweet) < 0) || (parseInt(sweet) > 5)) || ((parseInt(sour) < 0) || (parseInt(sour) > 5)) || ((parseInt(spicy) < 0) || (parseInt(spicy) > 5)))
+	{
+		console.log("A taste paremeter is not within expected bounds [0 - 5] ")//ERROR-D
+		cb(false);
+		return;
+	}
+
 
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
@@ -1003,7 +973,7 @@ function editTasteProfile(bitter, salty, sour, spicy, sweet, cb)
 		"spicy": spicy,
 		"sweet": sweet
 	};
-
+	//Update database reference with constructed object.
 	tasteRef.update(tasteObj);
 	cb(true);
 
@@ -1055,7 +1025,7 @@ function editUserAllergies(contentJson, cb)
 	cb(true);
 }
 
-function getUserHealth(cb) //FIX
+function getUserHealth(cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
@@ -1089,13 +1059,44 @@ function getUserHealth(cb) //FIX
 
 function editUserHealth(healthObj, allergyObj, cb)
 {
-	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+	var healthKeys = Object.keys(healthObj);
+	var allergyKeys = Object.keys(allergyObj);
 
 	if(ref.getAuth() === null)
 	{
-		cb(false); //cb HELP
+		cb(false);
 		return;
 	}
+
+	if(healthKeys.length === 5)
+	{
+		if(!(("diabetes" in healthObj) && ("high-cholestorol" in healthObj) && ("hypertension" in healthObj) && ("hypotension" in healthObj) && ("vegetarian" in healthObj)))
+		{
+			console.log("Expected health object keys are not all contained in health object. Returning false");//ERROR-D
+			cb(false);
+		}
+	}
+	else
+	{
+		console.log("Health Object length is not of correct length (5). It is currently " + healthKeys.length);//ERROR-D
+		cb(false);
+	}
+
+	if(allergyKeys.length === 11)
+	{
+		if(!(("corn" in allergyObj) && ("egg" in allergyObj) && ("fish" in allergyObj) && ("glutten" in allergyObj) && ("milk" in allergyObj) && ("peanut" in allergyObj) && ("red-meat" in allergyObj) && ("sesame" in allergyObj) && ("shell-fish" in allergyObj) && ("soy" in allergyObj) && ("tree-nut" in allergyObj)))
+		{
+			console.log("Expected allergy object keys are not all contained in health object. Returning false...");//ERROR-D
+			cb(false);
+		}
+	}
+	else
+	{
+		console.log("Allergy Object length is not of correct length (11). It is currently " + allergyKeys.length);//ERROR-D
+		cb(false);
+	}
+
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
 	//Stores authData of package
 	var data = ref.getAuth();
@@ -1244,8 +1245,9 @@ function getRandomRecipe(day, meal, cb)
 
 	if(ref.getAuth() === null)
 	{
-		return;
 		cb(false, day, meal);
+		return;
+		
 	}
 
 	var data = ref.getAuth();
