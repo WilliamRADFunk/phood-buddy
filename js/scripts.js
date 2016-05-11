@@ -1221,7 +1221,7 @@ function popScheduleCallback(result)
 				'<h1>Week\'s Recipes</h1>' +
 				'<div class="row">' +
 					'<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">' +
-						'<a id="print-recipe" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" href="javascript:window.print()">Print Schedule</a>' +
+						'<a id="print-schedule" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" href="javascript:window.print()">Print Schedule</a>' +
 						'<div id="monday" class="weekday col-lg-6 col-md-6 col-sm-6 col-xs-12">' +
 							'<h3>Monday</h3>' + mondayBfast + mondayLunch + mondayDinner +
 						'</div>' +

@@ -1,6 +1,6 @@
 @page 
 {
-	size: auto;
+	size: 100%;
 	margin: 0mm;
 }
 html
@@ -16,7 +16,20 @@ body
 	font-weight: lighter;
 	height: auto;
 	margin: 10mm 15mm 10mm 15mm;
+	overflow-x: hidden;
 	position: relative;
+}
+::-webkit-scrollbar
+{ 
+    display: none; 
+}
+select
+{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
 }
 h1
 {
@@ -79,4 +92,10 @@ ul
 footer
 {
 	display: none;
+}
+#groceries input[type="text"],
+#groceries input[type="number"],
+#groceries select
+{
+	border: none;
 }
