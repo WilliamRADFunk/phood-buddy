@@ -1616,7 +1616,17 @@ function getRandomRecipe(day, meal, cb)
 						flagger = false;
 						var jsonRecipe = querySnapshot.val();
 						jsonRecipe.id = querySnapshot.key();
-						cb(jsonRecipe, day, meal);
+						var recipeId = querySnapshot.key();
+						var name = querySnapshot.child("name").val();
+
+						if(meal == "")
+						{
+							cb(jsonRecipe, day, meal);
+						}
+						else
+						{
+							updatePlanner(day, meal, name, recipeId);
+						}
 						return true;
 					}
 
