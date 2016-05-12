@@ -867,7 +867,7 @@ function changePassword(oldPassword, newPassword, cb)
 
 	var data = ref.getAuth();
 
-		var user = new firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+		var user = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
 		user.once("value", function(snapshot){
 			var obj = snapshot.val();
 			if(obj.provider == "password")
@@ -898,6 +898,7 @@ function changePassword(oldPassword, newPassword, cb)
 						else
 						{
 							console.log("User password changed successfully!");
+							cb(true);
 						}
 					});
 
@@ -1140,6 +1141,8 @@ function getUserHealth(cb)
 
 function editUserHealth(healthObj, allergyObj, cb)
 {
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+	
 	var healthKeys = Object.keys(healthObj);
 	var allergyKeys = Object.keys(allergyObj);
 
