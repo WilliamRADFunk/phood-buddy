@@ -1625,7 +1625,7 @@ function getRandomRecipe(day, meal, cb)
 						}
 						else
 						{
-							updatePlanner(day, meal, name, recipeId);
+							updatePlanner(day, meal, name, recipeId, cb);
 						}
 						return true;
 					}
