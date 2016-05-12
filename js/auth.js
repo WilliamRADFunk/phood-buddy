@@ -208,12 +208,26 @@ function fbRegister(cb)
 	ref.authWithOAuthPopup("facebook", function(error, authData) {
 		if (error) 
 		{
-			console.log("Login Failed!", error);
-			cb(false);
+			console.log("Auth failed with popup");
+			ref.authWithOAuthRedirect("facebook", function(error, authData){
+				if(error)
+				{
+					console.log("login failed with redirect");
+					console.log(error);
+					cb(false);
+				}
+				else
+				{
+					console.log("Works with authRedirect!");
+					console.log(authData);
+					checkIfUserExists(authData.uid, authData, cb);
+				}
+			});
+			
 		}
 		else //Users login attempt successful. Have access to authData
 		{
-			console.log("Authenticated successfully with payload:", authData);
+			console.log("Authenticated successfully with authPopup, with payload:", authData);
 			checkIfUserExists(authData.uid, authData, cb);  //Checks to see if user payload alaready has account
 		}	
 	});
