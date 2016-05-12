@@ -1619,7 +1619,7 @@ function getRandomRecipe(day, meal, cb)
 						var recipeId = querySnapshot.key();
 						var name = querySnapshot.child("name").val();
 
-						if(meal == "")
+						if(meal === "")
 						{
 							cb(jsonRecipe, day, meal);
 						}
