@@ -240,8 +240,35 @@ function fbLogin(cb)
 
 		if (error)
 		{
-			console.log("Login Failed!", error);
-			cb(false);
+			ref.authWithOAuthRedirect("facebook", function(error, authData){
+				if(error)
+				{
+					console.log("login failed with redirect");
+					cb(false);
+				}
+				else
+				{
+					console.log("Works with authRedirect!");
+					console.log("Authenticated successfully with payload:", authData);
+
+					var usersRef = new Firebase("https://phoodbuddy.firebaseio.com/users");
+					usersRef.once('value', function(snapshot){
+						if(snapshot.hasChild(authData.uid))
+						{
+							console.log("User stays logged in for having an account");
+							cb(true);
+						}
+						else
+						{
+							console.log("USER MUST CREATE ACCOUNT");
+							var ref = new Firebase("https://phoodbuddy.firebaseio.com");
+							ref.unauth();
+							cb(false);
+						}
+					});
+					
+				}
+			});
 		}
 		else
 		{
@@ -275,8 +302,21 @@ function twitterRegister(cb)
 	ref.authWithOAuthPopup("twitter", function(error, authData) {
 		if (error) 
 		{
-			console.log("Login Failed!", error);
-			cb(false);
+			console.log("Login Failed with popup!", error);
+			ref.authWithOAuthRedirect("twitter", function(error, authData){
+				if(error)
+				{
+					console.log("login failed with redirect");
+					console.log(error);
+					cb(false);
+				}
+				else
+				{
+					console.log("Works with authRedirect!");
+					console.log(authData);
+					checkIfUserExists(authData.uid, authData, cb);
+				}
+			});
 		}
 		else //Users login attemp successful. Have access to authData
 		{
@@ -294,7 +334,34 @@ function twitterLogin(cb)
 		if (error)
 		{
 			console.log("Login Failed!", error);
-			cb(false);
+			ref.authWithOAuthRedirect("twitter", function(error, authData){
+				if(error)
+				{
+					console.log("login failed with redirect");
+					console.log(error);
+					cb(false);
+				}
+				else
+				{
+					console.log("Works with authRedirect!");
+					console.log(authData);
+					var usersRef = new Firebase("https://phoodbuddy.firebaseio.com/users");
+					usersRef.once('value', function(snapshot){
+						if(snapshot.hasChild(authData.uid))
+						{
+							console.log("User stays logged in for having an account");
+							cb(true);
+						}
+						else
+						{
+							console.log("USER MUST CREATE ACCOUNT");
+							var ref = new Firebase("https://phoodbuddy.firebaseio.com");
+							ref.unauth();
+							cb(false);
+						}
+					});
+				}
+			});
 		}
 		else
 		{
@@ -326,11 +393,24 @@ function googleRegister(cb){
 	//This creates reference to database that than uses that reference call to authenticate with current user.
 
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
-	ref.authWithOAuthPopup("facebook", function(error, authData) {
+	ref.authWithOAuthPopup("google", function(error, authData) {
 		if (error) 
 		{
-			console.log("Login Failed!", error);
-			cb(false);
+			console.log("Login Failed with popup!", error);
+			ref.authWithOAuthRedirect("google", function(error, authData){
+				if(error)
+				{
+					console.log("login failed with redirect");
+					console.log(error);
+					cb(false);
+				}
+				else
+				{
+					console.log("Works with authRedirect!");
+					console.log(authData);
+					checkIfUserExists(authData.uid, authData, cb);
+				}
+			});
 		}
 		else //Users login attemp successful. Have access to authData
 		{
@@ -347,8 +427,35 @@ function googleLogin(cb)
 
 		if (error)
 		{
-			console.log("Login Failed!", error);
-			cb(false);
+			console.log("Login Failed with popup!", error);
+			ref.authWithOAuthRedirect("google", function(error, authData){
+				if(error)
+				{
+					console.log("login failed with redirect");
+					console.log(error);
+					cb(false);
+				}
+				else
+				{
+					console.log("Works with authRedirect!");
+					console.log(authData);
+					var usersRef = new Firebase("https://phoodbuddy.firebaseio.com/users");
+					usersRef.once('value', function(snapshot){
+						if(snapshot.hasChild(authData.uid))
+						{
+							console.log("User stays logged in for having an account");
+							cb(true);
+						}
+						else
+						{
+							console.log("USER MUST CREATE ACCOUNT");
+							var ref = new Firebase("https://phoodbuddy.firebaseio.com");
+							ref.unauth();
+							cb(false);
+						}
+					});
+				}
+			});
 		}
 		else
 		{
@@ -501,7 +608,39 @@ function checkIfUserExists(userId, authData, cb) {
 	});
 }
 
+function fbRegisterTest()
+{
+	// Simple login for facebook. authData has user data
 
+	//This creates reference to database that than uses that reference call to authenticate with current user. 
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com");
+	ref.authWithOAuthPopup("facebook", function(error, authData) {
+		if (error) 
+		{
+			console.log("Auth failed with popup");
+			ref.authWithOAuthRedirect("facebook", function(error, authData){
+				if(error)
+				{
+					console.log("login failed with redirect");
+					console.log(error);
+					//cb(false);
+				}
+				else
+				{
+					console.log("Works with authRedirect!");
+					console.log(authData);
+					//checkIfUserExists(authData.uid, authData, cb);
+				}
+			});
+			
+		}
+		else //Users login attempt successful. Have access to authData
+		{
+			console.log("Authenticated successfully with authPopup, with payload:", authData);
+			//checkIfUserExists(authData.uid, authData, cb);  //Checks to see if user payload alaready has account
+		}	
+	});
+}
 //High Blood Pressure = hypertension   === 400 sodium or less
 //High Choloestorl 
 //Diabetes
