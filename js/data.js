@@ -1141,6 +1141,8 @@ function getUserHealth(cb)
 
 function editUserHealth(healthObj, allergyObj, cb)
 {
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
 	var healthKeys = Object.keys(healthObj);
 	var allergyKeys = Object.keys(allergyObj);
 
@@ -1210,7 +1212,7 @@ function getPlanner(cb)
 	});
 }
 
-function updatePlanner(dayOfWeek, timeOfDay, name, recipeId, cb)
+function updatePlanner(dayOfWeek, timeOfDay, foodName, id, cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
@@ -1223,8 +1225,9 @@ function updatePlanner(dayOfWeek, timeOfDay, name, recipeId, cb)
 	var data = ref.getAuth();
 
 	var plannerRef = new Firebase("https://phoodbuddy.firebaseio.com/planner/" + data.uid + "/" + dayOfWeek + "/" + timeOfDay +"/");
-
-	var obj = {"name": name, "recipeId": recipeId};
+	var obj = {};
+	obj.name = foodName;
+	obj.recipeId = id;
 
 	plannerRef.update(obj);
 
@@ -1535,7 +1538,17 @@ function getRandomRecipe(day, meal, cb)
 						flagger = false;
 						var jsonRecipe = querySnapshot.val();
 						jsonRecipe.id = querySnapshot.key();
-						cb(jsonRecipe, day, meal);
+						var recipeId = querySnapshot.key();
+						var name = querySnapshot.child("name").val();
+
+						if(meal === "")
+						{
+							cb(jsonRecipe, day, meal);
+						}
+						else
+						{
+							updatePlanner(day, meal, name, recipeId, cb);
+						}
 						return true;
 					}
 				});
@@ -1613,7 +1626,17 @@ function getRandomRecipe(day, meal, cb)
 						flagger = false;
 						var jsonRecipe = querySnapshot.val();
 						jsonRecipe.id = querySnapshot.key();
-						cb(jsonRecipe, day, meal);
+						var recipeId = querySnapshot.key();
+						var name = querySnapshot.child("name").val();
+
+						if(meal === "")
+						{
+							cb(jsonRecipe, day, meal);
+						}
+						else
+						{
+							updatePlanner(day, meal, name, recipeId, cb);
+						}
 						return true;
 					}
 

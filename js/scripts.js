@@ -38,7 +38,7 @@ $(document).ready(function ()
 			$(".modal-header").html("Login Failed");
 			$(".modal-body").html("<p>We need a valid email and password to log you in.<br/>Is this your first time at Phood Buddy?</p>");
 			$("#btn-confirm").click(function(){
-				window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/register.html";
+				window.location = "https://phood-buddy.com/register.html";
 			});
 		}
 		else
@@ -98,7 +98,7 @@ function initMainPageRecipes()
 	}
 	else
 	{
-		window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html";
+		window.location = "https://phood-buddy.com/login.html";
 	}
 }
 // Once backend responds with favorited recipes, it uses it to
@@ -197,7 +197,7 @@ function initMainPageGroceries()
 	}
 	else
 	{
-		window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html";
+		window.location = "https://phood-buddy.com/login.html";
 	}
 }
 // Once backend responds with favorited recipes, it uses it to
@@ -226,7 +226,7 @@ function popMainPageGroceriesCallback(result)
 							'<div id="carousel-groceries" class="carousel slide" data-ride="carousel">' +
 								'<!-- Wrapper for slides -->' +
 								'<div class="carousel-inner" role="listbox">' +
-									'<div class="item active row food-cat" onclick="window.location = \'http://www.williamrobertfunk.com/applications/phood-buddy/groceries.html\';">' +
+									'<div class="item active row food-cat" onclick="window.location = \'https://phood-buddy.com/groceries.html\';">' +
 										'<h3>NO ITEMS IN GROCERY LIST</h3>' +
 										'<div class="col-lg-10 col-lg-offset-2 col-md-10 col-md-offset-2 col-sm-10 col-sm-offset-2 col-xs-10 col-xs-offset-2">' +
 											'<ul>' +
@@ -283,7 +283,7 @@ function popMainPageGroceriesCallback(result)
 					if( !('items' in obj) ) { items = []; }
 					else { items = Object.keys(obj.items); }
 					var firstCat = (i === 0) ? ' active' : '';
-					groceryList += 	'<div class="item' + firstCat + ' row food-cat" onclick="window.location = \'http://www.williamrobertfunk.com/applications/phood-buddy/groceries.html\';">' +
+					groceryList += 	'<div class="item' + firstCat + ' row food-cat" onclick="window.location = \'https://phood-buddy.com/groceries.html\';">' +
 										'<h3>' + obj.name + '</h3>' +
 										'<div class="col-lg-10 col-lg-offset-2 col-md-10 col-md-offset-2 col-sm-10 col-sm-offset-2 col-xs-10 col-xs-offset-2">';
 					for(var j = 0; j < 12; j++)
@@ -324,7 +324,7 @@ function goToRecipe(recipeId)
 {
 	if(recipeId)
 	{
-		window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/recipe.html?" + recipeId;
+		window.location = "https://phood-buddy.com/recipe.html?" + recipeId;
 	}
 	else
 	{
@@ -341,7 +341,7 @@ function initSettings()
 	}
 	else
 	{
-		window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html";
+		window.location = "https://phood-buddy.com/login.html";
 	}
 }
 // Populated the settings page with content returned from backend.
@@ -725,7 +725,7 @@ function popSettingsCallback(result)
 		});
 		$("#btn-logout").click(function(){
 			authLogout();
-			window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html";
+			window.location = "https://phood-buddy.com/login.html";
 		});
 	}
 }
@@ -794,11 +794,11 @@ function editProfileCallback(result)
 {
 	if(result === false)
 	{
-		spawnModal("Profile Edit Failed", "<p>We had trouble editing your profile.<br/><br/>Want to refresh the page<br/>and try again?</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/profile.html", true);
+		spawnModal("Profile Edit Failed", "<p>We had trouble editing your profile.<br/><br/>Want to refresh the page<br/>and try again?</p>", "https://phood-buddy.com/profile.html", true);
 	}
 	else
 	{
-		spawnModal("Profile Edit Success", "<p>Your profile has been edited.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/profile.html", false);
+		spawnModal("Profile Edit Success", "<p>Your profile has been edited.</p>", "https://phood-buddy.com/profile.html", false);
 	}
 }
 // User wants to edit their Health/Allergies info.
@@ -843,7 +843,7 @@ function editFitbit()
 	var pswd = $("input[name='fitbit-password']").val();
 	console.log("usrname: ", usrname, " pswd: ", pswd);
 	//editUserFitbit(usrname, pswd, editProfileCallback);
-	spawnModal("Fitbit Integration Not Ready", "<p>We're working hard to get your Fitbit integrated.'<br/><br/>Please be patient with us.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/profile.html", false);
+	spawnModal("Fitbit Integration Not Ready", "<p>We're working hard to get your Fitbit integrated.'<br/><br/>Please be patient with us.</p>", "https://phood-buddy.com/profile.html", false);
 	
 }
 // User wants to edit their taste info.
@@ -865,7 +865,7 @@ function registerCallback(result)
 		$(".modal-body").html("<p>You're account has been created, using some default values.<br/><br/>For Phood Buddy to give you recipes and information that helps <i>you</i> the most,<br/>it needs to know you better.<br/><br/> Go to the settings page after logging in to complete that information.</p>");
 		$(".modal-header").html("Registration Successful");
 		$("#btn-confirm").click(function(){
-			window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html";
+			window.location = "https://phood-buddy.com/login.html";
 		});
 		$("#btn-cancel").css("display", "none");
 	}
@@ -902,7 +902,7 @@ function resetPasswordCallback(result)
 		$("#btn-confirm").css("display", "none");
 		$("#btn-cancel").click(function(){
 			$("#btn-confirm").css("display", "block");
-			window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html";
+			window.location = "https://phood-buddy.com/login.html";
 		});
 	}
 	else
@@ -913,7 +913,7 @@ function resetPasswordCallback(result)
 		$("#btn-confirm").css("display", "none");
 		$("#btn-cancel").click(function(){
 			$("#btn-confirm").css("display", "block");
-			window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html";
+			window.location = "https://phood-buddy.com/login.html";
 		});
 	}
 }
@@ -922,14 +922,14 @@ function loginCallback(result)
 {
 	if(result === true)
 	{
-		window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/index.html";
+		window.location = "https://phood-buddy.com/index.html";
 	}
 	else
 	{
 		$("#modal").modal({backdrop: "static", keyboard: false, show: true});
 		$(".modal-header").html("Login Failed");
 		$("#btn-confirm").click(function(){
-			window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/register.html";
+			window.location = "https://phood-buddy.com/register.html";
 		});
 	}
 }
@@ -1112,7 +1112,7 @@ function submitRecipe()
 		(cookTime === "" || cookTime === null || cookTime === undefined) ||
 		(totalTime === "" || totalTime === null || totalTime === undefined) )
 	{
-		spawnModal("Invalid Input", "<p>You left one or more fields empty. Would you like to reset the page</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/create-recipe.html", true);
+		spawnModal("Invalid Input", "<p>You left one or more fields empty. Would you like to reset the page</p>", "https://phood-buddy.com/create-recipe.html", true);
 		return;
 	}
 	// Collect ingredient data.
@@ -1125,7 +1125,7 @@ function submitRecipe()
 		(ingQuantities[i].value === "" || ingQuantities[i].value === null || ingQuantities[i].value === undefined) ||
 		(ingUnits[i].value === "" || ingUnits[i].value === null || ingUnits[i].value === undefined) )
 		{
-			spawnModal("Invalid Input", "<p>You left one or more fields empty. Would you like to reset the page</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/create-recipe.html", true);
+			spawnModal("Invalid Input", "<p>You left one or more fields empty. Would you like to reset the page</p>", "https://phood-buddy.com/create-recipe.html", true);
 			return;
 		}
 		// Collects data from each field and inputs into double array.
@@ -1142,7 +1142,7 @@ function submitRecipe()
 		// Verifies user left no field empty. If so, spawn modal and return from function.
 		if( (directions[j].value === "" || directions[j].value === null || directions[j].value === undefined) )
 		{
-			spawnModal("Invalid Input", "<p>You left one or more fields empty. Would you like to reset the page</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/create-recipe.html", true);
+			spawnModal("Invalid Input", "<p>You left one or more fields empty. Would you like to reset the page</p>", "https://phood-buddy.com/create-recipe.html", true);
 			return;
 		}
 		directs[j] = directions[j].value;
@@ -1153,8 +1153,8 @@ function submitRecipe()
 // Callback to inform user whether submitted recipe made it to the db or not.
 function addRecipeReply(result)
 {
-	if(result) spawnModal("Submission Success", "<p>Your recipe has found its new home at Phood Buddy</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/recipe.html?" + result, false);
-	else spawnModal("Submission Failed", "<p>Your recipe wasn't submitted. Double check your inputs</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/create-recipe.html", false);
+	if(result) spawnModal("Submission Success", "<p>Your recipe has found its new home at Phood Buddy</p>", "https://phood-buddy.com/recipe.html?" + result, false);
+	else spawnModal("Submission Failed", "<p>Your recipe wasn't submitted. Double check your inputs</p>", "https://phood-buddy.com/create-recipe.html", false);
 }
 // Initiates the content for the weekly schedule page.
 function initSchedule()
@@ -1166,7 +1166,7 @@ function initSchedule()
 	}
 	else
 	{
-		window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html";
+		window.location = "https://phood-buddy.com/login.html";
 	}
 }
 // Populates the weekly schedule with user's stored choices.
@@ -1269,7 +1269,7 @@ function popPBPick(recipe, day, mealTime)
 {
 	if(recipe === false)
 	{
-		spawnModal("Failure to Select Recipe", "<p>We were unable to pick a recipe from your favorite list.<br/><br/>Would you like us to refresh the page?</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/schedule.html", true);
+		spawnModal("Failure to Select Recipe", "<p>We were unable to pick a recipe from your favorite list.<br/><br/>Would you like us to refresh the page?</p>", "https://phood-buddy.com/schedule.html", true);
 		$("#" + day + " > ." + mealTime).html("Select " + mealTime + " Recipe");
 		$("#" + day + " > ." + mealTime).removeClass("active");
 		setTimeout( function()
@@ -1287,7 +1287,7 @@ function popFavPick(recipe, day, mealTime)
 {
 	if(recipe === false)
 	{
-		spawnModal("Failure to Select Recipe", "<p>We were unable to pick a recipe to match your tastes (maybe you don't have any recipes favorited).<br/><br/>Would you like us to refresh the page?</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/schedule.html", true);
+		spawnModal("Failure to Select Recipe", "<p>We were unable to pick a recipe to match your tastes (maybe you don't have any recipes favorited).<br/><br/>Would you like us to refresh the page?</p>", "https://phood-buddy.com/schedule.html", true);
 		$("#" + day + " > ." + mealTime).html("Select " + mealTime + " Recipe");
 		$("#" + day + " > ." + mealTime).removeClass("active");
 		setTimeout( function()
@@ -1305,7 +1305,7 @@ function deleteScheduledRecipe(result, day, mealTime)
 {
 	if(result === false)
 	{
-		spawnModal("Failed Deletion", "<p>We were unable to update your schedule.<br/><br/>We will refresh the page to let you try again.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/schedule.html", false);
+		spawnModal("Failed Deletion", "<p>We were unable to update your schedule.<br/><br/>We will refresh the page to let you try again.</p>", "https://phood-buddy.com/schedule.html", false);
 	}
 	else
 	{
@@ -1325,7 +1325,7 @@ function initGroceries()
 		loggedIn();
 		getGroceryList(popGroceryCallback);
 	}
-	else { window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html"; }
+	else { window.location = "https://phood-buddy.com/login.html"; }
 }
 // Populates the grocery list with user's stored grocery items.
 function popGroceryCallback(result)
@@ -1505,11 +1505,11 @@ function deleteListCallback(result)
 {
 	if(result === false)
 	{
-		spawnModal("Delete List Failed", "<p>We had trouble deleting your list.<br/><br/>Want to refresh the page<br/>and try again?</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/groceries.html", true);
+		spawnModal("Delete List Failed", "<p>We had trouble deleting your list.<br/><br/>Want to refresh the page<br/>and try again?</p>", "https://phood-buddy.com/groceries.html", true);
 	}
 	else
 	{
-		spawnModal("Delete List Success", "<p>Your list has been deleted.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/groceries.html", false);
+		spawnModal("Delete List Success", "<p>Your list has been deleted.</p>", "https://phood-buddy.com/groceries.html", false);
 	}
 }
 // Toggle add grocery item buttons/links.
@@ -1571,11 +1571,11 @@ function submitItemCallback(result)
 {
 	if(result === false)
 	{
-		spawnModal("Add Item Failed", "<p>We had trouble adding your item.<br/><br/>Make sure you filled out all fields.<br/><br/>Want to refresh the page<br/>and try again?</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/groceries.html", true);
+		spawnModal("Add Item Failed", "<p>We had trouble adding your item.<br/><br/>Make sure you filled out all fields.<br/><br/>Want to refresh the page<br/>and try again?</p>", "https://phood-buddy.com/groceries.html", true);
 	}
 	else
 	{
-		spawnModal("Add Item Success", "<p>Your item has been added.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/groceries.html", false);
+		spawnModal("Add Item Success", "<p>Your item has been added.</p>", "https://phood-buddy.com/groceries.html", false);
 	}
 }
 // Submit grocery item to database.
@@ -1604,11 +1604,11 @@ function submitEditCallback(result)
 {
 	if(result === false)
 	{
-		spawnModal("Edit Item Failed", "<p>We had trouble editing your item.<br/><br/>Make sure you filled out all fields.<br/><br/>Want to refresh the page<br/>and try again?</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/groceries.html", true);
+		spawnModal("Edit Item Failed", "<p>We had trouble editing your item.<br/><br/>Make sure you filled out all fields.<br/><br/>Want to refresh the page<br/>and try again?</p>", "https://phood-buddy.com/groceries.html", true);
 	}
 	else
 	{
-		spawnModal("Edit Item Success", "<p>Your item has been edited.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/groceries.html", false);
+		spawnModal("Edit Item Success", "<p>Your item has been edited.</p>", "https://phood-buddy.com/groceries.html", false);
 	}
 }
 // Delete grocery item from database.
@@ -1623,11 +1623,11 @@ function deleteItemCallback(result)
 {
 	if(result === false)
 	{
-		spawnModal("Delete Item Failed", "<p>We had trouble deleting your item.<br/><br/>Make sure you filled out all fields.<br/><br/>Want to refresh the page<br/>and try again?</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/groceries.html", true);
+		spawnModal("Delete Item Failed", "<p>We had trouble deleting your item.<br/><br/>Make sure you filled out all fields.<br/><br/>Want to refresh the page<br/>and try again?</p>", "https://phood-buddy.com/groceries.html", true);
 	}
 	else
 	{
-		spawnModal("Delete Item Success", "<p>Your item has been deleted.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/groceries.html", false);
+		spawnModal("Delete Item Success", "<p>Your item has been deleted.</p>", "https://phood-buddy.com/groceries.html", false);
 	}
 }
 // Initiates the content for the favorite recipes page.
@@ -1655,7 +1655,7 @@ function initFavList(cat)
 			}
 		}
 	}
-	else { window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html"; }
+	else { window.location = "https://phood-buddy.com/login.html"; }
 }
 // Populates the weekly schedule with all user's stored favorites.
 function popFavListCallback(result, amount)
@@ -1699,11 +1699,11 @@ function unfavoriteRecipeCallback(result)
 {
 	if(result === false)
 	{
-		spawnModal("Failed to Unfavorite", "<p>We had trouble removing the recipe from your favorites.<br/><br/>Want to refresh the page<br/>and try again?</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/favorite-recipes.html", true);
+		spawnModal("Failed to Unfavorite", "<p>We had trouble removing the recipe from your favorites.<br/><br/>Want to refresh the page<br/>and try again?</p>", "https://phood-buddy.com/favorite-recipes.html", true);
 	}
 	else
 	{
-		spawnModal("Recipe Removal Success", "<p>The recipe has been removed from your favorites.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/favorite-recipes.html", false);
+		spawnModal("Recipe Removal Success", "<p>The recipe has been removed from your favorites.</p>", "https://phood-buddy.com/favorite-recipes.html", false);
 	}
 }
 // Moves right through fav list pagination
@@ -1738,7 +1738,7 @@ function initRecipe()
 	}
 	else
 	{
-		window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html";
+		window.location = "https://phood-buddy.com/login.html";
 	}
 }
 // Populates the recipe data either from random pick, or from the id in the URL.
@@ -1746,7 +1746,7 @@ function popRecipeCallback(result)
 {
 	if(result === false)
 	{
-		spawnModal("Couldn't find that recipe", "<p>That recipe didn't <i>pan</i> out. Shall we refresh the page?</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/recipe.html", true);
+		spawnModal("Couldn't find that recipe", "<p>That recipe didn't <i>pan</i> out. Shall we refresh the page?</p>", "https://phood-buddy.com/recipe.html", true);
 	}
 	else
 	{
@@ -1865,11 +1865,11 @@ function favThisRecipeCallback(result)
 {
 	if(result === false)
 	{
-		spawnModal("Failed to Favorite", "<p>We had trouble adding the recipe to your favorites.<br/><br/>Want to refresh the page<br/>and try again?</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/favorite-recipes.html", true);
+		spawnModal("Failed to Favorite", "<p>We had trouble adding the recipe to your favorites.<br/><br/>Want to refresh the page<br/>and try again?</p>", "https://phood-buddy.com/favorite-recipes.html", true);
 	}
 	else
 	{
-		spawnModal("Recipe Favorite Success", "<p>The recipe has been added to your favorites.<br/><br/>Would you like to go to your favorites list?</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/favorite-recipes.html", true);
+		spawnModal("Recipe Favorite Success", "<p>The recipe has been added to your favorites.<br/><br/>Would you like to go to your favorites list?</p>", "https://phood-buddy.com/favorite-recipes.html", true);
 	}
 }
 // Customizable modal to be reused through all pages.
@@ -1904,17 +1904,17 @@ function loggedOut()
 // Modal for when user isn't logged in.
 function notLoggedinCallback()
 {
-	spawnModal("Not Logged In", "<p>You don't appear to be logged in. Go back to the login page.</p>", "http://www.williamrobertfunk.com/applications/phood-buddy/login.html", false);
+	spawnModal("Not Logged In", "<p>You don't appear to be logged in. Go back to the login page.</p>", "https://phood-buddy.com/login.html", false);
 }
 // Initiates the standard login check.
 function initLoginCheck()
 {
 	if(checkAuth()) { loggedIn(); }
-	else { window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/login.html"; }
+	else { window.location = "https://phood-buddy.com/login.html"; }
 }
 // If at login page, and user is logged in, redirect to index page.
 function initIndexRedirect()
 {
-	if(checkAuth()) { window.location = "http://www.williamrobertfunk.com/applications/phood-buddy/index.html"; }
+	if(checkAuth()) { window.location = "https://phood-buddy.com/index.html"; }
 	else { loggedOut(); }
 }
