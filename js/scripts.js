@@ -103,7 +103,7 @@ function initMainPageRecipes()
 }
 // Once backend responds with favorited recipes, it uses it to
 // populate the landing page's carousel.
-function popMainPageRecipesCallback(result)
+function popMainPageRecipesCallback(result, count)
 {
 	if(result === false)
 	{
@@ -150,10 +150,13 @@ function popMainPageRecipesCallback(result)
 							'<div id="carousel-recipes" class="carousel slide" data-ride="carousel">' +
 								'<!-- Wrapper for slides -->' +
 								'<div class="carousel-inner" role="listbox">';
-						for(var i = 0; i < result['info'].length; i++)
+						for(var i = 0; i < count; i++)
 						{
-							var img = (result.info[i].img === "") ? ("images/placeholder-recipe.jpg") : ((Array.isArray(result.info[i].img)) ? result.info[i].img[0] + "" : result.info[i].img + "");
-							var calories = (result.info[i].nutrition && result.info[i].nutrition['calories'] === "") ? "?" : (result.info[i].nutrition['calories'] + "");
+							if(!result.info[i]) { continue; }
+							var img = "images/placeholder-recipe.jpg";
+							if(result.info[i].img) { img = (Array.isArray(result.info[i].img) ? result.info[i].img[0] + "" : result.info[i].img + ""); }
+							var calories = "N/A";
+							if(result.info[i].nutrition) { calories = (result.info[i].nutrition['calories'] != "" && result.info[i].nutrition['calories'] != undefined) ? (result.info[i].nutrition['calories'] + "") : "N/A"; }
 							var description = (result.info[i].description.length >= 50) ? (result.info[i].description.substr(0, 50) + " ...") : (result.info[i].description + "");
 							var taste = (result.info[i].taste === "") ? "(dominant taste: unknown)" : ("(dominant taste: " + result.info[i].taste + ")");
 							var id = result.info[i].id.trim();
@@ -164,7 +167,7 @@ function popMainPageRecipesCallback(result)
 												'</div>' +
 												'<div class="details-container col-lg-5 col-md-5 col-sm-5 col-xs-12">' +
 													'<h3>' + result.info[i].name + '</h3>' +
-													'<h4><span>' + result.info[i].nutrition['calories'] + '</span> calories <br/>' + taste + '</h4>' +
+													'<h4><span>' + calories + '</span> calories <br/>' + taste + '</h4>' +
 													'<p>' + description + '</p>' +
 												'</div>' +
 											'</div>';
