@@ -1,0 +1,81 @@
+﻿<Page
+    x:Class="PhoodBuddyUWP.Pages.LoginPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PhoodBuddyUWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid
+        Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--The Title of the login screen-->
+        <TextBlock
+            Style="{StaticResource PhoodBuddyPageHeader}"
+            Text="PhoodBuddy"/>
+
+        <!--Panel for all of the login options-->
+        <RelativePanel
+            Grid.Row="1"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Stretch"
+            Background="#999999"
+            Margin="8"
+            MaxWidth="300">
+
+            <TextBox
+                Name="usernameTextField"
+                PlaceholderText="Username" 
+                Margin="8"
+                RelativePanel.AlignTopWithPanel="True"
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True"/>
+            <PasswordBox 
+                Name="passwordTextField" 
+                PlaceholderText="Password"
+                PasswordRevealMode="Peek"
+                Margin="8"
+                RelativePanel.Below="usernameTextField"
+                RelativePanel.AlignLeftWith="usernameTextField"
+                RelativePanel.AlignRightWith="usernameTextField"/>
+            <Button
+                Name="loginButton"
+                Content="Login"
+                RelativePanel.AlignLeftWith="passwordTextField"
+                RelativePanel.Below="passwordTextField"
+                Click="loginButton_Click"/>
+            <Button
+                Name="createButton"
+                Content="Create Account"
+                RelativePanel.Below="passwordTextField"
+                RelativePanel.AlignRightWith="passwordTextField">
+                <Button.Flyout>
+                    <Flyout Placement="Left">
+                        <StackPanel
+                            MaxWidth="300"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                            <TextBlock
+                                Text="Are you sure you wish to create a new account with the information provided?"
+                                TextWrapping="WrapWholeWords"/>
+                            <StackPanel
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Center">
+                                <Button
+                                    Content="I'm Sure"
+                                    Click="sureButton_Click"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Flyout>
+                </Button.Flyout>
+            </Button>
+
+        </RelativePanel>
+    </Grid>
+</Page>

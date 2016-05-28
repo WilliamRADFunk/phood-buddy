@@ -1,0 +1,82 @@
+﻿<Page
+    x:Class="PhoodBuddyUWP.Pages.MyRecipesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PhoodBuddyUWP.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:controls="using:PhoodBuddyUWP.Controls">
+
+    <Page.Resources>
+        <DataTemplate x:Key="RecipeListItem">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Width="100"
+                       Source="{Binding Path=Picture}"/>
+                <TextBlock Grid.Column="1"
+                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           Text="{Binding Path=Title}"
+                           VerticalAlignment="Center"
+                           Margin="8"/>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ListViewHeader">
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+                       FontWeight="Bold"
+                       Text="{Binding}"/>
+        </DataTemplate>
+        
+        <Style TargetType="ListView">
+            <Setter Property="ItemTemplate"
+                    Value="{StaticResource RecipeListItem}"/>
+            <Setter Property="Margin"
+                    Value="5"/>
+            <Setter Property="HeaderTemplate"
+                    Value="{StaticResource ListViewHeader}"/>
+        </Style>
+
+        <Style TargetType="TextBlock"
+               BasedOn="{StaticResource BodyTextBlockStyle}">
+            <Setter Property="FontWeight"
+                    Value="Bold"/>
+            <Setter Property="Margin"
+                    Value="10,0,0,5"/>
+        </Style>
+    </Page.Resources>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="Add" Label="Add Recipe" Click="addButton_Click"/>
+            <AppBarToggleButton Name="delButton" Icon="Delete" Label="Delete Recipe"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <controls:NavMenu x:Name="navMenu"
+                      HeaderText="My Recipes"
+                      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <controls:NavMenu.MainContent>
+            <ScrollViewer>
+                <StackPanel>
+                    
+                    <ListView Name="favoriteList"
+                              ItemClick="Recipe_Click"
+                              IsItemClickEnabled="True"
+                              ItemsSource="{Binding Path=Favorites}"
+                              Header="Favorites"/>
+                    
+                    <ListView Name="recipeList"
+                              ItemClick="Recipe_Click"
+                              IsItemClickEnabled="True"
+                              ItemsSource="{Binding Path=Recipes}"
+                              Header="Recipes"/>
+                    
+                </StackPanel>
+            </ScrollViewer>
+        </controls:NavMenu.MainContent>
+    </controls:NavMenu>
+</Page>

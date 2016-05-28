@@ -1,0 +1,128 @@
+﻿<Page
+    x:Class="PhoodBuddyUWP.Pages.ProfilePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PhoodBuddyUWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:controls="using:PhoodBuddyUWP.Controls"
+    xmlns:vm="using:PhoodBuddyUWP.ViewModels"
+    xmlns:model="using:PhoodBuddyUWP.Models">
+
+    <Page.Resources>
+        
+        <!-- Field Labels -->
+        <Style TargetType="TextBlock"
+               x:Key="ProfileFieldLabel"
+               BasedOn="{StaticResource BodyTextBlockStyle}">
+            <Setter Property="Margin"
+                    Value="10,5,0,5"/>
+            <Setter Property="FontWeight"
+                    Value="Bold"/>
+        </Style>
+        
+        <!-- Field Values -->
+        <Style TargetType="TextBlock"
+               x:Key="ProfileFieldValue"
+               BasedOn="{StaticResource BodyTextBlockStyle}">
+            <Setter Property="Margin"
+                    Value="10,0,0,10"/>
+            <Setter Property="FontSize"
+                    Value="24"/>
+        </Style>
+        
+        <!-- Fields -->
+        <Style TargetType="TextBox"
+               x:Key="ProfileField">
+            <Setter Property="Margin"
+                    Value="5,0,0,5"/>
+            <Setter Property="HorizontalAlignment"
+                    Value="Left"/>
+            <Setter Property="MaxWidth"
+                    Value="500"/>
+            <Setter Property="MinWidth"
+                    Value="300"/>
+            <Setter Property="Visibility"
+                    Value="Collapsed"/>
+        </Style>
+        
+        <!-- List Controls -->
+        <Style TargetType="ListView"
+               x:Key="ProfileList">
+            <Setter Property="Margin"
+                    Value="10"/>
+        </Style>
+    </Page.Resources>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Name="editButton" Icon="Edit" Label="Edit Info" Click="editButton_Click"/>
+            <AppBarButton Name="settingsButton" Icon="Setting" Label="Settings" Click="settingsButton_Click"/>
+            <AppBarButton Name="saveButton" Icon="Save" Label="Save Changes" Visibility="Collapsed" Click="saveButton_Click"/>
+            <AppBarButton Name="cancelButton" Icon="Cancel" Label="Cancel Changes" Visibility="Collapsed" Click="cancelButton_Click"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+    
+    <controls:NavMenu x:Name="navMenu"
+                      HeaderText="Profile">
+        <controls:NavMenu.MainContent>
+            <ScrollViewer>
+                <StackPanel>
+
+                    <!-- First Name -->
+                    <TextBlock Text="First Name"
+                               Style="{StaticResource ProfileFieldLabel}"/>
+                    <TextBlock  Name="fNameBlock"
+                                Text="{Binding Path=UserFirstName}"
+                                Style="{StaticResource ProfileFieldValue}"/>
+                    <TextBox Name="fNameBox"
+                             Style="{StaticResource ProfileField}"/>
+
+                    <!-- Last Name -->
+                    <TextBlock Text="Last Name"
+                               Style="{StaticResource ProfileFieldLabel}"/>
+                    <TextBlock Name="lNameBlock"
+                               Text="{Binding Path=UserLastName}"
+                               Style="{StaticResource ProfileFieldValue}"/>
+                    <TextBox Name="lNameBox"
+                             Style="{StaticResource ProfileField}"/>
+
+                    <!-- Age -->
+                    <TextBlock Text="Age"
+                               Style="{StaticResource ProfileFieldLabel}"/>
+                    <TextBlock Name="ageBlock"
+                               Text="{Binding Path=UserAge}"
+                               Style="{StaticResource ProfileFieldValue}"/>
+                    <TextBox Name="ageBox"
+                             Style="{StaticResource ProfileField}"/>
+                    
+                    <!-- Email -->
+                    <TextBlock Text="Email"
+                               Style="{StaticResource ProfileFieldLabel}"/>
+                    <TextBlock Name="emailBlock"
+                               Text="{Binding Path=UserEmail}"
+                               Style="{StaticResource ProfileFieldValue}"/>
+                    <TextBox Name="emailBox"
+                             Style="{StaticResource ProfileField}"/>
+
+                    <!-- Allergies -->
+                    <TextBlock Text="Allergies"
+                               Style="{StaticResource ProfileFieldLabel}"/>
+                    <ListView Style="{StaticResource ProfileList}"/>
+
+                    <!-- Health Factors -->
+                    <TextBlock Text="Health Factors"
+                           Style="{StaticResource ProfileFieldLabel}"/>
+                    <ListView Style="{StaticResource ProfileList}"/>
+
+                    <!-- Taste Profile -->
+                    <TextBlock Text="Taste Profile"
+                           Style="{StaticResource ProfileFieldLabel}"/>
+                    <ListView Style="{StaticResource ProfileList}"/>
+
+                </StackPanel>
+            </ScrollViewer>
+        </controls:NavMenu.MainContent>
+    </controls:NavMenu>
+</Page>
