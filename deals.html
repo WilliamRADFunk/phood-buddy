@@ -25,7 +25,7 @@
 	<script type="text/javascript" src="js/jquery-1.11.2.js"></script>
 	<!-- Bootstrap core JavaScript -->
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/respond.min.js"></script>    
+	<script type="text/javascript" src="js/respond.min.js"></script>  
 	<!-- Firebase Library for database communication -->
 	<script type="text/javascript" src="js/firebase.js"></script>
 	<script type="text/javascript" src="js/auth.js"></script>
@@ -66,27 +66,145 @@
 <!-- Main Navigation ends here -->
 <!-- Main Content Wrapper starts here -->
 	<div id="wrapper" class="container">
-		<div id="faq">
-			<h1>FAQ</h1>
-			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 table-responsive">
-					<table class="table">
-						<tr><td><i><span>Q: Do I have to settle for the recipe picked for me, or can I get a different one?</span></i></td></tr>
-						<tr><td><span>A: </span>Yes. Phood Buddy can repeatedly pick recipes as often as you need.</td></tr>
-						<tr><td><i><span>Q: What if I have a food allergy? Will Phood Buddy filter recipes to avoid my allergy?</span></i></td></tr>
-						<tr><td><span>A: </span>Yes. Phood Buddy, along with other filters, tries to eliminate options that would be affected by the allergies listed in your profile.</td></tr>
-						<tr><td><i><span>Q: I have diabetes, but like sweet foods. Can Phood Buddy find me recipes that taste sweet, but avoid foods dangerous to diabetics?</span></td></tr>
-						<tr><td><span>A: </span>Yes. Phood Buddy can find low sugar recipes that have a high sweet rating if that's how you've setup your profile.<i></td></tr>
-						<tr><td><i><span>Q: I have an iPhone. Can I download an iPhone app version of Phood Buddy?</span></td></i></tr>
-						<tr><td><span>A: </span>No. At the moment, the iPhone can only access Phood Buddy through the website at <a href="http://www.phoodbuddy.com">PhoodBuddy.com</a>.</td></tr>
-						<tr><td><i><span>Q: I have an Android phone, but it's version is 6 updates behind. Will the Phood Buddy app still be compatible?</span></td></i></tr>
-						<tr><td><span>A: </span>Yes. The Android Mobile branch of Phood Buddy is compatible with the last 10 versions as of 04/2016.</td></tr>
-						<tr><td><i><span>Q: I hate having to login repeatedly with username and password. Can Phood Buddy sign me in some other way?</span></td></i></tr>
-						<tr><td><span>A: </span>Yes. Phood Buddy can be signed in with Facebook or Google.</td></tr>
-						<tr><td><i><span>Q: I have a question that isn't listed here. What do I do?</span></td></i></tr>
-						<tr><td><span>A: </span>We're happy to answer any questions you might have. If it isn't here, feel free to contact one of our developers <a href="contact.html">here</a></td></tr>
-					</table>
+		<div id="deals">
+<!-- Featured Deals row starts here -->
+			<div id="deals-featured" class="row">
+				<div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-12">
+					<a href="deals.html" target="_self"><img class="img-responsive" src="images/img-category-deals.jpg"></a>
 				</div>
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<div id="carousel-deals" class="carousel slide" data-ride="carousel">
+						<!-- Wrapper for slides -->
+						<div class="carousel-inner" role="listbox">
+							<div class="item active row">
+								<div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-12">
+									<img src="images/placeholder-deal.jpg" alt="Product Example 1">
+								</div>
+								<div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-12">
+									<h3>Product Example 1</h3>
+									<h4>$<span>12.99</span> per bag</h4>
+									<p>Premium coffee from the rainforests of Peru.</p>
+								</div>
+							</div>
+							<div class="item row">
+								<div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-12">
+									<img src="images/placeholder-deal.jpg" alt="Product Example 2">
+								</div>
+								<div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-12">
+									<h3>Product Example 2</h3>
+									<h4>$<span>1.99</span> per can</h4>
+									<p>Crushed tomatoes at an all time low.</p>
+								</div>
+							</div>
+							<div class="item row">
+								<div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-12">
+									<img src="images/placeholder-deal.jpg" alt="Product Example 3">
+								</div>
+								<div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-12">
+									<h3>Product Example 3</h3>
+									<h4><span>10.49</span> per pound</h4>
+									<p>White flour for all your baking needs.</p>
+								</div>
+							</div>
+							<div class="item row">
+								<div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-12">
+									<img src="images/placeholder-deal.jpg" alt="Product Example 4">
+								</div>
+								<div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-12">
+									<h3>Product Example 4</h3>
+									<h4><span>3.99</span> per can</h4>
+									<p>Cambell's soup makes for a wholesome meal in minutes.</p>
+								</div>
+							</div>
+						</div>
+						<!-- Left and right controls -->
+						<a class="left carousel-control" href="#carousel-deals" role="button" data-slide="prev">
+							<span class="glyphicon glyphicon-chevron-left turquois" aria-hidden="true"></span>
+							<span class="sr-only">Previous</span>
+						</a>
+						<a class="right carousel-control" href="#carousel-deals" role="button" data-slide="next">
+							<span class="glyphicon glyphicon-chevron-right turquois" aria-hidden="true"></span>
+							<span class="sr-only">Next</span>
+						</a>
+					</div>
+				</div>
+			</div>
+<!-- Featured Deals row ends here -->
+			<div class="divider row">
+				<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12"></div>
+			</div>
+<!-- Current Deals row starts here -->
+			<div class="row deal-list">
+				<div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-12 deal-wrapper-outer">
+					<div class="deal-wrapper-inner">
+						<img src="images/placeholder-deal.jpg"/>
+						<div class="deal-details">
+							<span class="left">Product Example Extra Space</span><span class="right">$12.99</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 deal-wrapper-outer">
+					<div class="deal-wrapper-inner">
+						<img src="images/placeholder-deal.jpg"/>
+						<div class="deal-details">
+							<span class="left">Product Example</span><span class="right">$12.99</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 deal-wrapper-outer">
+					<div class="deal-wrapper-inner">
+						<img src="images/placeholder-deal.jpg"/>
+						<div class="deal-details">
+							<span class="left">Product Example</span><span class="right">$12.99</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 deal-wrapper-outer">
+					<div class="deal-wrapper-inner">
+						<img src="images/placeholder-deal.jpg"/>
+						<div class="deal-details">
+							<span class="left">Product Example</span><span class="right">$12.99</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row deal-list">
+				<div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-12 deal-wrapper-outer">
+					<div class="deal-wrapper-inner">
+						<img src="images/placeholder-deal.jpg"/>
+						<div class="deal-details">
+							<span class="left">Product Example</span><span class="right">$12.99</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 deal-wrapper-outer">
+					<div class="deal-wrapper-inner">
+						<img src="images/placeholder-deal.jpg"/>
+						<div class="deal-details">
+							<span class="left">Product Example</span><span class="right">$12.99</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 deal-wrapper-outer">
+					<div class="deal-wrapper-inner">
+						<img src="images/placeholder-deal.jpg"/>
+						<div class="deal-details">
+							<span class="left">Product Example</span><span class="right">$12.99</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 deal-wrapper-outer">
+					<div class="deal-wrapper-inner">
+						<img src="images/placeholder-deal.jpg"/>
+						<div class="deal-details">
+							<span class="left">Product Example</span><span class="right">$12.99</span>
+						</div>
+					</div>
+				</div>
+			</div>
+<!-- Current Deals row ends here -->
+			<div class="divider row">
+				<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12"></div>
 			</div>
 		</div>
 	</div>
@@ -151,6 +269,6 @@
 	  </div>
 	</div>
 <!-- Modal ends here -->
-<script>window.onload = function() { if(checkAuth()) {loggedIn();} }</script>
+<script>window.onload = initLoginCheck();</script>
 </body>
 </html>

@@ -1,0 +1,101 @@
+@page 
+{
+	size: 100%;
+	margin: 0mm;
+}
+html
+{
+	height: 100%;
+	margin: 0px;
+}
+body
+{
+	background-color: #FFFFFF;
+	color: #777777;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: lighter;
+	height: auto;
+	margin: 10mm 15mm 10mm 15mm;
+	overflow-x: hidden;
+	position: relative;
+}
+::-webkit-scrollbar
+{ 
+    display: none; 
+}
+select
+{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+h1
+{
+	display: none;
+}
+ul
+{
+	list-style: none;
+}
+#main-nav
+{
+	display: none;
+}
+#wrapper
+{
+	margin-top: 40px;
+	min-height: 65%;
+	width: 100%
+}
+#groceries h2
+{
+	display: inline-block;
+	margin-right: 40px;
+}
+#groceries .row
+{
+	margin-bottom: 0px;
+}
+#groceries .divider.row div,
+#groceries .col-1,
+#groceries .col-2
+{
+	display: none;
+}
+#groceries .col-5,
+#groceries .col-6
+{
+	width: 20%;
+}
+#groceries .col-3
+{
+	width: 20%;
+}
+#groceries .col-4
+{
+	width: 40%;
+}
+#groceries .grocery-options,
+#groceries #add-item,
+#groceries #add-item-link,
+#groceries #print-list,
+#groceries #delete-list,
+#groceries #add-item input[type="text"],
+#groceries #add-item input[type="number"],
+#groceries #add-item select,
+#groceries #add-item button,
+#groceries #add-item button,
+#modal,
+#social,
+footer
+{
+	display: none;
+}
+#groceries input[type="text"],
+#groceries input[type="number"],
+#groceries select
+{
+	border: none;
+}

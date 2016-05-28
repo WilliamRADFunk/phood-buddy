@@ -19,13 +19,15 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet"/>
 	<!-- Customized styles by William R.A.D. Funk -->
 	<link rel="stylesheet" href="css/styles.css"/>
+	<link rel="stylesheet" href="css/styles-recipe-print.css" media="print"/>
 	<!-- Google Open Sans font -->
 	<link href='fonts/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 	<!-- JQUERY Library for additional functionality -->
 	<script type="text/javascript" src="js/jquery-1.11.2.js"></script>
 	<!-- Bootstrap core JavaScript -->
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/respond.min.js"></script>    
+	<script type="text/javascript" src="js/respond.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap-filestyle.min.js"></script>   
 	<!-- Firebase Library for database communication -->
 	<script type="text/javascript" src="js/firebase.js"></script>
 	<script type="text/javascript" src="js/auth.js"></script>
@@ -65,31 +67,7 @@
 	</nav>
 <!-- Main Navigation ends here -->
 <!-- Main Content Wrapper starts here -->
-	<div id="wrapper" class="container">
-		<div id="faq">
-			<h1>FAQ</h1>
-			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 table-responsive">
-					<table class="table">
-						<tr><td><i><span>Q: Do I have to settle for the recipe picked for me, or can I get a different one?</span></i></td></tr>
-						<tr><td><span>A: </span>Yes. Phood Buddy can repeatedly pick recipes as often as you need.</td></tr>
-						<tr><td><i><span>Q: What if I have a food allergy? Will Phood Buddy filter recipes to avoid my allergy?</span></i></td></tr>
-						<tr><td><span>A: </span>Yes. Phood Buddy, along with other filters, tries to eliminate options that would be affected by the allergies listed in your profile.</td></tr>
-						<tr><td><i><span>Q: I have diabetes, but like sweet foods. Can Phood Buddy find me recipes that taste sweet, but avoid foods dangerous to diabetics?</span></td></tr>
-						<tr><td><span>A: </span>Yes. Phood Buddy can find low sugar recipes that have a high sweet rating if that's how you've setup your profile.<i></td></tr>
-						<tr><td><i><span>Q: I have an iPhone. Can I download an iPhone app version of Phood Buddy?</span></td></i></tr>
-						<tr><td><span>A: </span>No. At the moment, the iPhone can only access Phood Buddy through the website at <a href="http://www.phoodbuddy.com">PhoodBuddy.com</a>.</td></tr>
-						<tr><td><i><span>Q: I have an Android phone, but it's version is 6 updates behind. Will the Phood Buddy app still be compatible?</span></td></i></tr>
-						<tr><td><span>A: </span>Yes. The Android Mobile branch of Phood Buddy is compatible with the last 10 versions as of 04/2016.</td></tr>
-						<tr><td><i><span>Q: I hate having to login repeatedly with username and password. Can Phood Buddy sign me in some other way?</span></td></i></tr>
-						<tr><td><span>A: </span>Yes. Phood Buddy can be signed in with Facebook or Google.</td></tr>
-						<tr><td><i><span>Q: I have a question that isn't listed here. What do I do?</span></td></i></tr>
-						<tr><td><span>A: </span>We're happy to answer any questions you might have. If it isn't here, feel free to contact one of our developers <a href="contact.html">here</a></td></tr>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
+	<div id="wrapper" class="container"></div>
 <!-- Main Content Wrapper ends here -->
 <!-- Social starts here -->
 	<div id="social" class="container">
@@ -151,6 +129,6 @@
 	  </div>
 	</div>
 <!-- Modal ends here -->
-<script>window.onload = function() { if(checkAuth()) {loggedIn();} }</script>
+<script>window.onload = initRecipe();</script>
 </body>
 </html>

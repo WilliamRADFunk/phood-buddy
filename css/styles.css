@@ -9,17 +9,19 @@ body
     font-family: 'Open Sans', sans-serif;
     font-weight: lighter;
     height: 100%;
-    padding-top: 50px;
     position: relative;
 }
 h1
 {
+	margin-bottom: 30px;
+	margin-top: 0px;
 	text-align: center;
 }
 ul
 {
 	list-style: none;
 }
+/************* Main navbar page start ***********All****/
 #main-nav
 {
 	background-color: #4585A1;
@@ -27,6 +29,16 @@ ul
 	height: 50px;
 	padding-left: 10%;
 	padding-right: 10%;
+	position: relative;
+}
+#main-nav > a > img
+{
+	display: inline-block;
+	height: 20px;
+	left: 15%;
+	position: absolute;
+	top: 15px;
+	width: auto;
 }
 .navbar-default,
 .navbar-inverse
@@ -35,72 +47,1067 @@ ul
     color: #FFFFFF;
     width: 100%;
 }
-.navbar-default .navbar-nav > .active > a,
-.navbar-default .navbar-nav > .active > a:focus,
-.navbar-default .navbar-nav > .active > a:hover
+.navbar-inverse .navbar-toggle,
+.navbar-inverse .navbar-toggle:focus
 {
-    background-color: #4585A1;
-    color: #FFFFFF;
+	background-color: #4585A1;
+}
+.navbar-inverse .navbar-toggle:hover
+{
+	background-color: #333333;
 }
 .navbar-default .navbar-nav > .disabled > a,
 .navbar-default .navbar-nav > .disabled > a:hover,
-.navbar-default .navbar-nav > .disabled > a:focus
-{
-    color: #FFFFFF;
-}
-.navbar-default .navbar-nav > li > a
-{
-    color: #FFFFFF;
-}
-.navbar-default .navbar-nav > li:hover
-{
-    background-color: #326077;
-}
+.navbar-default .navbar-nav > .disabled > a:focus,
+.navbar-default .navbar-nav > li > a,
 .navbar-default .navbar-nav > li > a:focus,
-.navbar-default .navbar-nav > li > a:hover
-{
-    color: #FFFFFF;
-}
-.navbar-default .navbar-nav > li > a:focus
-{
-    color: #FFFFFF;
-}
-.navbar-default .navbar-nav > ul
-{
-    padding-left: 20px;
-}
+.navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-text
 {
     color: #FFFFFF;
 }
+.navbar-fixed-bottom .navbar-collapse,
+.navbar-fixed-top .navbar-collapse
+{
+	max-height: 440px;
+}
+#main-nav > div > ul > li > a:hover
+{
+    background-color: #326077;
+}
+#main-nav > div > ul,
+#main-nav > div > ul > li
+{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+#collapse
+{
+    background-color: #4585A1;
+    margin-top: 50px;
+}
 #login-register
 {
+	border-top: 2px solid #FFFFFF;
 	display: block;
 	float: right;
 }
+#logout-link
+{
+	display: none;
+}
+/*** Hamburger Menu Collapse Start ***/
+/*** Ensures the hamburger menu ***/
+/*** remains collapsed for all screen sizes ***/
+.navbar-header
+{
+	float: left;
+}
+.navbar-toggle
+{
+	display: block;
+}
+.navbar-collapse
+{
+	border-top: 1px solid transparent;
+	box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+}
+.navbar-collapse.collapse
+{
+	display: none !important;
+}
+.navbar-collapse.collapse.in
+{
+	display: block !important;
+}
+.navbar-nav
+{
+	float: none !important;
+	margin: 7.5px -15px;
+}
+.navbar-nav > li
+{
+	float: none;
+}
+.navbar-nav > li > a
+{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+/*** Hamburger Menu Collapse End ***/
+/************* Main navbar page end *************All****/
+/************* All pages page start *************All****/
 #wrapper
 {
-	min-height: 75%;
+	margin-top: 40px;
+	min-height: 65%;
 	width: 100%
 }
-#about table,
-#faq table,
-#contact table
+.carousel .item
+{
+	height: 170px;
+	margin: 0px auto;
+	text-align: center;
+}
+.item h3
+{
+	margin-top: 0px;
+}
+.item img
+{
+	height: 170px;
+	text-align: center;
+}
+.carousel-control
+{
+	opacity: 1;
+}
+.carousel-control.left,
+.carousel-control.right
+{
+	background-image: none;
+	background-repeat: none;
+}
+.turquois
+{
+	color: #326076;
+}
+/************* All pages page end ***************All****/
+/************* Landing page start ***************All****/
+#landing .divider.row div
+{
+	border-bottom: 2px solid #E5E5E5;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+#landing .row img
+{
+	height: 170px;
+}
+#main-fitbit > div,
+#main-recipes > div,
+#main-groceries > div
+{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+#carousel-recipes .item
 {
 	background-color: #E2EEF4;
-	margin-bottom: 50px;
-	margin-top: 50px;
+	padding-bottom: 23px;
+	padding-top: 23px;
+	cursor: pointer;
 }
+#carousel-recipes .item img
+{
+	height: 124px;
+	text-align: left;
+}
+#carousel-recipes .img-container
+{
+	width: 40%;
+}
+#carousel-recipes img
+{
+	width: auto;
+}
+#carousel-recipes .details-container
+{
+	width: 40%;
+}
+#carousel-recipes p
+{
+	display: block;
+	font-size: 15px;
+	padding-left: 0%;
+	text-align: justify-all;
+}
+#carousel-recipes h3
+{
+	display: block;
+	font-size: 18px;
+	padding-left: 0%;
+	text-align: center;
+}
+#carousel-recipes h4
+{
+	display: block;
+	font-size: 12px;
+	text-align: center;
+	display: block;
+}
+#carousel-groceries .food-cat
+{
+	cursor: pointer !important;
+}
+#carousel-groceries .item
+{
+	margin-left: auto;
+	margin-right: auto;
+	width: 98%;
+}
+#carousel-groceries ul
+{
+	float: left;
+	margin-right: 15px;
+	max-width: 28%;
+	min-width: 28%;
+}
+#carousel-groceries ul li
+{
+	background-image: url('../images/icon-checkmark.png');
+	background-repeat: no-repeat;
+	height: 26px;
+	line-height: 26px;
+	margin-bottom: 5px;
+	overflow: hidden;
+	padding-left: 30px;
+	text-align: left;
+}
+/************* Landing page end *****************All****/
+/************* Deals page start *****************All****/
+#deals .divider.row div
+{
+	border-bottom: 2px solid #E5E5E5;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+#deals .row
+{
+	margin-bottom: 20px;
+}
+#deals .row img
+{
+	height: 170px;
+}
+#deals-featured > div
+{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+#carousel-deals .item
+{
+	background-color: #E2EEF4;
+	padding-bottom: 23px;
+	padding-top: 23px;
+}
+#carousel-deals .item img
+{
+	height: 124px;
+	text-align: left;
+}
+#carousel-deals p,
+#carousel-deals h3
+{
+	text-align: left;
+}
+#carousel-deals h4
+{
+	font-size: 13px;
+	text-align: left;
+}
+#deals .row.deal-list img
+{
+	border: 2px solid #E2EEF4;
+	height: auto;
+	width: 100%;
+}
+#deals .deal-details
+{
+	background-color: #E2EEF4;
+	height: 30px;
+	width: 100%;
+}
+#deals .deal-details span
+{
+	display: inline-block;
+	overflow: hidden;
+	padding-top: 5px;
+	white-space: nowrap;
+}
+#deals .deal-details span.left
+{
+	float: left;
+	padding-left: 2%;
+	text-align: left;
+	width: 60%;
+}
+#deals .deal-details span.right
+{
+	float: right;
+	padding-right: 2%;
+	text-align: right;
+	width: 30%;
+}
+#deals .deal-wrapper-outer
+{
+	padding-top: 20px;
+}
+#deals .deal-wrapper-inner
+{
+	background-color: #E2EEF4;
+	width: 100%;
+}
+/************* Deals page end *******************All****/
+/************* Login/Register page start ********All****/
+#login table,
+#register table
+{
+	background-color: #E2EEF4;
+	text-align: center;
+}
+#login input[type='email'],
+#login input[type='password'],
+#register input[type='text'],
+#register input[type='email'],
+#register input[type='password']
+{
+	background-color: #FFFFFF !important;
+	text-align: center;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+#login > div > div > table,
+#register > div > div > table
+{
+	margin-bottom: 50px;
+}
+#login .table-responsive > .table > tbody > tr > td,
+#register .table-responsive > .table > tbody > tr > td
+{
+	text-align: center;
+}
+#login .table-responsive > .table > tbody > tr > td.separate
+{
+	border-top: 1px solid #DDDDDD !important;
+	height: 60px;
+	padding-top: 60px;
+}
+#login .table-responsive > .table > tbody > tr > td > button,
+#register .table-responsive > .table > tbody > tr > td > button
+{
+	color: #FFFFFF;
+	height: 50px;
+	margin: 0px auto;
+	width: 95%;
+}
+#login .table-responsive > .table.borderless > tbody > tr > td,
+#login .table-responsive > .table.borderless > tbody > tr > td > .table > tbody > tr > td,
+#register .table-responsive > .table.borderless > tbody > tr > td,
+#register .table-responsive > .table.borderless > tbody > tr > td > .table > tbody > tr > td
+{
+	border-bottom: none;
+	border-top: none;
+}
+#login .table-responsive > .table > tbody > tr > td > .table > tbody > tr > td > a,
+#login .table-responsive > .table > tbody > tr > td > .table > tbody > tr > td > a:visited,
+#login .table-responsive > .table > tbody > tr > td > .table > tbody > tr > td > a:active
+{
+	font-size: 12px;
+	font-style: italic;
+	text-decoration: none;
+}
+#login .table-responsive > .table > tbody > tr > td > .table > tbody > tr > td > a:hover
+{
+	text-decoration: underline;
+}
+#btn-facebook,
+#btn-facebook-reg
+{
+	background-color: #3A5898;
+}
+#btn-twitter,
+#btn-twitter-reg
+{
+	background-color: #28AAE1;
+}
+#btn-google,
+#btn-google-reg
+{
+	background-color: #DD4937;
+}
+#login .table-responsive > .table > tbody > tr > td > #btn-login,
+#register .table-responsive > .table > tbody > tr > td > #btn-register
+{
+	background-color: #4585A2;
+	width: 25%;
+}
+/************* Login/Register pages end *********All****/
+/************* Profile page start  **************All****/
+#profile #profile-header
+{
+	background-color: #E2EEF4;
+	height: 127px;
+	margin-bottom: 15px;
+	padding-right: 0px;
+	padding-top: 15px;
+}
+#profile #profile-header > img
+{
+	display: inline-block;
+	float: left;
+	height: 97px;
+}
+#profile #profile-header > button
+{
+	background-color: #326077;
+	color: #FFFFFF;
+	display: inline-block;
+	float: right;
+	height: 40px;
+	margin-top: 29px;
+}
+#profile #profile-header #btn-edit-risks,
+#profile #profile-header #btn-edit-exercise,
+#profile #profile-header #btn-edit-tastes,
+#profile #my-risks,
+#profile #my-exercise,
+#profile #my-tastes
+{
+	display: none;
+}
+#profile #buttons
+{
+	padding-left: 0px;
+}
+#profile #user-allergy,
+#profile #user-health
+{
+	border: 1px solid#326077;
+	cursor: default;
+	margin-bottom: 0px;
+	-webkit-user-select: none;
+}
+#profile #user-allergy li,
+#profile #user-health li
+{
+	text-align: center;
+}
+#profile .profile-content
+{
+	padding-right: 0px;
+}
+#profile h1
+{
+	color: #517488;
+	display: inline-block;
+	float: left;
+	font-weight: lighter;
+	line-height: 97px;
+	margin-left: 15px;
+	text-align: left;
+}
+#profile h2
+{
+	border-bottom: 1px solid #DDDDDD;
+	color: #316178;
+	font-size: 21px;
+	margin: 0px 0px 10px 0px;
+	padding-bottom: 10px;
+}
+#profile input[type="text"],
+#profile input[type="number"],
+#profile input[type="email"],
+#profile input[type="password"],
+#profile select,
+#profile form button
+{
+	height: 35px;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+}
+#profile #my-risks select,
+#profile #my-exercise input[type="password"]
+{
+	margin-top: 25px;
+}
+#profile form button
+{
+	background-color: #8ECDE9;
+	color: #326077;
+}
+#profile table
+{
+	margin-bottom: 30px;
+	width: 100%;
+}
+#profile td
+{
+	width: 50%;
+}
+#profile #bio-box
+{
+	border-bottom: 1px solid #DDDDDD;
+	margin: 0px 0px 10px 0px;
+	padding-bottom: 10px;
+	width: 100%;
+}
+#profile .btn-profile
+{
+	background-color: #326077;
+	color: #FFFFFF;
+	display: block;
+	height: 50px;
+	margin-bottom: 3px;
+	width: 100%;
+}
+#profile .btn-profile:hover,
+#profile .btn-profile:active,
+#profile .btn-profile.active
+{
+	background-color: #4585A1;
+}
+#profile #btn-personal-profile,
+#profile #btn-risk-profile,
+#profile #btn-exercise-profile,
+#profile #btn-taste-profile,
+#profile #btn-logout
+{
+	background-repeat: no-repeat;
+	background-position: 10px 0px;
+}
+#profile #btn-personal-profile
+{
+	background-image: url('../images/icon-profile.png');
+}
+#profile #btn-risk-profile
+{
+	background-image: url('../images/icon-risks.png');
+}
+#profile #btn-exercise-profile
+{
+	background-image: url('../images/icon-exercise.png');
+}
+#profile #btn-taste-profile
+{
+	background-image: url('../images/icon-tastes.png');
+}
+#profile #btn-logout
+{
+	background-image: url('../images/icon-logout.png');
+}
+/************* Profile page end *****************All****/
+/************* Groceries page start *************All****/
+#groceries h2
+{
+	display: inline-block;
+	margin-right: 40px;
+}
+#groceries .col-1,
+#groceries .col-2,
+#groceries .col-5,
+#groceries .col-6
+{
+	width: 10%;
+}
+#groceries .col-3
+{
+	width: 20%;
+}
+#groceries .col-4
+{
+	width: 40%;
+}
+#groceries .divider.row div
+{
+	border-bottom: 2px solid #E5E5E5;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+#groceries #add-item,
+#groceries .editable
+{
+	display: none;
+}
+#groceries #add-item-link
+{
+	background-image: url('../images/btn-plus.jpg');
+	background-repeat: no-repeat;
+	padding-left: 30px;
+}
+#groceries #print-list
+{
+	background-image: url('../images/btn-print.jpg');
+	background-repeat: no-repeat;
+	padding-left: 30px;
+}
+#groceries #delete-list
+{
+	background-image: url('../images/btn-trash.jpg');
+	background-repeat: no-repeat;
+	margin-left: 50px;
+	padding-left: 30px;
+}
+#groceries input[type='text'],
+#groceries input[type='number'],
+#groceries select,
+#groceries button,
+#modal #editing-item input[type='text'],
+#modal #editing-item input[type='number'],
+#modal #editing-item select
+{
+	height: 30px;
+}
+#groceries #add-item button
+{
+	background-color: #8ECDE9;
+	color: #326077;
+}
+/************* Groceries page end ***************All****/
+/************* Favorite Recipes page start ******All****/
+#favorite-recipes #filter-bar
+{
+	margin-bottom: 10px;
+	min-height: 50px;
+	padding-bottom: 12px;
+	padding-top: 25px;
+}
+#favorite-recipes #filter-bar > div
+{
+	background-color: #E2EEF4;
+	padding-bottom: 25px;
+	padding-top: 25px;
+	white-space: normal;
+}
+#favorite-recipes #filter-bar > div.col-xs-6
+{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+#favorite-recipes #filter-bar > div.col-xs-6 > input[type="radio"]
+{
+	margin-left: 25px;
+}
+#favorite-recipes h3
+{
+	margin-top: 0px;
+}
+#favorite-recipes img
+{
+	float: left;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+}
+#favorite-recipes .divider.row div
+{
+	border-bottom: 2px solid #E5E5E5;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+#favorite-recipes .fav-recipe
+{
+	white-space: normal;
+}
+#favorite-recipes .fav-recipe a.gotoLink
+{
+	background-image: url('../images/btn-print.jpg');
+	background-repeat: no-repeat;
+	margin-bottom: 20px;
+	margin-right: 75px;
+	padding-left: 30px;
+}
+#favorite-recipes .fav-recipe a.removeFavLink
+{
+	background-image: url('../images/btn-trash.jpg');
+	background-repeat: no-repeat;
+	margin-bottom: 20px;
+	padding-left: 30px;
+}
+.text-center
+{
+	text-align: center;
+}
+.text-left
+{
+	text-align: left;
+}
+.text-right
+{
+	text-align: right;
+}
+/************* Favorite Recipes page end ********All****/
+/************* Create Recipe page start *********All****/
+#add-recipe button
+{
+	background-color: #8ECDE9;
+	color: #FFFFFF;
+}
+#add-recipe #submit-recipe
+{
+	display: block;
+	margin: 0px auto 20px auto;
+	width: 150px;
+}
+#add-recipe hr
+{
+	margin-top: 20px;
+	width: 100%;
+}
+#add-recipe input[type="number"]
+{
+	text-align: center;
+}
+#add-recipe #upload-img,
+#add-recipe #main-data,
+#add-recipe #ingredients,
+#add-recipe #directions,
+#add-recipe #times
+{
+	background-color: #EFEFEF;
+	border-bottom: 1px solid #DDDDDD;
+	border-top: 1px solid #DDDDDD;
+	color: #326077;
+	font-weight: bolder;
+	height: auto;
+	margin-bottom: 30px;
+}
+#add-recipe #main-data,
+#add-recipe #ingredients,
+#add-recipe #directions,
+#add-recipe #times
+{
+	padding-bottom: 20px;
+	padding-top: 20px;
+}
+#add-recipe #upload-img h2,
+#add-recipe #ingredients h2,
+#add-recipe #directions h2
+{
+	display: block;
+	margin-bottom: 10px;
+	text-align: center;
+}
+#add-recipe #upload-img h3,
+#add-recipe #ingredients h3,
+#add-recipe #directions h3
+{
+	display: block;
+	font-size: 14px;
+	margin-bottom: 30px;
+	margin-top: 0px;
+	text-align: center;
+}
+#add-recipe #times input[type="number"]
+{
+	width: 60%;
+}
+#add-recipe #upload-img input[type="file"]
+{
+	display: inline-block;
+	float: left;
+	margin-bottom: 20px;
+}
+#add-recipe #upload-img .input-group
+{
+	width: 40%;
+}
+#add-recipe #upload-img .input-group,
+#add-recipe #upload-img .input-group .form-control
+{
+	float: left;
+	width: 40%;
+}
+#add-recipe #upload-img .input-group-btn
+{
+	display: inline-block;
+	width: 58%;
+}
+#add-recipe #upload-img .bootstrap-filestyle.input-group input[type="text"].form-control
+{
+	float: left !important;
+	margin-bottom: 20px;
+}
+#add-recipe #upload-img input[type="text"]
+{
+	display: inline-block;
+	float: right;
+	margin-bottom: 20px;
+	text-align: center;
+}
+#add-recipe #main-data label,
+#add-recipe #ingredients label,
+#add-recipe #directions label
+{
+	float: left;
+}
+#add-recipe #directions label
+{
+	width: 5%;
+}
+#add-recipe #main-data input,
+#add-recipe #main-data select,
+#add-recipe #ingredients input,
+#add-recipe #ingredients select
+{
+	float: right;
+	height: 25px;
+	text-align: center;
+	width: 40%;
+}
+#add-recipe #main-data select,
+#add-recipe #ingredients select
+{
+	text-align-last: center;
+}
+#add-recipe #ingredients > .ingredient-chunk > .stand-alone > button,
+#add-recipe #ingredients > .ingredient-chunk > .stand-alone > button,
+#add-recipe #directions > .direction-chunk > .stand-alone > button,
+#add-recipe #directions > .direction-chunk > .stand-alone > button
+{
+	margin-top: 20px;
+	width: 100%;
+}
+#add-recipe ::-webkit-input-placeholder
+{
+	color: #326077;
+}
+#add-recipe :-moz-placeholder
+{
+	color: #326077;
+}
+#add-recipe ::-moz-placeholder
+{
+	color: #326077;
+}
+#add-recipe :-ms-input-placeholder
+{
+	color: #326077;
+}
+#add-recipe #directions input
+{
+	float: right;
+	margin-right: 5%;
+	text-align: center;
+	width: 85%;
+}
+#add-recipe #ingredients .ingredient-chunk
+{
+	padding-bottom: 50px;
+	padding-top: 50px;
+}
+#add-recipe #directions .direction-chunk
+{
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+/************* Create Recipe page end ********All*******/
+/************* Schedule page start ***********All*******/
+#week-schedule
+{
+	margin-bottom: 25px;
+}
+#week-schedule #print-schedule
+{
+	background-image: url('../images/btn-print.jpg');
+	background-repeat: no-repeat;
+	margin-bottom: 10px;
+	padding-left: 30px;
+}
+#week-schedule .weekday
+{
+	background-color: #EFEFEF;
+	border: 2px solid #DDDDDD;
+	color: #326077;
+	padding-bottom: 10px;
+	position: relative;
+	text-align: center;
+}
+#week-schedule .weekday > div > a
+{
+	display: inline-block;
+	font-weight: bolder;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: hidden;
+	text-align: center;
+	white-space: nowrap;
+	width: 48%;
+}
+#week-schedule .weekday .recipe-options-wrapper button
+{
+	background-color: #8ECDE9;
+	color: #FFFFFF;
+	display: block;
+	float: left;
+	height: 30px;
+	line-height: 24px;
+	margin-top: 5px;
+}
+#week-schedule .weekday button.btn-del-choice
+{
+	background-color: #4585A1;
+	color: #FFFFFF;
+	height: 30px;
+	line-height: 24px;
+	margin-top: 5px;
+	position: absolute;
+	right: 30px;
+	z-index: 10;
+}
+#week-schedule .weekday > h3
+{
+	margin-bottom: 20px;
+}
+#week-schedule .weekday > div
+{
+	cursor: pointer;
+	height: 40px;
+	line-height: 40px;
+}
+#week-schedule .weekday > div:hover
+{
+	background-color: #326077;
+	color: #FFFFFF;
+}
+#week-schedule .weekday > div.active
+{
+	background-color: #EFEFEF;
+	color: #FFFFFF;
+}
+/************* Schedule page end *************All*******/
+/************* Recipe page start *************All*******/
+#recipe .divider.row div
+{
+	border-bottom: 2px solid #E5E5E5;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+#recipe .row img
+{
+	height: 170px;
+}
+#recipe .col-lg-6 p
+{
+	display: inline-block;
+	height: 40px;
+	line-height: 80px;
+}
+#recipe .col-lg-6 p span
+{
+	cursor: pointer;
+}
+#recipe h2
+{
+	border-right: 2px solid #E5E5E5;
+}
+#recipe h3
+{
+	display: inline-block;
+	height: 40px;
+}
+#recipe h4
+{
+	color: #4585A1;
+	font-size: 22px;
+	font-weight: bolder;
+	margin-bottom: 15px;
+	text-align: center;
+}
+#recipe ul
+{
+	list-style-type: decimal;
+}
+#recipe ul li
+{
+	margin-bottom: 10px;
+}
+#recipe ul li span
+{
+	margin-right: 10px;
+}
+#recipe .col-lg-3 p
+{
+	color: #4585A1;
+	font-size: 18px;
+	text-align: center;
+}
+#recipe .col-lg-3 p span
+{
+	color: #4889a9;
+	font-size: 56px;
+	font-weight: bolder;
+	margin-bottom: 20px;
+}
+#recipe #left-column
+{
+	border-right: 2px solid #E5E5E5;
+}
+#recipe #print-recipe
+{
+	background-image: url('../images/btn-print.jpg');
+	background-repeat: no-repeat;
+	padding-left: 30px;
+}
+#recipe #grocery-redirect,
+#recipe #fav-list-redirect
+{
+	background-image: url('../images/btn-plus.jpg');
+	background-repeat: no-repeat;
+	padding-left: 30px;
+}
+/************* Recipe page end ***************All*******/
+/************* Extraneous pages page start ******All****/
+#about table,
+#faq table,
+#contact table,
 #faq table span
 {
+	background-color: #E2EEF4;
 	font-weight: bold;
 }
+#faq table
+{
+	font-weight: normal;
+}
+#error-page
+{
+	clear: both;
+	position: relative;
+	text-align: center;
+}
+#error-page img
+{
+	display: block;
+	height: auto;
+	margin: 0px auto;
+	width: 60%;
+}
+/************* Extraneous pages page end ********All****/
+/************* Modal start **********************All****/
+.modal-header
+{
+	background-color: #4585A1;
+	color: #FFFFFF;
+}
+.modal-footer > button
+{
+	background-color: #8ECDE9;
+}
+/************* Modal end ************************All****/
+/************* Social links page start **********All****/
+#social
+{
+	margin-bottom: 10px;
+	margin-top: 10px;
+	min-height: 13%;
+	text-align: center;
+	width: 100%;
+}
+#social img
+{
+	margin: 10px;
+}
+/************* Social links page end ************All****/
+/************* Footer page start ****************All****/
 footer
 {
 	background-color: #4585A1;
 	color: #FFFFFF;
 	display: block;
-	min-height: 25%;
+	min-height: 20%;
 	line-height: 20px;
 	padding-bottom: 15px;
 	width: 100%;
@@ -137,11 +1144,327 @@ footer > .row > .link-column
 	padding-left: 0px;
 	padding-right: 0px;
 }
+/**************** Footer page end ***************All****//****************************/
+@media screen and (max-width: 1199px) {
+	/************* Landing page start **********992-1199****/
+	#carousel-groceries .item
+	{
+		width: 98%;
+	}
+	#carousel-recipes h3
+	{
+		display: block;
+		font-size: 18px;
+		padding-left: 0%;
+		text-align: center;
+	}
+	#carousel-recipes h4
+	{
+		display: block;
+		font-size: 11px;
+		text-align: center;
+	}
+	#carousel-recipes .img-container
+	{
+		width: 40%;
+	}
+	#carousel-recipes img
+	{
+		width: 100%;
+	}
+	#carousel-recipes .details-container
+	{
+		width: 40%;
+	}
+	#carousel-recipes p
+	{
+		display: block;
+		font-size: 14px;
+		padding-left: 0%;
+		text-align: justify-all;
+	}
+/************* Landing page end ************992-1199****/
+}
+@media screen and (max-width: 991px) {
+/************* Main navbar page start *******768-991****/
+	#main-nav > a > img
+	{
+		left: 20%;
+	}
+/************* Main navbar page end *********768-991****/
+/************* Landing page start ***********768-991****/
+	#carousel-groceries .item
+	{
+		width: 98%;
+	}
+	#carousel-recipes h3
+	{
+		display: block;
+		font-size: 14px;
+		padding-left: 0%;
+		text-align: center;
+	}
+	#carousel-recipes h4
+	{
+		display: block;
+		font-size: 9px;
+		text-align: center;
+	}
+	#carousel-recipes .img-container
+	{
+		width: 40%;
+	}
+	#carousel-recipes img
+	{
+		width: 100%;
+	}
+	#carousel-recipes .details-container
+	{
+		width: 40%;
+	}
+	#carousel-recipes p
+	{
+		display: block;
+		font-size: 12px;
+		padding-left: 0%;
+		text-align: justify-all;
+	}
+/************* Landing page end *************768-991****/
+/************* Recipe page start ************768-991****/
+	#recipe .row img
+	{
+		height: auto;
+		width: 100%;
+	}
+/************* Recipe page end **************768-991****/
+/************* Extraneous pages page start **768-991****/
+	
+
+/************* Extraneous pages page end ****768-991****//****************************/
+}
 @media screen and (max-width: 767px) {
+/************* Main navbar page start **********767-****/
+	#main-nav > a > img
+	{
+		left: 15px;
+	}
+	.navbar-header
+	{
+	    float: right;
+	}
+/************* Main navbar page end ************767-****/
+/************* Landing page start **************767-****/
+	#landing .row img
+	{
+	    height: auto;
+	    margin-bottom: 20px;
+	    width: 100%;
+	}
+	#main-fitbit > div > a,
+	#main-recipes > div > a,
+	#main-groceries > div > a
+	{
+		margin-bottom: 20px;
+	}
+	#carousel-groceries .item
+	{
+		overflow: hidden;
+	}
+	#carousel-recipes .item
+	{
+		background-color: #E2EEF4;
+		height: 100%;
+	}
+	#carousel-recipes p
+	{
+		font-size: 18px;
+		padding-left: 0%;
+		text-align: justify-all;
+	}
+	#carousel-recipes h3
+	{
+		display: block;
+		font-size: 24px;
+		padding-left: 0%;
+		text-align: center;
+	}
+	#carousel-recipes h4
+	{
+		font-size: 11px;
+		text-align: center;
+	}
+/************* Landing page end ****************767-****/
+/************* Deals page start ****************767-****/
+	#deals .row img
+	{
+	    height: auto;
+	    margin-bottom: 10px;
+	    width: 100%;
+	}
+	#deals .deal-details span
+	{
+		padding-top: 0px;
+	}
+	#deals-featured > div > a
+	{
+		margin-bottom: 20px;
+	}
+	#carousel-deals .item
+	{
+		background-color: #E2EEF4;
+		height: 100%;
+	}
+	#carousel-deals p
+	{
+		font-size: 18px;
+		padding-left: 0%;
+	}
+	#carousel-deals h3
+	{
+		display: block;
+		font-size: 24px;
+		margin-top: 10px;
+		padding-left: 0%;
+		text-align: center;
+	}
+	#carousel-deals h4
+	{
+		font-size: 11px;
+		text-align: center;
+	}
+/************* Deals page end ******************767-****/
+/************* Login/Register page start *******767-****/
+	#login .table > tbody > tr > td,
+	#register .table > tbody > tr > td
+	{
+		padding: 8px 0px;
+	}
+	#login > .row > .col-xs-12,
+	#register > .row > .col-xs-12
+	{
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	#login .table-responsive > .table > tbody > tr > td > #btn-facebook,
+	#login .table-responsive > .table > tbody > tr > td > #btn-twitter,
+	#login .table-responsive > .table > tbody > tr > td > #btn-google,
+	#register .table-responsive > .table > tbody > tr > td > #btn-facebook-reg,
+	#register .table-responsive > .table > tbody > tr > td > #btn-twitter-reg,
+	#register .table-responsive > .table > tbody > tr > td > #btn-google-reg
+	{
+		margin: 0px 0px;
+		width: 100%;
+	}
+/************* Login/Register page end *********767-****/
+/************* Groceries page start ************767-****/
+	#groceries h2
+	{
+		display: block;
+		margin-bottom: 30px;
+		text-align: center;
+	}
+	#groceries h3
+	{
+		text-align: center;
+	}
+	#groceries .table-responsive.col-xs-12
+	{
+		border: none;
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	#groceries .table-responsive > .table
+	{
+		font-size: 60%;
+	}
+	#groceries .table-responsive > .table > tbody > tr > td
+	{
+		white-space: normal;
+	}
+/************* Groceries page end **************767-****/
+/************* Create Recipe page start ********767-****/
+#add-recipe #upload-img h3
+{
+	font-size: 12px;
+}
+#add-recipe #upload-img .input-group
+{
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+}
+#add-recipe #upload-img .input-group .form-control
+{
+	float: none;
+	width: 55%;
+}
+#add-recipe #upload-img .input-group-btn
+{
+	float: none;
+	width: 45%;
+}
+#add-recipe #upload-img .bootstrap-filestyle.input-group input[type="text"].form-control
+{
+	margin-bottom: 20px;
+}
+#add-recipe #upload-img input[type="text"]
+{
+	display: block;
+	float: none;
+	margin: 0px auto 20px auto;
+	width: 80%;
+}
+/************* Create Recipe page end **********767-****/
+/************* Schedule page start *************767-****/
+#week-schedule .weekday.col-xs-12
+{
+	padding-left: 0px;
+	padding-right: 0px;
+	text-align: center;
+}
+#week-schedule .weekday.col-xs-12 > div > a
+{
+	width: 50%;
+}
+#week-schedule .weekday .recipe-options-wrapper button
+{
+	overflow: hidden;
+}
+#week-schedule .weekday button.btn-del-choice
+{
+	font-size: 12px;
+	height: 20px;
+	line-height: 12px;
+	margin-top: 10px;
+	position: absolute;
+	right: 5px;
+	z-index: 10;
+}
+#week-schedule .weekday > div:hover
+{
+	background-color: #EFEFEF;
+	color: #326077;
+}
+/************* Schedule page end ***************767-****/
+/************* Recipe page start ***************767-****/
+#recipe .row img
+{
+	height: auto;
+	width: 100%;
+}
+/************* Recipe page end *****************767-****/
+/************* Extraneous pages page start *****767-****/
 	#about .table-responsive > .table > tbody > tr > td,
 	#faq .table-responsive > .table > tbody > tr > td,
 	#contact .table-responsive > .table > tbody > tr > td
 	{
 		white-space: normal;
 	}
+	#error-page img
+	{
+		margin: 0px;
+		width: 100%;
+	}
+/************* Extraneous pages page end *******767-****//****************************/
 }

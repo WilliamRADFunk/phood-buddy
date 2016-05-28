@@ -84,8 +84,3 @@ hr {
 input, select {
     vertical-align:middle;
 }
-button:focus,
-input:focus,
-select:focus {
-    outline: 0;
-}

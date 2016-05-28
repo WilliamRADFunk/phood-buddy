@@ -66,27 +66,43 @@
 <!-- Main Navigation ends here -->
 <!-- Main Content Wrapper starts here -->
 	<div id="wrapper" class="container">
-		<div id="faq">
-			<h1>FAQ</h1>
-			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 table-responsive">
-					<table class="table">
-						<tr><td><i><span>Q: Do I have to settle for the recipe picked for me, or can I get a different one?</span></i></td></tr>
-						<tr><td><span>A: </span>Yes. Phood Buddy can repeatedly pick recipes as often as you need.</td></tr>
-						<tr><td><i><span>Q: What if I have a food allergy? Will Phood Buddy filter recipes to avoid my allergy?</span></i></td></tr>
-						<tr><td><span>A: </span>Yes. Phood Buddy, along with other filters, tries to eliminate options that would be affected by the allergies listed in your profile.</td></tr>
-						<tr><td><i><span>Q: I have diabetes, but like sweet foods. Can Phood Buddy find me recipes that taste sweet, but avoid foods dangerous to diabetics?</span></td></tr>
-						<tr><td><span>A: </span>Yes. Phood Buddy can find low sugar recipes that have a high sweet rating if that's how you've setup your profile.<i></td></tr>
-						<tr><td><i><span>Q: I have an iPhone. Can I download an iPhone app version of Phood Buddy?</span></td></i></tr>
-						<tr><td><span>A: </span>No. At the moment, the iPhone can only access Phood Buddy through the website at <a href="http://www.phoodbuddy.com">PhoodBuddy.com</a>.</td></tr>
-						<tr><td><i><span>Q: I have an Android phone, but it's version is 6 updates behind. Will the Phood Buddy app still be compatible?</span></td></i></tr>
-						<tr><td><span>A: </span>Yes. The Android Mobile branch of Phood Buddy is compatible with the last 10 versions as of 04/2016.</td></tr>
-						<tr><td><i><span>Q: I hate having to login repeatedly with username and password. Can Phood Buddy sign me in some other way?</span></td></i></tr>
-						<tr><td><span>A: </span>Yes. Phood Buddy can be signed in with Facebook or Google.</td></tr>
-						<tr><td><i><span>Q: I have a question that isn't listed here. What do I do?</span></td></i></tr>
-						<tr><td><span>A: </span>We're happy to answer any questions you might have. If it isn't here, feel free to contact one of our developers <a href="contact.html">here</a></td></tr>
-					</table>
+		<div id="favorite-recipes">
+			<h1>Favorite Recipes</h1>
+<!-- Filter Bar Start -->
+				<div id="filter-bar" class="row">
+					<div class="text-right col-lg-1 col-lg-offset-2 col-md-1 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-6">
+						All Recipes: 
+					</div>
+					<div class="col-lg-1 col-lg-offset-0 col-md-1 col-md-offset-0 col-sm-1 col-sm-offset-0 col-xs-6">
+						<input type="radio" onclick="cat = 0; counter = 0; initFavList(cat)" name="fav-filter" value="fav-all" checked="checked" />
+					</div>
+					<div class="text-right col-lg-2 col-lg-offset-0 col-md-2 col-md-offset-0 col-sm-2 col-sm-offset-0 col-xs-6">
+						User Created Recipes: 
+					</div>
+					<div class="text-left col-lg-1 col-lg-offset-0 col-md-1 col-md-offset-0 col-sm-1 col-sm-offset-0 col-xs-6">
+						<input type="radio" onclick="cat = 1; counter = 0; initFavList(cat)" name="fav-filter" value="fav-user"/>
+					</div>
+					<div class="text-right col-lg-2 col-lg-offset-0 col-md-2 col-md-offset-0 col-sm-2 col-sm-offset-0 col-xs-6">
+						External Recipes: 
+					</div>
+					<div class="text-left col-lg-1 col-lg-offset-0 col-md-1 col-md-offset-0 col-sm-1 col-sm-offset-0 col-xs-6">
+						<input type="radio" onclick="cat = 2; counter = 0; initFavList(cat)" name="fav-filter" value="fav-other"/>
+					</div>
 				</div>
+<!-- Filter Bar End -->
+<!-- List of Fav Recipes Start -->
+				<div id="fav-recipes-container"></div>
+<!-- List of Fav Recipes End -->
+<!-- Pagination Start -->
+				<div class="row">
+					<a href="javascript:decreaseCount()" class="text-right col-lg-3 col-lg-offset-2 col-md-3 col-md-offset-2 col-sm-3 col-sm-offset-2 col-xs-3">Previous</a>
+					<div id="page-count" class="text-center col-lg-2 col-md-2 col-sm-2 col-xs-6"></div>
+					<a href="javascript:increaseCount()" class="text-left col-lg-1 col-md-1 col-sm-1 col-xs-3">Next</a>
+				</div>
+				<div class="divider row">
+					<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12"></div>
+				</div>
+<!-- Pagination End -->
 			</div>
 		</div>
 	</div>
@@ -150,7 +166,7 @@
 		</div>
 	  </div>
 	</div>
+	<script>var counter = 0;var listCount = 0;var cat = 0;window.onload = initFavList(0);</script>
 <!-- Modal ends here -->
-<script>window.onload = function() { if(checkAuth()) {loggedIn();} }</script>
 </body>
 </html>
