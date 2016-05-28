@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.1.1">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>576</x>
+      <y>120</y>
+      <w>160</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>Recipe
+--
+$recipe_id
+$recipe_description
+$recipe_path
+$user_allergy
+--
++checkRecipe(): boolean
++getRecipe(): string
++searchRecipes(): string
++getRandomRecipe():string
++addNewFavRecipe(): int
+
+
+
+
+
+id: Long="36548"
+[waiting for message]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>360</x>
+      <y>120</y>
+      <w>168</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>UserInfo
+--
+-$user_id
+-$user_info
+--
++setHealthProfile():: int
++setUserInfo(): string
++getHealthProfile: string
++getUserInfo(): string
++setTasteProfile(): int
++getAllergyInfo(): string</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>152</x>
+      <y>424</y>
+      <w>168</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>Agenda
+--
+-$daily_plan
+-$list_plan
+--
++makeWeeklyMealPlan(): string
++saveWeeklyMealPlan(): int
++resetWeeklyPlans(): int
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>168</x>
+      <y>128</y>
+      <w>136</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Pantry
+--
+
+--
++addFoodToPantry(): int
++getPantry(): String
++removeFood():int
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>576</x>
+      <y>280</y>
+      <w>168</w>
+      <h>248</h>
+    </coordinates>
+    <panel_attributes>Authentication
+--
+-$googlecode
+-$secret-g
+-$fbcode
+-$secret-f
+--
++getFBAuth(): string
++getGAuth(): string
+getTAuth(): string
++getAuthToken():string
++encryptToken():string
++storeTokenG(): int
++storeTokenFB(): int
++storeTokenT(): int
++getTokenG(): string
++getTokenFB(): string
++getTokenT(): string
++loginUser(): boolean
++registerUser(): boolean
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>168</x>
+      <y>240</y>
+      <w>136</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Deals
+--
+-$category_id
+-$query
+--
++searchPrice(): string
++searchDeal(): string
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>168</x>
+      <y>336</y>
+      <w>136</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Fitbit
+--
++getFood(): string
++getActivityLog(): string
++getGoals(): string</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>136</x>
+      <y>80</y>
+      <w>648</w>
+      <h>464</h>
+    </coordinates>
+    <panel_attributes>PHP classes
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>368</x>
+      <y>296</y>
+      <w>168</w>
+      <h>208</h>
+    </coordinates>
+    <panel_attributes>PHP-Firebase
+--
+$firebase
+$dataTime
+$name
+$url
+$token
+$seconds
+--
++set()
++get()
++delete()
++update()
++push()
++setToken()
++setBaseURI()
++setTimeout();
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>296</x>
+      <y>152</y>
+      <w>88</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>296</x>
+      <y>272</y>
+      <w>88</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>296</x>
+      <y>360</y>
+      <w>88</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>312</x>
+      <y>456</y>
+      <w>72</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;20.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>432</x>
+      <y>256</y>
+      <w>24</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>528</x>
+      <y>224</y>
+      <w>64</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>60.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>528</x>
+      <y>336</y>
+      <w>64</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>60.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>392</x>
+      <y>552</y>
+      <w>112</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>Firebase-PHP API
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>440</x>
+      <y>496</y>
+      <w>24</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.&gt;
+</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>800</x>
+      <y>152</y>
+      <w>80</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>FatSecret API
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>728</x>
+      <y>152</y>
+      <w>120</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>10.0;20.0;130.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>40</x>
+      <y>272</y>
+      <w>80</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Walmart API</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>80</x>
+      <y>272</y>
+      <w>104</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>110.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>816</x>
+      <y>360</y>
+      <w>80</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Facebook API</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>824</x>
+      <y>424</y>
+      <w>64</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Twitter API</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>816</x>
+      <y>488</y>
+      <w>80</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Google+ API</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>736</x>
+      <y>360</y>
+      <w>128</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.&gt;
+</panel_attributes>
+    <additional_attributes>140.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>736</x>
+      <y>424</y>
+      <w>128</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.&gt;
+</panel_attributes>
+    <additional_attributes>140.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>736</x>
+      <y>488</y>
+      <w>128</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.&gt;
+</panel_attributes>
+    <additional_attributes>140.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>48</x>
+      <y>344</y>
+      <w>64</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>FitBit API
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>80</x>
+      <y>344</y>
+      <w>104</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>110.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+</diagram>

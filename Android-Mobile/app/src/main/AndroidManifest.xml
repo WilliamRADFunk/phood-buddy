@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.phoodbuddy.phoodbuddy">
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="com.myschoolflow.schoolflow.permission.SET_ALARM"></uses-permission>
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:name=".Service.firebase"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".Activities.splash_screen"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.shopping_list"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"></activity>
+        <!-- Get Fit Bit User Data -->
+        <activity
+            android:name=".Service.fitbit"
+            android:label="Fitbit">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="fitbit"
+                    android:scheme="temboo" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.setup"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Activities.settings"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Activities.recipes"
+
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".Activities.login"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Activities.health_profile"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Activities.deals"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Activities.dashboard"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Fragments.shopping_list_detail"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Activities.planner"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Activities.recipe_detail"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".Controllers.LoginController"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".Activities.FavRecipes"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".Activities.TasteProfile"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".Service.TwitterOAuthActivity" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="40aef9f2ed56dbe6483cc69a101e2809df36e495" />
+        <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+    </application>
+
+    <activity android:name="com.facebook.FacebookActivity" />
+
+
+    <meta-data
+        android:name="io.fabric.ApiKey"
+        android:value="40aef9f2ed56dbe6483cc69a101e2809df36e495" />
+
+
+</manifest>

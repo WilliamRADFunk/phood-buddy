@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.1.1">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>45</x>
+      <y>99</y>
+      <w>189</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>*SplashScreen*
+/"Intro screen"/
+--
+confirmCode: String
+--
+Functions
+CheckForAuth()
+CheckForUserLogin()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>45</x>
+      <y>279</y>
+      <w>189</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>*Login*
+--
+-username: String
+-password: String
+--
++FirstTime()
++Oauthprocess()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>45</x>
+      <y>477</y>
+      <w>288</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>*AccountSetup*
+--
+-Bio: String
+-Username: String
+-Email: String
+-Allergies: Int[]
+--
++StoreUserInfo()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>324</x>
+      <y>126</y>
+      <w>234</w>
+      <h>423</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>240.0;10.0;10.0;450.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>549</x>
+      <y>90</y>
+      <w>666</w>
+      <h>594</h>
+    </coordinates>
+    <panel_attributes>Dashboard
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>567</x>
+      <y>117</y>
+      <w>189</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>*RecipleList*
+--
+-RecipeInfo: String
+-foodtype: String
+-cal: String
+-course: String
+-cuisine: String
+--
++FavoriteRecipe()
++SearchRecipe()
++AddIngrediantsToList()
++RateRecipe()
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>567</x>
+      <y>279</y>
+      <w>189</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>*Agenda*
+--
+-schedule: int[]
+--
++RetrieveSchedule()
++StoreSchedule()
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>783</x>
+      <y>504</y>
+      <w>189</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>*GroceryList*
+--
+-itemId: String
+-outString: String
+--
++AddItem()
++RemoveItem()
++CreateList()
++DeleteList()
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>567</x>
+      <y>378</y>
+      <w>189</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>*Deals*
+--
+-dealsInfo: String
+--
++RetrieveDeal()
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>567</x>
+      <y>459</y>
+      <w>189</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>*HealthProfile*
+--
+fitbitData: String
+allergies: int[]
+cholestorl: bool
+--
++SetUpFitbit()
++StoreFitbit()
++GetFitbit()
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>945</x>
+      <y>324</y>
+      <w>189</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>*Settings*
+--
+-Username:String
+-Email: String
+-Bio: String
+-Allergies: int[]
+-HubFromat: int[]
+--
++SetUpFitbit()
++GetSetting()
++StoreSetting()
+
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>873</x>
+      <y>144</y>
+      <w>153</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>*RecipeFragment*
+--
+/ Displays chosen recipe /
+/      from list by user/
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>747</x>
+      <y>270</y>
+      <w>171</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;userClicksDeal&gt;&gt;</panel_attributes>
+    <additional_attributes>120.0;10.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>738</x>
+      <y>171</y>
+      <w>153</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;userClicksRecipe&gt;&gt;</panel_attributes>
+    <additional_attributes>150.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>801</x>
+      <y>117</y>
+      <w>252</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>Fragments
+bg=orange
+layer=0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>873</x>
+      <y>216</y>
+      <w>153</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>*DealsFragment*
+--
+/  Displays chosen deal /
+/      from list by user/
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>99</x>
+      <y>189</y>
+      <w>162</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+*&lt;&lt;CheckForAuth() fails&gt;&gt;*</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>126</x>
+      <y>360</y>
+      <w>144</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+*&lt;&lt;FirstTime() is True&gt;&gt;*</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>225</x>
+      <y>117</y>
+      <w>324</w>
+      <h>234</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+*&lt;&lt;FirstTime()  is false&gt;&gt;*</panel_attributes>
+    <additional_attributes>340.0;10.0;10.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>225</x>
+      <y>99</y>
+      <w>315</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+*&lt;&lt;CheckForAuth() success&gt;&gt;*</panel_attributes>
+    <additional_attributes>330.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>594</x>
+      <y>576</y>
+      <w>180</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>*Drop Down Menu*
+/Access to each component/
+/of dashboard/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>225</x>
+      <y>117</y>
+      <w>297</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+*&lt;&lt;CheckForUserLogin() success&gt;&gt;*</panel_attributes>
+    <additional_attributes>310.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>999</x>
+      <y>504</y>
+      <w>189</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>*Pantry*
+--
+-itemId: String
+-outString: String
+--
++AddItem()
++RemoveItem()
++CreatePantry()
++DeletePatrny()
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

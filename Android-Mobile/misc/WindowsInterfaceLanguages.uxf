@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.1.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>190</x>
+      <y>260</y>
+      <w>120</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Control</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>130</x>
+      <y>110</y>
+      <w>380</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Windows Interface w/ Associated Languages
+fontsize=18
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>300</x>
+      <y>270</y>
+      <w>110</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>390</x>
+      <y>260</y>
+      <w>120</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Event Handler</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>600</x>
+      <y>250</y>
+      <w>140</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Windows Data Logic</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>500</x>
+      <y>270</y>
+      <w>120</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>100.0;20.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>170</x>
+      <y>150</y>
+      <w>390</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>Interface Layer
+--
+bg=cyan</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>580</x>
+      <y>160</y>
+      <w>180</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>Logic Layer
+--
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>220</x>
+      <y>210</y>
+      <w>60</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>XAML
+bg=green
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>420</x>
+      <y>210</y>
+      <w>60</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>C#
+bg=green
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>640</x>
+      <y>200</y>
+      <w>60</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>C#
+bg=green
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>660</x>
+      <y>320</y>
+      <w>30</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>580</x>
+      <y>380</y>
+      <w>180</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>Interfaces
+--
+FatSecret API,  FitBit API
+Facebook API,  Google API
+Twitter API,  Walmart API
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

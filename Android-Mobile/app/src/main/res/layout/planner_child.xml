@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Name of Recipe"
+        android:id="@+id/foodName"
+        android:layout_marginLeft="18dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="17dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/imageView4"
+        android:layout_toEndOf="@+id/imageView4" />
+
+    <ImageView
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:id="@+id/imageView4"
+        android:layout_alignTop="@+id/foodName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/textView11"
+        android:src="#222121" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Servings:"
+        android:id="@+id/textView11"
+        android:layout_below="@+id/foodName"
+        android:layout_alignLeft="@+id/foodName"
+        android:layout_alignStart="@+id/foodName"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="5"
+        android:id="@+id/servingNum"
+        android:layout_alignTop="@+id/textView11"
+        android:layout_toRightOf="@+id/textView11"
+        android:layout_toEndOf="@+id/textView11"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Calories:"
+        android:id="@+id/textView13"
+        android:layout_alignTop="@+id/servingNum"
+        android:layout_toRightOf="@+id/servingNum"
+        android:layout_toEndOf="@+id/servingNum"
+        android:layout_marginLeft="34dp"
+        android:layout_marginStart="34dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="300"
+        android:id="@+id/calorieNum"
+        android:layout_alignTop="@+id/textView13"
+        android:layout_toRightOf="@+id/textView13"
+        android:layout_toEndOf="@+id/textView13"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Carbs:"
+        android:id="@+id/textView15"
+        android:layout_alignTop="@+id/calorieNum"
+        android:layout_toLeftOf="@+id/carbNum"
+        android:layout_toStartOf="@+id/carbNum"
+        android:layout_marginRight="15dp"
+        android:layout_marginEnd="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="300"
+        android:id="@+id/carbNum"
+        android:layout_alignTop="@+id/textView15"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Breakfast"
+        android:id="@+id/textView17"
+        android:layout_alignTop="@+id/foodName"
+        android:layout_alignRight="@+id/carbNum"
+        android:layout_alignEnd="@+id/carbNum" />
+</RelativeLayout>

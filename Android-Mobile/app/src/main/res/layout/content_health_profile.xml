@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FEFEFE">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:id="@+id/imageView3"
+        android:background="#EEEEEE"
+        android:layout_marginTop="59dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:id="@+id/imageView5"
+        android:background="#EEEEEE"
+        android:layout_marginBottom="143dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Today, April 15"
+        android:id="@+id/textView2"
+        android:layout_alignBottom="@+id/imageView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="15dp"
+        android:textStyle="bold"
+        android:textSize="24dp"
+        android:textColor="#777777" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Activity"
+        android:id="@+id/textView9"
+        android:layout_alignBottom="@+id/imageView5"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="25dp"
+        android:textStyle="bold"
+        android:textSize="24dp"
+        android:textColor="#777777" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView6"
+        android:src="@drawable/ic_trending"
+        android:cropToPadding="false"
+        android:tint="#FEB850"
+        android:layout_below="@+id/textView21"
+        android:layout_alignLeft="@+id/imageView7"
+        android:layout_alignStart="@+id/imageView7" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:id="@+id/imageView7"
+        android:src="@drawable/ic_charge"
+        android:cropToPadding="false"
+        android:layout_below="@+id/imageView3"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_alignRight="@+id/textView9"
+        android:layout_alignEnd="@+id/textView9"
+        android:scaleType="fitXY" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView8"
+        android:src="@drawable/ic_accessibility"
+        android:cropToPadding="false"
+        android:tint="#DB554F"
+        android:layout_below="@+id/imageView7"
+        android:layout_alignLeft="@+id/textView9"
+        android:layout_alignStart="@+id/textView9"
+        android:layout_above="@+id/imageView9" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView9"
+        android:src="@drawable/ic_place"
+        android:cropToPadding="false"
+        android:tint="#607D8B"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/imageView8"
+        android:layout_alignStart="@+id/imageView8" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Charge"
+        android:id="@+id/textView12"
+        android:textColor="#777777"
+        android:layout_alignTop="@+id/imageView7"
+        android:layout_toRightOf="@+id/imageView7"
+        android:layout_toEndOf="@+id/imageView7"
+        android:layout_marginTop="15dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView10"
+        android:layout_below="@+id/textView12"
+        android:layout_toRightOf="@+id/imageView7"
+        android:layout_toEndOf="@+id/imageView7"
+        android:src="@drawable/ic_battery_full" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="744"
+        android:id="@+id/textView16"
+        android:layout_above="@+id/imageView9"
+        android:layout_alignLeft="@+id/imageView10"
+        android:layout_alignStart="@+id/imageView10"
+        android:layout_marginBottom="20dp"
+        android:textColor="#777777"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="activity calories burned"
+        android:id="@+id/textView18"
+        android:textColor="#777777"
+        android:layout_alignBottom="@+id/textView16"
+        android:layout_toRightOf="@+id/textView16"
+        android:layout_toEndOf="@+id/textView16"
+        android:layout_marginLeft="5dp" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:background="#EEEEEE"
+        android:max="5"
+        android:layout_below="@+id/imageView9"
+        android:layout_toRightOf="@+id/textView9"
+        android:layout_alignRight="@+id/textView20"
+        android:layout_alignEnd="@+id/textView20" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="2.60 miles"
+        android:id="@+id/textView19"
+        android:textColor="#777777"
+        android:textStyle="bold"
+        android:layout_alignBaseline="@+id/textView20"
+        android:layout_alignBottom="@+id/textView20"
+        android:layout_alignLeft="@+id/textView16"
+        android:layout_alignStart="@+id/textView16" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="5.00"
+        android:id="@+id/textView20"
+        android:textColor="#777777"
+        android:textStyle="bold"
+        android:layout_above="@+id/progressBar"
+        android:layout_alignRight="@+id/textView18"
+        android:layout_alignEnd="@+id/textView18" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Overview"
+        android:id="@+id/textView21"
+        android:textColor="#777777"
+        android:textStyle="bold"
+        android:layout_below="@+id/textView9"
+        android:layout_toRightOf="@+id/textView9"
+        android:layout_toEndOf="@+id/textView9" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar2"
+        android:layout_alignBottom="@+id/imageView6"
+        android:layout_toRightOf="@+id/imageView9"
+        android:layout_alignRight="@+id/progressBar"
+        android:layout_alignEnd="@+id/progressBar"
+        android:background="#EEEEEE" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="6134 steps"
+        android:id="@+id/textView22"
+        android:textColor="#777777"
+        android:textStyle="bold"
+        android:layout_above="@+id/progressBar2"
+        android:layout_alignLeft="@+id/progressBar2"
+        android:layout_alignStart="@+id/progressBar2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="10000"
+        android:id="@+id/textView23"
+        android:textColor="#777777"
+        android:textStyle="bold"
+        android:layout_alignTop="@+id/textView22"
+        android:layout_alignRight="@+id/progressBar"
+        android:layout_alignEnd="@+id/progressBar" />
+
+</RelativeLayout>
