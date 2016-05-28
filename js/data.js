@@ -1,4 +1,3 @@
-
 //Data Construction Functions
 function getGroceryList(cb)
 {
@@ -12,15 +11,16 @@ function getGroceryList(cb)
 	var data = ref.getAuth();
 	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/");
 
-	var groceryList = "";
+	var groceryList;
 
 	gref.once('value', function(snapshot){
 		if(snapshot.hasChild(data.uid))
 		{
+			var userId = data.uid;
 			console.log("User has groceryList, proceed normally");
-			groceryListSnapshot = snapshot.child(data.uid);
+			groceryListSnapshot = snapshot.child(userId);
 			groceryList = groceryListSnapshot.val();
-			groceryList["id"] = data.uid;
+			groceryList.id = userId;
 			cb(groceryList);
 		}
 		else
@@ -30,7 +30,18 @@ function getGroceryList(cb)
 	});
 }
 
-function addGrocery(contentJson, cb)
+function assembleGrocery(name, desc, amt, unit)
+{
+	var groceryObj = {
+		"name": name,
+		"description": desc,
+		"quantity": amt,
+		"unit": unit
+	};
+	return groceryObj;
+}
+
+function addGrocery(category, item, description, quantity, unit, cb)
 {
 
 	//DEBUG : WARNING ::: Convert impending input into Javascript object, set equal to 'contentJson
@@ -44,24 +55,22 @@ function addGrocery(contentJson, cb)
 	}
 
 	var data = ref.getAuth();
-	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/");
+	var groceryItem = assembleGrocery(item, description, quantity, unit);
+	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/" + category + "/");
 
-	var newGroceryRef = gref.child(data.uid).push();
-	newGroceryRef.update(contentJson);
-	console.log(contentJson);
+	var newGref = gref.child("items").push();
+	newGref.update(groceryItem);
 
-	cb(newGroceryRef.key()); //This cb contains the name of the created key for new object.
+	cb(newGref.key()); //This cb contains the new id of the created item.
 
 }
 
-function editGrocery(contentJson, cb)
+function editGrocery(id, category, item, description, quantity, unit, cb)
 {
 	//WARNING ::: Convert impending input into Javascript object (if not already), and set equal to 'contentJson'
 	// DEBUG :  DUMMY VALUE var contentJson = {"-KEnu2ENxPZIixIbbXG4":{"name": "banana", "description": "That other thing", "quantity": "2", "unit": "loafes", "category": "meat"}};
 
-	var keys = Object.keys(contentJson);
-
-	var ref  = new Firebase("https://phoodbuddy.firebaseio.com/");
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 	if(ref.getAuth() === null)
 	{
 		cb(false);
@@ -69,16 +78,18 @@ function editGrocery(contentJson, cb)
 	}
 
 	var data = ref.getAuth();
-	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/");
+	var grefItems = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/" + category + "/items/");
 
-	console.log(keys[0]);
+	var groceryObj = assembleGrocery(item, description, quantity, unit);
 
-	gref.once('value', function(snapshot){
+	grefItems.once('value', function(snapshot){
 
-		if(snapshot.hasChild(keys[0]))
+		if(snapshot.hasChild(id))
 		{
-			var newGrocery = contentJson[keys[0]];
-			gref.child(keys[0]).set(newGrocery);
+			var updateRef = grefItems.child(id);
+			console.log(id);
+			console.log(groceryObj);
+			updateRef.update(groceryObj);
 			cb(true);
 		}
 		else
@@ -88,7 +99,7 @@ function editGrocery(contentJson, cb)
 	});
 }
 
-function deleteGrocery(contentKey, cb)
+function deleteGrocery(category, contentKey, cb)
 {
 	//WARNING ::: Convert impending input into Javascript object, set equal to 'contentJson'
 
@@ -102,15 +113,17 @@ function deleteGrocery(contentKey, cb)
 	var data = ref.getAuth();
 
 	//Needs to add key to URL path and remove using 'gref.remove()'
-	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/" + contentKey);
+	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/" + category + "/items/");
 
 	if(gref === null)
 	{
 		cb(false);
 	}
-
-	gref.remove();
-	cb(true);
+	else
+	{
+		gref.child(contentKey).remove();
+		cb(true);
+	}
 }
 
 function removeAllGrocery(cb)
@@ -126,7 +139,38 @@ function removeAllGrocery(cb)
 
 	var gref = new Firebase("https://phoodbuddy.firebaseio.com/grocery/" + data.uid + "/");
 
-	gref.remove();
+	gref.set({
+		"bakery":{
+			name:"Bakery"
+		},
+		"bakingSpices":{
+			name: "Baking and Spices"
+		},
+		"cannedGoods":{
+			"name": "Beverages"
+		},
+		"cereals":{
+			"name": "Cereals"
+		},
+		"condiments":{
+			name:"Condiments"
+		},
+		"dairy":{
+			name: "Dairy"
+		},
+		"frozen":{
+			"name": "Frozen"
+		},
+		"meats":{
+			"name": "Meats"
+		},
+		"miscellaneous":{
+			"name": "Miscellaneous"
+		},
+		"produce":{
+			"name": "Produce"
+		}
+	});
 	cb(true);
 }
 
@@ -174,10 +218,6 @@ function assembleRecipe(description, img, name, taste, ingredients, directions, 
 
 		postRecipe(recipeJson, cb);
 	});
-
-
-
-
 	
 }
 
@@ -205,7 +245,7 @@ function postRecipe(recipeJson, cb)
 
 	ref.child("users").child(data.uid).child("created-recipe").update(storeJson);
 	ref.child("users").child(data.uid).child("favorited-recipe").update(storeJson);
-	cb(true);
+	cb(recipeId);
 }
 
 
@@ -500,7 +540,6 @@ function getFavAll(count, cb)
 				//cycle through each key of previous snapshot
 				snapshot.forEach(function(childSnapshot)
 				{
-					//console.log(childSnapshot.val());
 					//Set current key of 'recipe-directory' to temporary variable
 					//Cycle through the keys provided by snapshot of users 'created-recipe' to find link
 					var directoryKey = childSnapshot.key();
@@ -535,6 +574,10 @@ function getFavAll(count, cb)
 			});//END: snapshot -> 'recipe-directory'
 			//cb(recipeContentJson); //This cb will return the JSON of all recipes
 		}//END: if user has created recipes
+		else
+		{
+			cb(false);
+		}
 	});//END: snapshot -> 'users/uid'
 }
 
@@ -742,14 +785,148 @@ function getAllRecipes(count, cb)
 	});
 }
 
+function resetPasswordLoggedIn(cb) //DONT WORRY ABOUT THIS ONE
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		cb(false);
+		return;
+	}
+
+	var data = ref.getAuth();
+
+		var user = new firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+		user.once("value", function(snapshot){
+			var obj = snapshot.val();
+			if(obj.provider == "password")
+			{
+				console.log("Custom user recognized, proceeding to password reset...");
+				var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/profile/");
+				userRef.once("value", function(snapshot2){
+				var profile = snapshot2.val();
+				emailString = profile.email;
+
+				ref.resetPassword({
+					email: emailString
+				},function(error){
+						if(error)
+						{
+							console.log(error); //ERROR-D
+							console.log("password reset function from firebase failed. Returning false...");//ERROR-D
+							cb(false);
+						}
+						else
+						{
+							cb(true);
+						}
+					});
+				});
+			}
+			else
+			{
+				console.log("User is using 3rd party provider. Inform user of 3rd party password reset.");//ERROR-D
+				cb(false);
+			}
+		});
+		
+	
+}
+
+function resetPassword(emailString, cb)
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	ref.resetPassword({
+					email: emailString
+				},function(error){
+						if(error)
+						{
+							console.log(error); //ERROR-D
+							console.log("password reset function from firebase failed. Returning false...");//ERROR-D
+							cb(false);
+						}
+						else
+						{
+							console.log("message has been sent!");//ERROR-D
+							cb(true);
+						}
+					});
+}
+
+function changePassword(oldPassword, newPassword, cb)
+{
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	if(ref.getAuth() === null)
+	{
+		cb(false);
+		return;
+	}
+
+	var data = ref.getAuth();
+
+		var user = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+		user.once("value", function(snapshot){
+			var obj = snapshot.val();
+			if(obj.provider == "password")
+			{
+				console.log("Custom user recognized, proceeding to password reset...");
+				var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/profile/");
+				userRef.once("value", function(snapshot2){
+				var profile = snapshot2.val();
+				emailString = profile.email;
+					
+					ref.changePassword({
+					  email: emailString,
+					  oldPassword: oldPassword,
+					  newPassword: newPassword
+					}, function(error) {
+						if (error) {
+							switch (error.code) {
+								case "INVALID_PASSWORD":
+								console.log("The specified user account password is incorrect.");
+							break;
+							case "INVALID_USER":
+								console.log("The specified user account does not exist.");
+							break;
+							default:
+								console.log("Error changing password:", error);
+							}
+						}
+						else
+						{
+							console.log("User password changed successfully!");
+							cb(true);
+						}
+					});
+
+				});
+			}
+			else
+			{
+				console.log("User is using 3rd party provider. Inform user of 3rd party password reset.");//ERROR-D
+				cb(false);
+			}
+		});
+}
+
 function editUserProfile(fname, lname, email, city, country, state, street, age, favdish, favdrink, gender, about, cb) //
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
+	if(state.length > 2)
+	{
+		console.log("State length is longer than expected length of 2. Returning false...");//ERROR-D
+		cb(false);
+	}
+
+
 
 	if(ref.getAuth() === null)
 	{
-		//cb(false);
+		cb(false);
 		return;
 	}
 
@@ -780,36 +957,14 @@ function editUserProfile(fname, lname, email, city, country, state, street, age,
 
 	var fullName = fname + " " + lname;
 
-	userRef.child("name").update(fullName);
+	userRef.update({"name": fullName});
 	userRef.child("profile").update(profileData);
-	//cb(true);
+	cb(true);
 
 }
 
-function getUserProfileSettings()
+function getUserProfile(cb)
 {
-	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
-
-
-	if(ref.getAuth() === null)
-	{
-		//cb(false);
-		return;
-	}
-	//Stores authData of package
-	var data = ref.getAuth();
-
-	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/profile/");
-
-	userRef.once("value", function(snapshot){
-		console.log(snapshot.val());
-	});
-}
-
-
-function getUsersSettings(cb)
-{
-	//Creates reference to firebase to test authentication
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
 	if(ref.getAuth() === null)
@@ -818,22 +973,30 @@ function getUsersSettings(cb)
 		return;
 	}
 
-	//Stores authData of package
 	var data = ref.getAuth();
 
-	//Create new reference to users information
 	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
 
-	//Snapshot current userRef to obtain users info JSON
 	userRef.once("value", function(snapshot){
+		//Assign the snapshots of each segment of user profile data for profile/settings page
+		var tasteSnapshot = snapshot.child("taste");
+		var allergiesSnapshot = snapshot.child("allergies");
+		var profileSnapshot = snapshot.child("profile");
+		var healthSnapshot = snapshot.child("health");
+		// Extract JSON from snapshots
+		var tasteObj = tasteSnapshot.val();
+		var allergiesObj = allergiesSnapshot.val();
+		var profileObj = profileSnapshot.val();
+		var healthObj = healthSnapshot.val();
+		//Build JSON
+		var contentJson = {};
+		contentJson.taste = tasteObj;
+		contentJson.allergies = allergiesObj;
+		contentJson.profile = profileObj;
+		contentJson.health = healthObj;
 
-		var dataPackage = snapshot.val();
-		console.log(dataPackage);
-
-		//Return to callback the data of user (JSON)
-		cb(dataPackage);
+		cb(contentJson);
 	});
-
 }
 
 function getTasteProfile(cb)
@@ -860,8 +1023,16 @@ function getTasteProfile(cb)
 
 }
 
-function editTasteProfile(contentJson, cb)
+function editTasteProfile(bitter, salty, sour, spicy, sweet, cb)
 {
+
+	if( ((parseInt(bitter) < 0) || (parseInt(bitter) > 5)) || ((parseInt(salty) < 0) || (parseInt(salty) > 5)) || ((parseInt(sweet) < 0) || (parseInt(sweet) > 5)) || ((parseInt(sour) < 0) || (parseInt(sour) > 5)) || ((parseInt(spicy) < 0) || (parseInt(spicy) > 5)))
+	{
+		console.log("A taste paremeter is not within expected bounds [0 - 5] ")//ERROR-D
+		cb(false);
+		return;
+	}
+
 
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
@@ -874,11 +1045,18 @@ function editTasteProfile(contentJson, cb)
 	//Stores authData of package
 	var data = ref.getAuth();
 
-	console.log(contentJson);
+	tasteRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/taste");
 
-	tasteRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
-
-	tasteRef.child("taste").update(contentJson);
+	//Create taste object to update into taste directory of database of user
+	tasteObj = {
+		"bitter": bitter,
+		"salty": salty,
+		"sour": sour,
+		"spicy": spicy,
+		"sweet": sweet
+	};
+	//Update database reference with constructed object.
+	tasteRef.update(tasteObj);
 	cb(true);
 
 
@@ -890,7 +1068,7 @@ function getUserAllergies(cb)
 
 	if(ref.getAuth() === null)
 	{
-		cb(""); //cb FIX
+		cb(false);
 			return;
 	}
 
@@ -929,7 +1107,7 @@ function editUserAllergies(contentJson, cb)
 	cb(true);
 }
 
-function getUserHealth(cb) //FIX
+function getUserHealth(cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
@@ -946,19 +1124,27 @@ function getUserHealth(cb) //FIX
 
 	allergyRef.once("value", function(snapshot)
 	{
-		if(snapshot.child("allergies").exists())
+		if(snapshot.child("health").exists())
 		{
-			var contentJson = snapshot.child("allergies").val();
+			var contentJson = snapshot.child("health").val();
 			cb(contentJson);
+		}
+		else
+		{
+			var contentJson1 = {"empty": true};
+			cb(contentJson1);
 		}
 
 	});
 
 }
 
-function editUserHealth(contentJson, cb)
+function editUserHealth(healthObj, allergyObj, cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
+	var healthKeys = Object.keys(healthObj);
+	var allergyKeys = Object.keys(allergyObj);
 
 	if(ref.getAuth() === null)
 	{
@@ -966,16 +1152,43 @@ function editUserHealth(contentJson, cb)
 		return;
 	}
 
+	if(healthKeys.length === 5)
+	{
+		if(!(("diabetes" in healthObj) && ("high-cholestorol" in healthObj) && ("hypertension" in healthObj) && ("hypotension" in healthObj) && ("vegetarian" in healthObj)))
+		{
+			console.log("Expected health object keys are not all contained in health object. Returning false");//ERROR-D
+			cb(false);
+		}
+	}
+	else
+	{
+		console.log("Health Object length is not of correct length (5). It is currently " + healthKeys.length);//ERROR-D
+		cb(false);
+	}
+
+	if(allergyKeys.length === 11)
+	{
+		if(!(("corn" in allergyObj) && ("egg" in allergyObj) && ("fish" in allergyObj) && ("glutten" in allergyObj) && ("milk" in allergyObj) && ("peanut" in allergyObj) && ("red-meat" in allergyObj) && ("sesame" in allergyObj) && ("shell-fish" in allergyObj) && ("soy" in allergyObj) && ("tree-nut" in allergyObj)))
+		{
+			console.log("Expected allergy object keys are not all contained in health object. Returning false...");//ERROR-D
+			cb(false);
+		}
+	}
+	else
+	{
+		console.log("Allergy Object length is not of correct length (11). It is currently " + allergyKeys.length);//ERROR-D
+		cb(false);
+	}
+
+	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
+
 	//Stores authData of package
 	var data = ref.getAuth();
+	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
 
-	
-
-	console.log(contentJson);
-
-	tasteRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
-
-	tasteRef.child("health").update(contentJson);
+	//Store objects provided to correct paths.
+	userRef.child("allergies").update(allergyObj);
+	userRef.child("health").update(healthObj);
 	cb(true);
 }
 
@@ -999,7 +1212,7 @@ function getPlanner(cb)
 	});
 }
 
-function updatePlanner(dayOfWeek, timeOfDay, name, recipeId, cb)
+function updatePlanner(dayOfWeek, timeOfDay, foodName, id, cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
@@ -1012,8 +1225,9 @@ function updatePlanner(dayOfWeek, timeOfDay, name, recipeId, cb)
 	var data = ref.getAuth();
 
 	var plannerRef = new Firebase("https://phoodbuddy.firebaseio.com/planner/" + data.uid + "/" + dayOfWeek + "/" + timeOfDay +"/");
-
-	var obj = {"name": name, "recipeId": recipeId};
+	var obj = {};
+	obj.name = foodName;
+	obj.recipeId = id;
 
 	plannerRef.update(obj);
 
@@ -1029,18 +1243,24 @@ function favoriteRecipe(recipeId, cb)
 		cb(false);
 		return;
 	}
-	//Stores authData of package
-	var data = ref.getAuth();
+	else
+	{
+		var data = ref.getAuth();
 
-	//Creates reference to users portion in database
-	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+		//Creates reference to users portion in database
+		var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+		//Creates object to save
+		var recipeSave = {};
+		recipeSave[recipeId] = {};
+		recipeSave[recipeId] = true;
 
-	//Updates path information to include favorited-recipe and the current recipe Id
-	userRef.child("favorited-recipe").update({recipeid: true});
-	cb(true);
+		//Updates favorited recipes to contain favorited recipe.
+		userRef.child("favorited-recipe").update(recipeSave);
+		cb(true);
+	}
 }
 
-function removeFavorited(recipeId, cb)
+function removeFavorite(recipeId, cb)
 {
 	var ref = new Firebase("https://phoodbuddy.firebaseio.com/");
 
@@ -1049,13 +1269,15 @@ function removeFavorited(recipeId, cb)
 		cb(false);
 		return;
 	}
-	//Stores authData of package
-	var data = ref.getAuth();
-	var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
-	var favoriteRecipeRef = userRev.child("favorited-recipe").child("recipeId");
+	else
+	{
+		var data = ref.getAuth();
+		var userRef = new Firebase("https://phoodbuddy.firebaseio.com/users/" + data.uid + "/");
+		var favoriteRecipeRef = userRef.child("favorited-recipe").child(recipeId);
 
-	favoriteRecipeRef.remove();
-
+		favoriteRecipeRef.remove();
+		cb(true);
+	}
 }
 
 function rateRecipe(recipeId, rating, cb)
@@ -1108,8 +1330,9 @@ function getRandomRecipe(day, meal, cb)
 
 	if(ref.getAuth() === null)
 	{
-		return;
 		cb(false, day, meal);
+		return;
+		
 	}
 
 	var data = ref.getAuth();
@@ -1315,7 +1538,17 @@ function getRandomRecipe(day, meal, cb)
 						flagger = false;
 						var jsonRecipe = querySnapshot.val();
 						jsonRecipe.id = querySnapshot.key();
-						cb(jsonRecipe, day, meal);
+						var recipeId = querySnapshot.key();
+						var name = querySnapshot.child("name").val();
+
+						if(meal === "")
+						{
+							cb(jsonRecipe, day, meal);
+						}
+						else
+						{
+							updatePlanner(day, meal, name, recipeId, cb);
+						}
 						return true;
 					}
 				});
@@ -1393,7 +1626,17 @@ function getRandomRecipe(day, meal, cb)
 						flagger = false;
 						var jsonRecipe = querySnapshot.val();
 						jsonRecipe.id = querySnapshot.key();
-						cb(jsonRecipe, day, meal);
+						var recipeId = querySnapshot.key();
+						var name = querySnapshot.child("name").val();
+
+						if(meal === "")
+						{
+							cb(jsonRecipe, day, meal);
+						}
+						else
+						{
+							updatePlanner(day, meal, name, recipeId, cb);
+						}
 						return true;
 					}
 
@@ -1516,7 +1759,7 @@ function getRecipe(id, cb)
 	//Stores authData of package
 	var data = ref.getAuth();
 
-	ref.child("recipe-directory").child(id).exists();
+	//ref.child("recipe-directory").child(id).exists();  ~~DEBUG: TAKEN OUT. WHY WAS THIS HERE?
 
 	var recipeRef = new Firebase("https://phoodbuddy.firebaseio.com/recipe-directory/" + id + "/");
 
